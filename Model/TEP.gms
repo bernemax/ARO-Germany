@@ -46,18 +46,12 @@ psp_DE(s)
 exist(l)/l1*l840/
 prosp(l)/l841*l1680/
 
-exist_borderlines_DE(l)
-/l62,l100,l216,l255,l256,l293,l311,l339,l349,l350,l363,l364,l377
-l463,l464,l472,l474,l476,l477,l481,l482,l484,l486,l487,l531,l532,l533,l534,l535,l536,l537,l553,l610,l611
-l612,l613,l614,l615,l618,l641,l642,l666,l693,l694,l820/
+Border_exist_DE(l)
+Border_exist_total(l)
 
+Border_prosp_DE(l)
+Border_prosp_total(l)
 
-
-prosp_borderlines_DE(l)
-/l1053,l1214,l899,l937,l1318,l1321,l1476,l1477,l1531,l1657,l1447,l1451
-l1474,l1475,l1309,l1372,l1148,l1176,l1368,l1370,l1530,l1130,l1324,l1313,l1314,l1311,l1503,l1479
-l1480,l1481,l1482,l1300,l1301,l1186,l1187,l1374,l1448,l1452,l1449,l1450,l1373,l1369
-l1390,l1371,l1092,l1093,l1200,l1201,l1668/
 
 ****************************nodes***************************************************
 ref(n)   /n1/
@@ -249,6 +243,10 @@ set=MapS                        rng=Mapping!J3:K177                     rdim=2 c
 set=MapRes                      rng=Mapping!S3:T1027                    rdim=2 cDim=0
 set=MapWr                       rng=Mapping!M3:N482                     rdim=2 cDim=0
 set=MapSr                       rng=Mapping!P3:Q482                     rdim=2 cDim=0
+set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
+set=Border_exist_total          rng=Mapping!W3:W65                      rdim=1 cDim=0
+set=Border_prosp_DE             rng=Mapping!X3:X47                      rdim=1 cDim=0
+set=Border_prosp_total          rng=Mapping!Y3:Y65                      rdim=1 cDim=0
 
 
 par=Node_Demand                 rng=Node_Demand!A1:C506                 rDim=1 cdim=1
@@ -270,6 +268,7 @@ $onUNDF
 $call   gdxxrw Data.xlsx @TEP.txt
 $GDXin  Data.gdx
 $load   Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr
+$load   Border_exist_DE, Border_exist_total, Border_prosp_DE, Border_prosp_total
 $load   Node_Demand,Neighbor_Demand, Ger_demand, Grid_tech
 $load   Gen_conv, Gen_res, Gen_Hydro, priceup
 $load   availup_hydro, availup_res
@@ -289,7 +288,7 @@ Relevant_Nodes(n)$NoDeSciGrid(n)  = no
 De(n)$NoDeSciGrid(n)  = no
 ;
 *no expansion of broderlines
-%Borderexp% prosp(l)$(prosp_borderlines_DE(l)) = no
+%Borderexp% prosp(l)$(Border_prosp_DE(l)) = no
 ;
 *Thermal(g) = Gen_conv(g,'class') = 1
 *;
@@ -430,8 +429,8 @@ var_costs(g,t)                      =            ((FC_conv(g,t)+ co2_costs(t) * 
 su_costs(g,t)                       =            depri_costs(g) + su_fact(g) * fuel_start(g) * FC_conv(g,t) + co2_content(g) * co2_costs(t)
 ;
 
-*execute_unload "check.gdx";
-*$stop
+execute_unload "check.gdx";
+$stop
 *************************************upload table clearing**************************
 
 option kill = Node_Demand ;   
@@ -476,7 +475,6 @@ y(l)                  investment in 380 kV line
 
 
 Equations
-
 Total_costs
 Line_investment
 Balance
@@ -513,7 +511,6 @@ Linearization_prosp_220_line_pos
 
 Linearization_prosp_380_line_neg
 Linearization_prosp_380_line_pos
-
 
 LS_det
 Theta_LB
