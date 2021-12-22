@@ -1,0 +1,25 @@
+
+--- Job 6_node.gms Start 12/22/21 12:28:10 34.2.0 r6925a71 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\34\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms"
+    PageSize 0
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\225a\"
+    SysDir C:\GAMS\34\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
+          BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+          C:\Users\berne\Documents\GAMS\gamslice.txt
+GAMS 34.2.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+--- Starting compilation
+--- 6_node.gms(97) 3 Mb
+--- Starting execution: elapsed 0:00:00.396
+--- 6_node.gms(96) 4 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\check_data.gdx
+*** Status: Normal completion
+--- Job 6_node.gms Stop 12/22/21 12:28:11 elapsed 0:00:00.946

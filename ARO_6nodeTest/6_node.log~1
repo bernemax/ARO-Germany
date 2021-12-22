@@ -1,0 +1,42 @@
+--- Job 6_node.gms Start 12/22/21 12:27:56 34.2.0 r6925a71 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\34\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms"
+    PageSize 0
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\225a\"
+    SysDir C:\GAMS\34\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
+          BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+          C:\Users\berne\Documents\GAMS\gamslice.txt
+GAMS 34.2.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+--- Starting compilation
+--- 6_node.gms(77) 3 Mb 1 Error
+*** Error 338 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
+    Unique element expected - symbol was not an element
+       and the following text will be skipped until a proper
+       symbol is found to recover. Remember that an UNQUOTED
+       element has to start with a letter or digit
+       followed by letters, digits, '+', '-' or '_'. The length
+       is limited to 63 characters. The following words are
+       reserved (starting symbols of a GAMS statement) and cannot
+       be used for UNQUOTED set elements:
+   
+          ABORT, ACRONYM(S), ALIAS, BINARY, DISPLAY, ELSE
+          EQUATION(S), EXECUTE, FILE(S), FOR, FREE, IF, INTEGER, LOOP
+          MODEL(S), NEGATIVE, OPTION(S), PARAMETER(S)
+          POSITIVE, PROCEDURE(S), PUT, PUTCLEAR, PUTCLOSE, PUTHD
+          PUTPAGE, PUTTL, SCALAR(S), SEMICONT, SET(S), SOS1, SOS2
+          TABLE, VARIABLE(S), WHILE
+   
+       QUOTED elements can contain any character. Single and
+       double quotes can be used (starting and ending quote have
+       to match).
+--- 6_node.gms(97) 3 Mb 1 Error
+*** Status: Compilation error(s)
+--- Job 6_node.gms Stop 12/22/21 12:27:57 elapsed 0:00:00.888

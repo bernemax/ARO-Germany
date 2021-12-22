@@ -54,12 +54,21 @@ Border_prosp_total(l)
 
 
 ****************************nodes***************************************************
-ref(n)   /n1/
-DE(n)    /n1*n495/
-NoDeSciGrid(n) /n65,n97,n182,n203,n222,n237,n263,n273,n274,n317,n321,n325,n328,n355,n357,n358
-n359,n361,n362,n404,n405,n416,n417,n430,n432/
-border_states(n) /n500*n509/
-connected_states(n) /n500*n508/
+ref(n)
+/n1/
+DE(n)
+/n1*n495/
+NoDeSciGrid(n)
+/n65,n97,n182,n203,n222,
+n237,n263,n273,n274,n317,
+n321,n325,n328,n355,n357,
+n358,n359,n361,n362,n404,
+n405,n416,n417,n430,n432/
+
+border_states(n)
+/n500*n509/
+connected_states(n)
+/n500*n508/
 
 DK(n) /n500/
 SW(n) /n501/
@@ -73,7 +82,8 @@ NL(n) /n508/
 BE(n) /n509/
 
 
-Relevant_Nodes(n)/n1*n495,n500*n509/
+Relevant_Nodes(n)
+/n1*n495,n500*n509/
 
 *****************************mapping************************************************
 Map_grid(l,n)
@@ -639,7 +649,7 @@ Theta_LB(n,t)..                                             -3.1415         =l= 
 ;
 Theta_UB(n,t)..                                             3.1415          =g= Theta(n,t)
 ;
-Theta_ref(n,t)..                                            Theta(n,t)$ref(n) =l= 0
+Theta_ref(n,t)..                                            Theta(n,t)$ref(n) =e= 0
 ;
 *execute_unload "check.gdx";
 *$stop

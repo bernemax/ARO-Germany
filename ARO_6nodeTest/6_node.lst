@@ -1,0 +1,131 @@
+GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 12/22/21 12:28:10 Page 1
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+C o m p i l a t i o n
+
+
+   1  Sets
+   2  t /t1*t24/
+   3  n /n1*n6/
+   4  g /g1*g3/
+   5  l /l1*l30/
+   6  v / v1*v5/
+   7   
+   8  ex_l(l) /l1*l15/
+   9  pros_l(l)/l17*l30/
+  10  ;
+  11  alias (n,nn)
+  12  ;
+  13  ******************************************************Data******************************************************
+  14  Table Generator_data (g,*)
+  15          Gen_cap     Gen_costs
+  16  g1      400         15
+  17  g2      400         20
+  18  g3      600         22
+  19  ;
+  20  Table Demand_data (n,*)
+  21          Need        LS_costs
+  22  n1      80          3000
+  23  n2      240         3000
+  24  n3      40          3000
+  25  n4      160         3000
+  26  n5      240         3000
+  27  n6      0           3000
+  28  ;
+  29  Table Line_data (l,*)
+  30            react      I_costs     L_cap
+  31  l1       0.40        40          100
+  32  l2       0.38        38          100
+  33  l3       0.60        60          80
+  34  l4       0.20        20          100
+  35  l5       0.68        68          70
+  36  l6       0.20        20          100
+  37  l7       0.40        40          100
+  38  l8       0.31        31          100
+  39  l9       0.30        30          100
+  40  l10      0.59        59          82
+  41  l11      0.20        20          100
+  42  l12      0.48        48          100
+  43  l13      0.63        63          75
+  44  l14      0.30        30          100
+  45  l15      0.61        61          78
+  46  l16      0.40        40          100
+  47  l17      0.38        38          100
+  48  l18      0.60        60          80
+  49  l19      0.20        20          100
+  50  l20      0.68        68          70
+  51  l21      0.20        20          100
+  52  l22      0.40        40          100
+  53  l23      0.31        31          100
+  54  l24      0.30        30          100
+  55  l25      0.59        59          82
+  56  l26      0.20        20          100
+  57  l27      0.48        48          100
+  58  l28      0.63        63          75
+  59  l29      0.30        30          100
+  60  l30      0.61        61          78
+  61  ;
+  62   
+  63  *******************************************************Mapping**************************************************
+  64  Set
+  65   
+  66  MapG (g,n)
+  67  /g1.n1,g2.n3,g3.n6/
+  68  MapSend_l(l,n)
+  69  / l1.n1, l2.n1,l3.n1,l4.n1,
+  70  l5.n1,l6.n2,l7.n2,l8.n2,
+  71  l9.n2,l10.n3,l11.n3,l12.n3,
+  72  l13.n4,l14.n4,l15.n5/
+  73   
+  74  MapRes_l(l,n)
+  75  / l1    .n2,l2.n3,l3.n4,l4.n5,
+  76  l5.n6,l6.n3,l7.n4,l8.n5,
+  77  l9.n6,l10.n4,l11.n5,l12.n6,
+  78  l13.n5,l14.n6,l15.n6/
+  79   
+  80  Map_prosp_Send(l,n)
+  81  /l16.n1,l17.n1,l18.n1,l19.n1,
+  82  l20.n1,l21.n2,l22.n2,l23.n2,
+  83  l24.n2,l25.n3,l26.n3,l27.n3,
+  84  l28.n4,l29.n4,l30.n5/
+  85   
+  86  Map_prosp_Res(l,n)
+  87  /l16.n2,l17.n3,l18.n4,l19.n5,
+  88  l20.n6,l21.n3,l22.n4,l23.n5,
+  89  l24.n6,l25.n4,l26.n5,l27.n6,
+  90  l28.n5,l29.n6,l30.n6/
+  91   
+  92  ref(n)      /n1/
+  93   
+  94  ;
+  95   
+  96  execute_unload "check_data.gdx";
+STOP Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
+GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 12/22/21 12:28:10 Page 2
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+Include File Summary
+
+
+   SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
+
+     1        1 INPUT          0       0  Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
+     2       97 STOP           1      97  Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
+
+
+COMPILATION TIME     =        0.000 SECONDS      3 MB  34.2.0 r6925a71 WEX-WEI
+GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 12/22/21 12:28:10 Page 3
+G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
+E x e c u t i o n
+
+
+EXECUTION TIME       =        0.203 SECONDS      4 MB  34.2.0 r6925a71 WEX-WEI
+
+
+USER: Small MUD - 5 User License                     S201118/0001AN-WIN
+      BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+      License for teaching and research at degree granting institutions
+
+
+**** FILE SUMMARY
+
+Input      Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
+Output     Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.lst
