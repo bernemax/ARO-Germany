@@ -482,8 +482,6 @@ x(l)                  investment in 220 kV line
 y(l)                  investment in 380 kV line
 ;
 
-
-
 Equations
 Total_costs
 Line_investment
@@ -568,7 +566,7 @@ Balance(n,t)$(Relevant_Nodes(n))..                (load(n,t) - Load_shed(n,t))  
 
 %endotrans%                                                + phy_flow_to_DE(t,n)
                                                            + phy_flow_states_exo(t,n)
-*                                                           - X_dem(n,t)
+
 ;
 **Eff_res(biomass)
 *######################################################generation##########################################################
