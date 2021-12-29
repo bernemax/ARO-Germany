@@ -95,6 +95,7 @@ Variables
 *********************************************Subproblem*********************************************
 
  O_Sub
+ Theta_SUB(n,t)
 ;
 Positive Variables
 *********************************************MASTER*************************************************
@@ -106,14 +107,20 @@ PLS_M(n,t,v)    load shedding
 
 *********************************************Subproblem*********************************************
 
-Pdem(n,t)       realization of demand (Ro)
-PE(g)           realization of supply (Ro)
-lam(n,t)        dual var lamda assoziated with Equation: MP_marketclear
-phiPG(g,t)      dual var phi assoziated with Equation: MP_PG
-*phiPL(l,t)      dual var phi assoziated with Equation: MP_PF_Cap
-phiLS(n,t)      dual var phi assoziated with Equation: MP_LS
+Pdem(n,t)           realization of demand (Ro)
+PE(g)               realization of supply (Ro)
+lam(n,t)            dual var lamda assoziated with Equation: MP_marketclear
+phiPG(g,t)          dual var phi assoziated with Equation: MP_PG
+phiLS(n,t)          dual var phi assoziated with Equation: MP_LS
+phiL(l,t)           dual var phi assoziated with Equation: MP_PF_Cap
+beta_L_ex(l,t)      dual var beta assoziated with Equation: MP_PF_EX
+beta_L_prosp(l,t)   dual var beta assoziated with Equation: MP_PF_PROS
+teta_UB(n,t)        dual var beta assoziated with Equation: Theta_UB
+teta_LB(n,t)        dual var beta assoziated with Equation: Theta_LB
 
-aux_PL(l,t)     aux continuous var to linearize inv_SUB(l) * lam(n,t) term    
+
+
+aux_PL(l,t)     aux continuous var to linearize inv_M(l) * beta_L_prosp term    
 ;
 
 Binary Variables
@@ -145,6 +152,8 @@ MP_ETA
 SUB_Dual_Objective
 SUB_Dual_PG
 SUB_Dual_LS
+SUB_Dual_PF_ex
+SUB_Dual_PF_prosp
 
 SUB_US_PG
 SUB_US_LOAD
@@ -154,6 +163,12 @@ SUB_lin2
 SUB_lin3
 SUB_lin4
 
+Theta_Dual_UB
+Theta_Dual_LB
+
+Theta_UB_SUB
+Theta_LB_SUB
+Theta_ref_SUB
 ;
 
 
@@ -203,24 +218,55 @@ MP_ETA(vv)$(ord(vv) lt (itaux+1))..                      ETA =e=    sum((g,t), G
 *#############################################Subproblem#################################################
 
 
-SUB_Dual_Objective..                                     O_Sub =e= sum((g,t), - phiPG(g,t) * PE(g)) + sum((n,t), -  phiLS(n,t) * Pdem(n,t))
+SUB_Dual_Objective..                                     O_Sub =e= sum((g,t), - phiPG(g,t) * PE(g))
+                                                                 + sum((n,t), - phiLS(n,t) * Pdem(n,t))
+                                                                 + sum((l,t), - phiL(l,t) * line_data(l,'L_cap'))
+                                                                 + sum((n,t), lam(n,t) * Pdem(n,t))
+                                                                 
+                                                                 + sum((l,t), beta_L_ex(l,t) * (sum(l$MapSend_l(l,n),  Theta_SUB(n,t)) - sum(l$MapRes_l(l,n),  Theta_SUB(n,t))*(1/line_data(l,'react'))))
+****************************************************************************************************************
+* aux_PL(l,t) is needed to linearize the term of  inv_M(l) *  1/line_data(l,'react') * (sum(l$MapSend_l(l,n),  Theta(n,t,vv)) - sum(l$MapRes_l(l,n),  Theta(n,t,vv)))
+* this term is multiplied with associated dual variable                                                            
+                                                                 + sum((l,t), beta_L_prosp(l,t) * aux_PL(l,t))
+                                                                 
+****************************************************************************************************************
+* unclear if to incoporate the DC power flow angles in such a way into the OBF
+* if Theta_UB and Theta_LB from Master problem are Equations and Theta(n,t,vv) a decision variable, a dual form  must be considered
+* therefore the normalised and then dualised problem result in such a equation, that the associated dual variable (teta) is multiplied by negative "pi" as a lower bound
+                                                                 + sum((n,t), - teta_UB(n,t) * 3.1415)
+                                                                 + sum((n,t), - teta_LB(n,t) * 3.1415)
 ;
 SUB_Dual_PG(g,t)..                                       sum(n$Map(g,n), lam(n,t) -  phiPG(g,t)) =l=   Generator_data (g,'Gen_costs')    
 ;
 SUB_Dual_LS(t)..                                         sum(n$Map(g,n), lam(n,t) -  phiLS(n,t)) =l=   3000
 ;
-SUB_US_PG..                                              sum(n,Generator_data (g,Gen_cap) - PE(g)) / sum(n,Generator_data (g,Gen_cap)) =l= Gamma_PG
+SUB_Dual_PF_ex(t)..                                      sum(l, - phiL(l,t) + lam(n,t) + beta_L_ex(l,t)) =l= 0
 ;
-SUB_US_LOAD..                                            sum(n,Pdem(n,t) - Demand_data (n,Need_LB))/sum(n,Demand_data (n,Need_UB)- Demand_data (n,Need_LB)) =l)= Gamma_load
+SUB_Dual_PF_prosp(t)..                                   sum(l, - phiL(l,t) + lam(n,t) + beta_L_prosp(l,t)) =l= 0
 ;
 
-SUB_lin1..
+SUB_US_PG..                                              sum(n,Generator_data (g,'Gen_cap') - PE(g)) / sum(n,Generator_data (g,'Gen_cap')) =l= Gamma_PG
 ;
-SUB_lin2..
+SUB_US_LOAD..                                            sum(n,Pdem(n,t) - Demand_data (n,'Need_LB'))/sum(n,Demand_data (n,'Need_UB')- Demand_data(n,'Need_LB')) =l)= Gamma_load
 ;
-SUB_lin3..
+
+Theta_Dual_UB(t)..                                       sum(n$MapSend_l(l,n),- teta_UB(n,t) + teta_LB(n,t) =l= 0
 ;
-SUB_lin4..
+Theta_Dual_LB(t)..                                       sum(n$MapRes_l(l,n),- teta_UB(n,t) + teta_LB(n,t)  =l= 0       
+;
+
+Theta_UB_SUB
+;
+Theta_LB_SUB
+;
+
+SUB_lin1..                                              
+;
+SUB_lin2..                                              
+;
+SUB_lin3..                                              
+;
+SUB_lin4..                                              
 ;
 
 
