@@ -89,21 +89,23 @@ PG_M_fixed(g,t,v)
 Variables
 *********************************************Master*************************************************
 
- O_M
- Theta(n,t,v)
+ O_M                Objective var of Master Problem
+ Theta(n,t,v)       Anggle of each node associated with DC power flow equations 
  
 *********************************************Subproblem*********************************************
 
- O_Sub
- Theta_SUB(n,t)
+O_Sub               Objective var of dual Subproblem
+teta_UB(n,t)        dual var beta assoziated with Equation: Theta_UB
+teta_LB(n,t)        dual var beta assoziated with Equation: Theta_LB
+teta_ref(n,t)       dual var beta assoziated with Equation: Theta_ref
 ;
 Positive Variables
 *********************************************MASTER*************************************************
 
-ETA             aux var to reconstruct obj. function of the ARO problem
-PG_M(g,t,v)     power generation level
-PF_M(l,t,v)     power flows
-PLS_M(n,t,v)    load shedding
+ETA                 aux var to reconstruct obj. function of the ARO problem
+PG_M(g,t,v)         power generation level of a generator
+PF_M(l,t,v)         power flows derived from DC load flow equation
+PLS_M(n,t,v)        load shedding
 
 *********************************************Subproblem*********************************************
 
@@ -122,20 +124,16 @@ beta_LB(l,t)        dual var beta assoziated with Equation: MP_PF_PROS_Cap_LB
 beta_UB_lin(l,t)    dual var beta assoziated with Equation: MP_PF_PROS_LIN_UB
 beta_LB_lin(l,t)    dual var beta assoziated with Equation: MP_PF_PROS_LIN_LB
 
-teta_UB_send(n,t)        dual var beta assoziated with Equation: Theta_UB
-teta_LB_send(n,t)        dual var beta assoziated with Equation: Theta_LB
-
-
-
 aux_PL(l,t)         aux continuous var to linearize inv_M(l) * beta_L_prosp term    
 ;
 
 Binary Variables
-*********************************************Master*************************************************  
-inv_M(l)
+*********************************************Master*************************************************
+
+inv_M(l)            decision variable regarding investment in a prospective line
 
 *********************************************Subproblem*********************************************
-inv_SUB(l)
+*inv_SUB(l)  
 ;
 
 Equations
@@ -169,21 +167,24 @@ SUB_Dual_PG
 SUB_Dual_LS
 SUB_Dual_PF
 
-Lin_Dual_UB
-Lin_Dual_LB
+SUB_Lin_Dual_Send
+SUB_Lin_Dual_Res
+SUB_Lin_Dual_Send_n_ref
+SUB_Lin_Dual_Res_n_ref
+SUB_Dual_decision
 
 SUB_US_PG
 SUB_US_LOAD
 
-SUB_lin1
-SUB_lin2
-SUB_lin3
-SUB_lin4
+*SUB_lin1
+*SUB_lin2
+*SUB_lin3
+*SUB_lin4
 
 ;
 
 
-*#############################################Master#################################################
+*#####################################################################################Master####################################################################################
 
 MP_Objective..                                                      O_M  =e= sum(l, inv_M(l)* Line_data (n,nn,'I_costs')) + ETA
 ;
@@ -238,8 +239,7 @@ MP_ETA(vv)$(ord(vv) lt (itaux+1))..                                 ETA =e=    s
                                                                     + sum((n,t), Demand_data (n,'LS_costs') * Load_shed(n,t,vv))
                                     
 ;
-*#############################################Subproblem#################################################
-
+*#####################################################################################Subproblem####################################################################################
 
 SUB_Dual_Objective..                                                O_Sub =e= sum((n,t), lam(n,t) * Pdem(n,t))
                                                                     + sum((g,t), - phiPG(g,t) * PE(g))
@@ -248,54 +248,53 @@ SUB_Dual_Objective..                                                O_Sub =e= su
                                                                     + sum((l,t), - omega_LB(l,t) * line_data(l,'L_cap'))
                                                                     + sum((l,t),   beta_UB_lin(l,t) * M)
                                                                     + sum((l,t), - beta_LB_lin(l,t) * M)
-                                                                 
-****************************************************************************************************************
-* unclear if to incoporate the DC power flow angles in such a way into the OBF
-* if Theta_UB and Theta_LB from Master problem are Equations and Theta(n,t,vv) a decision variable, a dual form  must be considered
-* therefore the normalised and then dualised problem result in such a equation, that the associated dual variable (teta) is multiplied by negative "pi" as a lower bound
                                                                     + sum((n,t), - teta_UB(n,t) * 3.1415)
                                                                     + sum((n,t), - teta_LB(n,t) * 3.1415)
 ;
+*****************************************************************Dual Power generation equation
 
 SUB_Dual_PG(g,t)..                                                  sum(n$Map(g,n), lam(n,t) -  phiPG(g,t)) =l=   Generator_data (g,'Gen_costs')    
 ;
+*****************************************************************Dual Load shedding equation
+
 SUB_Dual_LS(t)..                                                    sum(n$Map(g,n), lam(n,t) -  phiLS(n,t)) =l=   3000
 ;
+*****************************************************************Dual Power flow equations
+
 SUB_Dual_PF(t)..                                                    sum(l, lam(n,t)  - omega_UB(l,t)  + omega_LB(l,t) + phi(l,t) - beta_UB(l,t) + beta_LB(l,t) - beta_UB_lin(l,t) + beta_LB_lin(l,t)) =l= 0
 ;
-LIN_Dual_UB(t)..                                                    sum(n$MapSend_l(l,n), - (1/line_data(l,'react')) * phi(l,t)
-                                                                    + (1/line_data(l,'react')) * beta_UB_lin(l,t)
-                                                                    - (1/line_data(l,'react')) * beta_LB_lin(l,t)
-                                                                    
-*****************************************************************dual theta not finished yet
-                                                                    - teta_UB(n,t) + teta_UB(n,t)                    =l= 0
+SUB_LIN_Dual_Send(t)..                                              sum(n$MapSend_l(l,n), - (1/line_data(l,'react')) * phi(l,t))
+                                                                    + sum(l, (1/line_data(l,'react')) * beta_UB_lin(l,t))
+                                                                    - sum(l, (1/line_data(l,'react')) * beta_LB_lin(l,t))
+                                                                    - sum(n$MapSend_l(l,n), teta_UB(n,t) + teta_UB(n,t))                                 =l= 0
 ;
-LIN_Dual_LB(t)..                                                    sum(n$MapRes_l(l,n),(1/line_data(l,'react')) * phi(l,t)
-                                                                    - (1/line_data(l,'react')) * beta_UB_lin(l,t)
-                                                                    + (1/line_data(l,'react')) * beta_LB_lin(l,t)
-                                                                    
-*****************************************************************dual theta not finished yet
-                                                                    - teta_B(n,t) + teta_UB(n,t)                    =l= 0       
+SUB_LIN_Dual_Res(t)..                                               sum(n$MapRes_l(l,n),(1/line_data(l,'react')) * phi(l,t)
+                                                                    - sum(l, (1/line_data(l,'react')) * beta_UB_lin(l,t))
+                                                                    + sum(l, (1/line_data(l,'react')) * beta_LB_lin(l,t)) 
+                                                                    - sum(n$MapRes_l(l,n), teta_B(n,t) + teta_UB(n,t))                                   =l= 0       
+;
+SUB_Lin_Dual_Send_n_ref(t)..                                        sum(n$(MapSend_l(l,n) and ref(n)),(1/line_data(l,'react')) * phi(l,t)
+                                                                    - sum(l, (1/line_data(l,'react')) * beta_UB_lin(l,t))
+                                                                    + sum(l, (1/line_data(l,'react')) * beta_LB_lin(l,t)) 
+                                                                    - sum(n$(MapSend_l(l,n) and ref(n)), teta_B(n,t) + teta_UB(n,t) + teta_ref(n,t))     =e= 0
+;
+SUB_Lin_Dual_Res_n_ref(t)..                                         sum(n$(MapRes_l(l,n) and ref(n)),(1/line_data(l,'react')) * phi(l,t)
+                                                                    - sum(l, (1/line_data(l,'react')) * beta_UB_lin(l,t))
+                                                                    + sum(l, (1/line_data(l,'react')) * beta_LB_lin(l,t)) 
+                                                                    - sum(n$(MapRes_l(l,n) and ref(n)), teta_B(n,t) + teta_UB(n,t) + teta_ref(n,t))      =e= 0
+;
+SUB_Dual_decision(t)..                                              sum(l, - (1/line_data(l,'react'))* beta_UB_lin(l,t))
+                                                                    + sum(l,  (1/line_data(l,'react'))* beta_LB_lin(l,t))
+                                                                    - sum(l,  (1/line_data(l,'react'))* beta_UB_lin(l,t))
+                                                                    - sum(l,  (1/line_data(l,'react'))* beta_LB_lin(l,t))                                =l= 0
 ;
 
+*****************************************************************Uncertainty Sets/ budgets (level 2 problem)
 
 SUB_US_PG..                                                         sum(n,Generator_data (g,'Gen_cap') - PE(g)) / sum(n,Generator_data (g,'Gen_cap')) =l= Gamma_PG
 ;
-SUB_US_LOAD..                                                       sum(n,Pdem(n,t) - Demand_data (n,'Need_LB'))/sum(n,Demand_data (n,'Need_UB')- Demand_data(n,'Need_LB')) =l)= Gamma_load
+SUB_US_LOAD..                                                       sum(n,Pdem(n,t) - Demand_data (n,'Need_LB'))/sum(n,Demand_data (n,'Need_UB')- Demand_data(n,'Need_LB')) =l= Gamma_load
 ;
-
-
-
-SUB_lin1..                                              
-;
-SUB_lin2..                                              
-;
-SUB_lin3..                                              
-;
-SUB_lin4..                                              
-;
-
-
 
 ********************************************Model definition**********************************************
 
@@ -321,22 +320,24 @@ Theta_UB
 Theta_LB
 Theta_ref     
 MP_ETA
-
 /
 ;
 
 model Subproblem
 /
-
 SUB_Dual_Objective
 SUB_Dual_PG
 SUB_Dual_LS
+SUB_Dual_PF
+
+SUB_Lin_Dual_Send
+SUB_Lin_Dual_Res
+SUB_Lin_Dual_Send_n_ref
+SUB_Lin_Dual_Res_n_ref
+SUB_Dual_decision
+
 SUB_US_PG
 SUB_US_LOAD
-SUB_lin1
-SUB_lin2
-SUB_lin3
-SUB_lin4
 /
 ;
 
