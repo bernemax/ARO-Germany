@@ -1,4 +1,4 @@
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 12/22/21 12:28:10 Page 1
+GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/03/22 23:07:08 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -6,101 +6,324 @@ C o m p i l a t i o n
    1  Sets
    2  t /t1*t24/
    3  n /n1*n6/
-   4  g /g1*g3/
-   5  l /l1*l30/
+   4  g /g1*g5/
+   5  l /l1*l9/
    6  v / v1*v5/
    7   
-   8  ex_l(l) /l1*l15/
-   9  pros_l(l)/l17*l30/
+   8  ex_l(l) /l1*l3/
+   9  pros_l(l)/l4*l9/
   10  ;
-  11  alias (n,nn)
+  11  alias (n,nn), (v,vv)
   12  ;
   13  ******************************************************Data******************************************************
   14  Table Generator_data (g,*)
-  15          Gen_cap     Gen_costs
-  16  g1      400         15
-  17  g2      400         20
-  18  g3      600         22
-  19  ;
-  20  Table Demand_data (n,*)
-  21          Need        LS_costs
-  22  n1      80          3000
-  23  n2      240         3000
-  24  n3      40          3000
-  25  n4      160         3000
-  26  n5      240         3000
-  27  n6      0           3000
-  28  ;
-  29  Table Line_data (l,*)
-  30            react      I_costs     L_cap
-  31  l1       0.40        40          100
-  32  l2       0.38        38          100
-  33  l3       0.60        60          80
-  34  l4       0.20        20          100
-  35  l5       0.68        68          70
-  36  l6       0.20        20          100
-  37  l7       0.40        40          100
-  38  l8       0.31        31          100
-  39  l9       0.30        30          100
-  40  l10      0.59        59          82
-  41  l11      0.20        20          100
-  42  l12      0.48        48          100
-  43  l13      0.63        63          75
-  44  l14      0.30        30          100
-  45  l15      0.61        61          78
-  46  l16      0.40        40          100
-  47  l17      0.38        38          100
-  48  l18      0.60        60          80
-  49  l19      0.20        20          100
-  50  l20      0.68        68          70
-  51  l21      0.20        20          100
-  52  l22      0.40        40          100
-  53  l23      0.31        31          100
-  54  l24      0.30        30          100
-  55  l25      0.59        59          82
-  56  l26      0.20        20          100
-  57  l27      0.48        48          100
-  58  l28      0.63        63          75
-  59  l29      0.30        30          100
-  60  l30      0.61        61          78
-  61  ;
+  15          Gen_cap_LB  Gen_cap_UB     Gen_costs
+  16  g1         0            300           18
+  17  g2         0            250           25
+  18  g3         0            400           16
+  19  g4         0            300           32
+  20  g5         0            150           35
+  21  ;
+  22  Table Demand_data (n,*)
+  23          Need_LB     Need_UB        LS_costs
+  24  n1      180            220          3000
+  25  n2      0              0            3000
+  26  n3      0              0            3000
+  27  n4      135            165          3000
+  28  n5      90             110          3000
+  29  n6      180            220          3000
+  30  ;
+  31  Table Line_data (l,*)
+  32            react      I_costs     L_cap
+  33  l1       0.02        0           150
+  34  l2       0.02        0           150
+  35  l3       0.02        0           150
+  36  l4       0.02        700000      150
+  37  l5       0.02        1400000     200
+  38  l6       0.02        1800000     200
+  39  l7       0.02        1600000     200
+  40  l8       0.02        800000      150
+  41  l9       0.02        700000      150
+  42  ;
+  43   
+  44  *******************************************************Mapping**************************************************
+  45  Set
+  46   
+  47  MapG (g,n)
+  48  /g1.n1,g2.n3,g3.n6/
+  49  MapSend_l(l,n)
+  50  / l1.n1, l2.n1, l3.n4/
+  51   
+  52  MapRes_l(l,n)
+  53  / l1    .n2,l2.n3,l3.n5/
+  54   
+  55  Map_prosp_Send(l,n)
+  56  /l4.n2,l5.n2,l6.n3,
+  57  l7.n3,l8.n4,l9.n5/
+  58   
+  59  Map_prosp_Res(l,n)
+  60  /l4.n3,l5.n4,l6.n4,
+  61  l7.n6,l8.n6,l9.n6/
   62   
-  63  *******************************************************Mapping**************************************************
-  64  Set
-  65   
-  66  MapG (g,n)
-  67  /g1.n1,g2.n3,g3.n6/
-  68  MapSend_l(l,n)
-  69  / l1.n1, l2.n1,l3.n1,l4.n1,
-  70  l5.n1,l6.n2,l7.n2,l8.n2,
-  71  l9.n2,l10.n3,l11.n3,l12.n3,
-  72  l13.n4,l14.n4,l15.n5/
-  73   
-  74  MapRes_l(l,n)
-  75  / l1    .n2,l2.n3,l3.n4,l4.n5,
-  76  l5.n6,l6.n3,l7.n4,l8.n5,
-  77  l9.n6,l10.n4,l11.n5,l12.n6,
-  78  l13.n5,l14.n6,l15.n6/
-  79   
-  80  Map_prosp_Send(l,n)
-  81  /l16.n1,l17.n1,l18.n1,l19.n1,
-  82  l20.n1,l21.n2,l22.n2,l23.n2,
-  83  l24.n2,l25.n3,l26.n3,l27.n3,
-  84  l28.n4,l29.n4,l30.n5/
-  85   
-  86  Map_prosp_Res(l,n)
-  87  /l16.n2,l17.n3,l18.n4,l19.n5,
-  88  l20.n6,l21.n3,l22.n4,l23.n5,
-  89  l24.n6,l25.n4,l26.n5,l27.n6,
-  90  l28.n5,l29.n6,l30.n6/
+  63  ref(n)      /n1/
+  64   
+  65  ;
+  66   
+  67  *execute_unload "check_data.gdx";
+  68  *$stop
+  69   
+  70  scalars
+  71  Tol         / 1 /
+  72  LB          / -1e10 /
+  73  UB          / 1e10 /
+  74  itaux       / 0 /
+  75  IB          / 3000000 /
+  76  M           / 5000 /
+  77   
+  78  Gamma_Load  /0/
+  79  Gamma_PG    /0/
+  80  ;
+  81   
+  82  Parameters
+  83  * fixed realisation of demand in subproblem, tranferred to master
+  84  Demand_data_fixed(n,t,v)
+  85  * fixed realisation of supply in subproblem, tranferred to master
+  86  PG_M_fixed(g,t,v)
+  87   
+  88  ;
+  89  Variables
+  90  *********************************************Master*************************************************
   91   
-  92  ref(n)      /n1/
-  93   
-  94  ;
-  95   
-  96  execute_unload "check_data.gdx";
+  92   O_M                Objective var of Master Problem
+  93   Theta(n,t,v)       Anggle of each node associated with DC power flow equations
+  94   
+  95  *********************************************Subproblem*********************************************
+  96   
+  97  O_Sub               Objective var of dual Subproblem
+  98  teta_UB(n,t)        dual var beta assoziated with Equation: Theta_UB
+  99  teta_LB(n,t)        dual var beta assoziated with Equation: Theta_LB
+ 100  teta_ref(n,t)       dual var beta assoziated with Equation: Theta_ref
+ 101  ;
+ 102  Positive Variables
+ 103  *********************************************MASTER*************************************************
+ 104   
+ 105  ETA                 aux var to reconstruct obj. function of the ARO problem
+ 106  PG_M(g,t,v)         power generation level of a generator
+ 107  PF_M(l,t,v)         power flows derived from DC load flow equation
+ 108  PLS_M(n,t,v)        load shedding
+ 109   
+ 110  *********************************************Subproblem*********************************************
+ 111   
+ 112  Pdem(n,t)           realization of demand (Ro)
+ 113  PE(g,t)             realization of supply (Ro)
+ 114  lam(n,t)            dual var lamda assoziated with Equation: MP_marketclear
+ 115  phiPG(g,t)          dual var phi assoziated with Equation: MP_PG
+ 116  phiLS(n,t)          dual var phi assoziated with Equation: MP_LS
+ 117   
+ 118  phi(l,t)            dual var phi assoziated with Equation: MP_PF_Ex
+ 119  omega_UB(l,t)       dual var phi assoziated with Equation: MP_PF_EX_Cap_UB
+ 120  omega_LB(l,t)       dual var phi assoziated with Equation: MP_PF_EX_Cap_LB
+ 121   
+ 122  beta_UB(l,t)        dual var beta assoziated with Equation: MP_PF_PROS_Cap_UB
+ 123  beta_LB(l,t)        dual var beta assoziated with Equation: MP_PF_PROS_Cap_LB
+ 124  beta_UB_lin(l,t)    dual var beta assoziated with Equation: MP_PF_PROS_LIN_UB
+ 125  beta_LB_lin(l,t)    dual var beta assoziated with Equation: MP_PF_PROS_LIN_LB
+ 126   
+ 127  *aux_lam(n,t)        aux continuous var to linearize lam(n,t) * Pdem(n,t) in SUB Objective
+ 128  *aux_PG(g,t)         aux continuous var to linearize phiPG(g,t) * PE(g,t) in SUB Objective
+ 129  *aux_LS(n,t)         aux continuous var to linearize phiLS(n,t) * Pdem(n,t) in SUB Objective
+ 130  ;
+ 131   
+ 132  Binary Variables
+ 133  *********************************************Master*************************************************
+ 134   
+ 135  inv_M(l)            decision variable regarding investment in a prospective line
+ 136   
+ 137  *********************************************Subproblem*********************************************
+ 138   
+ 139  z_PG(g,t)           decision variable to construct polyhedral UC-set and decides weather Generation is Max or not
+ 140  z_dem(n,t)          decision variable to construct polyhedral UC-set and decides weather Demand is at a lower or upper bound
+ 141  ;
+ 142   
+ 143  Equations
+ 144  *********************************************Master**************************************************
+ 145   
+ 146  MP_Objective
+ 147  MP_IB
+ 148  MP_marketclear
+ 149   
+ 150  MP_PG
+ 151   
+ 152  MP_PF_EX
+ 153  MP_PF_EX_Cap_UB
+ 154  MP_PF_EX_Cap_LB
+ 155   
+ 156  MP_PF_PROS_Cap_UB
+ 157  MP_PF_PROS_Cap_LB
+ 158  MP_PF_PROS_LIN_UB
+ 159  MP_PF_PROS_LIN_LB
+ 160   
+ 161  MP_LS
+ 162  Theta_UB
+ 163  Theta_LB
+ 164  Theta_ref
+ 165  MP_ETA
+ 166   
+ 167  *********************************************Subproblem*********************************************
+ 168   
+ 169  SUB_Dual_Objective
+ 170  SUB_Dual_PG
+ 171  SUB_Dual_LS
+ 172  SUB_Dual_PF
+ 173   
+ 174  SUB_Lin_Dual_Send
+ 175  SUB_Lin_Dual_Res
+ 176  SUB_Lin_Dual_Send_n_ref
+ 177  SUB_Lin_Dual_Res_n_ref
+ 178  SUB_Dual_decision
+ 179   
+ 180  SUB_US_PG
+ 181  SUB_US_LOAD
+ 182   
+ 183  *SUB_lin1
+ 184  *SUB_lin2
+ 185  *SUB_lin3
+ 186  *SUB_lin4
+ 187   
+ 188  *SUB_lin5
+ 189  *SUB_lin6
+ 190  *SUB_lin7
+ 191  *SUB_lin8
+ 192   
+ 193  *SUB_lin9
+ 194  *SUB_lin10
+ 195  *SUB_lin11
+ 196  *SUB_lin12
+ 197   
+ 198  ;
+ 199   
+ 200   
+ 201  *#####################################################################################Master####################################################################################
+ 202   
+ 203  MP_Objective..                                                      O_M  =e= sum(l, inv_M(l)* Line_data (l,'I_costs')) + ETA
+ 204  ;
+ 205   
+ 206  MP_IB..                                                             IB   =g= sum(l, inv_M(l)* Line_data (l,'I_costs'))
+ 207  ;
+ 208   
+ 209  MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                     Demand_data_fixed(n,t,vv) - PLS_M(n,t,vv)   =e= sum(g, PG_M(g,t,vv))
+ 210   
+ 211                                                                      +  sum(l$MapRes_l(l,n), PF_M(l,t,vv))
+ 212                                                                      -  sum(l$MapSend_l(l,n), PF_M(l,t,vv))
+ 213   
+ 214                                                                      +  sum(l$Map_prosp_Send(l,n), PF_M(l,t,vv))
+ 215                                                                      -  sum(l$Map_prosp_Send(l,n), PF_M(l,t,vv))
+ 216  ;
+ 217  MP_PG(g,t,vv)$(ord(vv) lt (itaux+1))..                              PG_M(g,t,vv) =l= PG_M_fixed(g,t,vv)
+ 218  ;
+ 219   
+ 220   
+ 221  MP_PF_EX(l,t,vv)$(ex_l(l) and (ord(vv) lt (itaux+1)))..             PF_M(l,t,vv) =e= 1/line_data(l,'react') * (sum(n$MapSend_l(l,n),  Theta(n,t,vv)) - sum(n$MapRes_l(l,n),  Theta(n,t,vv)))
+ 222  ;
+ 223  MP_PF_EX_Cap_UB(l,t,vv)$(ord(vv) lt (itaux+1))..                    PF_M(l,t,vv) =l= line_data(l,'L_cap')
+ 224  ;
+ 225  MP_PF_EX_Cap_LB(l,t,vv)$(ord(vv) lt (itaux+1))..                    PF_M(l,t,vv) =g= - line_data(l,'L_cap')
+ 226  ;
+ 227   
+ 228   
+ 229  MP_PF_PROS_Cap_UB(l,t,vv)$(ord(vv) lt (itaux+1))..                  PF_M(l,t,vv) =l= line_data(l,'L_cap') * inv_M(l)
+ 230  ;
+ 231  MP_PF_PROS_Cap_LB(l,t,vv)$(ord(vv) lt (itaux+1))..                  PF_M(l,t,vv) =g= - line_data(l,'L_cap') * inv_M(l)
+ 232  ;
+ 233  MP_PF_PROS_LIN_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..  (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - (1/line_data(l,'react') * (sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv)) - sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv))))
+ 234  ;
+ 235  MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..  -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - (1/line_data(l,'react') * (sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv)) - sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv))))
+ 236  ;
+ 237   
+ 238   
+ 239  MP_LS(n,t,vv)$(ord(vv) lt (itaux+1))..                              PLS_M(n,t,vv) =l=  Demand_data_fixed(n,t,vv)
+ 240  ;
+ 241   
+ 242   
+ 243  Theta_UB(n,t,vv)$(ord(vv) lt (itaux+1))..                           3.1415          =g= Theta(n,t,vv)
+ 244  ;
+ 245  Theta_LB(n,t,vv)$(ord(vv) lt (itaux+1))..                           - 3.1415         =l= Theta(n,t,vv)
+ 246  ;
+ 247  Theta_ref(n,t,vv)$(ord(vv) lt (itaux+1))..                          Theta(n,t,vv)$ref(n)      =e= 0
+ 248  ;
+ 249   
+ 250   
+ 251  MP_ETA(vv)$(ord(vv) lt (itaux+1))..                                 ETA =e=    sum((g,t), Generator_data (g,'Gen_costs') * PG_M(g,t,vv))
+ 252   
+ 253                                                                      + sum((n,t), Demand_data (n,'LS_costs') * PLS_M(n,t,vv))
+ 254   
+ 255  ;
+ 256  *#####################################################################################Subproblem####################################################################################
+ 257   
+ 258  SUB_Dual_Objective..                                                O_Sub =e= sum((n,t), lam(n,t) * Pdem(n,t))
+ 259                                                                      + sum((g,t), - phiPG(g,t) * PE(g,t))
+ 260                                                                      + sum((n,t), - phiLS(n,t) * Pdem(n,t))
+ 261                                                                      + sum((l,t), - omega_UB(l,t) * line_data(l,'L_cap'))
+ 262                                                                      + sum((l,t), - omega_LB(l,t) * line_data(l,'L_cap'))
+ 263                                                                      + sum((l,t),   beta_UB_lin(l,t) * M)
+ 264                                                                      + sum((l,t), - beta_LB_lin(l,t) * M)
+ 265                                                                      + sum((n,t), - teta_UB(n,t) * 3.1415)
+ 266                                                                      + sum((n,t), - teta_LB(n,t) * 3.1415)
+ 267  ;
+ 268  *****************************************************************Dual Power generation equation
+ 269   
+ 270  SUB_Dual_PG(g,t)..                                                  sum(n$MapG(g,n), lam(n,t) -  phiPG(g,t)) =l=   Generator_data (g,'Gen_costs')
+ 271  ;
+ 272  *****************************************************************Dual Load shedding equation
+ 273   
+ 274  SUB_Dual_LS(t)..                                                    sum(n, lam(n,t) -  phiLS(n,t)) =l=   3000
+ 275  ;
+ 276  *****************************************************************Dual Power flow equations
+ 277   
+ 278  SUB_Dual_PF(n,t)..                                                  sum(l, lam(n,t)  - omega_UB(l,t)  + omega_LB(l,t) + phi(l,t) - beta_UB(l,t) + beta_LB(l,t) - beta_UB_lin(l,t) + beta_LB_lin(l,t)) =l= 0
+ 279  ;
+ 280  SUB_LIN_Dual_Send(n,t)..                                            sum(l$MapSend_l(l,n), - (1/line_data(l,'react')) * phi(l,t))
+ 281                                                                      + sum(l$MapSend_l(l,n), (1/line_data(l,'react')) * beta_UB_lin(l,t))
+ 282                                                                      - sum(l$MapSend_l(l,n), (1/line_data(l,'react')) * beta_LB_lin(l,t))
+ 283                                                                      -  teta_UB(n,t)
+ 284                                                                      +  teta_LB(n,t)                                 =l= 0
+ 285  ;
+ 286  SUB_LIN_Dual_Res(n,t)..                                             sum(l$MapRes_l(l,n),(1/line_data(l,'react')) * phi(l,t))
+ 287                                                                      - sum(l$MapRes_l(l,n), (1/line_data(l,'react')) * beta_UB_lin(l,t))
+ 288                                                                      + sum(l$MapRes_l(l,n), (1/line_data(l,'react')) * beta_LB_lin(l,t))
+ 289                                                                      -  teta_UB(n,t)
+ 290                                                                      +  teta_LB(n,t)                                   =l= 0
+ 291  ;
+ 292  SUB_Lin_Dual_Send_n_ref(n,t)..                                      sum(l$(MapSend_l(l,n) and ref(n)),(1/line_data(l,'react')) * phi(l,t))
+ 293                                                                      - sum(l$(MapSend_l(l,n) and ref(n)), (1/line_data(l,'react')) * beta_UB_lin(l,t))
+ 294                                                                      + sum(l$(MapSend_l(l,n) and ref(n)), (1/line_data(l,'react')) * beta_LB_lin(l,t))
+ 295                                                                      -  teta_UB(n,t)
+ 296                                                                      +  teta_LB(n,t)
+ 297                                                                      +  teta_ref(n,t)     =e= 0
+      SUB_Lin_Dual_Send_n_ref(l,t)..                                      sum(n$(MapSend_l(l,n) and ref(n)),(1/line_data(l,'react')) * phi(l,t))
+                                                                          - sum(n$(MapSend_l(l,n) and ref(n)), (1/line_data(l,'react')) * beta_UB_lin(l,t))
+                                                                          + sum(n$(MapSend_l(l,n) and ref(n)), (1/line_data(l,'react')) * beta_LB_lin(l,t)) 
+                                                                          - sum(n$(MapSend_l(l,n) and ref(n)), teta_UB(n,t))
+                                                                          + sum(n$(MapSend_l(l,n) and ref(n)), teta_LB(n,t))
+                                                                          + sum(n$(MapSend_l(l,n) and ref(n)), teta_ref(n,t))     =e= 0
+       
+ 307  ;
+ 308  SUB_Lin_Dual_Res_n_ref(n,t)..                                       sum(l$(MapRes_l(l,n) and ref(n)),(1/line_data(l,'react')) * phi(l,t))
+ 309                                                                      - sum(l$(MapRes_l(l,n) and ref(n)), (1/line_data(l,'react')) * beta_UB_lin(l,t))
+ 310                                                                      + sum(l$(MapRes_l(l,n) and ref(n)), (1/line_data(l,'react')) * beta_LB_lin(l,t))
+ 311                                                                      - teta_UB(n,t)
+ 312                                                                      + teta_LB(n,t)
+ 313                                                                      + teta_ref(n,t)      =e= 0
+ 314  ;
+ 315  SUB_Dual_decision(t)..                                              sum(l, - (1/line_data(l,'react'))* beta_UB_lin(l,t))
+ 316                                                                      + sum(l,  (1/line_data(l,'react'))* beta_LB_lin(l,t))
+ 317                                                                      - sum(l,  (1/line_data(l,'react'))* beta_UB_lin(l,t))
+ 318                                                                      - sum(l,  (1/line_data(l,'react'))* beta_LB_lin(l,t))                                =l= 0
+ 319  ;
+ 320   
+ 321  execute_unload "check_data.gdx";
 STOP Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 12/22/21 12:28:10 Page 2
+GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/03/22 23:07:08 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -108,16 +331,16 @@ Include File Summary
    SEQ   GLOBAL TYPE      PARENT   LOCAL  FILENAME
 
      1        1 INPUT          0       0  Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
-     2       97 STOP           1      97  Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
+     2      322 STOP           1     322  Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node.gms
 
 
-COMPILATION TIME     =        0.000 SECONDS      3 MB  34.2.0 r6925a71 WEX-WEI
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 12/22/21 12:28:10 Page 3
+COMPILATION TIME     =        0.469 SECONDS      3 MB  34.2.0 r6925a71 WEX-WEI
+GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/03/22 23:07:08 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-EXECUTION TIME       =        0.203 SECONDS      4 MB  34.2.0 r6925a71 WEX-WEI
+EXECUTION TIME       =        0.484 SECONDS      4 MB  34.2.0 r6925a71 WEX-WEI
 
 
 USER: Small MUD - 5 User License                     S201118/0001AN-WIN
