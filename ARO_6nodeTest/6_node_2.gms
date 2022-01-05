@@ -89,8 +89,8 @@ PG_M_fixed(g,t,v)
 Variables
 *********************************************Master*************************************************
 
- O_M                Objective var of Master Problem
- Theta(n,t,v)       Anggle of each node associated with DC power flow equations 
+O_M                 Objective var of Master Problem
+Theta(n,t,v)        Angle of each node associated with DC power flow equations 
  
 *********************************************Subproblem*********************************************
 
@@ -182,7 +182,7 @@ SUB_Lin_Dual_Send
 *SUB_Lin_Dual_Res
 SUB_Lin_Dual_Send_n_ref
 *SUB_Lin_Dual_Res_n_ref
-SUB_Dual_decision
+*SUB_Dual_decision
 
 
 SUB_US_LOAD
@@ -217,15 +217,16 @@ MP_Objective..                                                      O_M  =e= sum
 MP_IB..                                                             IB   =g= sum(l, inv_M(l)* Line_data (l,'I_costs'))
 ;
 
-MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                     Demand_data_fixed(n,t,vv) - PLS_M(n,t,vv)   =e= sum(g, PG_M(g,t,vv))
-                                                         
+MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                    Demand_data (n,'Need_LB') - PLS_M(n,t,vv)   =e= sum(g, PG_M(g,t,vv))
+*Demand_data_fixed(n,t,vv)                                                         
                                                                     +  sum(l$MapRes_l(l,n), PF_M(l,t,vv))
                                                                     -  sum(l$MapSend_l(l,n), PF_M(l,t,vv))
                                                                         
                                                                     +  sum(l$Map_prosp_Send(l,n), PF_M(l,t,vv))
                                                                     -  sum(l$Map_prosp_Send(l,n), PF_M(l,t,vv))
 ;
-MP_PG(g,t,vv)$(ord(vv) lt (itaux+1))..                              PG_M(g,t,vv) =l= PG_M_fixed(g,t,vv)
+MP_PG(g,t,vv)$(ord(vv) lt (itaux+1))..                              PG_M(g,t,vv) =l= Generator_data (g,'Gen_cap_UB')
+* PG_M_fixed(g,t,vv)
 ;
 
 
@@ -247,7 +248,8 @@ MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..  -(1-inv_M(l)
 ;
 
 
-MP_LS(n,t,vv)$(ord(vv) lt (itaux+1))..                              PLS_M(n,t,vv) =l=  Demand_data_fixed(n,t,vv)
+MP_LS(n,t,vv)$(ord(vv) lt (itaux+1))..                              PLS_M(n,t,vv) =l= Demand_data (n,'Need_LB')
+*Demand_data_fixed(n,t,vv)
 ;
 
 
@@ -275,8 +277,8 @@ SUB_Dual_Objective..                                                O_Sub =e= su
                                                                     + sum((n,t), - phiLS(n,t) * Demand_data (n,'Need_LB'))
                                                                     + sum((l,t), - omega_UB(l,t) * line_data(l,'L_cap'))
                                                                     + sum((l,t), - omega_LB(l,t) * line_data(l,'L_cap'))
-                                                                    + sum((l,t),   beta_UB_lin(l,t) * M)
-                                                                    + sum((l,t), - beta_LB_lin(l,t) * M)
+*                                                                    + sum((l,t),   beta_UB_lin(l,t) * M)
+*                                                                    + sum((l,t), - beta_LB_lin(l,t) * M)
                                                                     + sum((n,t), - teta_UB(n,t) * 3.1415)
                                                                     + sum((n,t), - teta_LB(n,t) * 3.1415)
 ;
@@ -290,16 +292,19 @@ SUB_Dual_LS(t)..                                                    sum(n, lam(n
 ;
 *****************************************************************Dual Power flow equations
 
-SUB_Dual_PF(n,t)..                                                  sum(l, lam(n,t)  - omega_UB(l,t)  + omega_LB(l,t) + phi(l,t) - beta_UB(l,t) + beta_LB(l,t) - beta_UB_lin(l,t) + beta_LB_lin(l,t)) =l= 0
+SUB_Dual_PF(l,t)..                                                  - sum(n$MapSend_l(l,n), lam(n,t)) + sum(n$MapRes_l(l,n), lam(n,t))
+                                                                    - omega_UB(l,t)  + omega_LB(l,t) + phi(l,t)
+*- beta_UB(l,t) + beta_LB(l,t) - beta_UB_lin(l,t) + beta_LB_lin(l,t)
+                                                                                                                      =l= 0
 ;
 SUB_LIN_Dual_Send(n,t)..                                            - sum(l$MapSend_l(l,n), (1/line_data(l,'react')) * phi(l,t))
                                                                     + sum(l$MapRes_l(l,n),  (1/line_data(l,'react')) * phi(l,t))
-                                                                    + sum(l$(MapSend_l(l,n) and  ex_l(l)), (1/line_data(l,'react')) * beta_UB_lin(l,t))
-                                                                    - sum(l$(MapRes_l(l,n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_UB_lin(l,t))
-                                                                    - sum(l$(MapSend_l(l,n) and  ex_l(l)), (1/line_data(l,'react')) * beta_LB_lin(l,t))
-                                                                    + sum(l$(MapRes_l(l,n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_LB_lin(l,t))
+*                                                                    + sum(l$(MapSend_l(l,n) and  ex_l(l)), (1/line_data(l,'react')) * beta_UB_lin(l,t))
+*                                                                    - sum(l$(MapRes_l(l,n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_UB_lin(l,t))
+*                                                                    - sum(l$(MapSend_l(l,n) and  ex_l(l)), (1/line_data(l,'react')) * beta_LB_lin(l,t))
+*                                                                    + sum(l$(MapRes_l(l,n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_LB_lin(l,t))
                                                                     -  teta_UB(n,t)
-                                                                    +  teta_LB(n,t)                                   =l= 0
+                                                                    +  teta_LB(n,t)                                   =e= 0
 ;
 $ontext
 SUB_LIN_Dual_Res(n,t)..                                             sum(l$MapRes_l(l,n),(1/line_data(l,'react')) * phi(l,t))
@@ -311,12 +316,13 @@ SUB_LIN_Dual_Res(n,t)..                                             sum(l$MapRes
 $offtext
 SUB_Lin_Dual_Send_n_ref(n,t)..                                      - sum(l$(MapSend_l(l,n) and ref(n)), (1/line_data(l,'react')) * phi(l,t))
                                                                     + sum(l$(MapRes_l(l,n) and ref(n)),  (1/line_data(l,'react')) * phi(l,t))
-                                                                    + sum(l$(MapSend_l(l,n) and ref(n) and  ex_l(l)), (1/line_data(l,'react')) * beta_UB_lin(l,t))
-                                                                    - sum(l$(MapRes_l(l,n) and ref(n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_UB_lin(l,t))
-                                                                    - sum(l$(MapSend_l(l,n) and ref(n) and  ex_l(l)), (1/line_data(l,'react')) * beta_LB_lin(l,t))
-                                                                    + sum(l$(MapRes_l(l,n) and ref(n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_LB_lin(l,t))
-                                                                    -  teta_UB(n,t)
-                                                                    +  teta_LB(n,t)                                   =e= 0
+*                                                                    + sum(l$(MapSend_l(l,n) and ref(n) and  ex_l(l)), (1/line_data(l,'react')) * beta_UB_lin(l,t))
+*                                                                    - sum(l$(MapRes_l(l,n) and ref(n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_UB_lin(l,t))
+*                                                                    - sum(l$(MapSend_l(l,n) and ref(n) and  ex_l(l)), (1/line_data(l,'react')) * beta_LB_lin(l,t))
+*                                                                    + sum(l$(MapRes_l(l,n) and ref(n) and  ex_l(l)),  (1/line_data(l,'react')) * beta_LB_lin(l,t))
+*                                                                    -  teta_UB(n,t)
+*                                                                    +  teta_LB(n,t)
+                                                                    +  teta_ref(n,t)                                   =e= 0
 
 ;
 $ontext
@@ -338,13 +344,13 @@ SUB_Lin_Dual_Res_n_ref(n,t)..                                       sum(l$(MapRe
                                                                     + teta_LB(n,t)
                                                                     + teta_ref(n,t)      =e= 0
 ;
-$offtext
+
 SUB_Dual_decision(t)..                                              sum(l, - (1/line_data(l,'react'))* beta_UB_lin(l,t))
                                                                     + sum(l,  (1/line_data(l,'react'))* beta_LB_lin(l,t))
                                                                     - sum(l,  (1/line_data(l,'react'))* beta_UB_lin(l,t))
                                                                     - sum(l,  (1/line_data(l,'react'))* beta_LB_lin(l,t))                                =l= 0
 ;
-
+$offtext
 
 *****************************************************************Uncertainty Sets/ and polyhedral uncertainty budgets (level 2 problem)
 
@@ -407,6 +413,8 @@ Theta_ref
 MP_ETA
 /
 ;
+solve Master using MIP minimizing O_M;
+execute_unload "check_Master.gdx";
 
 model Subproblem
 /
@@ -419,7 +427,7 @@ SUB_Lin_Dual_Send
 *SUB_Lin_Dual_Res
 SUB_Lin_Dual_Send_n_ref
 *SUB_Lin_Dual_Res_n_ref
-SUB_Dual_decision
+*SUB_Dual_decision
 
 SUB_US_PG
 SUB_US_LOAD
@@ -434,5 +442,5 @@ SUB_lin6
 ;
 
 solve Subproblem using MIP maximizing O_Sub;
-execute_unload "check_data.gdx";
+execute_unload "check_SUB.gdx";
 $stop
