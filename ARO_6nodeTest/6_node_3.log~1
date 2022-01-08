@@ -1,0 +1,142 @@
+
+--- Job 6_node_3.gms Start 01/06/22 16:32:02 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\35\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node_3.gms"
+    PageSize 0
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\225a\"
+    SysDir C:\GAMS\35\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
+          BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
+GAMS 35.1.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+--- Starting compilation
+--- 6_node_3.gms(224) 3 Mb
+--- Starting execution: elapsed 0:00:00.019
+--- Generating MIP model Master
+--- 6_node_3.gms(223) 4 Mb
+---   1,515 rows  632 columns  3,854 non-zeroes
+---   6 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.061
+
+IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- Space for names approximately 0.06 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 0.74 Mb (peak 0.75 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 0.03 Mb (peak 0.15 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Generic callback                                 0x50
+Tried aggregator 2 times.
+MIP Presolve eliminated 865 rows and 146 columns.
+MIP Presolve modified 818 coefficients.
+Aggregator did 48 substitutions.
+Reduced MIP has 601 rows, 438 columns, and 2094 nonzeros.
+Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.02 sec. (2.75 ticks)
+Found incumbent of value 2.9229120e+07 after 0.02 sec. (3.35 ticks)
+Probing fixed 0 vars, tightened 24 bounds.
+Probing time = 0.00 sec. (0.11 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve added 276 rows and 0 columns.
+Reduced MIP has 877 rows, 438 columns, and 2646 nonzeros.
+Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (3.40 ticks)
+Probing time = 0.00 sec. (0.10 ticks)
+Clique table members: 2.
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =             0.000000
+Iteration:   100   Dual objective     =        205980.000000
+Iteration:   214   Dual objective     =       2519292.040427
+Iteration:   290   Dual objective     =       2660062.077547
+Root relaxation solution time = 0.02 sec. (4.30 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       2.92291e+07        0.0000           100.00%
+Found incumbent of value 2.9229120e+07 after 0.03 sec. (11.96 ticks)
+      0     0  2870426.2823     2   2.92291e+07  2870426.2823      336   90.18%
+*     0+    0                      7719802.5000  2870426.2823            62.82%
+Found incumbent of value 7719802.500000 after 0.03 sec. (14.06 ticks)
+      0     0  7067760.5136     4  7719802.5000     Cuts: 319      479    8.45%
+      0     0        cutoff        7719802.5000                    547    0.00%
+Elapsed time = 0.05 sec. (31.77 ticks, tree = 0.01 MB, solutions = 2)
+
+Cover cuts applied:  1
+Implied bound cuts applied:  24
+Flow cuts applied:  46
+Mixed integer rounding cuts applied:  281
+Lift and project cuts applied:  1
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =    0.05 sec. (31.81 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.05 sec. (31.81 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 0.05sec (det. 31.81 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+Tried aggregator 1 time.
+LP Presolve eliminated 1346 rows and 392 columns.
+Aggregator did 96 substitutions.
+Reduced LP has 72 rows, 144 columns, and 240 nonzeros.
+Presolve time = 0.00 sec. (0.85 ticks)
+Symmetry aggregator did 207 additional substitutions.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =       2061720.000000
+
+Dual crossover.
+  Dual:  Fixed no variables.
+  Primal:  Fixed no variables.
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 1.46 ticks)
+
+
+Proven optimal solution
+MIP Solution:      7719802.500000    (547 iterations, 0 nodes)
+Final Solve:       7719802.500000    (3 iterations)
+
+Best possible:     7719802.500000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model Master
+--- Executing after solve: elapsed 0:00:00.190
+--- 6_node_3.gms(224) 4 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\check_Master3.gdx
+*** Status: Normal completion
+--- Job 6_node_3.gms Stop 01/06/22 16:32:02 elapsed 0:00:00.230

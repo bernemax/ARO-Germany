@@ -1,0 +1,52 @@
+B 3 C o m p i l a t i o n
+B 239 Equation Listing    SOLVE Master Using MIP From line 227
+D 242 MP_Objective
+D 247 MP_IB
+D 252 MP_marketclear
+D 263 MP_PG
+D 274 MP_PF_EX
+D 285 MP_PF_EX_Cap_UB
+D 296 MP_PF_EX_Cap_LB
+D 307 MP_PF_PROS_Cap_UB
+D 318 MP_PF_PROS_Cap_LB
+D 329 MP_PF_PROS_LIN_UB
+D 340 MP_PF_PROS_LIN_LB
+D 351 MP_LS
+D 362 Theta_UB
+D 373 Theta_LB
+D 384 Theta_ref
+D 395 MP_ETA
+B 401 Column Listing      SOLVE Master Using MIP From line 227
+E 404 O_M
+E 411 Theta
+E 439 PF_M
+E 467 ETA
+E 474 PG_M
+E 499 PLS_M
+E 524 inv_M
+B 832 Model Statistics    SOLVE Master Using MIP From line 227
+B 845 Solution Report     SOLVE Master Using MIP From line 227
+F 888 MP_Objective
+F 894 MP_IB
+F 900 MP_marketclear
+F 1049 MP_PG
+F 1174 MP_PF_EX
+F 1251 MP_PF_EX_Cap_UB
+F 1328 MP_PF_EX_Cap_LB
+F 1405 MP_PF_PROS_Cap_UB
+F 1554 MP_PF_PROS_Cap_LB
+F 1703 MP_PF_PROS_LIN_UB
+F 1852 MP_PF_PROS_LIN_LB
+F 2001 MP_LS
+F 2150 Theta_UB
+F 2299 Theta_LB
+F 2448 Theta_ref
+F 2477 MP_ETA
+G 2485 O_M
+G 2489 Theta
+G 2638 PF_M
+G 2861 ETA
+G 2865 PG_M
+G 2990 PLS_M
+G 3139 inv_M
+B 3156 E x e c u t i o n

@@ -1,0 +1,73 @@
+B 3 C o m p i l a t i o n
+B 307 Include File Summary
+B 319 Equation Listing    SOLVE Subproblem Using MIP From line 303
+D 322 SUB_Dual_Objective
+D 327 SUB_Dual_PG
+D 338 SUB_Dual_LS
+D 349 SUB_Dual_PF
+D 360 SUB_Lin_Dual_Send
+D 371 SUB_Lin_Dual_Send_n_ref
+D 382 SUB_US_LOAD
+D 393 SUB_UB_LOAD
+D 398 SUB_US_PG
+D 409 SUB_UB_PG
+D 414 SUB_lin1
+D 425 SUB_lin2
+D 436 SUB_lin3
+D 447 SUB_lin4
+D 458 SUB_lin5
+D 469 SUB_lin6
+B 481 Column Listing      SOLVE Subproblem Using MIP From line 303
+E 484 O_Sub
+E 491 lam
+E 522 phi
+E 544 teta_ref
+E 560 Pdem
+E 576 PE
+E 592 phiPG
+E 614 phiLS
+E 636 omega_UB
+E 655 omega_LB
+E 674 teta_UB
+E 693 teta_LB
+E 712 aux_lam
+E 734 aux_phi_PG
+E 753 aux_phi_LS
+E 775 z_PG
+E 800 z_dem
+B 832 Model Statistics    SOLVE Subproblem Using MIP From line 303
+B 845 Solution Report     SOLVE Subproblem Using MIP From line 303
+F 890 SUB_Dual_Objective
+F 892 SUB_Dual_PG
+F 1017 SUB_Dual_LS
+F 1046 SUB_Dual_PF
+F 1267 SUB_Lin_Dual_Send
+F 1416 SUB_Lin_Dual_Send_n_ref
+F 1565 SUB_US_LOAD
+F 1716 SUB_UB_LOAD
+F 1718 SUB_US_PG
+F 1845 SUB_UB_PG
+F 1847 SUB_lin1
+F 1996 SUB_lin2
+F 2145 SUB_lin3
+F 2270 SUB_lin4
+F 2395 SUB_lin5
+F 2544 SUB_lin6
+G 2695 O_Sub
+G 2699 lam
+G 2848 phi
+G 3069 teta_ref
+G 3218 Pdem
+G 3367 PE
+G 3492 phiPG
+G 3617 phiLS
+G 3766 omega_UB
+G 3987 omega_LB
+G 4208 teta_UB
+G 4357 teta_LB
+G 4506 aux_lam
+G 4655 aux_phi_PG
+G 4780 aux_phi_LS
+G 4929 z_PG
+G 5054 z_dem
+B 5209 E x e c u t i o n
