@@ -448,10 +448,10 @@ itaux               = 0
 
 Loop(v$((UB - LB) gt Toleranz),
 
-Demand_data_fixed(n,t,v) = Demand_data (n,'Need_LB')
-;
-PG_M_fixed(g,t,v)= Generator_data (g,'Gen_cap_UB')
-;
+*Demand_data_fixed(n,t,v) = Demand_data (n,'Need_LB')
+*;
+*PG_M_fixed(g,t,v)= Generator_data (g,'Gen_cap_UB')
+*;
 
 itaux = ord(v)
 ;
