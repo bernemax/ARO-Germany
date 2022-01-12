@@ -1,5 +1,5 @@
 
---- Job 6_node_3_only_M.gms Start 01/08/22 15:58:11 34.2.0 r6925a71 WEX-WEI x86 64bit/MS Windows
+--- Job 6_node_3_only_M.gms Start 01/08/22 16:32:28 34.2.0 r6925a71 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\34\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -18,12 +18,12 @@ Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
 GAMS 34.2.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
 --- Starting compilation
 --- 6_node_3_only_M.gms(228) 3 Mb
---- Starting execution: elapsed 0:00:00.758
+--- Starting execution: elapsed 0:00:00.546
 --- Generating MIP model Master
 --- 6_node_3_only_M.gms(227) 4 Mb
 ---   1,515 rows  632 columns  3,902 non-zeroes
 ---   6 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:02.913
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:02.835
 
 IBM ILOG CPLEX   34.2.0 r6925a71 Released Feb 05, 2021 WEI x86 64bit/MS Window
 
@@ -47,8 +47,8 @@ MIP Presolve modified 866 coefficients.
 Aggregator did 48 substitutions.
 Reduced MIP has 745 rows, 510 columns, and 2454 nonzeros.
 Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (2.70 ticks)
-Found incumbent of value 1.4678400e+07 after 0.02 sec. (3.41 ticks)
+Presolve time = 0.00 sec. (2.70 ticks)
+Found incumbent of value 4.8218544e+09 after 0.00 sec. (3.41 ticks)
 Probing time = 0.00 sec. (0.12 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
@@ -65,41 +65,45 @@ Initializing dual steep norms . . .
 
 Iteration log . . .
 Iteration:     1   Dual objective     =             0.000000
-Iteration:   110   Dual objective     =        261600.000000
+Iteration:   110   Dual objective     =      85234800.000000
 Perturbation started.
-Iteration:   153   Dual objective     =        261600.000000
-Iteration:   324   Dual objective     =        381400.009296
+Iteration:   153   Dual objective     =      85234800.000000
+Iteration:   254   Dual objective     =      90965012.535259
 Removing perturbation.
-Root relaxation solution time = 0.02 sec. (3.98 ticks)
+Root relaxation solution time = 0.06 sec. (4.68 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                       1.46784e+07        0.0000           100.00%
-Found incumbent of value 1.4678400e+07 after 0.03 sec. (16.52 ticks)
-      0     0   668933.3333     1   1.46784e+07   668933.3333      419   95.44%
-*     0+    0                      3997200.0000   668933.3333            83.26%
-Found incumbent of value 3997200.000000 after 0.03 sec. (18.52 ticks)
-      0     0   816400.0000     1  3997200.0000      Cuts: 49      467   79.58%
-*     0     0      integral     0  1135600.0000      Cuts: 49      507    0.00%
-Found incumbent of value 1135600.000000 after 0.08 sec. (25.47 ticks)
-      0     0        cutoff        1135600.0000  1135600.0000      507    0.00%
-Elapsed time = 0.08 sec. (25.47 ticks, tree = 0.01 MB, solutions = 3)
+*     0+    0                       4.82185e+09        0.0000           100.00%
+Found incumbent of value 4.8218544e+09 after 0.06 sec. (17.23 ticks)
+      0     0   9.31204e+07     3   4.82185e+09   9.31204e+07      303   98.07%
+*     0+    0                       1.07423e+08   9.31204e+07            13.31%
+Found incumbent of value 1.0742336e+08 after 0.06 sec. (21.03 ticks)
+      0     0   9.82175e+07     5   1.07423e+08     Cuts: 269      452    8.57%
+      0     0   1.01714e+08     6   1.07423e+08     Cuts: 275      572    5.31%
+      0     0   1.03254e+08     6   1.07423e+08     Cuts: 151      689    3.88%
+      0     0   1.03405e+08     3   1.07423e+08      Cuts: 75      744    3.74%
+Detecting symmetries...
+      0     2   1.03405e+08     3   1.07423e+08   1.03562e+08      744    3.59%
+Elapsed time = 0.09 sec. (70.54 ticks, tree = 0.01 MB, solutions = 2)
 
-Implied bound cuts applied:  24
-Flow cuts applied:  24
-Mixed integer rounding cuts applied:  24
-Gomory fractional cuts applied:  1
+Clique cuts applied:  1
+Cover cuts applied:  1
+Flow cuts applied:  3
+Mixed integer rounding cuts applied:  187
+Zero-half cuts applied:  1
+Gomory fractional cuts applied:  3
 
 Root node processing (before b&c):
-  Real time             =    0.08 sec. (25.52 ticks)
+  Real time             =    0.09 sec. (70.54 ticks)
 Sequential b&c:
-  Real time             =    0.00 sec. (0.00 ticks)
+  Real time             =    0.02 sec. (1.18 ticks)
                           ------------
-Total (root+branch&cut) =    0.08 sec. (25.52 ticks)
+Total (root+branch&cut) =    0.11 sec. (71.72 ticks)
 
 --- MIP status (101): integer optimal solution.
---- Cplex Time: 0.08sec (det. 25.52 ticks)
+--- Cplex Time: 0.11sec (det. 71.72 ticks)
 
 --- Fixing integer variables and solving final LP...
 
@@ -109,39 +113,36 @@ CPXPARAM_Threads                                 1
 CPXPARAM_MIP_Display                             4
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 Tried aggregator 1 time.
-LP Presolve eliminated 1346 rows and 368 columns.
-Aggregator did 72 substitutions.
-Reduced LP has 96 rows, 192 columns, and 288 nonzeros.
-Presolve time = 0.00 sec. (0.88 ticks)
-Symmetry aggregator did 276 additional substitutions.
+LP Presolve eliminated 1250 rows and 200 columns.
+Aggregator did 96 substitutions.
+Reduced LP has 168 rows, 336 columns, and 552 nonzeros.
+Presolve time = 0.00 sec. (1.02 ticks)
+Symmetry aggregator did 483 additional substitutions.
 Initializing dual steep norms . . .
 
 Iteration log . . .
-Iteration:     1   Dual objective     =       1135600.000000
+Iteration:     1   Dual objective     =      19425000.000000
 
 Dual crossover.
-  Dual:  Fixing 24 variables.
-       23 DMoves:  Infeasibility  0.00000000e+00  Objective  1.13560000e+06
-        0 DMoves:  Infeasibility  0.00000000e+00  Objective  1.13560000e+06
-  Dual:  Pushed 0, exchanged 24.
+  Dual:  Fixed no variables.
   Primal:  Fixed no variables.
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 0.05sec (det. 1.55 ticks)
+--- Cplex Time: 0.03sec (det. 1.76 ticks)
 
 
 Proven optimal solution
-MIP Solution:      1135600.000000    (507 iterations, 0 nodes)
-Final Solve:       1135600.000000    (2 iterations)
+MIP Solution:    107423361.000000    (834 iterations, 3 nodes)
+Final Solve:     107423361.000000    (6 iterations)
 
-Best possible:     1135600.000000
+Best possible:   107423361.000000
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Master
---- 6_node_3_only_M.gms(227) 4 Mb  7 secs
---- Executing after solve: elapsed 0:00:08.595
+--- 6_node_3_only_M.gms(227) 4 Mb  6 secs
+--- Executing after solve: elapsed 0:00:08.097
 --- 6_node_3_only_M.gms(228) 4 Mb
 --- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\check_only_Master.gdx
 *** Status: Normal completion
---- Job 6_node_3_only_M.gms Stop 01/08/22 15:58:20 elapsed 0:00:09.312
+--- Job 6_node_3_only_M.gms Stop 01/08/22 16:32:37 elapsed 0:00:08.744

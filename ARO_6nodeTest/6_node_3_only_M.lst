@@ -1,4 +1,4 @@
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/08/22 16:32:28 Page 1
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/10/22 14:11:14 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -33,210 +33,204 @@ C o m p i l a t i o n
   28  n5      90             110          3000           20
   29  n6      180            220          3000           40
   30  ;
-  31  *180 n1
-  32  *135 n4
-  33  *90  n5
-  34  *180 n6
-  35  Table Line_data (l,*)
-  36            react      I_costs     L_cap
-  37  l1       0.02        0           150
-  38  l2       0.02        0           150
-  39  l3       0.02        0           150
-  40  l4       0.02        700000      150
-  41  l5       0.02        1400000     200
-  42  l6       0.02        1800000     200
-  43  l7       0.02        1600000     200
-  44  l8       0.02        800000      150
-  45  l9       0.02        700000      150
-  46  ;
-  47   
-  48  *******************************************************Mapping**************************************************
-  49  Set
-  50   
-  51  MapG (g,n)
-  52  /g1.n1,g2.n2,g3.n3,g4.n5,g5.n6/
-  53  MapSend_l(l,n)
-  54  / l1.n1, l2.n1, l3.n4/
-  55   
-  56  MapRes_l(l,n)
-  57  / l1    .n2,l2.n3,l3.n5/
+  31  Table Line_data (l,*)
+  32            react      I_costs     L_cap
+  33  l1       0.02        0           150
+  34  l2       0.02        0           150
+  35  l3       0.02        0           150
+  36  l4       0.02        700000      150
+  37  l5       0.02        1400000     200
+  38  l6       0.02        1800000     200
+  39  l7       0.02        1600000     200
+  40  l8       0.02        800000      150
+  41  l9       0.02        700000      150
+  42  ;
+  43   
+  44  *******************************************************Mapping**************************************************
+  45  Set
+  46   
+  47  MapG (g,n)
+  48  /g1.n1,g2.n2,g3.n3,g4.n5,g5.n6/
+  49  MapSend_l(l,n)
+  50  / l1.n1, l2.n1,l3.n4/
+  51   
+  52  MapRes_l(l,n)
+  53  / l1    .n2,l2.n3,l3.n5/
+  54   
+  55  Map_prosp_Send(l,n)
+  56  /l4.n2,l5.n2,l6.n3,
+  57  l7.n3,l8.n4,l9.n5/
   58   
-  59  Map_prosp_Send(l,n)
-  60  /l4.n2,l5.n2,l6.n3,
-  61  l7.n3,l8.n4,l9.n5/
+  59  Map_prosp_Res(l,n)
+  60  /l4.n3,l5.n4,l6.n4,
+  61  l7.n6,l8.n6,l9.n6/
   62   
-  63  Map_prosp_Res(l,n)
-  64  /l4.n3,l5.n4,l6.n4,
-  65  l7.n6,l8.n6,l9.n6/
+  63  ref(n)      /n1/
+  64   
+  65  ;
   66   
-  67  ref(n)      /n1/
-  68   
-  69  ;
-  70   
-  71  *execute_unload "check_data.gdx";
-  72  *$stop
-  73   
-  74  scalars
-  75  Tol         / 1 /
-  76  LB          / -1e10 /
-  77  UB          / 1e10 /
-  78  itaux       / 0 /
-  79  IB          / 3000000 /
-  80  M           / 5000 /
+  67  *execute_unload "check_data.gdx";
+  68  *$stop
+  69   
+  70  scalars
+  71  Tol         / 1 /
+  72  LB          / -1e10 /
+  73  UB          / 1e10 /
+  74  itaux       / 0 /
+  75  IB          / 3000000 /
+  76  M           / 5000 /
+  77   
+  78  Gamma_Load  /0/
+  79  Gamma_PG    /0/
+  80  ;
   81   
-  82  Gamma_Load  /0/
-  83  Gamma_PG    /0/
-  84  ;
-  85   
-  86  Parameters
-  87  * fixed realisation of demand in subproblem, tranferred to master
-  88  Demand_data_fixed(n,t,v)
-  89  * fixed realisation of supply in subproblem, tranferred to master
-  90  PG_M_fixed(g,t,v)
+  82  Parameters
+  83  * fixed realisation of demand in subproblem, tranferred to master
+  84  Demand_data_fixed(n,t,v)
+  85  * fixed realisation of supply in subproblem, tranferred to master
+  86  PG_M_fixed(g,t,v)
+  87   
+  88  ;
+  89  Variables
+  90  *********************************************Master*************************************************
   91   
-  92  ;
-  93  Variables
-  94  *********************************************Master*************************************************
+  92  O_M                 Objective var of Master Problem
+  93  Theta(n,t,v)        Angle of each node associated with DC power flow equations
+  94  PF_M(l,t,v)         power flows derived from DC load flow equation
   95   
-  96  O_M                 Objective var of Master Problem
-  97  Theta(n,t,v)        Angle of each node associated with DC power flow equations
-  98  PF_M(l,t,v)         power flows derived from DC load flow equation
+  96  ;
+  97  Positive Variables
+  98  *********************************************MASTER*************************************************
   99   
- 100  ;
- 101  Positive Variables
- 102  *********************************************MASTER*************************************************
- 103   
- 104  ETA                 aux var to reconstruct obj. function of the ARO problem
- 105  PG_M(g,t,v)         power generation level of a generator
- 106  PLS_M(n,t,v)        load shedding
- 107  ;
- 108   
- 109  Binary Variables
- 110  *********************************************Master*************************************************
- 111   
- 112  inv_M(l)            decision variable regarding investment in a prospective line
+ 100  ETA                 aux var to reconstruct obj. function of the ARO problem
+ 101  PG_M(g,t,v)         power generation level of a generator
+ 102  PLS_M(n,t,v)        load shedding
+ 103  ;
+ 104   
+ 105  Binary Variables
+ 106  *********************************************Master*************************************************
+ 107   
+ 108  inv_M(l)            decision variable regarding investment in a prospective line
+ 109  ;
+ 110   
+ 111  Equations
+ 112  *********************************************Master**************************************************
  113   
- 114  ;
- 115   
- 116  Equations
- 117  *********************************************Master**************************************************
- 118   
- 119  MP_Objective
- 120  MP_IB
- 121  MP_marketclear
- 122   
- 123  MP_PG
- 124   
- 125  MP_PF_EX
- 126  MP_PF_EX_Cap_UB
- 127  MP_PF_EX_Cap_LB
+ 114  MP_Objective
+ 115  MP_IB
+ 116  MP_marketclear
+ 117   
+ 118  MP_PG
+ 119   
+ 120  MP_PF_EX
+ 121  MP_PF_EX_Cap_UB
+ 122  MP_PF_EX_Cap_LB
+ 123   
+ 124  MP_PF_PROS_Cap_UB
+ 125  MP_PF_PROS_Cap_LB
+ 126  MP_PF_PROS_LIN_UB
+ 127  MP_PF_PROS_LIN_LB
  128   
- 129  MP_PF_PROS_Cap_UB
- 130  MP_PF_PROS_Cap_LB
- 131  MP_PF_PROS_LIN_UB
- 132  MP_PF_PROS_LIN_LB
- 133   
- 134  MP_LS
- 135  Theta_UB
- 136  Theta_LB
- 137  Theta_ref
- 138  MP_ETA
+ 129  MP_LS
+ 130  Theta_UB
+ 131  Theta_LB
+ 132  Theta_ref
+ 133  MP_ETA
+ 134   
+ 135   
+ 136   
+ 137  ;
+ 138  *#####################################################################################Master####################################################################################
  139   
- 140   
+ 140  MP_Objective(vv)..                                                  O_M  =e= sum(l, inv_M(l)* Line_data (l,'I_costs')) + 365 *( sum((g,t), Generator_data (g,'Gen_costs') * PG_M(g,t,vv))
  141   
- 142  ;
- 143  *#####################################################################################Master####################################################################################
+ 142                                                                      + sum((n,t), Demand_data (n,'LS_costs') * PLS_M(n,t,vv)))
+ 143  ;
  144   
- 145  MP_Objective(vv)..                                                   O_M  =e= sum(l, inv_M(l)* Line_data (l,'I_costs')) + 365 *( sum((g,t), Generator_data (g,'Gen_costs') * PG_M(g,t,vv))
- 146   
- 147                                                                      + sum((n,t), Demand_data (n,'LS_costs') * PLS_M(n,t,vv)))
- 148  ;
- 149   
- 150  MP_IB(vv)..                                                          IB   =g= sum(l, inv_M(l)* Line_data (l,'I_costs'))
- 151  ;
+ 145  MP_IB(vv)..                                                         IB   =g= sum(l, inv_M(l)* Line_data (l,'I_costs'))
+ 146  ;
+ 147   
+ 148  MP_marketclear(n,t,vv)..                                            Demand_data (n,'Need_LB') - PLS_M(n,t,vv)  =e= sum(g$MapG (g,n), PG_M(g,t,vv))
+ 149  *Demand_data_fixed(n,t,vv)
+ 150                                                                      +  sum(l$(MapRes_l(l,n) and ex_l(l)), PF_M(l,t,vv))
+ 151                                                                      -  sum(l$(MapSend_l(l,n) and ex_l(l)), PF_M(l,t,vv))
  152   
- 153  MP_marketclear(n,t,vv)..                                             Demand_data (n,'Need_LB') - PLS_M(n,t,vv)  =e= sum(g$MapG (g,n), PG_M(g,t,vv))
- 154  *Demand_data_fixed(n,t,vv)
- 155                                                                      +  sum(l$(MapRes_l(l,n) and ex_l(l)), PF_M(l,t,vv))
- 156                                                                      -  sum(l$(MapSend_l(l,n) and ex_l(l)), PF_M(l,t,vv))
- 157   
- 158                                                                      +  sum(l$Map_prosp_Res(l,n), PF_M(l,t,vv))
- 159                                                                      -  sum(l$Map_prosp_Send(l,n), PF_M(l,t,vv))
- 160  ;
- 161  MP_PG(g,t,vv)..                                                       PG_M(g,t,vv) =l= Generator_data (g,'Gen_cap_UB')
- 162  * PG_M_fixed(g,t,vv)
- 163  ;
- 164   
- 165   
- 166  MP_PF_EX(l,t,vv)$ex_l(l)..                           PF_M(l,t,vv) =e= 1/line_data(l,'react') * (sum(n$MapSend_l(l,n),  Theta(n,t,vv)) - sum(n$MapRes_l(l,n),  Theta(n,t,vv)))
- 167  ;
- 168  MP_PF_EX_Cap_UB(l,t,vv)$ex_l(l)..                    PF_M(l,t,vv) =l= line_data(l,'L_cap')
- 169  ;
- 170  MP_PF_EX_Cap_LB(l,t,vv)$ex_l(l)..                    PF_M(l,t,vv) =g= - line_data(l,'L_cap')
- 171  ;
- 172   
- 173   
- 174  MP_PF_PROS_Cap_UB(l,t,vv)$pros_l(l)..                  PF_M(l,t,vv) =l= line_data(l,'L_cap') * inv_M(l)
- 175  ;
- 176  MP_PF_PROS_Cap_LB(l,t,vv)$pros_l(l)..                  PF_M(l,t,vv) =g= - line_data(l,'L_cap') * inv_M(l)
- 177  ;
- 178  MP_PF_PROS_LIN_UB(l,t,vv)$pros_l(l)..                 (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - (1/line_data(l,'react') * (sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv)) - sum(n$Map_prosp_Res(l,n),  Theta(n,t,vv))))
- 179  ;
- 180  MP_PF_PROS_LIN_LB(l,t,vv)$pros_l(l)..                 -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - (1/line_data(l,'react') * (sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv)) - sum(n$Map_prosp_Res(l,n),  Theta(n,t,vv))))
+ 153                                                                      +  sum(l$Map_prosp_Res(l,n), PF_M(l,t,vv))
+ 154                                                                      -  sum(l$Map_prosp_Send(l,n), PF_M(l,t,vv))
+ 155  ;
+ 156  MP_PG(g,t,vv)..                                                     PG_M(g,t,vv) =l= Generator_data (g,'Gen_cap_UB')
+ 157  * PG_M_fixed(g,t,vv)
+ 158  ;
+ 159   
+ 160   
+ 161  MP_PF_EX(l,t,vv)$ex_l(l)..                                          PF_M(l,t,vv) =e= 1/line_data(l,'react') * (sum(n$MapSend_l(l,n),  Theta(n,t,vv)) - sum(n$MapRes_l(l,n),  Theta(n,t,vv)))
+ 162  ;
+ 163  MP_PF_EX_Cap_UB(l,t,vv)$ex_l(l)..                                   PF_M(l,t,vv) =l= line_data(l,'L_cap')
+ 164  ;
+ 165  MP_PF_EX_Cap_LB(l,t,vv)$ex_l(l)..                                   PF_M(l,t,vv) =g= - line_data(l,'L_cap')
+ 166  ;
+ 167   
+ 168   
+ 169  MP_PF_PROS_Cap_UB(l,t,vv)$pros_l(l)..                               PF_M(l,t,vv) =l= line_data(l,'L_cap') * inv_M(l)
+ 170  ;
+ 171  MP_PF_PROS_Cap_LB(l,t,vv)$pros_l(l)..                               PF_M(l,t,vv) =g= - line_data(l,'L_cap') * inv_M(l)
+ 172  ;
+ 173  MP_PF_PROS_LIN_UB(l,t,vv)$pros_l(l)..                               (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - (1/line_data(l,'react') * (sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv)) - sum(n$Map_prosp_Res(l,n),  Theta(n,t,vv))))
+ 174  ;
+ 175  MP_PF_PROS_LIN_LB(l,t,vv)$pros_l(l)..                               -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - (1/line_data(l,'react') * (sum(n$Map_prosp_Send(l,n),  Theta(n,t,vv)) - sum(n$Map_prosp_Res(l,n),  Theta(n,t,vv))))
+ 176  ;
+ 177   
+ 178   
+ 179  MP_LS(n,t,vv)..                                                     PLS_M(n,t,vv) =l= Demand_data (n,'Need_LB')
+ 180  *Demand_data_fixed(n,t,vv)
  181  ;
  182   
  183   
- 184  MP_LS(n,t,vv)..                                      PLS_M(n,t,vv) =l= Demand_data (n,'Need_LB')
- 185  *Demand_data_fixed(n,t,vv)
- 186  ;
- 187   
- 188   
- 189  Theta_UB(n,t,vv)..                                  3.1415          =g= Theta(n,t,vv)
- 190  ;
- 191  Theta_LB(n,t,vv)..                                   - 3.1415         =l= Theta(n,t,vv)
- 192  ;
- 193  Theta_ref(n,t,vv)..                                  Theta(n,t,vv)$ref(n)      =e= 0
- 194  ;
- 195   
- 196   
- 197  MP_ETA(vv)..                                            ETA =e=    sum((g,t), Generator_data (g,'Gen_costs') * PG_M(g,t,vv))
- 198   
- 199                                                                      + sum((n,t), Demand_data (n,'LS_costs') * PLS_M(n,t,vv))
- 200   
- 201  ;
- 202  model Master
- 203  /
- 204  MP_Objective
- 205  MP_IB
- 206  MP_marketclear
+ 184  Theta_UB(n,t,vv)..                                                  3.1415          =g= Theta(n,t,vv)
+ 185  ;
+ 186  Theta_LB(n,t,vv)..                                                  - 3.1415       =l= Theta(n,t,vv)
+ 187  ;
+ 188  Theta_ref(n,t,vv)..                                                 Theta(n,t,vv)$ref(n)      =e= 0
+ 189  ;
+ 190   
+ 191   
+ 192  MP_ETA(vv)..                                                        ETA =e=    sum((g,t), Generator_data (g,'Gen_costs') * PG_M(g,t,vv))
+ 193   
+ 194                                                                      + sum((n,t), Demand_data (n,'LS_costs') * PLS_M(n,t,vv))
+ 195  ;
+ 196  model Master
+ 197  /
+ 198  MP_Objective
+ 199  MP_IB
+ 200  MP_marketclear
+ 201   
+ 202  MP_PG
+ 203   
+ 204  MP_PF_EX
+ 205  MP_PF_EX_Cap_UB
+ 206  MP_PF_EX_Cap_LB
  207   
- 208  MP_PG
- 209   
- 210  MP_PF_EX
- 211  MP_PF_EX_Cap_UB
- 212  MP_PF_EX_Cap_LB
- 213   
- 214  MP_PF_PROS_Cap_UB
- 215  MP_PF_PROS_Cap_LB
- 216  MP_PF_PROS_LIN_UB
- 217  MP_PF_PROS_LIN_LB
- 218   
- 219  MP_LS
- 220  Theta_UB
- 221  Theta_LB
- 222  Theta_ref
- 223  MP_ETA
- 224  /
- 225  ;
- 226   
- 227  solve Master using MIP minimizing O_M;
- 228  execute_unload "check_only_Master.gdx";
+ 208  MP_PF_PROS_Cap_UB
+ 209  MP_PF_PROS_Cap_LB
+ 210  MP_PF_PROS_LIN_UB
+ 211  MP_PF_PROS_LIN_LB
+ 212   
+ 213  MP_LS
+ 214  Theta_UB
+ 215  Theta_LB
+ 216  Theta_ref
+ 217  MP_ETA
+ 218  /
+ 219  ;
+ 220   
+ 221  solve Master using MIP minimizing O_M;
+ 222  execute_unload "check_only_Master.gdx";
 
 
-COMPILATION TIME     =        0.125 SECONDS      3 MB  34.2.0 r6925a71 WEX-WEI
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/08/22 16:32:28 Page 2
+COMPILATION TIME     =        0.015 SECONDS      3 MB  35.1.0 r82a9585 WEX-WEI
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/10/22 14:11:14 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Equation Listing    SOLVE Master Using MIP From line 227
+Equation Listing    SOLVE Master Using MIP From line 221
 
 
 ---- MP_Objective  =E=  
@@ -396,9 +390,9 @@ REMAINING 21 ENTRIES SKIPPED
 
 MP_ETA(v1)..  ETA - 18*PG_M(g1,t1,v1) - 18*PG_M(g1,t2,v1) - 18*PG_M(g1,t3,v1) - 18*PG_M(g1,t4,v1) - 18*PG_M(g1,t5,v1) - 18*PG_M(g1,t6,v1) - 18*PG_M(g1,t7,v1) - 18*PG_M(g1,t8,v1) - 18*PG_M(g1,t9,v1) - 18*PG_M(g1,t10,v1) - 18*PG_M(g1,t11,v1) - 18*PG_M(g1,t12,v1) - 18*PG_M(g1,t13,v1) - 18*PG_M(g1,t14,v1) - 18*PG_M(g1,t15,v1) - 18*PG_M(g1,t16,v1) - 18*PG_M(g1,t17,v1) - 18*PG_M(g1,t18,v1) - 18*PG_M(g1,t19,v1) - 18*PG_M(g1,t20,v1) - 18*PG_M(g1,t21,v1) - 18*PG_M(g1,t22,v1) - 18*PG_M(g1,t23,v1) - 18*PG_M(g1,t24,v1) - 25*PG_M(g2,t1,v1) - 25*PG_M(g2,t2,v1) - 25*PG_M(g2,t3,v1) - 25*PG_M(g2,t4,v1) - 25*PG_M(g2,t5,v1) - 25*PG_M(g2,t6,v1) - 25*PG_M(g2,t7,v1) - 25*PG_M(g2,t8,v1) - 25*PG_M(g2,t9,v1) - 25*PG_M(g2,t10,v1) - 25*PG_M(g2,t11,v1) - 25*PG_M(g2,t12,v1) - 25*PG_M(g2,t13,v1) - 25*PG_M(g2,t14,v1) - 25*PG_M(g2,t15,v1) - 25*PG_M(g2,t16,v1) - 25*PG_M(g2,t17,v1) - 25*PG_M(g2,t18,v1) - 25*PG_M(g2,t19,v1) - 25*PG_M(g2,t20,v1) - 25*PG_M(g2,t21,v1) - 25*PG_M(g2,t22,v1) - 25*PG_M(g2,t23,v1) - 25*PG_M(g2,t24,v1) - 16*PG_M(g3,t1,v1) - 16*PG_M(g3,t2,v1) - 16*PG_M(g3,t3,v1) - 16*PG_M(g3,t4,v1) - 16*PG_M(g3,t5,v1) - 16*PG_M(g3,t6,v1) - 16*PG_M(g3,t7,v1) - 16*PG_M(g3,t8,v1) - 16*PG_M(g3,t9,v1) - 16*PG_M(g3,t10,v1) - 16*PG_M(g3,t11,v1) - 16*PG_M(g3,t12,v1) - 16*PG_M(g3,t13,v1) - 16*PG_M(g3,t14,v1) - 16*PG_M(g3,t15,v1) - 16*PG_M(g3,t16,v1) - 16*PG_M(g3,t17,v1) - 16*PG_M(g3,t18,v1) - 16*PG_M(g3,t19,v1) - 16*PG_M(g3,t20,v1) - 16*PG_M(g3,t21,v1) - 16*PG_M(g3,t22,v1) - 16*PG_M(g3,t23,v1) - 16*PG_M(g3,t24,v1) - 32*PG_M(g4,t1,v1) - 32*PG_M(g4,t2,v1) - 32*PG_M(g4,t3,v1) - 32*PG_M(g4,t4,v1) - 32*PG_M(g4,t5,v1) - 32*PG_M(g4,t6,v1) - 32*PG_M(g4,t7,v1) - 32*PG_M(g4,t8,v1) - 32*PG_M(g4,t9,v1) - 32*PG_M(g4,t10,v1) - 32*PG_M(g4,t11,v1) - 32*PG_M(g4,t12,v1) - 32*PG_M(g4,t13,v1) - 32*PG_M(g4,t14,v1) - 32*PG_M(g4,t15,v1) - 32*PG_M(g4,t16,v1) - 32*PG_M(g4,t17,v1) - 32*PG_M(g4,t18,v1) - 32*PG_M(g4,t19,v1) - 32*PG_M(g4,t20,v1) - 32*PG_M(g4,t21,v1) - 32*PG_M(g4,t22,v1) - 32*PG_M(g4,t23,v1) - 32*PG_M(g4,t24,v1) - 35*PG_M(g5,t1,v1) - 35*PG_M(g5,t2,v1) - 35*PG_M(g5,t3,v1) - 35*PG_M(g5,t4,v1) - 35*PG_M(g5,t5,v1) - 35*PG_M(g5,t6,v1) - 35*PG_M(g5,t7,v1) - 35*PG_M(g5,t8,v1) - 35*PG_M(g5,t9,v1) - 35*PG_M(g5,t10,v1) - 35*PG_M(g5,t11,v1) - 35*PG_M(g5,t12,v1) - 35*PG_M(g5,t13,v1) - 35*PG_M(g5,t14,v1) - 35*PG_M(g5,t15,v1) - 35*PG_M(g5,t16,v1) - 35*PG_M(g5,t17,v1) - 35*PG_M(g5,t18,v1) - 35*PG_M(g5,t19,v1) - 35*PG_M(g5,t20,v1) - 35*PG_M(g5,t21,v1) - 35*PG_M(g5,t22,v1) - 35*PG_M(g5,t23,v1) - 35*PG_M(g5,t24,v1) - 3000*PLS_M(n1,t1,v1) - 3000*PLS_M(n1,t2,v1) - 3000*PLS_M(n1,t3,v1) - 3000*PLS_M(n1,t4,v1) - 3000*PLS_M(n1,t5,v1) - 3000*PLS_M(n1,t6,v1) - 3000*PLS_M(n1,t7,v1) - 3000*PLS_M(n1,t8,v1) - 3000*PLS_M(n1,t9,v1) - 3000*PLS_M(n1,t10,v1) - 3000*PLS_M(n1,t11,v1) - 3000*PLS_M(n1,t12,v1) - 3000*PLS_M(n1,t13,v1) - 3000*PLS_M(n1,t14,v1) - 3000*PLS_M(n1,t15,v1) - 3000*PLS_M(n1,t16,v1) - 3000*PLS_M(n1,t17,v1) - 3000*PLS_M(n1,t18,v1) - 3000*PLS_M(n1,t19,v1) - 3000*PLS_M(n1,t20,v1) - 3000*PLS_M(n1,t21,v1) - 3000*PLS_M(n1,t22,v1) - 3000*PLS_M(n1,t23,v1) - 3000*PLS_M(n1,t24,v1) - 3000*PLS_M(n2,t1,v1) - 3000*PLS_M(n2,t2,v1) - 3000*PLS_M(n2,t3,v1) - 3000*PLS_M(n2,t4,v1) - 3000*PLS_M(n2,t5,v1) - 3000*PLS_M(n2,t6,v1) - 3000*PLS_M(n2,t7,v1) - 3000*PLS_M(n2,t8,v1) - 3000*PLS_M(n2,t9,v1) - 3000*PLS_M(n2,t10,v1) - 3000*PLS_M(n2,t11,v1) - 3000*PLS_M(n2,t12,v1) - 3000*PLS_M(n2,t13,v1) - 3000*PLS_M(n2,t14,v1) - 3000*PLS_M(n2,t15,v1) - 3000*PLS_M(n2,t16,v1) - 3000*PLS_M(n2,t17,v1) - 3000*PLS_M(n2,t18,v1) - 3000*PLS_M(n2,t19,v1) - 3000*PLS_M(n2,t20,v1) - 3000*PLS_M(n2,t21,v1) - 3000*PLS_M(n2,t22,v1) - 3000*PLS_M(n2,t23,v1) - 3000*PLS_M(n2,t24,v1) - 3000*PLS_M(n3,t1,v1) - 3000*PLS_M(n3,t2,v1) - 3000*PLS_M(n3,t3,v1) - 3000*PLS_M(n3,t4,v1) - 3000*PLS_M(n3,t5,v1) - 3000*PLS_M(n3,t6,v1) - 3000*PLS_M(n3,t7,v1) - 3000*PLS_M(n3,t8,v1) - 3000*PLS_M(n3,t9,v1) - 3000*PLS_M(n3,t10,v1) - 3000*PLS_M(n3,t11,v1) - 3000*PLS_M(n3,t12,v1) - 3000*PLS_M(n3,t13,v1) - 3000*PLS_M(n3,t14,v1) - 3000*PLS_M(n3,t15,v1) - 3000*PLS_M(n3,t16,v1) - 3000*PLS_M(n3,t17,v1) - 3000*PLS_M(n3,t18,v1) - 3000*PLS_M(n3,t19,v1) - 3000*PLS_M(n3,t20,v1) - 3000*PLS_M(n3,t21,v1) - 3000*PLS_M(n3,t22,v1) - 3000*PLS_M(n3,t23,v1) - 3000*PLS_M(n3,t24,v1) - 3000*PLS_M(n4,t1,v1) - 3000*PLS_M(n4,t2,v1) - 3000*PLS_M(n4,t3,v1) - 3000*PLS_M(n4,t4,v1) - 3000*PLS_M(n4,t5,v1) - 3000*PLS_M(n4,t6,v1) - 3000*PLS_M(n4,t7,v1) - 3000*PLS_M(n4,t8,v1) - 3000*PLS_M(n4,t9,v1) - 3000*PLS_M(n4,t10,v1) - 3000*PLS_M(n4,t11,v1) - 3000*PLS_M(n4,t12,v1) - 3000*PLS_M(n4,t13,v1) - 3000*PLS_M(n4,t14,v1) - 3000*PLS_M(n4,t15,v1) - 3000*PLS_M(n4,t16,v1) - 3000*PLS_M(n4,t17,v1) - 3000*PLS_M(n4,t18,v1) - 3000*PLS_M(n4,t19,v1) - 3000*PLS_M(n4,t20,v1) - 3000*PLS_M(n4,t21,v1) - 3000*PLS_M(n4,t22,v1) - 3000*PLS_M(n4,t23,v1) - 3000*PLS_M(n4,t24,v1) - 3000*PLS_M(n5,t1,v1) - 3000*PLS_M(n5,t2,v1) - 3000*PLS_M(n5,t3,v1) - 3000*PLS_M(n5,t4,v1) - 3000*PLS_M(n5,t5,v1) - 3000*PLS_M(n5,t6,v1) - 3000*PLS_M(n5,t7,v1) - 3000*PLS_M(n5,t8,v1) - 3000*PLS_M(n5,t9,v1) - 3000*PLS_M(n5,t10,v1) - 3000*PLS_M(n5,t11,v1) - 3000*PLS_M(n5,t12,v1) - 3000*PLS_M(n5,t13,v1) - 3000*PLS_M(n5,t14,v1) - 3000*PLS_M(n5,t15,v1) - 3000*PLS_M(n5,t16,v1) - 3000*PLS_M(n5,t17,v1) - 3000*PLS_M(n5,t18,v1) - 3000*PLS_M(n5,t19,v1) - 3000*PLS_M(n5,t20,v1) - 3000*PLS_M(n5,t21,v1) - 3000*PLS_M(n5,t22,v1) - 3000*PLS_M(n5,t23,v1) - 3000*PLS_M(n5,t24,v1) - 3000*PLS_M(n6,t1,v1) - 3000*PLS_M(n6,t2,v1) - 3000*PLS_M(n6,t3,v1) - 3000*PLS_M(n6,t4,v1) - 3000*PLS_M(n6,t5,v1) - 3000*PLS_M(n6,t6,v1) - 3000*PLS_M(n6,t7,v1) - 3000*PLS_M(n6,t8,v1) - 3000*PLS_M(n6,t9,v1) - 3000*PLS_M(n6,t10,v1) - 3000*PLS_M(n6,t11,v1) - 3000*PLS_M(n6,t12,v1) - 3000*PLS_M(n6,t13,v1) - 3000*PLS_M(n6,t14,v1) - 3000*PLS_M(n6,t15,v1) - 3000*PLS_M(n6,t16,v1) - 3000*PLS_M(n6,t17,v1) - 3000*PLS_M(n6,t18,v1) - 3000*PLS_M(n6,t19,v1) - 3000*PLS_M(n6,t20,v1) - 3000*PLS_M(n6,t21,v1) - 3000*PLS_M(n6,t22,v1) - 3000*PLS_M(n6,t23,v1) - 3000*PLS_M(n6,t24,v1) =E= 0 ; (LHS = 0)
      
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/08/22 16:32:28 Page 3
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/10/22 14:11:14 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Column Listing      SOLVE Master Using MIP From line 227
+Column Listing      SOLVE Master Using MIP From line 221
 
 
 ---- O_M  Objective var of Master Problem
@@ -827,9 +821,9 @@ inv_M(l6)
      5000       MP_PF_PROS_LIN_LB(l6,t24,v1)
 
 REMAINING 3 ENTRIES SKIPPED
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/08/22 16:32:28 Page 4
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/10/22 14:11:14 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Model Statistics    SOLVE Master Using MIP From line 227
+Model Statistics    SOLVE Master Using MIP From line 221
 
 
 MODEL STATISTICS
@@ -839,41 +833,41 @@ BLOCKS OF VARIABLES           7     SINGLE VARIABLES          632
 NON ZERO ELEMENTS         3,902     DISCRETE VARIABLES          6
 
 
-GENERATION TIME      =        2.297 SECONDS      4 MB  34.2.0 r6925a71 WEX-WEI
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/08/22 16:32:28 Page 5
+GENERATION TIME      =        0.031 SECONDS      4 MB  35.1.0 r82a9585 WEX-WEI
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/10/22 14:11:14 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
-Solution Report     SOLVE Master Using MIP From line 227
+Solution Report     SOLVE Master Using MIP From line 221
 
 
                S O L V E      S U M M A R Y
 
      MODEL   Master              OBJECTIVE  O_M
      TYPE    MIP                 DIRECTION  MINIMIZE
-     SOLVER  CPLEX               FROM LINE  227
+     SOLVER  CPLEX               FROM LINE  221
 
 **** SOLVER STATUS     1 Normal Completion         
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE        107423361.0000
 
- RESOURCE USAGE, LIMIT          0.469 10000000000.000
+ RESOURCE USAGE, LIMIT          0.063 10000000000.000
  ITERATION COUNT, LIMIT       834    2147483647
 --- GAMS/Cplex Link licensed for continuous and discrete problems.
 --- Space for names approximately 0.06 Mb
 --- Use option 'names no' to turn use of names off
 --- GMO memory 0.74 Mb (peak 0.75 Mb)
 --- Dictionary memory 0.00 Mb
---- Cplex 20.1.0.0 link memory 0.03 Mb (peak 0.15 Mb)
+--- Cplex 20.1.0.1 link memory 0.03 Mb (peak 0.15 Mb)
 --- Starting Cplex
 
 
 --- MIP status (101): integer optimal solution.
---- Cplex Time: 0.11sec (det. 71.72 ticks)
+--- Cplex Time: 0.06sec (det. 71.72 ticks)
 
 --- Fixing integer variables and solving final LP...
 
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 0.03sec (det. 1.76 ticks)
+--- Cplex Time: 0.00sec (det. 1.76 ticks)
 
 
 Proven optimal solution
@@ -3151,12 +3145,12 @@ l9          .              .             1.0000   -2.032400E+7
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 34.2.0  r6925a71 Released Feb  5, 2021 WEX-WEI x86 64bit/MS Windows - 01/08/22 16:32:28 Page 6
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/10/22 14:11:14 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-EXECUTION TIME       =        7.937 SECONDS      4 MB  34.2.0 r6925a71 WEX-WEI
+EXECUTION TIME       =        0.219 SECONDS      4 MB  35.1.0 r82a9585 WEX-WEI
 
 
 USER: Small MUD - 5 User License                     S201118/0001AN-WIN

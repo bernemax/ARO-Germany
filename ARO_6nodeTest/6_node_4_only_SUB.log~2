@@ -1,12 +1,12 @@
 
---- Job 6_node_4_only_SUB.gms Start 01/08/22 16:51:25 34.2.0 r6925a71 WEX-WEI x86 64bit/MS Windows
+--- Job 6_node_4_only_SUB.gms Start 01/11/22 10:45:39 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
 --- Applying:
-    C:\GAMS\34\gmsprmNT.txt
+    C:\GAMS\35\gmsprmNT.txt
 --- GAMS Parameters defined
     Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node_4_only_SUB.gms"
     PageSize 0
     ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\225a\"
-    SysDir C:\GAMS\34\
+    SysDir C:\GAMS\35\
     LogOption 3
     ErrMsg 1
     ErrorLog 99
@@ -14,48 +14,50 @@
     LstTitleLeftAligned 1
 Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
           BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
-          C:\Users\berne\Documents\GAMS\gamslice.txt
-GAMS 34.2.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
+GAMS 35.1.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
 --- Starting compilation
---- 6_node_4_only_SUB.gms(305) 3 Mb
---- Starting execution: elapsed 0:00:00.711
+--- 6_node_4_only_SUB.gms(300) 3 Mb
+--- Starting execution: elapsed 0:00:00.026
 --- Generating MIP model Subproblem
---- 6_node_4_only_SUB.gms(303) 5 Mb
----   1,731 rows  2,425 columns  6,097 non-zeroes
+--- 6_node_4_only_SUB.gms(298) 5 Mb
+---   1,731 rows  2,425 columns  6,217 non-zeroes
 ---   264 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:03.830
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.080
 
-IBM ILOG CPLEX   34.2.0 r6925a71 Released Feb 05, 2021 WEI x86 64bit/MS Window
+IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
 
 --- GAMS/Cplex Link licensed for continuous and discrete problems.
 --- Space for names approximately 0.10 Mb
 --- Use option 'names no' to turn use of names off
 --- GMO memory 0.98 Mb (peak 1.00 Mb)
 --- Dictionary memory 0.00 Mb
---- Cplex 20.1.0.0 link memory 0.07 Mb (peak 0.28 Mb)
+--- Cplex 20.1.0.1 link memory 0.07 Mb (peak 0.28 Mb)
 --- Starting Cplex
 
-Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
 CPXPARAM_Advance                                 0
 CPXPARAM_Threads                                 1
 CPXPARAM_MIP_Display                             4
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 Generic callback                                 0x50
-Found incumbent of value 0.000000 after 0.00 sec. (0.11 ticks)
-Tried aggregator 1 time.
-MIP Presolve eliminated 1418 rows and 1945 columns.
-Reduced MIP has 312 rows, 480 columns, and 960 nonzeros.
-Reduced MIP has 0 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (1.97 ticks)
+Found incumbent of value 0.000000 after 0.00 sec. (0.12 ticks)
 Tried aggregator 2 times.
-MIP Presolve eliminated 299 rows and 460 columns.
-Aggregator did 1 substitutions.
-Reduced MIP has 12 rows, 19 columns, and 38 nonzeros.
+MIP Presolve eliminated 1082 rows and 1417 columns.
+MIP Presolve modified 96 coefficients.
+Aggregator did 432 substitutions.
+Reduced MIP has 216 rows, 576 columns, and 1080 nonzeros.
 Reduced MIP has 0 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.00 sec. (0.28 ticks)
+Presolve time = 0.02 sec. (3.49 ticks)
+Tried aggregator 2 times.
+MIP Presolve eliminated 207 rows and 553 columns.
+Aggregator did 1 substitutions.
+Reduced MIP has 8 rows, 22 columns, and 43 nonzeros.
+Reduced MIP has 0 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.30 ticks)
 Tried aggregator 1 time.
 Detecting symmetries...
-Reduced MIP has 12 rows, 19 columns, and 38 nonzeros.
+Reduced MIP has 8 rows, 22 columns, and 43 nonzeros.
 Reduced MIP has 0 binaries, 0 generals, 0 SOSs, and 0 indicators.
 Presolve time = 0.00 sec. (0.02 ticks)
 MIP emphasis: balance optimality and feasibility.
@@ -64,66 +66,69 @@ Parallel mode: none, using 1 thread.
 Initializing dual steep norms . . .
 
 Iteration log . . .
-Iteration:     1   Scaled dual infeas =         10950.000000
-Iteration:     3   Dual objective     =     419363100.000000
+Iteration:     1   Scaled dual infeas =             0.000000
+Iteration:     2   Dual objective     =    1225891372.500000
 Root relaxation solution time = 0.00 sec. (0.01 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
-*     0+    0                       1.14088e+08   1.38506e+10              --- 
-Found incumbent of value 1.1408805e+08 after 0.03 sec. (25.41 ticks)
-*     0     0      integral     0   1.19048e+08   1.19048e+08        6    0.00%
-Elapsed time = 0.03 sec. (25.45 ticks, tree = 0.00 MB, solutions = 2)
-Found incumbent of value 1.1904840e+08 after 0.03 sec. (25.45 ticks)
+*     0+    0                       9.76072e+08   2.25822e+10              --- 
+Found incumbent of value 9.7607239e+08 after 0.03 sec. (27.13 ticks)
+*     0     0      integral     0   9.80423e+08   9.80423e+08        6    0.00%
+Elapsed time = 0.03 sec. (27.18 ticks, tree = 0.00 MB, solutions = 3)
+Found incumbent of value 9.8042336e+08 after 0.03 sec. (27.18 ticks)
 
 Root node processing (before b&c):
-  Real time             =    0.03 sec. (25.54 ticks)
+  Real time             =    0.03 sec. (27.29 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.03 sec. (25.54 ticks)
+Total (root+branch&cut) =    0.03 sec. (27.29 ticks)
 
 --- MIP status (101): integer optimal solution.
---- Cplex Time: 0.03sec (det. 25.55 ticks)
+--- Cplex Time: 0.03sec (det. 27.30 ticks)
 
 --- Fixing integer variables and solving final LP...
 
-Version identifier: 20.1.0.0 | 2020-11-10 | 9bedb6d68
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
 CPXPARAM_Advance                                 2
 CPXPARAM_Threads                                 1
 CPXPARAM_MIP_Display                             4
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 Tried aggregator 1 time.
-LP Presolve eliminated 1418 rows and 1897 columns.
-Reduced LP has 312 rows, 528 columns, and 1008 nonzeros.
-Presolve time = 0.00 sec. (1.54 ticks)
-Symmetry aggregator did 805 additional substitutions.
+LP Presolve eliminated 1394 rows and 1729 columns.
+Aggregator did 120 substitutions.
+Reduced LP has 216 rows, 576 columns, and 1080 nonzeros.
+Presolve time = 0.00 sec. (1.74 ticks)
+Symmetry aggregator did 759 additional substitutions.
 Initializing dual steep norms . . .
 
 Iteration log . . .
-Iteration:     1   Dual objective     =   13850611200.000000
+Iteration:     1   Dual objective     =   16258209600.000000
 
 Dual crossover.
-  Dual:  Fixed no variables.
+  Dual:  Fixing 24 variables.
+       23 DMoves:  Infeasibility  1.17142918e-09  Objective  9.80423361e+08
+        0 DMoves:  Infeasibility  0.00000000e+00  Objective  9.80423361e+08
+  Dual:  Pushed 0, exchanged 24.
   Primal:  Fixed no variables.
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 0.00sec (det. 2.63 ticks)
+--- Cplex Time: 0.00sec (det. 2.86 ticks)
 
 
 Proven optimal solution
-MIP Solution:    119048400.000000    (6 iterations, 0 nodes)
-Final Solve:     119048400.000000    (5 iterations)
+MIP Solution:    980423361.000000    (6 iterations, 0 nodes)
+Final Solve:     980423361.000000    (7 iterations)
 
-Best possible:   119048400.000000
+Best possible:   980423361.000000
 Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Subproblem
---- 6_node_4_only_SUB.gms(303) 5 Mb  8 secs
---- Executing after solve: elapsed 0:00:10.302
---- 6_node_4_only_SUB.gms(304) 5 Mb
+--- Executing after solve: elapsed 0:00:00.236
+--- 6_node_4_only_SUB.gms(299) 5 Mb
 --- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\check_only_SUB.gdx
 *** Status: Normal completion
---- Job 6_node_4_only_SUB.gms Stop 01/08/22 16:51:36 elapsed 0:00:11.143
+--- Job 6_node_4_only_SUB.gms Stop 01/11/22 10:45:39 elapsed 0:00:00.297
