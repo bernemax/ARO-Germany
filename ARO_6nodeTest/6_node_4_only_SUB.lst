@@ -1,4 +1,4 @@
-GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/11/22 10:46:26 Page 1
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/26/22 14:44:20 Page 1
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 C o m p i l a t i o n
 
@@ -183,7 +183,7 @@ C o m p i l a t i o n
  178  ;
  179  *****************************************************************Dual Load shedding equation
  180   
- 181  SUB_Dual_LS(n,t)..                                                    lam(n,t) -  phiLS(n,t) =l=   Demand_data(n,'LS_costs')
+ 181  SUB_Dual_LS(t)..                                                    sum(n, lam(n,t) -  phiLS(n,t)) =l=  3000
  182  *lam(n,t) -  phiLS(n,t) =l=   Demand_data(n,'LS_costs')
  183  ;
  184  *****************************************************************Dual Power flow equations
@@ -297,7 +297,7 @@ C o m p i l a t i o n
  298  solve Subproblem using MIP maximizing O_Sub;
  299  execute_unload "check_only_SUB.gdx";
 STOP Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node_4_only_SUB.gms
-GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/11/22 10:46:26 Page 2
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/26/22 14:44:20 Page 2
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Include File Summary
 
@@ -308,8 +308,8 @@ Include File Summary
      2      300 STOP           1     300  Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\6_node_4_only_SUB.gms
 
 
-COMPILATION TIME     =        0.016 SECONDS      3 MB  35.1.0 r82a9585 WEX-WEI
-GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/11/22 10:46:26 Page 3
+COMPILATION TIME     =        0.000 SECONDS      3 MB  35.1.0 r82a9585 WEX-WEI
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/26/22 14:44:20 Page 3
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Equation Listing    SOLVE Subproblem Using MIP From line 298
 
@@ -334,13 +334,13 @@ REMAINING 117 ENTRIES SKIPPED
 
 ---- SUB_Dual_LS  =L=  
 
-SUB_Dual_LS(n1,t1)..  lam(n1,t1) - phiLS(n1,t1) =L= 3000 ; (LHS = 0)
+SUB_Dual_LS(t1)..  lam(n1,t1) + lam(n2,t1) + lam(n3,t1) + lam(n4,t1) + lam(n5,t1) + lam(n6,t1) - phiLS(n1,t1) - phiLS(n2,t1) - phiLS(n3,t1) - phiLS(n4,t1) - phiLS(n5,t1) - phiLS(n6,t1) =L= 3000 ; (LHS = 0)
      
-SUB_Dual_LS(n1,t2)..  lam(n1,t2) - phiLS(n1,t2) =L= 3000 ; (LHS = 0)
+SUB_Dual_LS(t2)..  lam(n1,t2) + lam(n2,t2) + lam(n3,t2) + lam(n4,t2) + lam(n5,t2) + lam(n6,t2) - phiLS(n1,t2) - phiLS(n2,t2) - phiLS(n3,t2) - phiLS(n4,t2) - phiLS(n5,t2) - phiLS(n6,t2) =L= 3000 ; (LHS = 0)
      
-SUB_Dual_LS(n1,t3)..  lam(n1,t3) - phiLS(n1,t3) =L= 3000 ; (LHS = 0)
+SUB_Dual_LS(t3)..  lam(n1,t3) + lam(n2,t3) + lam(n3,t3) + lam(n4,t3) + lam(n5,t3) + lam(n6,t3) - phiLS(n1,t3) - phiLS(n2,t3) - phiLS(n3,t3) - phiLS(n4,t3) - phiLS(n5,t3) - phiLS(n6,t3) =L= 3000 ; (LHS = 0)
      
-REMAINING 141 ENTRIES SKIPPED
+REMAINING 21 ENTRIES SKIPPED
 
 
 ---- SUB_Dual_PF  =E=  
@@ -473,7 +473,7 @@ SUB_lin6(n1,t3)..  phiLS(n1,t3) - aux_phi_LS(n1,t3) + 5000*z_dem(n1,t3) =L= 5000
      
 REMAINING 141 ENTRIES SKIPPED
 
-GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/11/22 10:46:26 Page 4
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/26/22 14:44:20 Page 4
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Column Listing      SOLVE Subproblem Using MIP From line 298
 
@@ -491,7 +491,7 @@ lam(n1,t1)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
    -65700       SUB_Dual_Objective
         1       SUB_Dual_PG(g1,t1)
-        1       SUB_Dual_LS(n1,t1)
+        1       SUB_Dual_LS(t1)
        -1       SUB_Dual_PF(l1,t1)
        -1       SUB_Dual_PF(l2,t1)
         1       SUB_lin2(n1,t1)
@@ -500,7 +500,7 @@ lam(n1,t2)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
    -65700       SUB_Dual_Objective
         1       SUB_Dual_PG(g1,t2)
-        1       SUB_Dual_LS(n1,t2)
+        1       SUB_Dual_LS(t2)
        -1       SUB_Dual_PF(l1,t2)
        -1       SUB_Dual_PF(l2,t2)
         1       SUB_lin2(n1,t2)
@@ -509,7 +509,7 @@ lam(n1,t3)
                 (.LO, .L, .UP, .M = -INF, 0, +INF, 0)
    -65700       SUB_Dual_Objective
         1       SUB_Dual_PG(g1,t3)
-        1       SUB_Dual_LS(n1,t3)
+        1       SUB_Dual_LS(t3)
        -1       SUB_Dual_PF(l1,t3)
        -1       SUB_Dual_PF(l2,t3)
         1       SUB_lin2(n1,t3)
@@ -613,19 +613,19 @@ REMAINING 117 ENTRIES SKIPPED
 phiLS(n1,t1)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
     65700       SUB_Dual_Objective
-       -1       SUB_Dual_LS(n1,t1)
+       -1       SUB_Dual_LS(t1)
         1       SUB_lin6(n1,t1)
 
 phiLS(n1,t2)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
     65700       SUB_Dual_Objective
-       -1       SUB_Dual_LS(n1,t2)
+       -1       SUB_Dual_LS(t2)
         1       SUB_lin6(n1,t2)
 
 phiLS(n1,t3)
                 (.LO, .L, .UP, .M = 0, 0, +INF, 0)
     65700       SUB_Dual_Objective
-       -1       SUB_Dual_LS(n1,t3)
+       -1       SUB_Dual_LS(t3)
         1       SUB_lin6(n1,t3)
 
 REMAINING 141 ENTRIES SKIPPED
@@ -827,20 +827,20 @@ z_dem(n1,t3)
      5000       SUB_lin6(n1,t3)
 
 REMAINING 141 ENTRIES SKIPPED
-GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/11/22 10:46:26 Page 5
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/26/22 14:44:20 Page 5
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Model Statistics    SOLVE Subproblem Using MIP From line 298
 
 
 MODEL STATISTICS
 
-BLOCKS OF EQUATIONS          16     SINGLE EQUATIONS        1,851
+BLOCKS OF EQUATIONS          16     SINGLE EQUATIONS        1,731
 BLOCKS OF VARIABLES          17     SINGLE VARIABLES        2,425
 NON ZERO ELEMENTS         6,217     DISCRETE VARIABLES        264
 
 
 GENERATION TIME      =        0.062 SECONDS      5 MB  35.1.0 r82a9585 WEX-WEI
-GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/11/22 10:46:26 Page 6
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/26/22 14:44:20 Page 6
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 Solution Report     SOLVE Subproblem Using MIP From line 298
 
@@ -855,30 +855,30 @@ Solution Report     SOLVE Subproblem Using MIP From line 298
 **** MODEL STATUS      1 Optimal                   
 **** OBJECTIVE VALUE       4338423361.0000
 
- RESOURCE USAGE, LIMIT          0.047 10000000000.000
- ITERATION COUNT, LIMIT         5    2147483647
+ RESOURCE USAGE, LIMIT          0.032 10000000000.000
+ ITERATION COUNT, LIMIT         6    2147483647
 --- GAMS/Cplex Link licensed for continuous and discrete problems.
 --- Space for names approximately 0.10 Mb
 --- Use option 'names no' to turn use of names off
---- GMO memory 0.99 Mb (peak 1.01 Mb)
+--- GMO memory 0.98 Mb (peak 1.00 Mb)
 --- Dictionary memory 0.00 Mb
 --- Cplex 20.1.0.1 link memory 0.07 Mb (peak 0.28 Mb)
 --- Starting Cplex
 
 
 --- MIP status (101): integer optimal solution.
---- Cplex Time: 0.03sec (det. 27.29 ticks)
+--- Cplex Time: 0.02sec (det. 27.35 ticks)
 
 --- Fixing integer variables and solving final LP...
 
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 0.00sec (det. 2.91 ticks)
+--- Cplex Time: 0.00sec (det. 2.88 ticks)
 
 
 Proven optimal solution
-MIP Solution:   4338423361.000000    (5 iterations, 0 nodes)
-Final Solve:    4338423361.000000    (5 iterations)
+MIP Solution:   4338423361.000000    (6 iterations, 0 nodes)
+Final Solve:    4338423361.000000    (7 iterations)
 
 Best possible:  4338423361.000000
 Absolute gap:            0.000000
@@ -1016,152 +1016,32 @@ g5.t24        -INF           16.0000        35.0000          .
 
 ---- EQU SUB_Dual_LS  
 
-              LOWER          LEVEL          UPPER         MARGINAL
+           LOWER          LEVEL          UPPER         MARGINAL
 
-n1.t1         -INF           18.0000      3000.0000          .          
-n1.t2         -INF           18.0000      3000.0000          .          
-n1.t3         -INF           18.0000      3000.0000          .          
-n1.t4         -INF           18.0000      3000.0000          .          
-n1.t5         -INF           18.0000      3000.0000          .          
-n1.t6         -INF           18.0000      3000.0000          .          
-n1.t7         -INF           18.0000      3000.0000          .          
-n1.t8         -INF           18.0000      3000.0000          .          
-n1.t9         -INF           18.0000      3000.0000          .          
-n1.t10        -INF           18.0000      3000.0000          .          
-n1.t11        -INF           18.0000      3000.0000          .          
-n1.t12        -INF           18.0000      3000.0000          .          
-n1.t13        -INF           18.0000      3000.0000          .          
-n1.t14        -INF           18.0000      3000.0000          .          
-n1.t15        -INF           18.0000      3000.0000          .          
-n1.t16        -INF           18.0000      3000.0000          .          
-n1.t17        -INF           18.0000      3000.0000          .          
-n1.t18        -INF           18.0000      3000.0000          .          
-n1.t19        -INF           18.0000      3000.0000          .          
-n1.t20        -INF           18.0000      3000.0000          .          
-n1.t21        -INF           18.0000      3000.0000          .          
-n1.t22        -INF           18.0000      3000.0000          .          
-n1.t23        -INF           18.0000      3000.0000          .          
-n1.t24        -INF           18.0000      3000.0000          .          
-n2.t1         -INF        -4975.0000      3000.0000          .          
-n2.t2         -INF        -4975.0000      3000.0000          .          
-n2.t3         -INF        -4975.0000      3000.0000          .          
-n2.t4         -INF        -4975.0000      3000.0000          .          
-n2.t5         -INF        -4975.0000      3000.0000          .          
-n2.t6         -INF        -4975.0000      3000.0000          .          
-n2.t7         -INF        -4975.0000      3000.0000          .          
-n2.t8         -INF        -4975.0000      3000.0000          .          
-n2.t9         -INF        -4975.0000      3000.0000          .          
-n2.t10        -INF        -4975.0000      3000.0000          .          
-n2.t11        -INF        -4975.0000      3000.0000          .          
-n2.t12        -INF        -4975.0000      3000.0000          .          
-n2.t13        -INF        -4975.0000      3000.0000          .          
-n2.t14        -INF        -4975.0000      3000.0000          .          
-n2.t15        -INF        -4975.0000      3000.0000          .          
-n2.t16        -INF        -4975.0000      3000.0000          .          
-n2.t17        -INF        -4975.0000      3000.0000          .          
-n2.t18        -INF        -4975.0000      3000.0000          .          
-n2.t19        -INF        -4975.0000      3000.0000          .          
-n2.t20        -INF        -4975.0000      3000.0000          .          
-n2.t21        -INF        -4975.0000      3000.0000          .          
-n2.t22        -INF        -4975.0000      3000.0000          .          
-n2.t23        -INF        -4975.0000      3000.0000          .          
-n2.t24        -INF        -4975.0000      3000.0000          .          
-n3.t1         -INF        -4984.0000      3000.0000          .          
-n3.t2         -INF        -4984.0000      3000.0000          .          
-n3.t3         -INF        -4984.0000      3000.0000          .          
-n3.t4         -INF        -4984.0000      3000.0000          .          
-n3.t5         -INF        -4984.0000      3000.0000          .          
-n3.t6         -INF        -4984.0000      3000.0000          .          
-n3.t7         -INF        -4984.0000      3000.0000          .          
-n3.t8         -INF        -4984.0000      3000.0000          .          
-n3.t9         -INF        -4984.0000      3000.0000          .          
-n3.t10        -INF        -4984.0000      3000.0000          .          
-n3.t11        -INF        -4984.0000      3000.0000          .          
-n3.t12        -INF        -4984.0000      3000.0000          .          
-n3.t13        -INF        -4984.0000      3000.0000          .          
-n3.t14        -INF        -4984.0000      3000.0000          .          
-n3.t15        -INF        -4984.0000      3000.0000          .          
-n3.t16        -INF        -4984.0000      3000.0000          .          
-n3.t17        -INF        -4984.0000      3000.0000          .          
-n3.t18        -INF        -4984.0000      3000.0000          .          
-n3.t19        -INF        -4984.0000      3000.0000          .          
-n3.t20        -INF        -4984.0000      3000.0000          .          
-n3.t21        -INF        -4984.0000      3000.0000          .          
-n3.t22        -INF        -4984.0000      3000.0000          .          
-n3.t23        -INF        -4984.0000      3000.0000          .          
-n3.t24        -INF        -4984.0000      3000.0000          .          
-n4.t1         -INF           32.0000      3000.0000          .          
-n4.t2         -INF           32.0000      3000.0000          .          
-n4.t3         -INF           32.0000      3000.0000          .          
-n4.t4         -INF           32.0000      3000.0000          .          
-n4.t5         -INF           32.0000      3000.0000          .          
-n4.t6         -INF           32.0000      3000.0000          .          
-n4.t7         -INF           32.0000      3000.0000          .          
-n4.t8         -INF           32.0000      3000.0000          .          
-n4.t9         -INF           32.0000      3000.0000          .          
-n4.t10        -INF           32.0000      3000.0000          .          
-n4.t11        -INF           32.0000      3000.0000          .          
-n4.t12        -INF           32.0000      3000.0000          .          
-n4.t13        -INF           32.0000      3000.0000          .          
-n4.t14        -INF           32.0000      3000.0000          .          
-n4.t15        -INF           32.0000      3000.0000          .          
-n4.t16        -INF           32.0000      3000.0000          .          
-n4.t17        -INF           32.0000      3000.0000          .          
-n4.t18        -INF           32.0000      3000.0000          .          
-n4.t19        -INF           32.0000      3000.0000          .          
-n4.t20        -INF           32.0000      3000.0000          .          
-n4.t21        -INF           32.0000      3000.0000          .          
-n4.t22        -INF           32.0000      3000.0000          .          
-n4.t23        -INF           32.0000      3000.0000          .          
-n4.t24        -INF           32.0000      3000.0000          .          
-n5.t1         -INF           32.0000      3000.0000          .          
-n5.t2         -INF           32.0000      3000.0000          .          
-n5.t3         -INF           32.0000      3000.0000          .          
-n5.t4         -INF           32.0000      3000.0000          .          
-n5.t5         -INF           32.0000      3000.0000          .          
-n5.t6         -INF           32.0000      3000.0000          .          
-n5.t7         -INF           32.0000      3000.0000          .          
-n5.t8         -INF           32.0000      3000.0000          .          
-n5.t9         -INF           32.0000      3000.0000          .          
-n5.t10        -INF           32.0000      3000.0000          .          
-n5.t11        -INF           32.0000      3000.0000          .          
-n5.t12        -INF           32.0000      3000.0000          .          
-n5.t13        -INF           32.0000      3000.0000          .          
-n5.t14        -INF           32.0000      3000.0000          .          
-n5.t15        -INF           32.0000      3000.0000          .          
-n5.t16        -INF           32.0000      3000.0000          .          
-n5.t17        -INF           32.0000      3000.0000          .          
-n5.t18        -INF           32.0000      3000.0000          .          
-n5.t19        -INF           32.0000      3000.0000          .          
-n5.t20        -INF           32.0000      3000.0000          .          
-n5.t21        -INF           32.0000      3000.0000          .          
-n5.t22        -INF           32.0000      3000.0000          .          
-n5.t23        -INF           32.0000      3000.0000          .          
-n5.t24        -INF           32.0000      3000.0000          .          
-n6.t1         -INF           16.0000      3000.0000          .          
-n6.t2         -INF           16.0000      3000.0000          .          
-n6.t3         -INF           16.0000      3000.0000          .          
-n6.t4         -INF           16.0000      3000.0000          .          
-n6.t5         -INF           16.0000      3000.0000          .          
-n6.t6         -INF           16.0000      3000.0000          .          
-n6.t7         -INF           16.0000      3000.0000          .          
-n6.t8         -INF           16.0000      3000.0000          .          
-n6.t9         -INF           16.0000      3000.0000          .          
-n6.t10        -INF           16.0000      3000.0000          .          
-n6.t11        -INF           16.0000      3000.0000          .          
-n6.t12        -INF           16.0000      3000.0000          .          
-n6.t13        -INF           16.0000      3000.0000          .          
-n6.t14        -INF           16.0000      3000.0000          .          
-n6.t15        -INF           16.0000      3000.0000          .          
-n6.t16        -INF           16.0000      3000.0000          .          
-n6.t17        -INF           16.0000      3000.0000          .          
-n6.t18        -INF           16.0000      3000.0000          .          
-n6.t19        -INF           16.0000      3000.0000          .          
-n6.t20        -INF           16.0000      3000.0000          .          
-n6.t21        -INF           16.0000      3000.0000          .          
-n6.t22        -INF           16.0000      3000.0000          .          
-n6.t23        -INF           16.0000      3000.0000          .          
-n6.t24        -INF           16.0000      3000.0000          .          
+t1         -INF        -9861.0000      3000.0000          .          
+t2         -INF        -9861.0000      3000.0000          .          
+t3         -INF        -9861.0000      3000.0000          .          
+t4         -INF        -9861.0000      3000.0000          .          
+t5         -INF        -9861.0000      3000.0000          .          
+t6         -INF        -9861.0000      3000.0000          .          
+t7         -INF        -9861.0000      3000.0000          .          
+t8         -INF        -9861.0000      3000.0000          .          
+t9         -INF        -9861.0000      3000.0000          .          
+t10        -INF        -9861.0000      3000.0000          .          
+t11        -INF        -9861.0000      3000.0000          .          
+t12        -INF        -9861.0000      3000.0000          .          
+t13        -INF        -9861.0000      3000.0000          .          
+t14        -INF        -9861.0000      3000.0000          .          
+t15        -INF        -9861.0000      3000.0000          .          
+t16        -INF        -9861.0000      3000.0000          .          
+t17        -INF        -9861.0000      3000.0000          .          
+t18        -INF        -9861.0000      3000.0000          .          
+t19        -INF        -9861.0000      3000.0000          .          
+t20        -INF        -9861.0000      3000.0000          .          
+t21        -INF        -9861.0000      3000.0000          .          
+t22        -INF        -9861.0000      3000.0000          .          
+t23        -INF        -9861.0000      3000.0000          .          
+t24        -INF        -9861.0000      3000.0000          .          
 
 ---- EQU SUB_Dual_PF  
 
@@ -5324,12 +5204,12 @@ n6.t24          .             1.0000         1.0000   1.4600000E+8
 **** REPORT SUMMARY :        0     NONOPT
                              0 INFEASIBLE
                              0  UNBOUNDED
-GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/11/22 10:46:26 Page 7
+GAMS 35.1.0  r82a9585 Released Apr 29, 2021 WEX-WEI x86 64bit/MS Windows - 01/26/22 14:44:20 Page 7
 G e n e r a l   A l g e b r a i c   M o d e l i n g   S y s t e m
 E x e c u t i o n
 
 
-EXECUTION TIME       =        0.234 SECONDS      5 MB  35.1.0 r82a9585 WEX-WEI
+EXECUTION TIME       =        0.250 SECONDS      5 MB  35.1.0 r82a9585 WEX-WEI
 
 
 USER: Small MUD - 5 User License                     S201118/0001AN-WIN

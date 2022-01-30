@@ -434,9 +434,9 @@ SUB_lin12
 *#######################################################Step 1
 option optcr = 0
 ;
-Gamma_Load = 80
+Gamma_Load = 50
 ;
-Gamma_PG = 10
+Gamma_PG = 60
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10
@@ -448,10 +448,10 @@ itaux               = 0
 
 Loop(v$((UB - LB) gt Toleranz),
 
-Demand_data_fixed(n,t,v) = Demand_data (n,'Need_LB')
-;
-PG_M_fixed(g,t,v)= Generator_data (g,'Gen_cap_UB')
-;
+*Demand_data_fixed(n,t,v) = Demand_data (n,'Need_LB')
+*;
+*PG_M_fixed(g,t,v)= Generator_data (g,'Gen_cap_UB')
+*;
 
 itaux = ord(v)
 ;

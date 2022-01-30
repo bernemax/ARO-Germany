@@ -1,0 +1,212 @@
+
+--- Job TEP ARO Test Master only.gms Start 01/27/22 15:46:22 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\35\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\TEP ARO Test Master only.gms"
+    PageSize 0
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\225a\"
+    SysDir C:\GAMS\35\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
+          BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
+GAMS 35.1.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+--- Starting compilation
+--- TEP ARO Test Master only.gms(291) 3 Mb
+--- $echo File Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\TEP.txt
+--- TEP ARO Test Master only.gms(321) 3 Mb
+--- call gdxxrw Data.xlsx @TEP.txt
+
+GDXXRW           35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
+Input file : Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.xlsx
+Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.gdx
+Value expected in cell: Availability!BM3; found t1
+Value expected in cell: Availability!BM4; found t2
+Value expected in cell: Availability!BM5; found t3
+Value expected in cell: Availability!BM6; found t4
+Value expected in cell: Availability!BM7; found t5
+Additional errors suppressed
+Total number of bad values for symbol availup_res = 8760
+Total time = 6313 Ms
+--- TEP ARO Test Master only.gms(322) 3 Mb
+--- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.gdx
+--- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.gdx
+--- TEP ARO Test Master only.gms(772) 34 Mb
+--- Starting execution: elapsed 0:00:06.610
+--- TEP ARO Test Master only.gms(765) 37 Mb
+--- Generating MIP model Master
+--- TEP ARO Test Master only.gms(768) 42 Mb
+---   32,948 rows  18,962 columns  70,993 non-zeroes
+---   840 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:06.914
+
+IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- Space for names approximately 1.55 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 9.39 Mb (peak 9.53 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 0.74 Mb (peak 3.57 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+Generic callback                                 0x50
+Tried aggregator 3 times.
+MIP Presolve eliminated 26450 rows and 5805 columns.
+MIP Presolve modified 2010 coefficients.
+Aggregator did 525 substitutions.
+Reduced MIP has 5972 rows, 12632 columns, and 26945 nonzeros.
+Reduced MIP has 0 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (37.49 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 775 rows and 780 columns.
+Reduced MIP has 5197 rows, 11852 columns, and 23093 nonzeros.
+Reduced MIP has 0 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.03 sec. (36.52 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =       1463533.643502
+Iteration:   419   Dual objective     =       2906410.861197
+Iteration:   784   Dual objective     =       2925397.756010
+Perturbation started.
+Iteration:   909   Dual objective     =       2925397.756010
+Iteration:  1212   Dual objective     =       2962514.953391
+Iteration:  1508   Dual objective     =       2984056.966582
+Iteration:  1759   Dual objective     =       3070674.067497
+Iteration:  2021   Dual objective     =       3073281.599768
+Iteration:  2287   Dual objective     =       3186457.265828
+Iteration:  2443   Dual objective     =       3277311.498225
+Iteration:  2640   Dual objective     =       3401831.699999
+Iteration:  2837   Dual objective     =       3766516.248121
+Iteration:  2991   Dual objective     =       4019299.655787
+Iteration:  3150   Dual objective     =       4287060.244118
+Iteration:  3307   Dual objective     =       4595348.025035
+Iteration:  3476   Dual objective     =       4819918.913542
+Iteration:  3613   Dual objective     =       5089419.027385
+Iteration:  3777   Dual objective     =       5433952.913941
+Iteration:  3928   Dual objective     =       5679140.830604
+Iteration:  4080   Dual objective     =       5849411.613373
+Iteration:  4223   Dual objective     =       6006204.029449
+Iteration:  4380   Dual objective     =       6147375.343162
+Iteration:  4513   Dual objective     =       6288051.711928
+Iteration:  4638   Dual objective     =       6427268.045311
+Iteration:  4764   Dual objective     =       6501398.380216
+Iteration:  4885   Dual objective     =       6579635.660691
+Iteration:  5007   Dual objective     =       6717283.998721
+Removing perturbation.
+Root relaxation solution time = 0.28 sec. (475.07 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0     0      integral     0  6732546.7854  6732546.7854     5087    0.00%
+Elapsed time = 0.34 sec. (560.99 ticks, tree = 0.00 MB, solutions = 1)
+Found incumbent of value 6732546.785428 after 0.34 sec. (560.99 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.34 sec. (561.78 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.34 sec. (561.78 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 0.34sec (det. 561.83 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.10000000000000001
+Tried aggregator 1 time.
+LP Presolve eliminated 26355 rows and 5703 columns.
+Aggregator did 545 substitutions.
+Reduced LP has 6047 rows, 12714 columns, and 27155 nonzeros.
+Presolve time = 0.03 sec. (24.52 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =       1502525.910883
+Iteration:   440   Dual objective     =       2743106.081765
+Iteration:   848   Dual objective     =       2813514.018070
+Iteration:  1230   Dual objective     =       2873775.550934
+Perturbation started.
+Iteration:  1302   Dual objective     =       2873775.550934
+Iteration:  1618   Dual objective     =       2890303.523616
+Iteration:  2009   Dual objective     =       2917701.061214
+Iteration:  2283   Dual objective     =       2983619.194245
+Iteration:  2575   Dual objective     =       3030902.878383
+Iteration:  2873   Dual objective     =       3156368.607918
+Iteration:  3192   Dual objective     =       3193758.503027
+Iteration:  3381   Dual objective     =       3202578.772032
+Iteration:  3579   Dual objective     =       3356894.832551
+Iteration:  3805   Dual objective     =       3402311.520319
+Iteration:  3988   Dual objective     =       3593976.821677
+Iteration:  4191   Dual objective     =       3756667.632823
+Iteration:  4372   Dual objective     =       3942581.163922
+Iteration:  4543   Dual objective     =       4141003.046159
+Iteration:  4710   Dual objective     =       4341054.579218
+Iteration:  4893   Dual objective     =       4629623.488841
+Iteration:  5047   Dual objective     =       5013171.109467
+Iteration:  5209   Dual objective     =       5185326.062551
+Iteration:  5372   Dual objective     =       5334056.309119
+Iteration:  5542   Dual objective     =       5458799.400193
+Iteration:  5693   Dual objective     =       5572012.848700
+Iteration:  5914   Dual objective     =       5641834.006252
+Iteration:  6060   Dual objective     =       5685129.841939
+Iteration:  6170   Dual objective     =       5897430.988978
+Iteration:  6321   Dual objective     =       6072934.424287
+Iteration:  6441   Dual objective     =       6305616.358150
+Iteration:  6562   Dual objective     =       6448780.718551
+Iteration:  6689   Dual objective     =       6549913.243937
+Iteration:  6813   Dual objective     =       6663101.168884
+Removing perturbation.
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 0.42sec (det. 749.40 ticks)
+
+
+Proven optimal solution
+MIP Solution:      6732546.785428    (5087 iterations, 0 nodes)
+Final Solve:       6732546.785428    (6962 iterations)
+
+Best possible:     6732546.785428
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model Master
+--- Executing after solve: elapsed 0:00:08.450
+--- TEP ARO Test Master only.gms(771) 42 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\check_Master.gdx
+--- Profile Summary (9 records processed)
+     0.937   0.041GB       768 Solve Alg  Master
+     0.594   0.041GB       768 Solve Read Master
+     0.141   0.041GB       768 Solve Fini Master (70993)
+     0.094   0.042GB       727 Equation   MP_ETA (1)
+     0.078   0.041GB       771 Unload     
+     0.016   0.037GB       666 Equation   MP_IB (1)
+     0.016   0.039GB       669 Equation   MP_marketclear (2545)
+     0.015   0.037GB       663 Equation   MP_Objective (1)
+     0.015   0.041GB       696 Equation   MP_PF_EX (4200)
+*** Status: Normal completion
+--- TEP ARO Test Master only.gms(771) 41 Mb
+--- Job TEP ARO Test Master only.gms Stop 01/27/22 15:46:31 elapsed 0:00:08.543
