@@ -1,5 +1,4 @@
-
---- Job 6_node_final.gms Start 01/25/22 10:39:21 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+--- Job 6_node_final.gms Start 01/27/22 11:22:49 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\35\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -22,14 +21,14 @@ GAMS 35.1.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
 --- 6_node_final.gms(518) 3 Mb
 --- . network_expansion_clean.gms(23) 3 Mb
 --- 6_node_final.gms(531) 3 Mb
---- Starting execution: elapsed 0:00:00.103
+--- Starting execution: elapsed 0:00:00.150
 --- 6_node_final.gms(449) 4 Mb
 --- Generating MIP model Master_VO
 --- 6_node_final.gms(468) 4 Mb
 --- LOOPS v = v1
 ---   2 rows  8 columns  14 non-zeroes
 ---   6 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:00.149
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.176
 
 IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
 
@@ -86,14 +85,14 @@ Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Master_VO
---- Executing after solve: elapsed 0:00:00.206
+--- Executing after solve: elapsed 0:00:00.238
 --- 6_node_final.gms(449) 4 Mb
 --- Generating MIP model Subproblem
 --- 6_node_final.gms(528) 5 Mb
 --- LOOPS v = v1
 ---   2,123 rows  2,021 columns  6,721 non-zeroes
 ---   220 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:00.254
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.281
 
 IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
 
@@ -193,14 +192,14 @@ Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Subproblem
---- Executing after solve: elapsed 0:00:00.406
+--- Executing after solve: elapsed 0:00:00.418
 --- 6_node_final.gms(449) 5 Mb
 --- Generating MIP model Master
 --- 6_node_final.gms(473) 5 Mb
 --- LOOPS v = v2
 ---   2,524 rows  1,048 columns  6,056 non-zeroes
 ---   6 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:00.447
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.455
 
 IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
 
@@ -225,8 +224,8 @@ MIP Presolve modified 1442 coefficients.
 Aggregator did 120 substitutions.
 Reduced MIP has 1201 rows, 626 columns, and 3786 nonzeros.
 Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.02 sec. (4.30 ticks)
-Found incumbent of value 1.1008800e+07 after 0.02 sec. (5.52 ticks)
+Presolve time = 0.00 sec. (4.30 ticks)
+Found incumbent of value 1.1008800e+07 after 0.00 sec. (5.52 ticks)
 Probing time = 0.00 sec. (0.23 ticks)
 Cover probing fixed 0 vars, tightened 40 bounds.
 Tried aggregator 1 time.
@@ -254,7 +253,7 @@ Root relaxation solution time = 0.00 sec. (0.10 ticks)
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
 *     0+    0                       1.10088e+07        0.0000           100.00%
-Found incumbent of value 1.1008800e+07 after 0.02 sec. (9.04 ticks)
+Found incumbent of value 1.1008800e+07 after 0.00 sec. (9.04 ticks)
       0     0   467000.0000     1   1.10088e+07   467000.0000       19   95.76%
 *     0+    0                      2107800.0000   467000.0000            77.84%
 Found incumbent of value 2107800.000000 after 0.02 sec. (9.15 ticks)
@@ -308,14 +307,14 @@ Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Master
---- Executing after solve: elapsed 0:00:00.569
+--- Executing after solve: elapsed 0:00:00.568
 --- 6_node_final.gms(449) 5 Mb
 --- Generating MIP model Subproblem
 --- 6_node_final.gms(528) 5 Mb
 --- LOOPS v = v2
 ---   2,123 rows  2,021 columns  6,801 non-zeroes
 ---   220 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:00.623
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:00.609
 
 IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
 
@@ -364,20 +363,20 @@ Root relaxation solution time = 0.00 sec. (0.01 ticks)
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
 *     0+    0                       308085.0000  3233085.0000           949.41%
-Found incumbent of value 308085.000000 after 0.02 sec. (21.64 ticks)
+Found incumbent of value 308085.000000 after 0.01 sec. (21.64 ticks)
 *     0     0      integral     0   324300.0000   324300.0000        7    0.00%
-Elapsed time = 0.02 sec. (21.68 ticks, tree = 0.00 MB, solutions = 2)
-Found incumbent of value 324300.000000 after 0.02 sec. (21.68 ticks)
+Elapsed time = 0.01 sec. (21.68 ticks, tree = 0.00 MB, solutions = 2)
+Found incumbent of value 324300.000000 after 0.01 sec. (21.68 ticks)
 
 Root node processing (before b&c):
-  Real time             =    0.02 sec. (21.76 ticks)
+  Real time             =    0.01 sec. (21.76 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.02 sec. (21.76 ticks)
+Total (root+branch&cut) =    0.01 sec. (21.76 ticks)
 
 --- MIP status (101): integer optimal solution.
---- Cplex Time: 0.02sec (det. 21.76 ticks)
+--- Cplex Time: 0.01sec (det. 21.76 ticks)
 
 --- Fixing integer variables and solving final LP...
 
@@ -403,7 +402,7 @@ Dual crossover.
   Primal:  Fixed no variables.
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 0.00sec (det. 2.67 ticks)
+--- Cplex Time: 0.02sec (det. 2.67 ticks)
 
 
 Proven optimal solution
@@ -415,8 +414,8 @@ Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Subproblem
---- Executing after solve: elapsed 0:00:00.781
+--- Executing after solve: elapsed 0:00:00.756
 --- 6_node_final.gms(577) 5 Mb
 --- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\ARO_6nodeTest\check_ARO_toy_complete.gdx
 *** Status: Normal completion
---- Job 6_node_final.gms Stop 01/25/22 10:39:22 elapsed 0:00:00.837
+--- Job 6_node_final.gms Stop 01/27/22 11:22:50 elapsed 0:00:00.802

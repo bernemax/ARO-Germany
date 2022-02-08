@@ -434,9 +434,9 @@ SUB_lin12
 *#######################################################Step 1
 option optcr = 0
 ;
-Gamma_Load = 50
+Gamma_Load = 0
 ;
-Gamma_PG = 60
+Gamma_PG = 0
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10
@@ -527,7 +527,7 @@ PG_M_fixed(g,t,v)= PE.l(g,t)
 ;
 )
 
-execute_unload "check_ARO_toy_complete.gdx";
+execute_unload "6_node_final_toy.gdx";
 $stop
 
 $ontext

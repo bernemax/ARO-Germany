@@ -1,0 +1,4 @@
+
+   par=report_lam_dem            rng=lam_dem!A1                rdim=0 cdim=0
+   par=rep_lam                   rng=lam!A1                    rdim=1 cdim=1
+

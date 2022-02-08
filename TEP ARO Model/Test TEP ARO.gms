@@ -45,7 +45,7 @@ psp_DE(s)
 
 ****************************lines***************************************************
 ex_l(l)/l1*l840/
-pros_l(l)/l841*l1680/
+pros_l(l)/l841*l941/
 *pros_l(l)/l841*l1680/
 
 Border_exist_DE(l)
@@ -962,7 +962,7 @@ option optcr = 0.1
 ;
 Gamma_Load = 0
 ;
-Gamma_PG_conv = 30
+Gamma_PG_conv = 0
 ;
 Gamma_PG_PV = 0
 ;

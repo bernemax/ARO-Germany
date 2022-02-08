@@ -230,6 +230,8 @@ report_decomp(v,*,*)
 inv_iter_hist(l,v)
 inv_cost_master
 
+rep_lam(n,t)
+
 report_lam_dem
 report_phi_conv_cap
 report_phi_ls_dem
@@ -489,7 +491,7 @@ I_costs_380(l)      =  Grid_invest(l,'Inv_costs_380')/(8760/card(t))
 
 H(l,n)                              =            B(l)* incidence(l,n)
 ;
-load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) 
+load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) /5
 ;
 delta_load(n,t)$(De(n))             =            load_share(n)*total_load(t) * 0.1
 ; 
@@ -567,8 +569,8 @@ SUB_Dual_Objective
 
 SUB_Dual_PG_conv
 SUB_Dual_PG_hydro
-SUB_Dual_PG_sun
-SUB_Dual_PG_wind
+*SUB_Dual_PG_sun
+*SUB_Dual_PG_wind
 
 
 SUB_Dual_LS
@@ -623,13 +625,13 @@ SUB_Dual_Objective..                                                O_Sub =e= su
                                                                     
                                                                     + sum((s,t), - phiPG_hydro(s,t) * Cap_Hydro(s))
                                                                    
-                                                                    + sum((sun,t,sr,n)$(MapSR(n,sr) and MapRes(sun,n)),
-                                                                    - phiPG_PV(sun,t) * (Cap_res(sun) *  af_PV_up(t,sr,n))
-                                                                    + aux_phi_PG_PV(sun,t) * ( Cap_res(sun) * delta_af_PV(t,sr,n)))
+*                                                                    + sum((sun,t,sr,n)$(MapSR(n,sr) and MapRes(sun,n)),
+*                                                                    - phiPG_PV(sun,t) * (Cap_res(sun) *  af_PV_up(t,sr,n))
+*                                                                    + aux_phi_PG_PV(sun,t) * ( Cap_res(sun) * delta_af_PV(t,sr,n)))
                                                                     
-                                                                    + sum((wind,t,wr,n)$(MapWR(n,wr) and MapRes(wind,n)),
-                                                                    - phiPG_Wind(wind,t) * (Cap_res(wind) *  af_Wind_up(t,wr,n))
-                                                                    + aux_phi_PG_Wind(Wind,t) * ( Cap_res(wind) * delta_af_wind(t,wr,n)))
+*                                                                    + sum((wind,t,wr,n)$(MapWR(n,wr) and MapRes(wind,n)),
+*                                                                    - phiPG_Wind(wind,t) * (Cap_res(wind) *  af_Wind_up(t,wr,n))
+*                                                                    + aux_phi_PG_Wind(Wind,t) * ( Cap_res(wind) * delta_af_wind(t,wr,n)))
 
 
                                                                     + sum((n,t), - phiLS(n,t) * load(n,t) 
@@ -650,15 +652,15 @@ SUB_Dual_PG_conv(g,t)..                                             sum(n$MapG(g
 ;
 SUB_Dual_PG_hydro(s,t)..                                            sum(n$MapS(s,n) , lam(n,t) -  phiPG_hydro(s,t))                          =l=   20
 ;
-SUB_Dual_PG_sun(sun,t)..                                            sum(n$MapRes(sun,n), lam(n,t) -  phiPG_PV(sun,t))                        =l=   0
-;
-SUB_Dual_PG_wind(wind,t)..                                          sum(n$MapRes(wind,n), lam(n,t) -  phiPG_Wind(wind,t))                    =l=   0
-;
+*SUB_Dual_PG_sun(sun,t)..                                            sum(n$MapRes(sun,n), lam(n,t) -  phiPG_PV(sun,t))                        =l=   0
+*;
+*SUB_Dual_PG_wind(wind,t)..                                          sum(n$MapRes(wind,n), lam(n,t) -  phiPG_Wind(wind,t))                    =l=   0
+*;
 
 *****************************************************************Dual Load shedding equation
 
-SUB_Dual_LS(t)..                                                    sum(n$Relevant_Nodes(n), lam(n,t) -  phiLS(n,t))                         =l=  3000  
-*sum(nn, lam(n,t) -  phiLS(n,t)) =l=  Demand_data (n,'LS_costs')
+SUB_Dual_LS(t)..                                                    sum(n, lam(n,t) -  phiLS(n,t))                         =l=  3000  
+* sum(n$Relevant_Nodes(n), lam(n,t) -  phiLS(n,t))                         =l=  3000  
 ;
 *****************************************************************Dual Power flow equations
 
@@ -759,8 +761,8 @@ SUB_Dual_Objective
 
 SUB_Dual_PG_conv
 SUB_Dual_PG_hydro
-SUB_Dual_PG_sun
-SUB_Dual_PG_wind
+*SUB_Dual_PG_sun
+*SUB_Dual_PG_wind
 
 SUB_Dual_LS
 SUB_Dual_PF
@@ -816,8 +818,18 @@ Gamma_PG_Wind = 0
 ;
 
 solve Subproblem using MIP maximizing O_Sub;
+rep_lam(n,t) = lam.l(n,t);
 report_lam_dem = sum((n,t), lam.l(n,t) * load(n,t));
 report_phi_conv_cap = sum((g,t), - phiPG_conv.l(g,t) * Cap_conv(g));
 report_phi_ls_dem = sum((n,t), - phiLS.l(n,t) * load(n,t)); 
 execute_unload "check_Subproblem.gdx";
+
+$onecho >out_SUB.tmp
+
+   par=report_lam_dem            rng=lam_dem!A1                rdim=0 cdim=0
+   par=rep_lam                   rng=lam!A1                    rdim=1 cdim=1
+
+$offecho
+*$offtext
+execute 'gdxxrw "check_Subproblem.gdx" o=output_only_sub.xlsx EpsOut=0 @out_SUB.tmp'
 ;

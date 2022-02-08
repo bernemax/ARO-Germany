@@ -434,9 +434,9 @@ SUB_lin12
 *#######################################################Step 1
 option optcr = 0
 ;
-Gamma_Load = 80
+Gamma_Load = 0
 ;
-Gamma_PG = 10
+Gamma_PG = 0
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10
