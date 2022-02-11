@@ -97,10 +97,10 @@ MapG (g,n)
 /g1.n1,g2.n2,g3.n3,g4.n5,g5.n6/
 
 MapS (s,n)
-//
+/s1.n1,s2.n3,s3.n6/
 
 MapW (w,n)
-//
+/w1.n2,w2.n4,w3.n5/
 
 MapSend_l(l,n)
 /l1.n1, l2.n1,l3.n4
