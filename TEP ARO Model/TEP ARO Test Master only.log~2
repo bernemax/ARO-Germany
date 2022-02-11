@@ -1,5 +1,4 @@
-
---- Job TEP ARO Test Master only.gms Start 02/07/22 15:12:04 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+--- Job TEP ARO Test Master only.gms Start 02/10/22 16:22:19 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\35\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -32,18 +31,18 @@ Value expected in cell: Availability!BM6; found t4
 Value expected in cell: Availability!BM7; found t5
 Additional errors suppressed
 Total number of bad values for symbol availup_res = 8760
-Total time = 6343 Ms
+Total time = 7344 Ms
 --- TEP ARO Test Master only.gms(322) 3 Mb
 --- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.gdx
 --- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.gdx
 --- TEP ARO Test Master only.gms(772) 34 Mb
---- Starting execution: elapsed 0:00:06.642
+--- Starting execution: elapsed 0:00:07.726
 --- TEP ARO Test Master only.gms(765) 37 Mb
 --- Generating MIP model Master
 --- TEP ARO Test Master only.gms(768) 41 Mb
 ---   28,148 rows  14,152 columns  61,383 non-zeroes
 ---   840 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:06.909
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:08.054
 
 IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
 
@@ -74,7 +73,7 @@ Detecting symmetries...
 MIP Presolve eliminated 15 rows and 15 columns.
 Reduced MIP has 2864 rows, 6947 columns, and 15075 nonzeros.
 Reduced MIP has 0 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.01 sec. (8.68 ticks)
+Presolve time = 0.02 sec. (8.68 ticks)
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
 Parallel mode: none, using 1 thread.
@@ -162,18 +161,18 @@ Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Master
---- Executing after solve: elapsed 0:00:07.946
+--- Executing after solve: elapsed 0:00:09.167
 --- TEP ARO Test Master only.gms(771) 41 Mb
 --- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\check_Master.gdx
 --- Profile Summary (8 records processed)
-     0.625   0.041GB       768 Solve Read Master
-     0.406   0.041GB       768 Solve Alg  Master
-     0.125   0.041GB       768 Solve Fini Master (61383)
+     0.641   0.041GB       768 Solve Read Master
+     0.469   0.041GB       768 Solve Alg  Master
+     0.187   0.041GB       768 Solve Fini Master (61383)
      0.094   0.041GB       727 Equation   MP_ETA (1)
-     0.078   0.041GB       771 Unload     
-     0.016   0.037GB       509 Clear      availup_res
-     0.016   0.037GB       666 Equation   MP_IB (1)
-     0.015   0.039GB       669 Equation   MP_marketclear (2545)
+     0.093   0.041GB       771 Unload     
+     0.016   0.037GB       663 Equation   MP_Objective (1)
+     0.016   0.040GB       696 Equation   MP_PF_EX (4200)
+     0.015   0.037GB       666 Equation   MP_IB (1)
 *** Status: Normal completion
 --- TEP ARO Test Master only.gms(771) 41 Mb
---- Job TEP ARO Test Master only.gms Stop 02/07/22 15:12:12 elapsed 0:00:08.015
+--- Job TEP ARO Test Master only.gms Stop 02/10/22 16:22:28 elapsed 0:00:09.304

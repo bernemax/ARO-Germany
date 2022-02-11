@@ -589,8 +589,8 @@ MP_marketclear
 
 MP_PG_conv
 MP_PG_Hydro
-*MP_PG_PV
-*MP_PG_Wind
+MP_PG_PV
+MP_PG_Wind
    
 MP_PF_EX       
 MP_PF_EX_Cap_UB
@@ -670,8 +670,8 @@ MP_marketclear(n,t,vv)..                     load(n,t)  - PLS_M(n,t,vv)   =e= su
                                                                     
                                                                     + sum(s$MapS(s,n),  PG_M_Hydro(s,t,vv))
 
-*                                                                    +  sum(sun$MapRes(sun,n), PG_M_PV(sun,t,vv))
-*                                                                    +  sum(wind$MapRes(wind,n), PG_M_Wind(wind,t,vv))
+                                                                    +  sum(sun$MapRes(sun,n), PG_M_PV(sun,t,vv))
+                                                                    +  sum(wind$MapRes(wind,n), PG_M_Wind(wind,t,vv))
                                                     
                                                                     +  sum(l$(Map_Res_l(l,n) and ex_l(l)), PF_M(l,t,vv))
                                                                     -  sum(l$(Map_Send_l(l,n) and ex_l(l)), PF_M(l,t,vv))
@@ -686,10 +686,10 @@ MP_PG_conv(g,t,vv)..                           PG_M_conv(g,t,vv)       =l= Cap_c
 ;
 MP_PG_Hydro(s,t,vv)..                          PG_M_Hydro(s,t,vv)      =l= Cap_hydro(s)
 ;
-*MP_PG_PV(sun,sr,n,t,vv)$(MapSR(n,sr) and MapRes(sun,n) and (ord(vv) lt (itaux+1)))..           PG_M_PV(sun,t,vv)      =l= Cap_res(sun) * af_PV_up(t,sr,n) 
-*;
-*MP_PG_Wind(wind,wr,n,t,vv)$(MapWR(n,wr) and MapRes(wind,n) and (ord(vv) lt (itaux+1)))..       PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * af_Wind_up(t,wr,n) 
-*;
+MP_PG_PV(sun,sr,n,t,vv)$(MapSR(n,sr) and MapRes(sun,n) and (ord(vv) lt (itaux+1)))..           PG_M_PV(sun,t,vv)      =l= Cap_res(sun) * af_PV_up(t,sr,n) 
+;
+MP_PG_Wind(wind,wr,n,t,vv)$(MapWR(n,wr) and MapRes(wind,n) and (ord(vv) lt (itaux+1)))..       PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * af_Wind_up(t,wr,n) 
+;
 
 
 
@@ -743,8 +743,8 @@ MP_marketclear
 
 MP_PG_conv
 MP_PG_Hydro
-*MP_PG_PV
-*MP_PG_Wind
+MP_PG_PV
+MP_PG_Wind
    
 MP_PF_EX       
 MP_PF_EX_Cap_UB

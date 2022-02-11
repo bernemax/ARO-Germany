@@ -569,8 +569,8 @@ SUB_Dual_Objective
 
 SUB_Dual_PG_conv
 SUB_Dual_PG_hydro
-*SUB_Dual_PG_sun
-*SUB_Dual_PG_wind
+SUB_Dual_PG_sun
+SUB_Dual_PG_wind
 
 
 SUB_Dual_LS
@@ -625,13 +625,13 @@ SUB_Dual_Objective..                                                O_Sub =e= su
                                                                     
                                                                     + sum((s,t), - phiPG_hydro(s,t) * Cap_Hydro(s))
                                                                    
-*                                                                    + sum((sun,t,sr,n)$(MapSR(n,sr) and MapRes(sun,n)),
-*                                                                    - phiPG_PV(sun,t) * (Cap_res(sun) *  af_PV_up(t,sr,n))
-*                                                                    + aux_phi_PG_PV(sun,t) * ( Cap_res(sun) * delta_af_PV(t,sr,n)))
+                                                                    + sum((sun,t,sr,n)$(MapSR(n,sr) and MapRes(sun,n)),
+                                                                    - phiPG_PV(sun,t) * (Cap_res(sun) *  af_PV_up(t,sr,n))
+                                                                    + aux_phi_PG_PV(sun,t) * ( Cap_res(sun) * delta_af_PV(t,sr,n)))
                                                                     
-*                                                                    + sum((wind,t,wr,n)$(MapWR(n,wr) and MapRes(wind,n)),
-*                                                                    - phiPG_Wind(wind,t) * (Cap_res(wind) *  af_Wind_up(t,wr,n))
-*                                                                    + aux_phi_PG_Wind(Wind,t) * ( Cap_res(wind) * delta_af_wind(t,wr,n)))
+                                                                    + sum((wind,t,wr,n)$(MapWR(n,wr) and MapRes(wind,n)),
+                                                                    - phiPG_Wind(wind,t) * (Cap_res(wind) *  af_Wind_up(t,wr,n))
+                                                                    + aux_phi_PG_Wind(Wind,t) * ( Cap_res(wind) * delta_af_wind(t,wr,n)))
 
 
                                                                     + sum((n,t), - phiLS(n,t) * load(n,t) 
@@ -652,10 +652,10 @@ SUB_Dual_PG_conv(g,t)..                                             sum(n$MapG(g
 ;
 SUB_Dual_PG_hydro(s,t)..                                            sum(n$MapS(s,n) , lam(n,t) -  phiPG_hydro(s,t))                          =l=   20
 ;
-*SUB_Dual_PG_sun(sun,t)..                                            sum(n$MapRes(sun,n), lam(n,t) -  phiPG_PV(sun,t))                        =l=   0
-*;
-*SUB_Dual_PG_wind(wind,t)..                                          sum(n$MapRes(wind,n), lam(n,t) -  phiPG_Wind(wind,t))                    =l=   0
-*;
+SUB_Dual_PG_sun(sun,t)..                                            sum(n$MapRes(sun,n), lam(n,t) -  phiPG_PV(sun,t))                        =l=   0
+;
+SUB_Dual_PG_wind(wind,t)..                                          sum(n$MapRes(wind,n), lam(n,t) -  phiPG_Wind(wind,t))                    =l=   0
+;
 
 *****************************************************************Dual Load shedding equation
 
@@ -761,8 +761,8 @@ SUB_Dual_Objective
 
 SUB_Dual_PG_conv
 SUB_Dual_PG_hydro
-*SUB_Dual_PG_sun
-*SUB_Dual_PG_wind
+SUB_Dual_PG_sun
+SUB_Dual_PG_wind
 
 SUB_Dual_LS
 SUB_Dual_PF

@@ -2,6 +2,8 @@ Sets
 t /t1*t20/
 n /n1*n6/
 g /g1*g5/
+s /s1*s3/
+w /w1*w3/
 l /l1*l9/
 v / v1*v10/
 
@@ -25,6 +27,46 @@ g2         0            250           25           25
 g3         0            400           16           40
 g4         0            300           32           30
 g5         0            150           35           15
+;
+
+Table PV_data(s,*)
+        Gen_cap_LB  
+s1          100
+s2          120
+s3          200
+
+;
+Table Wind_data(w,*)
+        Gen_cap_LB
+w1          150
+w2          100
+w3          200
+;
+
+Table Availability (*)
+        AF_PV           AF_wind         
+t1          0              0.2             
+t2          0              0.1
+t3          0              0.15
+t4          0              0.3
+t5          0              0.05
+t6          0.1            0.2 
+t7          0.12           0.1
+t8          0.18           0.15 
+t9          0.25           0.3
+t10         0.3            0.1  
+t11         0.4            0.2 
+t12         0.5            0.15
+t13         0.6            0.3
+t14         0.6            0.4
+t15         0.5            0.5
+t16         0.4            0.5 
+t17         0.3            0.6
+t18         0.25           0.3
+t19         0.18           0.3
+t20         0.1            0.4
+
+
 ;
 Table Demand_data (n,*)
         Need_LB     Need_UB        LS_costs     Delta_dem
@@ -53,6 +95,12 @@ Set
 
 MapG (g,n)
 /g1.n1,g2.n2,g3.n3,g4.n5,g5.n6/
+
+MapS (s,n)
+//
+
+MapW (w,n)
+//
 
 MapSend_l(l,n)
 /l1.n1, l2.n1,l3.n4
@@ -91,6 +139,8 @@ UB          / 1e10 /
 itaux       / 1 /
 IB          / 3000000 /
 M           / 5000 /
+
+delta_range /0.1 /
 
 Gamma_Load  /0/
 Gamma_PG    /0/

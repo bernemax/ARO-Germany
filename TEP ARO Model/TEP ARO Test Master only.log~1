@@ -1,5 +1,5 @@
 
---- Job TEP ARO Test Master only.gms Start 02/07/22 15:12:32 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+--- Job TEP ARO Test Master only.gms Start 02/10/22 16:24:38 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\35\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -32,18 +32,18 @@ Value expected in cell: Availability!BM6; found t4
 Value expected in cell: Availability!BM7; found t5
 Additional errors suppressed
 Total number of bad values for symbol availup_res = 8760
-Total time = 6359 Ms
+Total time = 6063 Ms
 --- TEP ARO Test Master only.gms(322) 3 Mb
 --- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.gdx
 --- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\Data.gdx
 --- TEP ARO Test Master only.gms(772) 34 Mb
---- Starting execution: elapsed 0:00:06.667
+--- Starting execution: elapsed 0:00:06.370
 --- TEP ARO Test Master only.gms(765) 37 Mb
 --- Generating MIP model Master
 --- TEP ARO Test Master only.gms(768) 41 Mb
 ---   28,148 rows  14,152 columns  61,383 non-zeroes
 ---   840 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:06.931
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:06.633
 
 IBM ILOG CPLEX   35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
 
@@ -93,24 +93,24 @@ Iteration:  1223   Dual objective     =       8563261.721911
 Iteration:  1324   Dual objective     =       8640053.634068
 Iteration:  1424   Dual objective     =       8852894.182713
 Iteration:  1538   Dual objective     =       8917434.554194
-Root relaxation solution time = 0.05 sec. (95.99 ticks)
+Root relaxation solution time = 0.06 sec. (95.99 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
 *     0     0      integral     0  8918642.9694  8918642.9694     1589    0.00%
-Elapsed time = 0.09 sec. (149.07 ticks, tree = 0.00 MB, solutions = 1)
-Found incumbent of value 8918642.969440 after 0.09 sec. (149.07 ticks)
+Elapsed time = 0.11 sec. (149.07 ticks, tree = 0.00 MB, solutions = 1)
+Found incumbent of value 8918642.969440 after 0.11 sec. (149.07 ticks)
 
 Root node processing (before b&c):
-  Real time             =    0.09 sec. (149.63 ticks)
+  Real time             =    0.11 sec. (149.63 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.09 sec. (149.63 ticks)
+Total (root+branch&cut) =    0.11 sec. (149.63 ticks)
 
 --- MIP status (101): integer optimal solution.
---- Cplex Time: 0.09sec (det. 149.68 ticks)
+--- Cplex Time: 0.11sec (det. 149.68 ticks)
 
 --- Fixing integer variables and solving final LP...
 
@@ -124,7 +124,7 @@ Tried aggregator 1 time.
 LP Presolve eliminated 21579 rows and 3332 columns.
 Aggregator did 3675 substitutions.
 Reduced LP has 2893 rows, 7145 columns, and 15368 nonzeros.
-Presolve time = 0.02 sec. (21.35 ticks)
+Presolve time = 0.03 sec. (21.35 ticks)
 Initializing dual steep norms . . .
 
 Iteration log . . .
@@ -142,7 +142,7 @@ Iteration:  1459   Dual objective     =       8866577.753754
 Iteration:  1575   Dual objective     =       8916348.199611
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 0.08sec (det. 125.51 ticks)
+--- Cplex Time: 0.09sec (det. 125.51 ticks)
 
 
 Proven optimal solution
@@ -154,18 +154,18 @@ Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Master
---- Executing after solve: elapsed 0:00:07.867
+--- Executing after solve: elapsed 0:00:07.659
 --- TEP ARO Test Master only.gms(771) 41 Mb
 --- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model\check_Master.gdx
 --- Profile Summary (8 records processed)
-     0.594   0.041GB       768 Solve Read Master
-     0.344   0.041GB       768 Solve Alg  Master
+     0.656   0.041GB       768 Solve Read Master
+     0.360   0.041GB       768 Solve Alg  Master
      0.125   0.041GB       768 Solve Fini Master (61383)
-     0.094   0.041GB       727 Equation   MP_ETA (1)
-     0.046   0.041GB       771 Unload     
-     0.016   0.037GB       663 Equation   MP_Objective (1)
+     0.093   0.041GB       727 Equation   MP_ETA (1)
+     0.078   0.041GB       771 Unload     
      0.016   0.037GB       666 Equation   MP_IB (1)
-     0.015   0.040GB       696 Equation   MP_PF_EX (4200)
+     0.016   0.039GB       669 Equation   MP_marketclear (2545)
+     0.015   0.037GB       509 Clear      availup_res
 *** Status: Normal completion
 --- TEP ARO Test Master only.gms(771) 41 Mb
---- Job TEP ARO Test Master only.gms Stop 02/07/22 15:12:40 elapsed 0:00:07.929
+--- Job TEP ARO Test Master only.gms Stop 02/10/22 16:24:46 elapsed 0:00:07.755
