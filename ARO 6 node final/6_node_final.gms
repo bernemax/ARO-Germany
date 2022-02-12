@@ -30,14 +30,14 @@ g5         0            150           35           15
 ;
 
 Table PV_data(s,*)
-        Gen_cap_LB  
+        Gen_cap_UB  
 s1          100
 s2          120
 s3          200
 
 ;
 Table Wind_data(w,*)
-        Gen_cap_LB
+        Gen_cap_UB
 w1          150
 w2          100
 w3          200
@@ -96,10 +96,10 @@ Set
 MapG (g,n)
 /g1.n1,g2.n2,g3.n3,g4.n5,g5.n6/
 
-MapS (s,n)
+MapSR (s,n)
 /s1.n1,s2.n3,s3.n6/
 
-MapW (w,n)
+MapWR (w,n)
 /w1.n2,w2.n4,w3.n5/
 
 MapSend_l(l,n)
@@ -144,13 +144,21 @@ delta_range /0.1 /
 
 Gamma_Load  /0/
 Gamma_PG    /0/
+Gamma_PG_PV         /0/
+Gamma_PG_Wind       /0/
 ;
 
 Parameters
-
+*******naming
 Demand_data_fixed(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
 PG_M_fixed(g,t,v)               fixed realisation of supply in subproblem and tranferred to master
+AF_M_PV_fixed(t,sr,n,v)          fixed PV availability factor in subproblem and tranferred to master
+AF_M_Wind_fixed(t,wr,n,v)        fixed Wind availability factor in subproblem and tranferred to master
 
+af_PV_up(t,sr,n)                upper capacity factor of solar energy
+delta_af_PV(t,sr,n) 
+af_wind_up(t,wr,n)              upper capacity factor of wind energy
+delta_af_Wind(t,wr,n) 
 
 
 report_main(*,*)
@@ -158,6 +166,15 @@ report_decomp(v,*,*)
 inv_iter_hist(l,v)
 inv_cost_master
 
+;
+******defining
+af_PV_up(t,sr,n)$MapSR(n,sr)            =          Availability ('AF_PV ')
+;
+delta_af_PV(t,sr,n)$MapSR(n,sr)         =          Availability ('AF_PV ') * 0.5
+;
+af_Wind_up(t,wr,n)$MapWR(n,wr)          =          Availability ('AF_Wind ')
+;
+delta_af_Wind(t,wr,n)$MapWR(n,wr)       =          Availability ('AF_Wind ')* 0.5
 ;
 Variables
 *********************************************Master*************************************************
@@ -179,14 +196,20 @@ Positive Variables
 
 ETA                 aux var to reconstruct obj. function of the ARO problem
 PG_M(g,t,v)         power generation level of a generator
+PG_M_PV(res,t,v)    power generation level of renewable volatil PV generators
+PG_M_Wind(res,t,v)  power generation level of renewable volatil wind generators
 PLS_M(n,t,v)        load shedding
 
 *********************************************Subproblem*********************************************
 
 Pdem(n,t)           realization of demand (Ro)
-PE(g,t)             realization of supply (Ro)
+PE(g,t)             realization of conventional supply (Ro)
+AF_PV(t,sr,n)       realization of PV availability (Ro)
+AF_wind(t,wr,n)     realization of Wind availability (Ro)
 
 phiPG(g,t)          dual var phi assoziated with Equation: MP_PG
+phiPG_PV(res,t)     dual var phi assoziated with Equation: MP_PG_Sun
+phiPG_wind(res,t)   dual var phi assoziated with Equation: MP_PG_wind
 phiLS(n,t)          dual var phi assoziated with Equation: MP_LS
 
 omega_UB(l,t)       dual var phi assoziated with Equation: MP_PF_EX_Cap_UB
@@ -197,6 +220,8 @@ teta_LB(n,t)        dual var beta assoziated with Equation: Theta_LB
 
 aux_lam(n,t)        aux continuous var to linearize lam(n.t) * Pdem(n.t) in SUB Objective (Pdem can become variable when uncertainty is considered)
 aux_phi_PG(g,t)     aux continuous var to linearize phiPG(g.t) * PE(g.t) in SUB Objective (PE can become variable when uncertainty is considered)
+aux_phi_PG_PV(res,t)    aux continuous var to linearize phiPG_PV(sun.t) * AF_PV(sun.t)  in SUB Objective (PE can become variable when uncertainty is considered)
+aux_phi_PG_wind(res,t)  aux continuous var to linearize phiPG_wind(wind.t) * AF_wind(wind.t) in SUB Objective (PE can become variable when uncertainty is considered)
 aux_phi_LS(n,t)     aux continuous var to linearize phiLS(n.t) * Pdem(n.t) in SUB Objective
 ;
 
@@ -208,6 +233,8 @@ inv_M(l)            decision variable regarding investment in a prospective line
 *********************************************Subproblem*********************************************
 
 z_PG(g,t)           decision variable to construct polyhedral UC-set and decides weather Generation is Max or not
+z_PG_PV(res,t)      decision variable to construct polyhedral UC-set and decides weather PV Generation is Max or not
+z_PG_wind(res,t)    decision variable to construct polyhedral UC-set and decides weather wind Generation is Max or not
 z_dem(n,t)          decision variable to construct polyhedral UC-set and decides weather Demand is at a lower or upper bound 
 ;
 
@@ -219,6 +246,8 @@ MP_IB
 MP_marketclear
 
 MP_PG
+MP_PG_PV
+MP_PG_Wind
    
 MP_PF_EX       
 MP_PF_EX_Cap_UB
@@ -239,6 +268,9 @@ MP_ETA
 
 SUB_Dual_Objective
 SUB_Dual_PG
+SUB_Dual_PG_sun
+SUB_Dual_PG_wind
+
 SUB_Dual_LS
 SUB_Dual_PF
 
@@ -250,6 +282,10 @@ SUB_US_LOAD
 SUB_UB_LOAD
 SUB_US_PG
 SUB_UB_PG
+SUB_US_PG_sun
+SUB_UB_PG_sun
+SUB_US_PG_wind
+SUB_UB_PG_wind
 
 
 SUB_lin1
@@ -264,6 +300,14 @@ SUB_lin9
 SUB_lin10
 SUB_lin11
 SUB_lin12
+SUB_lin13
+SUB_lin14
+SUB_lin15
+SUB_lin16
+SUB_lin17
+SUB_lin18
+SUB_lin19
+SUB_lin20
 ;
 
 
@@ -285,6 +329,10 @@ MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                     Demand_data_
 ;
 MP_PG(g,t,vv)$(ord(vv) lt (itaux+1))..                              PG_M(g,t,vv) =l= PG_M_fixed(g,t,vv)
 *PG_M_fixed(g,t,vv) 
+;
+MP_PG_PV(sun,sr,n,t,vv)$MapRes(sun,n) and (ord(vv) lt (itaux+1)))..           PG_M_PV(sun,t,vv)      =l= PV_data(s,'Gen_cap_UB') * AF_M_PV_fixed(t,sr,n,v) 
+;
+MP_PG_Wind(wind,wr,n,t,vv)$MapRes(wind,n) and (ord(vv) lt (itaux+1)))..       PG_M_Wind(wind,t,vv)    =l= Wind_data(w,'Gen_cap_UB') * AF_M_Wind_fixed(t,wr,n,v)
 ;
 
 

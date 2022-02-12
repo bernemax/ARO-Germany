@@ -17,8 +17,8 @@ l /l1*l1680/
 g /g1*g559/
 s /s1*s175/
 Res/res1*res1018/
-t/t1*t5/
-v /v1*v4/
+t/t1*t24/
+v /v1*v7/
 sr/sr1*sr59/
 wr/wr1*wr60/
 
@@ -469,14 +469,14 @@ delta_af_Wind(t,wr,n)$MapWR(n,wr)       =            availup_res(t,wr) * 0.5
 
 I_costs_220(l)      =  Grid_invest(l,'Inv_costs_220')/(8760/card(t))
 ;
-I_costs_380(l)      =  Grid_invest(l,'Inv_costs_380')/(8760/card(t))
+I_costs_380(l)      =  (Grid_invest(l,'Inv_costs_380')/(8760/card(t))) /100
 ;
 
 *************************************calculating************************************
 
 H(l,n)                              =            B(l)* incidence(l,n)
 ;
-load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) / 5
+load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) /1
 ;
 delta_load(n,t)$(De(n))             =            load_share(n)*total_load(t) * 0.1
 ; 
@@ -635,7 +635,6 @@ SUB_lin1
 SUB_lin2
 SUB_lin3
 SUB_lin4
-
 SUB_lin5
 SUB_lin6
 SUB_lin7
@@ -657,74 +656,78 @@ SUB_lin20
 ;
 *#####################################################################################Master####################################################################################
 
-MP_Objective..                                                      O_M  =e= sum(l, inv_M(l) * I_costs_380(l)) + ETA
+
+MP_Objective(vv)..                                                                              O_M  =e= sum(l, inv_M(l) * I_costs_380(l)) + ETA
 ;
 
-MP_IB..                                                             IB   =g= sum(l, inv_M(l) * I_costs_380(l))
+MP_IB(vv)..                                                                                     IB   =g= sum(l, inv_M(l) * I_costs_380(l))
 ;
 
-MP_marketclear(n,t,vv)..                     load(n,t)  - PLS_M(n,t,vv)   =e= sum(g$MapG (g,n), PG_M_conv(g,t,vv))
+MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                                                 Demand_data_fixed(n,t,vv) - PLS_M(n,t,vv)   =e= sum(g$MapG (g,n), PG_M_conv(g,t,vv))
                                                                     
-                                                                    + sum(s$MapS(s,n),  PG_M_Hydro(s,t,vv))
+                                                                                                + sum(s$MapS(s,n),  PG_M_Hydro(s,t,vv))
 
-                                                                    +  sum(sun$MapRes(sun,n), PG_M_PV(sun,t,vv))
-                                                                    +  sum(wind$MapRes(wind,n), PG_M_Wind(wind,t,vv))
+                                                                                                +  sum(sun$MapRes(sun,n), PG_M_PV(sun,t,vv))
+                                                                                                +  sum(wind$MapRes(wind,n), PG_M_Wind(wind,t,vv))
                                                     
-                                                                    +  sum(l$(Map_Res_l(l,n) and ex_l(l)), PF_M(l,t,vv))
-                                                                    -  sum(l$(Map_Send_l(l,n) and ex_l(l)), PF_M(l,t,vv))
+                                                                                                +  sum(l$(Map_Res_l(l,n) and ex_l(l)), PF_M(l,t,vv))
+                                                                                                -  sum(l$(Map_Send_l(l,n) and ex_l(l)), PF_M(l,t,vv))
                                                                         
-                                                                    +  sum(l$(Map_Res_l(l,n) and pros_l(l)), PF_M(l,t,vv))
-                                                                    -  sum(l$(Map_Send_l(l,n) and pros_l(l)), PF_M(l,t,vv))
+                                                                                                +  sum(l$(Map_Res_l(l,n) and pros_l(l)), PF_M(l,t,vv))
+                                                                                                -  sum(l$(Map_Send_l(l,n) and pros_l(l)), PF_M(l,t,vv))
                                                                     
 ;
 
 
-MP_PG_conv(g,t,vv)..                           PG_M_conv(g,t,vv)       =l= Cap_conv(g)
+MP_PG_conv(g,t,vv)$(ord(vv) lt (itaux+1))..                                                     PG_M_conv(g,t,vv)       =l= PG_M_fixed_conv(g,t,vv)
 ;
-MP_PG_Hydro(s,t,vv)..                          PG_M_Hydro(s,t,vv)      =l= Cap_hydro(s)
+MP_PG_Hydro(s,t,vv)$(ord(vv) lt (itaux+1))..                                                    PG_M_Hydro(s,t,vv)      =l= Cap_hydro(s)
 ;
-MP_PG_PV(sun,sr,n,t,vv)$(MapSR(n,sr) and MapRes(sun,n) and (ord(vv) lt (itaux+1)))..           PG_M_PV(sun,t,vv)      =l= Cap_res(sun) * af_PV_up(t,sr,n) 
+MP_PG_PV(sun,sr,n,t,vv)$(MapSR(n,sr) and MapRes(sun,n) and (ord(vv) lt (itaux+1)))..            PG_M_PV(sun,t,vv)      =l= Cap_res(sun) * AF_M_PV_fixed(t,sr,n,vv) 
 ;
-MP_PG_Wind(wind,wr,n,t,vv)$(MapWR(n,wr) and MapRes(wind,n) and (ord(vv) lt (itaux+1)))..       PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * af_Wind_up(t,wr,n) 
+MP_PG_Wind(wind,wr,n,t,vv)$(MapWR(n,wr) and MapRes(wind,n) and (ord(vv) lt (itaux+1)))..        PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * AF_M_Wind_fixed(t,wr,n,vv)
 ;
 
 
 
-MP_PF_EX(l,t,vv)$(ex_l(l))..                    PF_M(l,t,vv) =e= B(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+MP_PF_EX(l,t,vv)$(ex_l(l)  and (ord(vv) lt (itaux+1)))..                                        PF_M(l,t,vv) =e= B(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
 ;      
-MP_PF_EX_Cap_UB(l,t,vv)$(ex_l(l))..             PF_M(l,t,vv) =l= L_cap(l)
+MP_PF_EX_Cap_UB(l,t,vv)$(ex_l(l) and (ord(vv) lt (itaux+1)))..                                  PF_M(l,t,vv) =l= L_cap(l)
 ;
-MP_PF_EX_Cap_LB(l,t,vv)$(ex_l(l) )..            PF_M(l,t,vv) =g= - L_cap(l)  
-;
-
-
-MP_PF_PROS_Cap_UB(l,t,vv)$(pros_l(l) )..        PF_M(l,t,vv) =l= L_cap_inv_380(l) * inv_M(l)
-;
-MP_PF_PROS_Cap_LB(l,t,vv)$(pros_l(l) )..        PF_M(l,t,vv) =g= - L_cap_inv_380(l) * inv_M(l)
-;
-MP_PF_PROS_LIN_UB(l,t,vv)$(pros_l(l) )..        (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - B_prosp_380(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
-;
-MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l))..         -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - B_prosp_380(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+MP_PF_EX_Cap_LB(l,t,vv)$(ex_l(l)  and (ord(vv) lt (itaux+1)))..                                 PF_M(l,t,vv) =g= - L_cap(l)  
 ;
 
 
-MP_LS(n,t,vv)..                                                     PLS_M(n,t,vv) =l= load(n,t)
+MP_PF_PROS_Cap_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =l= L_cap_inv_380(l) * inv_M(l)
+;
+MP_PF_PROS_Cap_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =g= - L_cap_inv_380(l) * inv_M(l)
+;
+MP_PF_PROS_LIN_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - B_prosp_380(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+;
+MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - B_prosp_380(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+;
+
+
+MP_LS(n,t,vv)$(ord(vv) lt (itaux+1))..                                                          PLS_M(n,t,vv) =l= Demand_data_fixed(n,t,vv)
 *Demand_data_fixed(n,t,vv)
 ;
 
 
-Theta_UB(n,t,vv)$(Relevant_Nodes(n))..                            3.1415          =g= Theta(n,t,vv)
+Theta_UB(n,t,vv)$(Relevant_Nodes(n) and (ord(vv) lt (itaux+1)))..                               3.1415          =g= Theta(n,t,vv)
 ;
-Theta_LB(n,t,vv)$(Relevant_Nodes(n))..                           - 3.1415         =l= Theta(n,t,vv)
+Theta_LB(n,t,vv)$(Relevant_Nodes(n) and (ord(vv) lt (itaux+1)))..                               - 3.1415         =l= Theta(n,t,vv)
 ;
-Theta_ref(n,t,vv)..                                     Theta(n,t,vv)$ref(n)      =e= 0
+Theta_ref(n,t,vv)$(ord(vv) lt (itaux+1))..                                                      Theta(n,t,vv)$ref(n)      =e= 0
 ; 
 
 
-MP_ETA(vv)..                                                                  ETA =g=   sum((g,t), var_costs(g,t) * PG_M_conv(g,t,vv))
+MP_ETA(vv)$(ord(vv) lt (itaux+1))..                                                             ETA =g=   sum((g,t), var_costs(g,t) * PG_M_conv(g,t,vv))
     
-                                                                    + sum((s,t), 20 * PG_M_hydro(s,t,vv))
-                                                                    + sum((n,t), LS_costs(n) * PLS_M(n,t,vv))
+                                                                                                + sum((s,t), 20 * PG_M_hydro(s,t,vv))
+                                                                                                + sum((n,t), LS_costs(n) * PLS_M(n,t,vv))
+                                                                    
+*
+
                                                                     
                                     
 ;
@@ -774,7 +777,7 @@ SUB_Dual_PG_wind(wind,t)..                                          sum(n$MapRes
 *****************************************************************Dual Load shedding equation
 
 SUB_Dual_LS(t)..                                                    sum(n, lam(n,t) -  phiLS(n,t))                         =l=  3000  
-* sum(n$Relevant_Nodes(n), lam(n,t) -  phiLS(n,t))                         =l=  3000  
+*sum(nn, lam(n,t) -  phiLS(n,t)) =l=  Demand_data (n,'LS_costs')
 ;
 *****************************************************************Dual Power flow equations
 
@@ -807,17 +810,17 @@ SUB_US_PG_conv(g,t)..                                               PE_conv(g,t)
 ;
 SUB_UB_PG_conv..                                                    sum((g,t), z_PG_conv(g,t))   =l= Gamma_PG_conv 
 ;
-
+*$ontext
 SUB_US_PG_sun(sun,sr,n,t)$(MapSR(n,sr) and MapRes(sun,n))..         AF_PV(t,sr,n) =e= af_PV_up(t,sr,n) - delta_af_PV(t,sr,n) * z_PG_PV(sun,t)
 ;
 SUB_UB_PG_sun(t)..                                                  sum(sun, z_PG_PV(sun,t))   =l= Gamma_PG_PV 
 ;
-
+*$ontext
 SUB_US_PG_wind(wind,wr,n,t)$(MapWR(n,wr) and MapRes(wind,n))..      AF_wind(t,wr,n) =e= af_Wind_up(t,wr,n) - delta_af_wind(t,wr,n) * z_PG_Wind(wind,t)
 ;
 SUB_UB_PG_wind(t)..                                                 sum(wind, z_PG_Wind(wind,t))   =l= Gamma_PG_Wind 
 ;
-
+*$offtext
 *****************************************************************linearization
 
 
@@ -848,7 +851,7 @@ SUB_lin11(sun,t)..                                                  - M *   z_PG
 ;
 SUB_lin12(sun,t)..                                                  - M *  ( 1 - z_PG_PV(sun,t))                    =l= phiPG_PV(sun,t) - aux_phi_PG_PV(sun,t)
 ;
-
+*$ontext
 SUB_lin13(wind,t)..                                                 aux_phi_PG_Wind(wind,t)                         =l= M *   z_PG_Wind(wind,t)
 ;
 SUB_lin14(wind,t)..                                                 phiPG_Wind(wind,t) - aux_phi_PG_Wind(wind,t)    =l= M *  ( 1 - z_PG_Wind(wind,t))
@@ -916,11 +919,13 @@ SUB_Dual_PG_hydro
 SUB_Dual_PG_sun
 SUB_Dual_PG_wind
 
+
 SUB_Dual_LS
 SUB_Dual_PF
 
 SUB_Lin_Dual
 SUB_Lin_Dual_n_ref
+
 
 SUB_US_LOAD
 SUB_UB_LOAD
@@ -934,11 +939,11 @@ SUB_UB_PG_sun
 SUB_US_PG_wind
 SUB_UB_PG_wind
 
+
 SUB_lin1
 SUB_lin2
 SUB_lin3
 SUB_lin4
-
 SUB_lin5
 SUB_lin6
 SUB_lin7
@@ -959,13 +964,13 @@ SUB_lin20
 ;
 option optcr = 0.1
 ;
-Gamma_Load = 0
+Gamma_Load = 20
 ;
 Gamma_PG_conv = 0
 ;
-Gamma_PG_PV = 100
+Gamma_PG_PV = 20
 ;
-Gamma_PG_Wind = 0
+Gamma_PG_Wind = 20
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10
@@ -1072,4 +1077,3 @@ $include network_expansion_clean.gms
 
 execute_unload "TEP_ARO_Test.gdx";
 $stop
-
