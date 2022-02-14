@@ -1,3 +1,47 @@
+$ontext 
+
+If Shedding is a problem: 
+	1. BigM (care left border)
+	 shedding cost at 3000
+	 BigM at 5000
+	 -> increase BigM 
+
+	2. Shedding volume (Basis + Peak) differences among iterations
+		try allowing only shedding basis
+
+	3. Dual for shedding (sign or what else) 
+		signs seem correct
+
+If dual is the problem:
+a) BigM (already above)
+
+----------
+option optcr = 0
+try testing with 'standard' demand separately solving masther and dual
+with optcr = 0.1 -> you WILL see different solution
+
+----------
+eventually try:
+
+1) optcr = 0 | BigM = 10...100 x ShecCost | try allowing only shedding basis
+2) run scenarios with 0 UB.... x (see)
+
+-> bring 20 TYNDP insteaed of 100 random
+
+--------
+Speed concerns
+
+Increase complexity: optcr value increases but it seems like a must
+
+Decrease: 
+(done) remove storage
+(anyway to do) 20 TYNDP insteaed of 100 random
+(anyway to do!!!) when increasing [h] -> group UB's per time chunks
+	to (i) remove complexity and (ii) match to a common sense of a story
+
+$offtext
+
+
 option profile = 1;
 option profiletol = 0.01;
 
@@ -753,7 +797,8 @@ SUB_Dual_Objective..                                                O_Sub =e= su
 
                                                                     + sum((n,t), - phiLS(n,t) * load(n,t) 
                                                                     + aux_phi_LS(n,t) * ( - delta_load(n,t))) 
-                                                                 
+                                                          
+                                                                                                                           
                                                                     + sum((l,t)$ex_l(l), - omega_UB(l,t) *  L_cap(l))
                                                                     + sum((l,t)$ex_l(l), - omega_LB(l,t) *  L_cap(l))
                                                                     
