@@ -43,7 +43,8 @@ w2          100
 w3          200
 ;
 
-Table Availability (*)
+Table Availability (t,*)
+
         AF_PV           AF_wind         
 t1          0              0.2             
 t2          0              0.1
@@ -152,13 +153,13 @@ Parameters
 *******naming
 Demand_data_fixed(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
 PG_M_fixed(g,t,v)               fixed realisation of supply in subproblem and tranferred to master
-AF_M_PV_fixed(t,sr,n,v)          fixed PV availability factor in subproblem and tranferred to master
-AF_M_Wind_fixed(t,wr,n,v)        fixed Wind availability factor in subproblem and tranferred to master
+AF_M_PV_fixed(t,s,n,v)          fixed PV availability factor in subproblem and tranferred to master
+AF_M_Wind_fixed(t,w,n,v)        fixed Wind availability factor in subproblem and tranferred to master
 
-af_PV_up(t,sr,n)                upper capacity factor of solar energy
-delta_af_PV(t,sr,n) 
-af_wind_up(t,wr,n)              upper capacity factor of wind energy
-delta_af_Wind(t,wr,n) 
+af_PV_up(t,s,n)                upper capacity factor of solar energy
+delta_af_PV(t,s,n) 
+af_wind_up(t,w,n)              upper capacity factor of wind energy
+delta_af_Wind(t,w,n) 
 
 
 report_main(*,*)
@@ -168,13 +169,13 @@ inv_cost_master
 
 ;
 ******defining
-af_PV_up(t,sr,n)$MapSR(n,sr)            =          Availability ('AF_PV ')
+af_PV_up(t,s,n)$MapSR(s,n)            =          Availability (t,'AF_PV ')
 ;
-delta_af_PV(t,sr,n)$MapSR(n,sr)         =          Availability ('AF_PV ') * 0.5
+delta_af_PV(t,s,n)$MapSR(s,n)         =          Availability (t,'AF_PV ') * 0.5
 ;
-af_Wind_up(t,wr,n)$MapWR(n,wr)          =          Availability ('AF_Wind ')
+af_Wind_up(t,w,n)$MapWR(w,n)          =          Availability (t,'AF_Wind ')
 ;
-delta_af_Wind(t,wr,n)$MapWR(n,wr)       =          Availability ('AF_Wind ')* 0.5
+delta_af_Wind(t,w,n)$MapWR(w,n)       =          Availability (t,'AF_Wind ')* 0.5
 ;
 Variables
 *********************************************Master*************************************************
@@ -196,20 +197,20 @@ Positive Variables
 
 ETA                 aux var to reconstruct obj. function of the ARO problem
 PG_M(g,t,v)         power generation level of a generator
-PG_M_PV(res,t,v)    power generation level of renewable volatil PV generators
-PG_M_Wind(res,t,v)  power generation level of renewable volatil wind generators
+PG_M_PV(s,t,v)    power generation level of renewable volatil PV generators
+PG_M_Wind(w,t,v)  power generation level of renewable volatil wind generators
 PLS_M(n,t,v)        load shedding
 
 *********************************************Subproblem*********************************************
 
 Pdem(n,t)           realization of demand (Ro)
 PE(g,t)             realization of conventional supply (Ro)
-AF_PV(t,sr,n)       realization of PV availability (Ro)
-AF_wind(t,wr,n)     realization of Wind availability (Ro)
+AF_PV(t,s,n)       realization of PV availability (Ro)
+AF_wind(t,w,n)     realization of Wind availability (Ro)
 
 phiPG(g,t)          dual var phi assoziated with Equation: MP_PG
-phiPG_PV(res,t)     dual var phi assoziated with Equation: MP_PG_Sun
-phiPG_wind(res,t)   dual var phi assoziated with Equation: MP_PG_wind
+phiPG_PV(s,t)     dual var phi assoziated with Equation: MP_PG_Sun
+phiPG_wind(w,t)   dual var phi assoziated with Equation: MP_PG_wind
 phiLS(n,t)          dual var phi assoziated with Equation: MP_LS
 
 omega_UB(l,t)       dual var phi assoziated with Equation: MP_PF_EX_Cap_UB
@@ -220,8 +221,8 @@ teta_LB(n,t)        dual var beta assoziated with Equation: Theta_LB
 
 aux_lam(n,t)        aux continuous var to linearize lam(n.t) * Pdem(n.t) in SUB Objective (Pdem can become variable when uncertainty is considered)
 aux_phi_PG(g,t)     aux continuous var to linearize phiPG(g.t) * PE(g.t) in SUB Objective (PE can become variable when uncertainty is considered)
-aux_phi_PG_PV(res,t)    aux continuous var to linearize phiPG_PV(sun.t) * AF_PV(sun.t)  in SUB Objective (PE can become variable when uncertainty is considered)
-aux_phi_PG_wind(res,t)  aux continuous var to linearize phiPG_wind(wind.t) * AF_wind(wind.t) in SUB Objective (PE can become variable when uncertainty is considered)
+aux_phi_PG_PV(s,t)    aux continuous var to linearize phiPG_PV(sun.t) * AF_PV(sun.t)  in SUB Objective (PE can become variable when uncertainty is considered)
+aux_phi_PG_wind(w,t)  aux continuous var to linearize phiPG_wind(wind.t) * AF_wind(wind.t) in SUB Objective (PE can become variable when uncertainty is considered)
 aux_phi_LS(n,t)     aux continuous var to linearize phiLS(n.t) * Pdem(n.t) in SUB Objective
 ;
 
@@ -233,8 +234,8 @@ inv_M(l)            decision variable regarding investment in a prospective line
 *********************************************Subproblem*********************************************
 
 z_PG(g,t)           decision variable to construct polyhedral UC-set and decides weather Generation is Max or not
-z_PG_PV(res,t)      decision variable to construct polyhedral UC-set and decides weather PV Generation is Max or not
-z_PG_wind(res,t)    decision variable to construct polyhedral UC-set and decides weather wind Generation is Max or not
+z_PG_PV(s,t)      decision variable to construct polyhedral UC-set and decides weather PV Generation is Max or not
+z_PG_wind(w,t)    decision variable to construct polyhedral UC-set and decides weather wind Generation is Max or not
 z_dem(n,t)          decision variable to construct polyhedral UC-set and decides weather Demand is at a lower or upper bound 
 ;
 
@@ -321,8 +322,12 @@ MP_IB..                                                             IB   =g= sum
 
 MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                     Demand_data_fixed(n,t,vv)  - PLS_M(n,t,vv)   =e= sum(g$MapG (g,n), PG_M(g,t,vv))
 *Demand_data_fixed(n,t,vv)                                                     
+                                                                    +  sum(s$MapSR(s,n), PG_M_PV(s,t,vv))
+                                                                    +  sum(w$MapWR(w,n), PG_M_Wind(w,t,vv))
+                                                                    
                                                                     +  sum(l$(MapRes_l(l,n) and ex_l(l)), PF_M(l,t,vv))
                                                                     -  sum(l$(MapSend_l(l,n) and ex_l(l)), PF_M(l,t,vv))
+                                                                    
                                                                         
                                                                     +  sum(l$Map_prosp_Res(l,n), PF_M(l,t,vv))
                                                                     -  sum(l$Map_prosp_Send(l,n), PF_M(l,t,vv))
@@ -330,9 +335,9 @@ MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                     Demand_data_
 MP_PG(g,t,vv)$(ord(vv) lt (itaux+1))..                              PG_M(g,t,vv) =l= PG_M_fixed(g,t,vv)
 *PG_M_fixed(g,t,vv) 
 ;
-MP_PG_PV(sun,sr,n,t,vv)$MapRes(sun,n) and (ord(vv) lt (itaux+1)))..           PG_M_PV(sun,t,vv)      =l= PV_data(s,'Gen_cap_UB') * AF_M_PV_fixed(t,sr,n,v) 
+MP_PG_PV(s,n,t,vv)$(MapSR(s,n) and (ord(vv) lt (itaux+1)))..         PG_M_PV(s,t,vv)      =l= PV_data(s,'Gen_cap_UB') * AF_M_PV_fixed(t,s,n,vv) 
 ;
-MP_PG_Wind(wind,wr,n,t,vv)$MapRes(wind,n) and (ord(vv) lt (itaux+1)))..       PG_M_Wind(wind,t,vv)    =l= Wind_data(w,'Gen_cap_UB') * AF_M_Wind_fixed(t,wr,n,v)
+MP_PG_Wind(w,n,t,vv)$(MapWR(w,n) and (ord(vv) lt (itaux+1)))..       PG_M_Wind(w,t,vv)    =l= Wind_data(w,'Gen_cap_UB') * AF_M_Wind_fixed(t,w,n,vv)
 ;
 
 
@@ -376,12 +381,22 @@ MP_ETA(vv)$(ord(vv) lt (itaux+1))..                                 ETA =g=   su
 
 SUB_Dual_Objective..                                                O_Sub =e= sum((n,t), lam(n,t) * Demand_data (n,'Need_LB') 
                                                                     + aux_lam(n,t) *    ( + Demand_data (n,'delta_dem')))
+                                                                    
 *(Demand_data (n,'Need_LB') + Demand_data (n,'delta_dem')))                                                                    
                                                                     + sum((g,t), - phiPG(g,t) * Generator_data (g,'Gen_cap_UB')
                                                                     + aux_phi_PG(g,t) * ( + Generator_data (g,'delta_PG')))
+                                                                    
+                                                                    + sum((s,t,n)$MapSR(s,n),
+                                                                    - phiPG_PV(s,t) * (PV_data(s,'Gen_cap_UB') *  af_PV_up(t,s,n))
+                                                                    + aux_phi_PG_PV(s,t) * ( PV_data(s,'Gen_cap_UB') * delta_af_PV(t,s,n)))
+                                                                    
+                                                                    + sum((w,t,n)$MapWR(w,n),
+                                                                    - phiPG_Wind(w,t) * (Wind_data(w,'Gen_cap_UB') *  af_wind_up(t,w,n))
+                                                                    + aux_phi_PG_Wind(w,t) * ( Wind_data(w,'Gen_cap_UB') * delta_af_Wind(t,w,n)))
+                                                                    
 *(Generator_data (g,'Gen_cap_UB') - Generator_data (g,'delta_PG')))                                                                    
                                                                     + sum((n,t), - phiLS(n,t) * Demand_data (n,'Need_LB') 
-                                                                    + aux_phi_LS(n,t) * ( - Demand_data (n,'delta_dem'))) 
+                                                                    + aux_phi_LS(n,t) * ( - Demand_data (n,'delta_dem')))                                                                    
 *(Demand_data (n,'Need_LB') + Demand_data (n,'delta_dem')))                                                                    
                                                                     + sum((l,t), - omega_UB(l,t) * line_data(l,'L_cap'))
                                                                     + sum((l,t), - omega_LB(l,t) * line_data(l,'L_cap'))
@@ -392,6 +407,10 @@ SUB_Dual_Objective..                                                O_Sub =e= su
 *****************************************************************Dual Power generation equation
 
 SUB_Dual_PG(g,t)..                                                  sum(n$MapG(g,n), lam(n,t) -  phiPG(g,t)) =l=   Generator_data (g,'Gen_costs')  
+;
+SUB_Dual_PG_sun(s,t)..                                              sum(n$MapSR(s,n), lam(n,t) -  phiPG_PV(s,t))                      =l=   0
+;
+SUB_Dual_PG_wind(w,t)..                                             sum(n$MapWR(w,n), lam(n,t) -  phiPG_Wind(w,t))                    =l=   0
 ;
 *****************************************************************Dual Load shedding equation
 
@@ -425,6 +444,16 @@ SUB_UB_LOAD..                                                       sum((n,t), z
 SUB_US_PG(g,t)..                                                    PE(g,t)    =e= Generator_data (g,'Gen_cap_UB') - Generator_data (g,'delta_PG') * z_PG(g,t)
 ;
 SUB_UB_PG..                                                         sum((g,t), z_PG(g,t))   =l= Gamma_PG 
+;
+
+SUB_US_PG_sun(s,n,t)$MapSR(s,n)..                                   AF_PV(t,s,n) =e= af_PV_up(t,s,n) - delta_af_PV(t,s,n) * z_PG_PV(s,t)
+;
+SUB_UB_PG_sun(t)..                                                  sum(s, z_PG_PV(s,t))   =l= Gamma_PG_PV 
+;
+*$ontext
+SUB_US_PG_wind(w,n,t)$MapWR(w,n) ..                                 AF_wind(t,w,n) =e= af_wind_up(t,w,n)   - delta_af_Wind(t,w,n) * z_PG_Wind(w,t)
+;
+SUB_UB_PG_wind(t)..                                                 sum(w, z_PG_Wind(w,t))   =l= Gamma_PG_Wind 
 ;
 *****************************************************************linearization
 
@@ -461,6 +490,24 @@ SUB_lin11(n,t)..                                                    - M * z_dem(
 SUB_lin12(n,t)..                                                    - M * ( 1 - z_dem(n,t))         =l= phiLS(n,t) - aux_phi_LS(n,t)
 ;
 
+SUB_lin13(w,t)..                                                     aux_phi_PG_Wind(w,t)                            =l= M *   z_PG_Wind(w,t)
+;
+SUB_lin14(w,t)..                                                 phiPG_Wind(w,t) - aux_phi_PG_Wind(w,t)          =l= M *  ( 1 - z_PG_Wind(w,t))
+;
+SUB_lin15(w,t)..                                                 - M *   z_PG_Wind(w,t)                       =l= aux_phi_PG_Wind(w,t)
+;
+SUB_lin16(w,t)..                                                 - M *  ( 1 - z_PG_Wind(w,t))                 =l= phiPG_Wind(w,t) - aux_phi_PG_Wind(w,t)
+;
+*$offtext
+
+SUB_lin17(s,t)..                                                   aux_phi_PG_PV(s,t)                            =l= M *   z_PG_PV(s,t)
+;
+SUB_lin18(s,t)..                                                  phiPG_PV(s,t) - aux_phi_PG_PV(s,t)          =l= M *  ( 1 - z_PG_PV(s,t))
+;
+SUB_lin19(s,t)..                                                  - M *   z_PG_PV(s,t)                          =l= aux_phi_PG_PV(s,t)
+;
+SUB_lin20(s,t)..                                                  - M *  ( 1 - z_PG_PV(s,t))                    =l= phiPG_PV(s,t) - aux_phi_PG_PV(s,t)
+;
 ********************************************Model definition**********************************************
 model Master_VO
 /
@@ -476,6 +523,8 @@ MP_IB
 MP_marketclear
 
 MP_PG
+MP_PG_PV
+MP_PG_Wind
    
 MP_PF_EX       
 MP_PF_EX_Cap_UB
@@ -501,16 +550,25 @@ model Subproblem
 /
 SUB_Dual_Objective
 SUB_Dual_PG
+SUB_Dual_PG_sun
+SUB_Dual_PG_wind
+
 SUB_Dual_LS
 SUB_Dual_PF
 
 SUB_Lin_Dual
 SUB_Lin_Dual_n_ref
 
+
 SUB_US_LOAD
 SUB_UB_LOAD
 SUB_US_PG
 SUB_UB_PG
+SUB_US_PG_sun
+SUB_UB_PG_sun
+SUB_US_PG_wind
+SUB_UB_PG_wind
+
 
 SUB_lin1
 SUB_lin2
@@ -524,6 +582,14 @@ SUB_lin9
 SUB_lin10
 SUB_lin11
 SUB_lin12
+SUB_lin13
+SUB_lin14
+SUB_lin15
+SUB_lin16
+SUB_lin17
+SUB_lin18
+SUB_lin19
+SUB_lin20
 /
 ;
 *solve Subproblem using MIP maximizing O_SUB;
@@ -549,6 +615,10 @@ Loop(v$((UB - LB) gt Toleranz),
 Demand_data_fixed(n,t,v) = Demand_data (n,'Need_LB')
 ;
 PG_M_fixed(g,t,v)= Generator_data (g,'Gen_cap_UB')
+;
+AF_M_PV_fixed(t,s,n,v) =   af_PV_up(t,s,n)
+;
+AF_M_Wind_fixed(t,w,n,v) =  af_wind_up(t,w,n)  
 ;
 
 itaux = ord(v)
@@ -620,7 +690,10 @@ Demand_data_fixed(n,t,v) = Pdem.l(n,t)
 ;
 PG_M_fixed(g,t,v)= PE.l(g,t)
 ;
-
+AF_M_PV_fixed(t,s,n,v) = AF_PV.l(t,s,n)
+;
+AF_M_Wind_fixed(t,w,n,v) = AF_Wind.l(t,w,n)
+;
 *execute_unload "check_ARO_toy_complete.gdx"
 ;
 )
