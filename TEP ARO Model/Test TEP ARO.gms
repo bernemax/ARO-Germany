@@ -1075,5 +1075,5 @@ $include network_expansion_clean.gms
 ;
 )
 
-execute_unload "TEP_ARO_Test.gdx";
+execute_unload "check_TEP_ARO_Test.gdx";
 $stop
