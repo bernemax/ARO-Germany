@@ -1,14 +1,12 @@
-
-TEP ARO Model/$TEP.log
-TEP ARO Model/check.gdx
-TEP ARO Model/check.xlsx
-TEP ARO Model/check_ARO_toy_complete.gdx
-TEP ARO Model/TEP ARO project.gpr
-TEP ARO Model/TEP_ARO.lst
-TEP ARO Model/Test TEP ARO.log
-TEP ARO Model/Test TEP ARO.log
-TEP ARO Model/Test TEP ARO.log~2
-*.log~3
-TEP ARO Model/Test TEP ARO.lst
-TEP ARO Model/Test TEP ARO.lxi
-TEP ARO Model/Test TEP ARO.lst
+**/.lst
+**/.lxi
+**/.log
+**/.~gm
+**/.gdx
+*.log
+*.lst
+*.lxi
+*.tmp
+*.~gm
+*.gdx
+*.gpr
