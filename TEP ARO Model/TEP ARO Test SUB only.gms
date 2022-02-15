@@ -491,7 +491,7 @@ I_costs_380(l)      =  Grid_invest(l,'Inv_costs_380')/(8760/card(t))
 
 H(l,n)                              =            B(l)* incidence(l,n)
 ;
-load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) /5
+load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) /1
 ;
 delta_load(n,t)$(De(n))             =            load_share(n)*total_load(t) * 0.1
 ; 
@@ -806,7 +806,7 @@ SUB_lin20
 /
 ;
 
-option optcr = 0.1
+option optcr = 0.5
 ;
 Gamma_Load = 0
 ;

@@ -24,7 +24,7 @@ with optcr = 0.1 -> you WILL see different solution
 eventually try:
 
 1) optcr = 0 | BigM = 10...100 x ShecCost | try allowing only shedding basis
-2) run scenarios with 0 UB.... x (see)
+2) run scenarios with 0 UB .... x (see)
 
 -> bring 20 TYNDP insteaed of 100 random
 
@@ -61,7 +61,7 @@ l /l1*l1680/
 g /g1*g559/
 s /s1*s175/
 Res/res1*res1018/
-t/t1*t24/
+t/t1*t10/
 v /v1*v7/
 sr/sr1*sr59/
 wr/wr1*wr60/
@@ -89,7 +89,7 @@ psp_DE(s)
 
 ****************************lines***************************************************
 ex_l(l)/l1*l840/
-pros_l(l)/l841*l941/
+pros_l(l)/l841*l891/
 *pros_l(l)/l841*l1680/
 
 Border_exist_DE(l)
@@ -513,14 +513,14 @@ delta_af_Wind(t,wr,n)$MapWR(n,wr)       =            availup_res(t,wr) * 0.5
 
 I_costs_220(l)      =  Grid_invest(l,'Inv_costs_220')/(8760/card(t))
 ;
-I_costs_380(l)      =  (Grid_invest(l,'Inv_costs_380')/(8760/card(t))) /100
+I_costs_380(l)      =  (Grid_invest(l,'Inv_costs_380')/(8760/card(t))) 
 ;
 
 *************************************calculating************************************
 
 H(l,n)                              =            B(l)* incidence(l,n)
 ;
-load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) /5
+load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) / 1
 ;
 delta_load(n,t)$(De(n))             =            load_share(n)*total_load(t) * 0.1
 ; 
@@ -1007,15 +1007,15 @@ SUB_lin19
 SUB_lin20
 /
 ;
-option optcr = 0.1
+option optcr = 0
 ;
-Gamma_Load = 20
+Gamma_Load = 0
 ;
 Gamma_PG_conv = 0
 ;
-Gamma_PG_PV = 20
+Gamma_PG_PV = 0
 ;
-Gamma_PG_Wind = 20
+Gamma_PG_Wind = 0
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10

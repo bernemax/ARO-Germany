@@ -45,7 +45,7 @@ psp_DE(s)
 
 ****************************lines***************************************************
 ex_l(l)/l1*l840/
-pros_l(l)/l841*l941/
+pros_l(l)/l841*l891/
 *pros_l(l)/l841*l1680/
 
 Border_exist_DE(l)
@@ -108,7 +108,7 @@ Scalars
 *max invest budget
 IB           /0/
 *big M
-M            /5000/
+M            /50000/
 *reliability of powerlines (simplification of n-1 criteria)
 reliability  /1/
 *curtailment costs
@@ -477,7 +477,7 @@ I_costs_380(l)      =  Grid_invest(l,'Inv_costs_380')/(8760/card(t))
 
 H(l,n)                              =            B(l)* incidence(l,n)
 ;
-load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) /5
+load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) /1
 ;
 delta_load(n,t)$(De(n))             =            load_share(n)*total_load(t) * 0.1
 ; 
@@ -686,9 +686,9 @@ MP_PG_conv(g,t,vv)..                           PG_M_conv(g,t,vv)       =l= Cap_c
 ;
 MP_PG_Hydro(s,t,vv)..                          PG_M_Hydro(s,t,vv)      =l= Cap_hydro(s)
 ;
-MP_PG_PV(sun,sr,n,t,vv)$(MapSR(n,sr) and MapRes(sun,n) and (ord(vv) lt (itaux+1)))..           PG_M_PV(sun,t,vv)      =l= Cap_res(sun) * af_PV_up(t,sr,n) 
+MP_PG_PV(sun,sr,n,t,vv)$(MapSR(n,sr) and MapRes(sun,n))..           PG_M_PV(sun,t,vv)      =l= Cap_res(sun) * af_PV_up(t,sr,n) 
 ;
-MP_PG_Wind(wind,wr,n,t,vv)$(MapWR(n,wr) and MapRes(wind,n) and (ord(vv) lt (itaux+1)))..       PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * af_Wind_up(t,wr,n) 
+MP_PG_Wind(wind,wr,n,t,vv)$(MapWR(n,wr) and MapRes(wind,n))..       PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * af_Wind_up(t,wr,n) 
 ;
 
 
@@ -762,7 +762,7 @@ Theta_ref
 MP_ETA
 /
 ;
-option optcr = 0.1
+option optcr = 0
 ;
 
 solve Master using MIP minimizing O_M;
