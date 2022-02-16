@@ -5,7 +5,7 @@ g /g1*g5/
 s /s1*s3/
 w /w1*w3/
 l /l1*l9/
-v / v1*v10/
+v / v1*v5/
 
 * loopindex to control uncertainty Budgets
 j /j1*j5/
@@ -111,7 +111,7 @@ l7.n3,l8.n4,l9.n5
 /
 
 MapRes_l(l,n)
-/l1	.n2,l2.n3,l3.n5
+/l1.n2,l2.n3,l3.n5
 
 l4.n3,l5.n4,l6.n4,
 l7.n6,l8.n6,l9.n6
@@ -138,7 +138,7 @@ Toleranz    / 1 /
 LB          / -1e10 /
 UB          / 1e10 /
 itaux       / 1 /
-IB          / 3000000 /
+IB          / 3400000 /
 M           / 5000 /
 
 delta_range /0.1 /
@@ -598,9 +598,13 @@ SUB_lin20
 *#######################################################Step 1
 option optcr = 0
 ;
-Gamma_Load = 0
+Gamma_Load = 10
 ;
-Gamma_PG = 0
+Gamma_PG = 10
+;
+Gamma_PG_PV = 10
+;
+Gamma_PG_Wind = 10
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10

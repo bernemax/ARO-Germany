@@ -4,13 +4,14 @@ If Shedding is a problem:
 	1. BigM (care left border)
 	 shedding cost at 3000
 	 BigM at 5000
-	 -> increase BigM 
+	 -> increase BigM - increased to 10000
 
 	2. Shedding volume (Basis + Peak) differences among iterations
 		try allowing only shedding basis
 
 	3. Dual for shedding (sign or what else) 
-		signs seem correct
+		signs seem correct - yes but the SUB_Dual_LS equation was not
+		and it was nesessary (spotted in the 6 node toy model) to increase shedding costs
 
 If dual is the problem:
 a) BigM (already above)
@@ -26,7 +27,7 @@ eventually try:
 1) optcr = 0 | BigM = 10...100 x ShecCost | try allowing only shedding basis
 2) run scenarios with 0 UB .... x (see)
 
--> bring 20 TYNDP insteaed of 100 random
+-> bring 20 TYNDP insteaed of 100 random  - next step
 
 --------
 Speed concerns
@@ -36,7 +37,7 @@ Increase complexity: optcr value increases but it seems like a must
 Decrease: 
 (done) remove storage
 (anyway to do) 20 TYNDP insteaed of 100 random
-(anyway to do!!!) when increasing [h] -> group UB's per time chunks
+(anyway to do!!!) when increasing [h] -> group UB's per time chunks - next step
 	to (i) remove complexity and (ii) match to a common sense of a story
 
 $offtext
@@ -152,7 +153,7 @@ Scalars
 *max invest budget
 IB           /2000000000/
 *big M
-M            /5000/
+M            /10000/
 *reliability of powerlines (simplification of n-1 criteria)
 reliability  /1/
 *curtailment costs
@@ -821,7 +822,7 @@ SUB_Dual_PG_wind(wind,t)..                                          sum(n$MapRes
 
 *****************************************************************Dual Load shedding equation
 
-SUB_Dual_LS(t)..                                                    sum(n, lam(n,t) -  phiLS(n,t))                         =l=  3000  
+SUB_Dual_LS(n,t)..                                                  lam(n,t) -  phiLS(n,t)                                                   =l=  LS_costs(n)  
 *sum(nn, lam(n,t) -  phiLS(n,t)) =l=  Demand_data (n,'LS_costs')
 ;
 *****************************************************************Dual Power flow equations
@@ -1007,15 +1008,15 @@ SUB_lin19
 SUB_lin20
 /
 ;
-option optcr = 0
+option optcr = 0.1
 ;
-Gamma_Load = 0
+Gamma_Load = 20
 ;
 Gamma_PG_conv = 0
 ;
-Gamma_PG_PV = 0
+Gamma_PG_PV = 20
 ;
-Gamma_PG_Wind = 0
+Gamma_PG_Wind = 20
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10

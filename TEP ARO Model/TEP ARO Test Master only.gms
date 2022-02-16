@@ -17,7 +17,7 @@ l /l1*l1680/
 g /g1*g559/
 s /s1*s175/
 Res/res1*res1018/
-t/t1*t5/
+t/t1*t30/
 v /v1/
 sr/sr1*sr59/
 wr/wr1*wr60/
@@ -108,7 +108,7 @@ Scalars
 *max invest budget
 IB           /0/
 *big M
-M            /50000/
+M            /10000/
 *reliability of powerlines (simplification of n-1 criteria)
 reliability  /1/
 *curtailment costs
