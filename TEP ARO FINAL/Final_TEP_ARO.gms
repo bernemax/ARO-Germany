@@ -14,7 +14,7 @@ Sets
 
 n /n1*n509/
 *d /d1*d511/
-l /l1*l1680/
+l /l1*l1100/
 g /g1*g559/
 s /s1*s175/
 Res/res1*res1018/
@@ -46,7 +46,7 @@ psp_DE(s)
 
 ****************************lines***************************************************
 ex_l(l)/l1*l840/
-pros_l(l)/l841*l891/
+pros_l(l)/l1000*l1100/
 *pros_l(l)/l841*l1680/
 
 Border_exist_DE(l)
@@ -165,13 +165,11 @@ Demand_data_fixed(n,t,v)        fixed realisation of demand in subproblem and tr
 *************************************lines
 
 B(l)                            susceptance of existing lines in german Grid
-B_prosp_220(l)                  susceptance of existing lines in german Grid
-B_prosp_380(l)                  susceptance of existing lines in german Grid
+B_prosp(l)                      susceptance of existing lines in german Grid
 H(l,n)                          flow senitivity matrix
 Incidence(l,n)
 L_cap(l)                        max. power of each existing line (220 & 380)
-L_cap_inv_220(l)                max. power of each prospective 220 kv line
-L_cap_inv_380(l)                max. power of each prospective 380 kv line
+L_cap_prosp(l)                  max. power of each prospective 380 kv line
 circuits(l)                     number of parallel lines in grid
 I_costs_220(l)                  investment sost per prospective 220 kv line
 I_costs_380(l)                  investment sost per prospective 380 kv line
@@ -289,8 +287,8 @@ $offtext
 ;
 
 $onecho > TEP.txt
-set=Map_send_L                  rng=Mapping!A3:B1682                    rdim=2 cDim=0
-set=Map_res_L                   rng=Mapping!D3:E1682                    rdim=2 cDim=0
+set=Map_send_L                  rng=Mapping!A3:B1000                    rdim=2 cDim=0
+set=Map_res_L                   rng=Mapping!D3:E1000                    rdim=2 cDim=0
 set=MapG                        rng=Mapping!G3:H561                     rdim=2 cDim=0
 set=MapS                        rng=Mapping!J3:K177                     rdim=2 cDim=0
 set=MapRes                      rng=Mapping!S3:T1027                    rdim=2 cDim=0
@@ -314,7 +312,7 @@ par=availup_hydro               rng=Availability!A2:D8762               rDim=1 c
 par=availup_res                 rng=Availability!E2:DU8762              rDim=1 cdim=1
 par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
 par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
-par=Grid_invest                 rng=Grid_invest!A2:G842                 rDim=1 cdim=1
+par=Grid_invest                 rng=Grid_invest!A2:H120                 rDim=1 cdim=1
 $offecho
 
 $onUNDF
@@ -416,15 +414,10 @@ L_cap(l)            =          Grid_tech(l,'L_cap')
 ;
 circuits(l)         =          Grid_tech(l,'circuits')
 ;
-L_cap_inv_220(l)    =          Grid_invest(l,'cap_inv_220')
+L_cap_prosp(l)      =          Grid_invest(l,'cap')
 ;
-L_cap_inv_380(l)    =          Grid_invest(l,'cap_inv_380')
+B_prosp(l)          =          Grid_invest(l,'Susceptance')
 ;
-B_prosp_220(l)      =          Grid_invest(l,'Suscep_220')
-;
-B_prosp_380(l)      =          Grid_invest(l,'Suscep_380')
-;
-
 
 *************************************generators*************************************
 
@@ -468,8 +461,6 @@ delta_af_Wind(t,wr,n)$MapWR(n,wr)       =            availup_res(t,wr) * 0.5
 ;
 *************************************Investments************************************
 
-I_costs_220(l)      =  Grid_invest(l,'Inv_costs_220')/(8760/card(t))
-;
 I_costs_380(l)      =  (Grid_invest(l,'Inv_costs_380')/(8760/card(t))) 
 ;
 
@@ -573,10 +564,6 @@ z_PG_PV(res,t)              decision variable to construct polyhedral UC-set and
 z_PG_wind(res,t)            decision variable to construct polyhedral UC-set and decides weather wind Generation is Max or not
 z_dem(n,t)                  decision variable to construct polyhedral UC-set and decides weather Demand is at a lower or upper bound 
 
-*********************old***************************
-x(l)                  investment in 220 kV line
-y(l)                  investment in 380 kV line
-***************************************************
 ;
 
 Equations
@@ -699,13 +686,13 @@ MP_PF_EX_Cap_LB(l,t,vv)$(ex_l(l)  and (ord(vv) lt (itaux+1)))..                 
 ;
 
 
-MP_PF_PROS_Cap_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =l= L_cap_inv_380(l) * inv_M(l)
+MP_PF_PROS_Cap_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =l= L_cap_prosp(l) * inv_M(l)
 ;
-MP_PF_PROS_Cap_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =g= - L_cap_inv_380(l) * inv_M(l)
+MP_PF_PROS_Cap_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =g= - L_cap_prosp(l) * inv_M(l)
 ;
-MP_PF_PROS_LIN_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - B_prosp_380(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+MP_PF_PROS_LIN_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - B_prosp(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
 ;
-MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - B_prosp_380(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - B_prosp(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
 ;
 
 
@@ -759,8 +746,8 @@ SUB_Dual_Objective..                                                O_Sub =e= su
                                                                     + sum((l,t)$ex_l(l), - omega_UB(l,t) *  L_cap(l))
                                                                     + sum((l,t)$ex_l(l), - omega_LB(l,t) *  L_cap(l))
                                                                     
-                                                                    + sum((l,t)$ex_l(l), - omega_UB(l,t) *  L_cap_inv_380(l))
-                                                                    + sum((l,t)$ex_l(l), - omega_LB(l,t) *  L_cap_inv_380(l))
+                                                                    + sum((l,t)$ex_l(l), - omega_UB(l,t) *  L_cap_prosp(l))
+                                                                    + sum((l,t)$ex_l(l), - omega_LB(l,t) *  L_cap_prosp(l))
                                                                     
                                                                     + sum((n,t), - teta_UB(n,t) * 3.1415)
                                                                     + sum((n,t), - teta_LB(n,t) * 3.1415)
@@ -788,9 +775,9 @@ SUB_Dual_PF(l,t)$ex_l(l)..                                          - sum(n$(Map
                                                                                                                       =e= 0
 ;
 SUB_LIN_Dual(n,t)..                                                 - sum(l$(Map_Send_l(l,n) and ex_l(l) and not ref(n) ),  B(l) * phi(l,t))
-                                                                    - sum(l$(Map_Send_l(l,n) and ex_l(l) and not ref(n) ),  B_prosp_380(l) * phi(l,t))
+                                                                    - sum(l$(Map_Send_l(l,n) and ex_l(l) and not ref(n) ),  B_prosp(l) * phi(l,t))
                                                                     + sum(l$(Map_Res_l(l,n) and ex_l(l) and not ref(n) ),   B(l) * phi(l,t))
-                                                                    + sum(l$(Map_Res_l(l,n) and ex_l(l) and not ref(n) ),   B_prosp_380(l) * phi(l,t))
+                                                                    + sum(l$(Map_Res_l(l,n) and ex_l(l) and not ref(n) ),   B_prosp(l) * phi(l,t))
                                                                     -  teta_UB(n,t)
                                                                     +  teta_LB(n,t)                                  =e= 0
 ;
