@@ -18,10 +18,12 @@ l /l1*l1100/
 g /g1*g559/
 s /s1*s175/
 Res/res1*res1018/
-t/t1*t10/
-v /v1*v7/
+t/t1*t24/
+v /v1*v5/
 sr/sr1*sr59/
 wr/wr1*wr60/
+CSR/CSR1*CSR12/
+CWR/CWR1*CWR12/
 
 *H(t,it)
 
@@ -45,7 +47,7 @@ psp(s)
 psp_DE(s)
 
 ****************************lines***************************************************
-ex_l(l)/l1*l840/
+ex_l(l)/l1*l842/
 pros_l(l)/l1000*l1100/
 *pros_l(l)/l841*l1680/
 
@@ -99,6 +101,8 @@ MapRes(res,n)
 MapSr(n,sr)
 MapWr(n,wr)
 
+Map_C_SR(n,sr)
+Map_C_WR(n,sr)
 
 ;
 alias (n,nn),(t,tt),(l,ll), (v,vv)
@@ -121,7 +125,7 @@ MVABase      /500/
 
 ************************ARO
 
-Toleranz            / 1 /
+Toleranz            / 0 /
 
 LB                  / -1e10 /
 
@@ -149,7 +153,8 @@ Gen_Hydro                       upload table
 priceup                         upload table
 availup_hydro                   upload table
 availup_res                     upload table
-Grid_invest                     upload table
+Grid_invest_new                 upload table
+Grid_invest_upgrade             upload table 
 
 *************************************Load
 
@@ -171,8 +176,8 @@ Incidence(l,n)
 L_cap(l)                        max. power of each existing line (220 & 380)
 L_cap_prosp(l)                  max. power of each prospective 380 kv line
 circuits(l)                     number of parallel lines in grid
-I_costs_220(l)                  investment sost per prospective 220 kv line
-I_costs_380(l)                  investment sost per prospective 380 kv line
+I_costs_upg(l)                  investment cost for an upgrade from 220 kv line to 380 kv line
+I_costs_new(l)                  investment cost for a new line or connection (e.g. PCI)
 
 **************************************generation 
 
@@ -303,7 +308,7 @@ set=Border_prosp_total          rng=Mapping!Y3:Y65                      rdim=1 c
 par=Node_Demand                 rng=Node_Demand!A1:C506                 rDim=1 cdim=1
 par=Neighbor_Demand             rng=Neighboring_countries!A2:K8762      rDim=1 cdim=1
 par=Ger_Demand                  rng=Node_Demand!E1:F8761                rDim=1 cdim=1
-par=Grid_tech                   rng=Grid_tech!A1:H841                   rDim=1 cdim=1
+par=Grid_tech                   rng=Grid_tech!A1:H843                   rDim=1 cdim=1
 par=Gen_conv                    rng=Gen_conv!B2:J561                    rDim=1 cdim=1
 par=Gen_res                     rng=Gen_res!A2:E1120                    rDim=1 cdim=1
 par=Gen_Hydro                   rng=Gen_Hydro!A2:F177                   rDim=1 cdim=1
@@ -312,7 +317,7 @@ par=availup_hydro               rng=Availability!A2:D8762               rDim=1 c
 par=availup_res                 rng=Availability!E2:DU8762              rDim=1 cdim=1
 par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
 par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
-par=Grid_invest                 rng=Grid_invest!A2:H120                 rDim=1 cdim=1
+par=Grid_invest_new             rng=Grid_invest!A2:K47                  rDim=1 cdim=1
 $offecho
 
 $onUNDF
@@ -324,7 +329,7 @@ $load   Node_Demand,Neighbor_Demand, Ger_demand, Grid_tech
 $load   Gen_conv, Gen_res, Gen_Hydro, priceup
 $load   availup_hydro, availup_res
 $load   phy_flow_to_DE, Phy_flow_states_exo
-$load   Grid_invest
+$load   Grid_invest_new
 $GDXin
 $offUNDF
 ;
@@ -414,9 +419,9 @@ L_cap(l)            =          Grid_tech(l,'L_cap')
 ;
 circuits(l)         =          Grid_tech(l,'circuits')
 ;
-L_cap_prosp(l)      =          Grid_invest(l,'cap')
+L_cap_prosp(l)      =          Grid_invest_new(l,'new_cap')
 ;
-B_prosp(l)          =          Grid_invest(l,'Susceptance')
+B_prosp(l)          =          Grid_invest_new(l,'Susceptance')
 ;
 
 *************************************generators*************************************
@@ -453,17 +458,18 @@ af_hydro(reservoir,t)                   =          availup_hydro(t,'reservoir')
 ;
 af_PV_up(t,sr,n)$MapSR(n,sr)            =          availup_res(t,sr)
 ;
-delta_af_PV(t,sr,n)$MapSR(n,sr)         =           availup_res(t,sr) * 0.5
+delta_af_PV(t,sr,n)$MapSR(n,sr)         =          availup_res(t,sr) * 0.5
 ;
 af_Wind_up(t,wr,n)$MapWR(n,wr)          =          availup_res(t,wr)
 ;
-delta_af_Wind(t,wr,n)$MapWR(n,wr)       =            availup_res(t,wr) * 0.5
+delta_af_Wind(t,wr,n)$MapWR(n,wr)       =          availup_res(t,wr) * 0.5
 ;
 *************************************Investments************************************
 
-I_costs_380(l)      =  (Grid_invest(l,'Inv_costs_380')/(8760/card(t))) 
+I_costs_new(l)      =  (Grid_invest_new(l,'Inv_costs_new')/(8760/card(t))) 
 ;
-
+*I_costs_upg(l)      =  (Grid_invest_upgrade(l,'Inv_costs_upgrade')/(8760/card(t))) 
+*;
 *************************************calculating************************************
 
 H(l,n)                              =            B(l)* incidence(l,n)
@@ -498,7 +504,7 @@ option kill = Gen_Hydro ;
 option kill = priceup ;
 option kill = availup_hydro ;
 option kill = availup_res ;
-option kill = Grid_invest ;
+*option kill = Grid_invest ;
 
 *######################################variables######################################
 
@@ -555,7 +561,9 @@ aux_phi_LS(n,t)             aux continuous var to linearize phiLS(n.t) * Pdem(n.
 Binary Variables
 *********************************************Master*************************************************
 
-inv_M(l)                    decision variable regarding investment in a prospective line
+inv_new_M(l)                decision variable regarding investment in a new prospective line
+inv_upg_M(l)                decision variable regarding an possible upgrade of the capacity of an existing line
+
 
 *********************************************Subproblem*********************************************
 
@@ -645,10 +653,10 @@ SUB_lin20
 *#####################################################################################Master####################################################################################
 
 
-MP_Objective(vv)..                                                                              O_M  =e= sum(l, inv_M(l) * I_costs_380(l)) + ETA
+MP_Objective(vv)..                                                                              O_M  =e= sum(l, inv_new_M(l) * I_costs_new(l)) + ETA
 ;
 
-MP_IB(vv)..                                                                                     IB   =g= sum(l, inv_M(l) * I_costs_380(l))
+MP_IB(vv)..                                                                                     IB   =g= sum(l, inv_new_M(l) * I_costs_new(l))
 ;
 
 MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                                                 Demand_data_fixed(n,t,vv) - PLS_M(n,t,vv)   =e= sum(g$MapG (g,n), PG_M_conv(g,t,vv))
@@ -686,13 +694,13 @@ MP_PF_EX_Cap_LB(l,t,vv)$(ex_l(l)  and (ord(vv) lt (itaux+1)))..                 
 ;
 
 
-MP_PF_PROS_Cap_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =l= L_cap_prosp(l) * inv_M(l)
+MP_PF_PROS_Cap_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =l= L_cap_prosp(l) * inv_new_M(l)
 ;
-MP_PF_PROS_Cap_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =g= - L_cap_prosp(l) * inv_M(l)
+MP_PF_PROS_Cap_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              PF_M(l,t,vv) =g= - L_cap_prosp(l) * inv_new_M(l)
 ;
-MP_PF_PROS_LIN_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              (1-inv_M(l)) *M   =g= PF_M(l,t,vv) - B_prosp(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+MP_PF_PROS_LIN_UB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              (1-inv_new_M(l)) *M   =g= PF_M(l,t,vv) - B_prosp(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
 ;
-MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              -(1-inv_M(l)) *M  =l= PF_M(l,t,vv) - B_prosp(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
+MP_PF_PROS_LIN_LB(l,t,vv)$(pros_l(l) and (ord(vv) lt (itaux+1)))..                              -(1-inv_new_M(l)) *M  =l= PF_M(l,t,vv) - B_prosp(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
 ;
 
 
@@ -1009,14 +1017,14 @@ else
 LB =  O_M.l
 *O_M.l
 ;
-inv_cost_master = sum(l,  inv_M.l(l)* I_costs_380(l));
+inv_cost_master = sum(l,  inv_new_M.l(l)* I_costs_new(l));
 
             report_decomp(v,'itaux','')         = itaux;
             report_decomp(v,'Gamma_Load','')    = Gamma_Load                                                    + EPS;
             report_decomp(v,'GAMMA_PG_conv','') = GAMMA_PG_conv                                                 + EPS;
             report_decomp(v,'GAMMA_PG_PV','')   = GAMMA_PG_PV                                                   + EPS;
             report_decomp(v,'GAMMA_PG_wind','') = GAMMA_PG_wind                                                 + EPS;
-            report_decomp(v,'Line built',l)     = inV_M.l(l)                                                         ;
+            report_decomp(v,'Line built',l)     = inv_new_M.l(l)                                                         ;
             report_decomp(v,'line cost','')     = inv_cost_master                                               + EPS;
             report_decomp(v,'M_obj','')         = O_M.L                                                         + EPS;
             report_decomp(v,'ETA','')           = ETA.l                                                         + EPS;
@@ -1038,7 +1046,7 @@ solve Subproblem using MIP maximizing O_Sub
 ;
 *######################################################Step 6
 
-UB = min(UB, (sum(l, inv_M.l(l)* I_costs_380(l)) + O_Sub.l))
+UB = min(UB, (sum(l, inv_new_M.l(l)* I_costs_new(l)) + O_Sub.l))
 ;
 
             report_decomp(v,'network','')       = card(ex_l);
@@ -1061,6 +1069,7 @@ AF_M_Wind_fixed(t,wr,n,v) = AF_Wind.l(t,wr,n)
 
 *execute_unload "check_ARO_toy_complete.gdx"
 $include network_expansion_clean.gms
+execute_unload "check_Test_Loop_Run.gdx";
 ;
 )
 
