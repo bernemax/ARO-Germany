@@ -1,0 +1,54 @@
+
+--- Job Final_TEP_ARO_test.gms Start 03/01/22 14:55:28 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\35\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms"
+    PageSize 0
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225a\"
+    SysDir C:\GAMS\35\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
+          BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
+GAMS 35.1.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+--- Starting compilation
+--- Final_TEP_ARO_test.gms(296) 3 Mb
+--- $echo File Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\TEP.txt
+--- Final_TEP_ARO_test.gms(327) 3 Mb
+--- call gdxxrw Data.xlsx @TEP.txt
+
+GDXXRW           35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
+Input file : Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.xlsx
+Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+Value expected in cell: Av_country!N3; found t1
+Value expected in cell: Av_country!N4; found t2
+Value expected in cell: Av_country!N5; found t3
+Value expected in cell: Av_country!N6; found t4
+Value expected in cell: Av_country!N7; found t5
+Additional errors suppressed
+Total number of bad values for symbol availup_res = 8760
+Value expected in cell: Grid_invest!B3; found l62
+Value expected in cell: Grid_invest!K3; found Freileitung
+Value expected in cell: Grid_invest!B4; found l100
+Value expected in cell: Grid_invest!K4; found Freileitung
+Value expected in cell: Grid_invest!B5; found l216
+Additional errors suppressed
+Total number of bad values for symbol Grid_invest_new = 94
+Total time = 5891 Ms
+--- Final_TEP_ARO_test.gms(328) 3 Mb
+--- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+--- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+--- Final_TEP_ARO_test.gms(501) 14 Mb
+--- Starting execution: elapsed 0:00:06.148
+--- Final_TEP_ARO_test.gms(500) 19 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\check_input.gdx
+--- Profile Summary (2 records processed)
+     0.187   0.019GB       500 Unload     
+     0.016   0.015GB       394 Assignment LS_costs (505)
+*** Status: Normal completion
+--- Job Final_TEP_ARO_test.gms Stop 03/01/22 14:55:35 elapsed 0:00:06.371
