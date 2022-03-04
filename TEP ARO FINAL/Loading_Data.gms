@@ -29,6 +29,8 @@ Gamma_PG_conv       /0/
 Gamma_PG_PV         /0/
 
 Gamma_PG_Wind       /0/
+
+Gamma_PG_REN        /0/
 ;
 
 Parameter
@@ -37,6 +39,8 @@ Ger_Demand                      upload table
 Grid_tech                       upload table
 Gen_conv                        upload table
 Gen_res                         upload table
+Gen_ren                         upload table
+Gen_tot_ren                     upload table
 Gen_Hydro                       upload table
 priceup                         upload table
 availup_hydro                   upload table
@@ -72,6 +76,7 @@ I_costs_new(l)                  investment cost for a new line or connection (e.
 PG_M_fixed_conv(g,t,v)           fixed realisation of supply in subproblem and tranferred to master
 AF_M_PV_fixed(t,sr,n,v)          fixed PV availability factor in subproblem and tranferred to master
 AF_M_Wind_fixed(t,wr,n,v)        fixed Wind availability factor in subproblem and tranferred to master
+AF_M_Ren_fixed(t,rr,n,v)         fixed combined wind and solar pv availability 
 
 **************************************tech & costs
 Fc_conv(g,t)                    fuel costs conventional powerplants
@@ -88,6 +93,7 @@ cap_conv(g)                     max. generation capacity of each conventional ge
 delta_cap_conv(g)               max. decrease of generation capacity of each conventional generator
 cap_hydro(s)                    max. generation capacity of each psp
 cap_res(res)                    max. generation capacity of each RES
+cap_ren(ren)                    max. generation capacity of combined wind and solar PV  
 
 Eff_conv(g)                     efficiency of conventional powerplants
 Eff_hydro(s)                    efficiency of hydro powerplants
@@ -99,7 +105,9 @@ af_hydro(s,t)                   availability of hydro potential
 af_PV_up(t,sr,n)                upper capacity factor of solar energy
 delta_af_PV(t,sr,n) 
 af_wind_up(t,wr,n)              upper capacity factor of wind energy
-delta_af_Wind(t,wr,n) 
+delta_af_Wind(t,wr,n)
+af_ren_up(t,rr,n)               upper capacity factor of wind and solar pv energy
+delta_af_ren(t,rr,n)
 
 **************************************historical physical flow
 
@@ -185,12 +193,16 @@ set=Map_res_L                   rng=Mapping!D3:E1000                    rdim=2 c
 set=MapG                        rng=Mapping!G3:H567                     rdim=2 cDim=0
 set=MapS                        rng=Mapping!J3:K180                     rdim=2 cDim=0
 set=MapRes                      rng=Mapping!S3:T1027                    rdim=2 cDim=0
+set=MapRen                      rng=Mapping!BB3:Bc483                   rdim=2 cDim=0
 set=MapWr                       rng=Mapping!AA3:AB483                   rdim=2 cDim=0
 set=MapSr                       rng=Mapping!AD3:AE483                   rdim=2 cDim=0
+set=MapRR                       rng=Mapping!AU3:AV483                   rdim=2 cDim=0
+set=Map_RR                      rng=Mapping!AX3:BA483                   rdim=3 cDim=0
 set=Map_WR_wind                 rng=Mapping!AG3:AI483                   rdim=3 cDim=0
 set=Map_SR_sun                  rng=Mapping!AK3:AM483                   rdim=3 cDim=0
 set=SR_sun                      rng=Mapping!AO3:AP483                   rdim=2 cDim=0
 set=WR_wind                     rng=Mapping!AR3:AS483                   rdim=2 cDim=0
+set=RR_ren                      rng=Mapping!BE3:BF483                   rdim=2 cDim=0
 set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
 
 
@@ -199,11 +211,12 @@ par=Neighbor_Demand             rng=Neighboring_countries!A2:L8762      rDim=1 c
 par=Ger_Demand                  rng=Node_Demand!E1:F8761                rDim=1 cdim=1
 par=Grid_tech                   rng=Grid_tech!A1:H843                   rDim=1 cdim=1
 par=Gen_conv                    rng=Gen_conv!B2:J567                    rDim=1 cdim=1
-par=Gen_res                     rng=Gen_res!A2:E1123                    rDim=1 cdim=1
+par=Gen_res                     rng=Gen_res!A2:F1123                    rDim=1 cdim=1
+par=Gen_ren                     rng=Gen_res!I2:K483                     rDim=1 cdim=1
 par=Gen_Hydro                   rng=Gen_Hydro!A2:F180                   rDim=1 cdim=1
 par=priceup                     rng=prices!A1:I8761                     rDim=1 cdim=1
 par=availup_hydro               rng=Availability!A2:D8762               rDim=1 cdim=1
-par=availup_res                 rng=Av_country!A2:Z8762                 rDim=1 cdim=1
+par=availup_res                 rng=Av_country!A2:AK8762                rDim=1 cdim=1
 par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
 par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
 par=Grid_invest_new             rng=Grid_invest!A2:K50                  rDim=1 cdim=1
@@ -212,10 +225,10 @@ $offecho
 $onUNDF
 $call   gdxxrw Data.xlsx @TEP.txt
 $GDXin  Data.gdx
-$load   Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr, Map_WR_wind, Map_SR_sun, SR_sun, WR_wind
+$load   Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr, Map_WR_wind, Map_SR_sun, SR_sun, WR_wind, MapRen, MapRR, Map_RR, RR_ren 
 $load   Border_exist_DE
 $load   Node_Demand,Neighbor_Demand, Ger_demand, Grid_tech
-$load   Gen_conv, Gen_res, Gen_Hydro, priceup
+$load   Gen_conv, Gen_res, Gen_Hydro, priceup, Gen_ren
 $load   availup_hydro, availup_res
 $load   phy_flow_to_DE, Phy_flow_states_exo
 $load   Grid_invest_new
@@ -320,6 +333,8 @@ Cap_hydro(s)        =          Gen_Hydro(s,'Gen_cap')
 ;
 Cap_res(res)        =          Gen_res(res,'Gen_cap')
 ;
+cap_ren(ren)        =          Gen_ren(ren,'Gen_cap_total') 
+;
 Eff_conv(g)         =          Gen_conv(g,'eff')
 ;
 Eff_hydro(s)        =          Gen_Hydro(s,'eff')
@@ -344,13 +359,17 @@ af_hydro(psp,t)                         =          availup_hydro(t,'psp')
 ;
 af_hydro(reservoir,t)                   =          availup_hydro(t,'reservoir')
 ;
-af_PV_up(t,sr,n)$MapSR(n,sr)            =          availup_res(t,sr)
+af_PV_up(t,sr,n)$MapSR(sr,n)            =          availup_res(t,sr)
 ;
-delta_af_PV(t,sr,n)$MapSR(n,sr)         =          availup_res(t,sr) * 0.95
+delta_af_PV(t,sr,n)$MapSR(sr,n)         =          availup_res(t,sr) * 0.95
 ;
-af_Wind_up(t,wr,n)$MapWR(n,wr)          =          availup_res(t,wr)
+af_Wind_up(t,wr,n)$MapWr(wr,n)          =          availup_res(t,wr)
 ;
-delta_af_Wind(t,wr,n)$MapWR(n,wr)       =          availup_res(t,wr) * 0.95
+delta_af_Wind(t,wr,n)$MapWr(wr,n)       =          availup_res(t,wr) * 0.95
+;
+af_ren_up(t,rr,n)$MapRR(rr,n)            =         availup_res(t,rr)
+;
+delta_af_ren(t,rr,n)$MapRR(rr,n)         =         availup_res(t,rr)
 ;
 *************************************Investments************************************
 

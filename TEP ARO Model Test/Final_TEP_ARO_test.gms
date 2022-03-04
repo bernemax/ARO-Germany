@@ -3,11 +3,8 @@ option profile = 1;
 option profiletol = 0.01;
 
 
-$setGlobal Prosp_exist "*"          if "*" only existing lines are taken into account, if "" model can invest into prospective lines
-$setGlobal Start_up    ""          if "*" starts ups are not concidered, if "" start ups are concidered
-$setGlobal only_380    ""           if "*" only investments in 380 KV lines are taken into account, if "" 220 kV and 380 kV lines are taken into account
-$setGlobal Borderexp   "*"           if "*" border expansion, if "" no border expansion
-$setGlobal endotrans   "*"          if "*" transmission between countries is modelled engogeniously, if "" then physical flow is added exogeniously
+$setGlobal Single_Wind_and_PV         ""          if "*" no individual Wind and PV generation is considered, if "" Wind and PV are considered individually
+$setGlobal Summed_Wind_PV             "*"          if "*" no cummulative Wind and PV generation is considered, if "" combined Wind and PV is considered 
 ;
 
 Sets
@@ -17,13 +14,21 @@ n /n1*n510/
 l /l1*l1100/
 g /g1*g565/
 s /s1*s178/
-Res/res1*res1021/
-t/t1*t200/
+*sun and wind set
+Res/res1*res1021/                       
+*set, that represents the sum of sun and wind
+Ren/ren1*ren481/
+
+t/t1*t20/
 v /v1*v5/
 sr/sr1*sr12/
 wr/wr1*wr12/
+rr/rr1*rr12/
 *CSR/CSR1*CSR12/
 *CWR/CWR1*CWR12/
+
+Sun_shine(t) /t8*t16/
+*t32*t40, t56*t64, t80*t88, t104*t114/
 
 *H(t,it)
 
@@ -97,420 +102,32 @@ MapG(g,n)
 MapS(s,n)
 
 MapRes(res,n)
-MapSr(n,sr)
-MapWr(n,wr)
+MapRen(ren,n)
+MapSr(sr,n)
+MapWr(wr,n)
+MapRR(rr,n)
+
 
 Map_SR_sun(sr,res,n)
 Map_WR_Wind(wr,res,n)
+Map_RR(rr,ren,n)
 
 SR_sun(sr,res)
 WR_wind(wr,res)
+RR_ren(rr,ren)
+
 
 ;
 alias (n,nn),(t,tt),(l,ll), (v,vv)
-
 ;
-****************************************scalars**************************************
-Scalars
-*max invest budget
-IB           /2000000000/
-*big M
-M            /10000/
-*reliability of powerlines (simplification of n-1 criteria)
-reliability  /1/
-*curtailment costs
-cur_costs    /150/
-*ratio storage capacity factor
-store_cpf    /7/
-*base value for per unit calculation
-MVABase      /500/
-
-************************ARO
-
-Toleranz            / 0.001 /
-
-LB                  / -1e10 /
-
-UB                  / 1e10 /
-
-itaux               / 1 /
-
-Gamma_Load          /0/
-
-Gamma_PG_conv       /0/
-
-Gamma_PG_PV         /0/
-
-Gamma_PG_Wind       /0/
+Scalar
+Gamma_test /10/
 ;
-
-**************************************parameters**************************************
-Parameter
-Node_Demand                     upload table
-Ger_Demand                      upload table
-Grid_tech                       upload table
-Gen_conv                        upload table
-Gen_res                         upload table
-Gen_Hydro                       upload table
-priceup                         upload table
-availup_hydro                   upload table
-availup_res                     upload table
-Grid_invest_new                 upload table
-Grid_invest_upgrade             upload table 
-
-*************************************Load
-
-total_load(t)                   electrical demand in germany in hour t
-load(n,t)                       electrical demand in each node in hour t
-delta_load(n,t)                 max increase of demand in each node in hour t
-load_share(n)                   electrical demand share per node
-Neighbor_Demand(t,n)            electrical demand in neighboring countries of germany in hour t
-LS_costs(n)                     loadshedding costs per node
-
-Demand_data_fixed(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
-
-*************************************lines
-
-B(l)                            susceptance of existing lines in german Grid
-B_prosp(l)                      susceptance of existing lines in german Grid
-H(l,n)                          flow senitivity matrix
-Incidence(l,n)
-L_cap(l)                        max. power of each existing line (220 & 380)
-L_cap_prosp(l)                  max. power of each prospective 380 kv line
-circuits(l)                     number of parallel lines in grid
-I_costs_upg(l)                  investment cost for an upgrade from 220 kv line to 380 kv line
-I_costs_new(l)                  investment cost for a new line or connection (e.g. PCI)
-
-**************************************generation 
-
-PG_M_fixed_conv(g,t,v)           fixed realisation of supply in subproblem and tranferred to master
-AF_M_PV_fixed(t,sr,n,v)          fixed PV availability factor in subproblem and tranferred to master
-AF_M_Wind_fixed(t,wr,n,v)        fixed Wind availability factor in subproblem and tranferred to master
-
-**************************************tech & costs
-Fc_conv(g,t)                    fuel costs conventional powerplants
-Fc_res(res,t)                   fuel costs renewable powerplants
-CO2_content(g)                  Co2 content
-CO2_costs(t)                    CO2 costs
-SU_costs(g,t)                   start-up costs conventionals
-su_fact(g)                      start-up factor conventionals
-fuel_start(g)                   fuel consumption factor if start-up decision
-depri_costs(g)                  deprication costs conventionals
-var_costs(g,t)                  variable costs conventional power plants
-
-cap_conv(g)                     max. generation capacity of each conventional generator
-delta_cap_conv(g)               max. decrease of generation capacity of each conventional generator
-cap_hydro(s)                    max. generation capacity of each psp
-cap_res(res)                    max. generation capacity of each RES
-
-Eff_conv(g)                     efficiency of conventional powerplants
-Eff_hydro(s)                    efficiency of hydro powerplants
-Eff_res(res)                    efficiency of renewable powerplants
-
-**************************************Availability
-
-af_hydro(s,t)                   availability of hydro potential
-af_PV_up(t,sr,n)                upper capacity factor of solar energy
-delta_af_PV(t,sr,n) 
-af_wind_up(t,wr,n)              upper capacity factor of wind energy
-delta_af_Wind(t,wr,n) 
-
-**************************************historical physical flow
-
-phy_flow_to_DE(t,n)             physical cross border flow for each country specific node in direct realtion with germany
-phy_flow_states_exo(t,n)        physical cross border flow for each country specific node in no realtion with germany
-
-*********************************************report parameters********************************************************
-
-report_main(*,*)
-report_decomp(v,*,*)
-inv_iter_hist(l,v)
-inv_cost_master
-
-
-$ontext
-Time_restrict_up
-Time_restrict_lo
-*solve_time(,*)
-
-report_mapped_flow(l,t)                directed flow report
-report_mapped_flow_DE(t)               saldo flow report regarding total Ex and imports of germany
-report_mapped_ExIm_flow(l,t)           directed flow report from and to DE neigboring countries
-report_mapped_ExIm_sum_flow(n)  	   directed summarized flow report from and to DE neigboring countries
-
-report_resulting_load_De(t)
-report_price(n,t)
-report_price_de(t)
-
-report_total_gen(t)
-report_total_gen_g(t)
-report_total_gen_r(t)
-report_total_gen_s(t)
-
-report_DE_gen_lig(t)
-report_DE_gen_coal(t)
-report_DE_gen_gas(t)
-report_DE_gen_oil(t)
-report_DE_gen_nuc(t)
-report_DE_gen_waste(t)
-
-report_DE_gen_Sun(t)
-report_DE_gen_Wind(t)
-report_DE_gen_BIO(t)
-
-report_DE_gen_ROR(t)
-report_DE_gen_PSP(t)
-report_DE_gen_Reservoir(t)
-
-report_DE_charge(t)
-
-report_countries_gen_lig(n,t)
-report_countries_gen_coal(n,t)
-report_countries_gen_gas(n,t)
-report_countries_gen_oil(n,t)
-report_countries_gen_nuc(n,t)
-report_countries_gen_waste(n,t)
-
-report_countries_gen_sun(n,t)
-report_countries_gen_wind(n,t)
-report_countries_gen_bio(n,t)
-
-report_countries_gen_ROR(n,t)
-report_countries_gen_PSP(n,t)
-report_countries_gen_Reservoir(n,t)
-
-report_Gen_Denmark(n,t)
-report_Gen_Sweden(n,t)
-report_Gen_Poland(n,t)
-report_Gen_Czechia(n,t)
-report_Gen_Austria(n,t)
-report_Gen_Swiss(n,t)
-report_Gen_France(n,t)
-report_Gen_Luxemburg(n,t)
-report_Gen_Belgium(n,t)
-report_Gen_Netherland(n,t)
-$offtext
-**********************************************input Excel table*******************************************************
-;
-
-$onecho > TEP.txt
-set=Map_send_L                  rng=Mapping!A3:B1000                    rdim=2 cDim=0
-set=Map_res_L                   rng=Mapping!D3:E1000                    rdim=2 cDim=0
-set=MapG                        rng=Mapping!G3:H567                     rdim=2 cDim=0
-set=MapS                        rng=Mapping!J3:K180                     rdim=2 cDim=0
-set=MapRes                      rng=Mapping!S3:T1027                    rdim=2 cDim=0
-set=MapWr                       rng=Mapping!AA3:AB483                   rdim=2 cDim=0
-set=MapSr                       rng=Mapping!AD3:AE483                   rdim=2 cDim=0
-set=Map_WR_wind                 rng=Mapping!AG3:AI483                   rdim=3 cDim=0
-set=Map_SR_sun                  rng=Mapping!AK3:AM483                   rdim=3 cDim=0
-set=SR_sun                      rng=Mapping!AO3:AP483                   rdim=2 cDim=0
-set=WR_wind                     rng=Mapping!AR3:AS483                   rdim=2 cDim=0
-set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
-
-par=Node_Demand                 rng=Node_Demand!A1:C506                 rDim=1 cdim=1
-par=Neighbor_Demand             rng=Neighboring_countries!A2:L8762      rDim=1 cdim=1
-par=Ger_Demand                  rng=Node_Demand!E1:F8761                rDim=1 cdim=1
-par=Grid_tech                   rng=Grid_tech!A1:H843                   rDim=1 cdim=1
-par=Gen_conv                    rng=Gen_conv!B2:J567                    rDim=1 cdim=1
-par=Gen_res                     rng=Gen_res!A2:E1123                    rDim=1 cdim=1
-par=Gen_Hydro                   rng=Gen_Hydro!A2:F180                   rDim=1 cdim=1
-par=priceup                     rng=prices!A1:I8761                     rDim=1 cdim=1
-par=availup_hydro               rng=Availability!A2:D8762               rDim=1 cdim=1
-par=availup_res                 rng=Av_country!A2:Z8762                 rDim=1 cdim=1
-par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
-par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
-par=Grid_invest_new             rng=Grid_invest!A2:K50                  rDim=1 cdim=1
-$offecho
-
-$onUNDF
-$call   gdxxrw Data.xlsx @TEP.txt
-$GDXin  Data.gdx
-$load   Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr, Map_WR_wind, Map_SR_sun, SR_sun, WR_wind
-$load   Border_exist_DE, Border_prosp_DE
-$load   Node_Demand,Neighbor_Demand, Ger_demand, Grid_tech
-$load   Gen_conv, Gen_res, Gen_Hydro, priceup
-$load   availup_hydro, availup_res
-$load   phy_flow_to_DE, Phy_flow_states_exo
-$load   Grid_invest_new
-$GDXin
-$offUNDF
-
-*res availiability corrisponding to german 60 zones
-*par=availup_res                 rng=Availability!E2:DU8762              rDim=1 cdim=1 
-;
-*####################################subset definitions#############################
-
-Map_Grid(l,n)$(Map_send_L(l,n)) = yes
-;
-Map_Grid(l,n)$(Map_res_L(l,n)) = yes
-;
-Relevant_Nodes(n)$NoDeSciGrid(n)  = no
-;
-De(n)$NoDeSciGrid(n)  = no
-;
-*no expansion of broderlines
-pros_l(l)$(Border_prosp_DE(l)) = yes
-;
-*Thermal(g) = Gen_conv(g,'class') = 1
-*;
-gas(g)      =    Gen_conv(g,'tech')  = 1
-;
-oil(g)      =    Gen_conv(g,'tech')  = 2
-;
-coal(g)     =    Gen_conv(g,'tech')  = 3
-;
-lig(g)      =    Gen_conv(g,'tech')  = 4
-;
-nuc(g)      =    Gen_conv(g,'tech')  = 5
-;
-waste(g)    =    Gen_conv(g,'tech')  = 6
-;
-
-***************************************hydro****************************************
-
-psp(s)      =    Gen_Hydro(s,'tech') = 1
-;
-reservoir(s)=    Gen_Hydro(s,'tech') = 2
-;
-ror(s)      =    Gen_Hydro(s,'tech') = 3
-;
-
-****************************************res*****************************************
-
-wind(res)   =    Gen_res(res,'tech') = 1
-;
-sun(res)    =    Gen_res(res,'tech') = 2
-;
-biomass(res)=    Gen_res(res,'tech') = 3
-;
-
-*###################################loading parameter###############################
-
-*****************************************demand*************************************
-
-total_load(t)       =          Ger_demand(t,'total_load')
-;
-LS_costs(n)         =          Node_Demand(n,'LS_costs')
-;
-load_share(n)       =          Node_Demand(n,'share')
-;
-
-*****************************************prices*************************************
-
-Fc_conv(gas,t)      =          priceup(t,'gas')
-;
-Fc_conv(oil,t)      =          priceup(t,'oil')
-;
-Fc_conv(coal,t)     =          priceup(t,'coal')
-;
-Fc_conv(lig,t)      =          priceup(t,'lignite')
-;
-Fc_conv(nuc,t)      =          priceup(t,'nuclear')
-;
-Fc_conv(waste,t)    =          priceup(t,'waste')
-;
-Fc_res(biomass,t)   =          priceup(t,'biomass')
-;
-CO2_costs(t)        =          priceup(t,'CO2')
-;
-
-************************************Grid technical**********************************
-
-B(l)                =          Grid_tech(l,'Susceptance')
-;
-incidence(l,n)      =          Map_Grid(l,n)
-;
-L_cap(l)            =          Grid_tech(l,'L_cap')
-;
-circuits(l)         =          Grid_tech(l,'circuits')
-;
-L_cap_prosp(l)      =          Grid_invest_new(l,'new_cap')
-;
-B_prosp(l)          =          Grid_invest_new(l,'Susceptance')
-;
-
-*************************************generators*************************************
-
-Cap_conv(g)         =          Gen_conv(g,'Gen_cap')
-;
-Cap_hydro(s)        =          Gen_Hydro(s,'Gen_cap')
-;
-Cap_res(res)        =          Gen_res(res,'Gen_cap')
-;
-Eff_conv(g)         =          Gen_conv(g,'eff')
-;
-Eff_hydro(s)        =          Gen_Hydro(s,'eff')
-;
-Eff_res(res)        =          Gen_res(res,'eff')
-;
-Co2_content(g)      =          Gen_conv(g,'CO2')
-;
-su_fact(g)          =          Gen_conv(g,'su_fact')
-;
-depri_costs(g)      =          Gen_conv(g,'depri_costs')
-;
-fuel_start(g)       =          Gen_conv(g,'fuel_start')
-;
-
-************************************availability************************************
-
-
-af_hydro(ror,t)                         =          availup_hydro(t,'ror')
-;
-af_hydro(psp,t)                         =          availup_hydro(t,'psp')
-;
-af_hydro(reservoir,t)                   =          availup_hydro(t,'reservoir')
-;
-af_PV_up(t,sr,n)$MapSR(n,sr)            =          availup_res(t,sr)
-;
-delta_af_PV(t,sr,n)$MapSR(n,sr)         =          availup_res(t,sr) * 0.95
-;
-af_Wind_up(t,wr,n)$MapWR(n,wr)          =          availup_res(t,wr)
-;
-delta_af_Wind(t,wr,n)$MapWR(n,wr)       =          availup_res(t,wr) * 0.95
-;
-*************************************Investments************************************
-
-I_costs_new(l)      =  (Grid_invest_new(l,'Inv_costs_new')/(8760/card(t))) 
-;
-*I_costs_upg(l)      =  (Grid_invest_upgrade(l,'Inv_costs_upgrade')/(8760/card(t))) 
-*;
-*************************************calculating************************************
-
-H(l,n)                              =            B(l)* incidence(l,n)
-;
-load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) / 1
-;
-delta_load(n,t)$(De(n))             =            load_share(n)*total_load(t) * 0.1
-; 
-load(n,t)$(border_states(n))        =            (Neighbor_Demand(t,n)) 
-;
-delta_load(n,t)$(border_states(n))  =            Neighbor_Demand(t,n) * 0.1
-;
-delta_Cap_conv(g)                   =            Cap_conv(g) * 0.9
-;
-
-
-var_costs(g,t)                      =            ((FC_conv(g,t)+ co2_costs(t) * co2_content(g)) / Eff_conv(g))
-;
-su_costs(g,t)                       =            depri_costs(g) + su_fact(g) * fuel_start(g) * FC_conv(g,t) + co2_content(g) * co2_costs(t)
+$include Loading_Data.gms
 ;
 
 *execute_unload "check_input.gdx";
 *$stop
-*************************************upload table clearing**************************
-
-option kill = Node_Demand ;   
-option kill = Ger_Demand ; 
-option kill = Grid_tech ;
-option kill = Gen_conv ;
-option kill = Gen_res ;
-option kill = Gen_Hydro ;
-option kill = priceup ;
-option kill = availup_hydro ;
-option kill = availup_res ;
-*option kill = Grid_invest ;
-
 *######################################variables######################################
 
 Variables
@@ -534,19 +151,22 @@ PG_M_conv(g,t,v)            power generation level of conventional generators
 PG_M_Hydro(s,t,v)           power generation from hydro reservoir and psp and ror
 PG_M_PV(res,t,v)            power generation level of renewable volatil PV generators
 PG_M_Wind(res,t,v)          power generation level of renewable volatil wind generators
+PG_M_Ren(ren,t,v)           cummulative power generation level of renewable solar pv and wind generators
 PLS_M(n,t,v)                load shedding
 
 *********************************************Subproblem*********************************************
 
 Pdem(n,t)                   realization of demand (Ro)
 PE_conv(g,t)                realization of conventional supply (Ro)
-AF_PV(t,sr,n)                realization of PV availability (Ro)
-AF_wind(t,wr,n)              realization of Wind availability (Ro)
+AF_PV(t,sr,n)               realization of PV availability (Ro)
+AF_wind(t,wr,n)             realization of Wind availability (Ro)
+AF_Ren(t,rr,n)              realization of combined wind and pv 
 
 phiPG_conv(g,t)             dual var phi assoziated with Equation: MP_PG_conv
 phiPG_Hydro(s,t)            dual Var phi assoziated with Equation: MP_PG_Hydro
-phiPG_PV(res,t)              dual var phi assoziated with Equation: MP_PG_Sun
-phiPG_Wind(res,t)            dual var phi assoziated with Equation: MP_PG_wind
+phiPG_PV(res,t)             dual var phi assoziated with Equation: MP_PG_Sun
+phiPG_Wind(res,t)           dual var phi assoziated with Equation: MP_PG_wind
+phiPG_Ren(ren,t)            dual variable of combined wind and solar pv generation assoziated with Equation: MP_PG_RR
 
 phiLS(n,t)                  dual var phi assoziated with Equation: MP_LS
 
@@ -558,9 +178,11 @@ teta_LB(n,t)                dual var beta assoziated with Equation: Theta_LB
 
 aux_lam(n,t)                aux continuous var to linearize lam(n.t) * Pdem(n.t) in SUB Objective (Pdem can become variable when uncertainty is considered)
 aux_phi_PG(g,t)             aux continuous var to linearize phiPG(g.t) * PE(g.t) in SUB Objective (PE can become variable when uncertainty is considered)
-aux_phi_PG_PV(res,t)         aux continuous var to linearize phiPG_PV(sun.t) * AF_PV(sun.t)  in SUB Objective (PE can become variable when uncertainty is considered)
-aux_phi_PG_wind(res,t)        aux continuous var to linearize phiPG_wind(wind.t) * AF_wind(wind.t) in SUB Objective (PE can become variable when uncertainty is considered)
+aux_phi_PG_PV(res,t)        aux continuous var to linearize phiPG_PV(sun.t) * AF_PV(sun.t)  in SUB Objective (PE can become variable when uncertainty is considered)
+aux_phi_PG_wind(res,t)      aux continuous var to linearize phiPG_wind(wind.t) * AF_wind(wind.t) in SUB Objective (PE can become variable when uncertainty is considered)
 aux_phi_LS(n,t)             aux continuous var to linearize phiLS(n.t) * Pdem(n.t) in SUB Objective
+
+aux_phi_PG_Ren(ren,t)
 ;
 
 Binary Variables
@@ -569,13 +191,14 @@ Binary Variables
 inv_new_M(l)                decision variable regarding investment in a new prospective line
 inv_upg_M(l)                decision variable regarding an possible upgrade of the capacity of an existing line
 
-
 *********************************************Subproblem*********************************************
 
-z_PG_conv(g,t)              decision variable to construct polyhedral UC-set and decides weather conventional Generation is Max or not
-z_PG_PV(sr,t)               decision variable to construct polyhedral UC-set and decides weather PV Generation is Max or not
-z_PG_Wind(wr,t)             decision variable to construct polyhedral UC-set and decides weather wind Generation is Max or not
-z_dem(n,t)                  decision variable to construct polyhedral UC-set and decides weather Demand is at a lower or upper bound 
+z_PG_conv(g,t)              decision variable to construct polyhedral UC-set and decides weather conventional Generation potential is Max or not
+z_PG_PV(sr,t)               decision variable to construct polyhedral UC-set and decides weather PV Generation potential is Max or not
+z_PG_Wind(wr,t)             decision variable to construct polyhedral UC-set and decides weather wind Generation potential is Max or not
+z_dem(n,t)                  decision variable to construct polyhedral UC-set and decides weather Demand is at a lower or upper bound
+
+z_PG_Ren(rr,t)              decision variable to construct polyhedral UC-set and decides weather combined pv and wind generation potential is Max or not
 
 ;
 
@@ -589,6 +212,8 @@ MP_PG_conv
 MP_PG_Hydro
 MP_PG_PV
 MP_PG_Wind
+MP_PG_RR
+
    
 MP_PF_EX       
 MP_PF_EX_Cap_UB
@@ -613,6 +238,7 @@ SUB_Dual_PG_conv
 SUB_Dual_PG_hydro
 SUB_Dual_PG_sun
 SUB_Dual_PG_wind
+SUB_Dual_PG_Ren
 
 SUB_Dual_LS
 SUB_Dual_PF
@@ -628,9 +254,16 @@ SUB_UB_PG_conv
 
 SUB_US_PG_sun
 SUB_UB_PG_sun
+SUB_PV_time_coupling
 
 SUB_US_PG_wind
 SUB_UB_PG_wind
+SUB_wind_time_coupling
+
+SUB_US_PG_RR
+SUB_UB_PG_RR
+SUB_RR_time_coupling
+
 
 SUB_lin1
 SUB_lin2
@@ -652,8 +285,10 @@ SUB_lin17
 SUB_lin18
 SUB_lin19
 SUB_lin20
-
-
+SUB_lin21
+SUB_lin22
+SUB_lin23
+SUB_lin24
 ;
 *#####################################################################################Master####################################################################################
 
@@ -668,8 +303,9 @@ MP_marketclear(n,t,vv)$(ord(vv) lt (itaux+1))..                                 
                                                                     
                                                                                                 + sum(s$MapS(s,n),  PG_M_Hydro(s,t,vv))
 
-                                                                                                +  sum(sun$MapRes(sun,n), PG_M_PV(sun,t,vv))
-                                                                                                +  sum(wind$MapRes(wind,n), PG_M_Wind(wind,t,vv))
+%Single_Wind_and_PV%                                                                            +  sum(sun$MapRes(sun,n), PG_M_PV(sun,t,vv))
+%Single_Wind_and_PV%                                                                            +  sum(wind$MapRes(wind,n), PG_M_Wind(wind,t,vv))
+%Summed_Wind_PV%                                                                                +  sum(ren$MapRen(ren,n), PG_M_Ren(ren,t,vv))
                                                     
                                                                                                 +  sum(l$(Map_Res_l(l,n) and ex_l(l)), PF_M(l,t,vv))
                                                                                                 -  sum(l$(Map_Send_l(l,n) and ex_l(l)), PF_M(l,t,vv))
@@ -684,12 +320,12 @@ MP_PG_conv(g,t,vv)$(ord(vv) lt (itaux+1))..                                     
 ;
 MP_PG_Hydro(s,t,vv)$(ord(vv) lt (itaux+1))..                                                    PG_M_Hydro(s,t,vv)      =l= Cap_hydro(s)
 ;
-MP_PG_PV(sun,sr,n,t,vv)$(Map_SR_sun(sr,sun,n) and (ord(vv) lt (itaux+1)))..                     PG_M_PV(sun,t,vv)      =l= Cap_res(sun) * AF_M_PV_fixed(t,sr,n,vv) 
+MP_PG_PV(sun,sr,n,t,vv)$(Map_SR_sun(sr,sun,n) and (ord(vv) lt (itaux+1)))..                     PG_M_PV(sun,t,vv)       =l= Cap_res(sun) * AF_M_PV_fixed(t,sr,n,vv) 
 ;
-MP_PG_Wind(wind,wr,n,t,vv)$(Map_WR_Wind(wr,wind,n) and (ord(vv) lt (itaux+1)))..                 PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * AF_M_Wind_fixed(t,wr,n,vv)
+MP_PG_Wind(wind,wr,n,t,vv)$(Map_WR_Wind(wr,wind,n) and (ord(vv) lt (itaux+1)))..                PG_M_Wind(wind,t,vv)    =l= Cap_res(wind) * AF_M_Wind_fixed(t,wr,n,vv)
 ;
-
-
+MP_PG_RR(ren,rr,n,t,vv)$(Map_RR(rr,ren,n) and (ord(vv) lt (itaux+1)))..                         PG_M_Ren(ren,t,vv)       =l= Cap_ren(ren) * AF_M_Ren_fixed(t,rr,n,vv) 
+;
 
 MP_PF_EX(l,t,vv)$(ex_l(l)  and (ord(vv) lt (itaux+1)))..                                        PF_M(l,t,vv) =e= B(l) * (sum(n$Map_Send_l(l,n),  Theta(n,t,vv)) - sum(n$Map_Res_l(l,n),  Theta(n,t,vv)))
 ;      
@@ -743,14 +379,17 @@ SUB_Dual_Objective..                                                O_Sub =e= su
                                                                     
                                                                     + sum((s,t), - phiPG_hydro(s,t) * Cap_Hydro(s))
                                                                    
-                                                                    + sum((sr,sun,n,t)$Map_SR_sun(sr,sun,n),
-                                                                    - phiPG_PV(sun,t) * (Cap_res(sun) *  af_PV_up(t,sr,n))
-                                                                    + aux_phi_PG_PV(sun,t) * ( Cap_res(sun) * delta_af_PV(t,sr,n)))
+%Single_Wind_and_PV%                                                + sum((sr,sun,n,t)$Map_SR_sun(sr,sun,n),
+%Single_Wind_and_PV%                                                - phiPG_PV(sun,t) * (Cap_res(sun) *  af_PV_up(t,sr,n))
+%Single_Wind_and_PV%                                                + aux_phi_PG_PV(sun,t) * ( Cap_res(sun) * delta_af_PV(t,sr,n)))
                                                                     
-                                                                    + sum((wr,wind,n,t)$Map_WR_Wind(wr,wind,n),
-                                                                    - phiPG_Wind(wind,t) * (Cap_res(wind) *  af_Wind_up(t,wr,n))
-                                                                    + aux_phi_PG_wind(wind,t)  * ( Cap_res(wind) * delta_af_wind(t,wr,n)))
+%Single_Wind_and_PV%                                                + sum((wr,wind,n,t)$Map_WR_Wind(wr,wind,n),
+%Single_Wind_and_PV%                                                - phiPG_Wind(wind,t) * (Cap_res(wind) *  af_Wind_up(t,wr,n))
+%Single_Wind_and_PV%                                                + aux_phi_PG_wind(wind,t)  * ( Cap_res(wind) * delta_af_wind(t,wr,n)))
 
+%Summed_Wind_PV%                                                    + sum((rr,ren,n,t)$Map_RR(rr,ren,n),
+%Summed_Wind_PV%                                                    - phiPG_Ren(ren,t) * ( Cap_ren(ren) * af_ren_up(t,rr,n))
+%Summed_Wind_PV%                                                    + aux_phi_PG_Ren(ren,t) * ( Cap_ren(ren) * delta_af_ren(t,rr,n)))
 
                                                                     + sum((n,t), - phiLS(n,t) * load(n,t) 
                                                                     + aux_phi_LS(n,t) * ( - delta_load(n,t))) 
@@ -765,23 +404,25 @@ SUB_Dual_Objective..                                                O_Sub =e= su
                                                                     + sum((n,t), - teta_UB(n,t) * 3.1415)
                                                                     + sum((n,t), - teta_LB(n,t) * 3.1415)
 ;
-*****************************************************************Dual Power generation equation
+*****************************************************************Dual Power generation equation*****************************************************************
 
 SUB_Dual_PG_conv(g,t)..                                             sum(n$MapG(g,n) , lam(n,t) -  phiPG_conv(g,t))                           =l= var_costs(g,t)
 ;
 SUB_Dual_PG_hydro(s,t)..                                            sum(n$MapS(s,n) , lam(n,t) -  phiPG_hydro(s,t))                          =l=   20
 ;
-SUB_Dual_PG_sun(sun,t)..                                            sum(n$(MapRes(sun,n)), lam(n,t) -  phiPG_PV(sun,t))                         =l=   0
+SUB_Dual_PG_sun(sun,t)..                                            sum(n$(MapRes(sun,n)), lam(n,t) -  phiPG_PV(sun,t))                      =l=   0
 ;
-SUB_Dual_PG_wind(wind,t)..                                          sum(n$(MapRes(wind,n)), lam(n,t) -  phiPG_Wind(wind,t))                       =l=   0
+SUB_Dual_PG_wind(wind,t)..                                          sum(n$(MapRes(wind,n)), lam(n,t) -  phiPG_Wind(wind,t))                  =l=   0
+;
+SUB_Dual_PG_Ren(ren,t)..                                            sum(n$(MapRen(ren,n)), lam(n,t) - phiPG_Ren(ren,t))                      =l=   0
 ;
 
-*****************************************************************Dual Load shedding equation
+*****************************************************************Dual Load shedding equation*********************************************************************
 
 SUB_Dual_LS(n,t)..                                                  lam(n,t) -  phiLS(n,t)                                                   =l=  LS_costs(n)  
 *sum(nn, lam(n,t) -  phiLS(n,t)) =l=  Demand_data (n,'LS_costs')
 ;
-*****************************************************************Dual Power flow equations
+*****************************************************************Dual Power flow equations***********************************************************************
 
 SUB_Dual_PF(l,t)$ex_l(l)..                                          - sum(n$(Map_Send_l(l,n)), lam(n,t)) + sum(n$(Map_Res_l(l,n)), lam(n,t))
                                                                     - omega_UB(l,t)  + omega_LB(l,t) + phi(l,t)
@@ -801,11 +442,11 @@ SUB_Lin_Dual_n_ref(n,t)..                                           - sum(l$(Map
 
 ;
 
-*****************************************************************Uncertainty Sets/ and polyhedral uncertainty budgets (level 2 problem)
+*****************************************************************Uncertainty Sets/ and polyhedral uncertainty budgets (level 2 problem)***************************
 
 SUB_US_LOAD(n,t)..                                                  Pdem(n,t)  =e= load(n,t) + delta_load(n,t) * z_dem(n,t)
 ;
-SUB_UB_LOAD..                                                       sum((n,t), z_dem(n,t))  =l= Gamma_load 
+SUB_UB_LOAD(t)..                                                    sum((n), z_dem(n,t))  =l= Gamma_load 
 ;
 
 SUB_US_PG_conv(g,t)..                                               PE_conv(g,t) =e= Cap_conv(g) - delta_Cap_conv(g) * z_PG_conv(g,t)
@@ -817,13 +458,24 @@ SUB_US_PG_sun(sr,sun,n,t)$Map_SR_sun(sr,sun,n)..                    AF_PV(t,sr,n
 ;
 SUB_UB_PG_sun(t)..                                                  sum(sr, z_PG_PV(sr,t))   =l= Gamma_PG_PV 
 ;
+SUB_PV_time_coupling(sr,t)$(Sun_shine(t))..                         z_PG_PV(sr,t) =e= z_PG_PV(sr,t+1)
+;
 *$ontext
 SUB_US_PG_wind(wr,wind,n,t)$Map_WR_wind(wr,wind,n)..                AF_wind(t,wr,n) =e= af_Wind_up(t,wr,n) - delta_af_wind(t,wr,n) * z_PG_Wind(wr,t)
 ;
 SUB_UB_PG_wind(t)..                                                 sum(wr, z_PG_Wind(wr,t))   =l= Gamma_PG_Wind 
 ;
-*$offtext
-*****************************************************************linearization
+SUB_wind_time_coupling(wr,t)$(ord(t) gt 1)..                         z_PG_Wind(wr,t) =e= z_PG_Wind(wr,t-1)
+;
+
+
+SUB_US_PG_RR(rr,ren,n,t)$Map_RR(rr,ren,n)..                          AF_Ren(t,rr,n) =e= af_ren_up(t,rr,n) - delta_af_ren(t,rr,n) * z_PG_Ren(rr,t) 
+;
+SUB_UB_PG_RR(t)..                                                    sum(rr,  z_PG_Ren(rr,t))  =l= Gamma_PG_REN
+;
+SUB_RR_time_coupling(rr,t)$(ord(t) gt 1)..                           z_PG_Ren(rr,t) =e= z_PG_Ren(rr,t-1)
+;
+*****************************************************************linearization*********************************************************************************
 
 
 SUB_lin1(n,t)..                                                     aux_lam(n,t)                                    =l= M * z_dem(n,t)
@@ -864,14 +516,28 @@ SUB_lin16(wr,wind,t)$WR_wind(wr,wind)..                           - M *  ( 1 - z
 ;
 *$offtext
 
-SUB_lin17(n,t)..                                                    aux_phi_LS(n,t)                                 =l= M * z_dem(n,t)
+SUB_lin17(rr,ren,t)$RR_Ren(rr,ren)..                              aux_phi_PG_Ren(ren,t)                             =l= M *  z_PG_Ren(rr,t)
 ;
-SUB_lin18(n,t)..                                                    phiLS(n,t) - aux_phi_LS(n,t)                    =l= M * ( 1 - z_dem(n,t))
+SUB_lin18(rr,ren,t)$RR_Ren(rr,ren)..                              phiPG_Ren(ren,t) -  aux_phi_PG_Ren(ren,t)         =l= M *  (1 - z_PG_Ren(rr,t)) 
 ;
-SUB_lin19(n,t)..                                                    - M * z_dem(n,t)                                =l= aux_phi_LS(n,t)
+SUB_lin19(rr,ren,t)$RR_Ren(rr,ren)..                              - M * z_PG_Ren(rr,t)                              =l= aux_phi_PG_Ren(ren,t)  
 ;
-SUB_lin20(n,t)..                                                    - M * ( 1 - z_dem(n,t))                         =l= phiLS(n,t) - aux_phi_LS(n,t)
+SUB_lin20(rr,ren,t)$RR_Ren(rr,ren)..                              - M * (1 - z_PG_Ren(rr,t) )                       =l= phiPG_Ren(ren,t) -  aux_phi_PG_Ren(ren,t) 
 ;
+
+
+SUB_lin21(n,t)..                                                    aux_phi_LS(n,t)                                 =l= M * z_dem(n,t)
+;
+SUB_lin22(n,t)..                                                    phiLS(n,t) - aux_phi_LS(n,t)                    =l= M * ( 1 - z_dem(n,t))
+;
+SUB_lin23(n,t)..                                                    - M * z_dem(n,t)                                =l= aux_phi_LS(n,t)
+;
+SUB_lin24(n,t)..                                                    - M * ( 1 - z_dem(n,t))                         =l= phiLS(n,t) - aux_phi_LS(n,t)
+;
+
+
+
+
 
 ********************************************Model definition**********************************************
 model Master_VO
@@ -889,8 +555,9 @@ MP_marketclear
 
 MP_PG_conv
 MP_PG_Hydro
-MP_PG_PV
-MP_PG_Wind
+%Single_Wind_and_PV%MP_PG_PV
+%Single_Wind_and_PV%MP_PG_Wind
+%Summed_Wind_PV%MP_PG_RR
    
 MP_PF_EX       
 MP_PF_EX_Cap_UB
@@ -918,8 +585,9 @@ SUB_Dual_Objective
 
 SUB_Dual_PG_conv
 SUB_Dual_PG_hydro
-SUB_Dual_PG_sun
-SUB_Dual_PG_wind
+%Single_Wind_and_PV%SUB_Dual_PG_sun
+%Single_Wind_and_PV%SUB_Dual_PG_wind
+%Summed_Wind_PV%SUB_Dual_PG_Ren
 
 
 SUB_Dual_LS
@@ -928,18 +596,23 @@ SUB_Dual_PF
 SUB_Lin_Dual
 SUB_Lin_Dual_n_ref
 
-
 SUB_US_LOAD
 SUB_UB_LOAD
 
 SUB_US_PG_conv
 SUB_UB_PG_conv
 
-SUB_US_PG_sun
-SUB_UB_PG_sun
+%Single_Wind_and_PV%SUB_US_PG_sun
+%Single_Wind_and_PV%SUB_UB_PG_sun
+%Single_Wind_and_PV%SUB_PV_time_coupling
 
-SUB_US_PG_wind
-SUB_UB_PG_wind
+%Single_Wind_and_PV%SUB_US_PG_wind
+%Single_Wind_and_PV%SUB_UB_PG_wind
+%Single_Wind_and_PV%SUB_wind_time_coupling
+
+%Summed_Wind_PV%SUB_US_PG_RR
+%Summed_Wind_PV%SUB_UB_PG_RR
+%Summed_Wind_PV%SUB_RR_time_coupling
 
 
 SUB_lin1
@@ -950,18 +623,22 @@ SUB_lin5
 SUB_lin6
 SUB_lin7
 SUB_lin8
-SUB_lin9
-SUB_lin10
-SUB_lin11
-SUB_lin12
-SUB_lin13
-SUB_lin14
-SUB_lin15
-SUB_lin16
-SUB_lin17
-SUB_lin18
-SUB_lin19
-SUB_lin20
+%Single_Wind_and_PV%SUB_lin9
+%Single_Wind_and_PV%SUB_lin10
+%Single_Wind_and_PV%SUB_lin11
+%Single_Wind_and_PV%SUB_lin12
+%Single_Wind_and_PV%SUB_lin13
+%Single_Wind_and_PV%SUB_lin14
+%Single_Wind_and_PV%SUB_lin15
+%Single_Wind_and_PV%SUB_lin16
+%Summed_Wind_PV%SUB_lin17
+%Summed_Wind_PV%SUB_lin18
+%Summed_Wind_PV%SUB_lin19
+%Summed_Wind_PV%SUB_lin20
+SUB_lin21
+SUB_lin22
+SUB_lin23
+SUB_lin24
 /
 ;
 option optcr = 0.0
@@ -972,7 +649,9 @@ Gamma_PG_conv = 0
 ;
 Gamma_PG_PV = 0
 ;
-Gamma_PG_Wind = 5
+Gamma_PG_Wind = 0
+;
+Gamma_PG_REN = 0
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10
@@ -988,9 +667,11 @@ Demand_data_fixed(n,t,v) = load(n,t)
 ;
 PG_M_fixed_conv(g,t,v) = Cap_conv(g)
 ;
-AF_M_PV_fixed(t,sr,n,v) =   af_PV_up(t,sr,n)
+%Single_Wind_and_PV% AF_M_PV_fixed(t,sr,n,v) =   af_PV_up(t,sr,n)
 ;
-AF_M_Wind_fixed(t,wr,n,v) =  af_wind_up(t,wr,n)
+%Single_Wind_and_PV% AF_M_Wind_fixed(t,wr,n,v) =  af_wind_up(t,wr,n)
+;
+%Summed_Wind_PV% AF_M_Ren_fixed(t,rr,n,v)  = af_ren_up(t,rr,n)
 ;
 
 itaux = ord(v)
@@ -1067,9 +748,11 @@ Demand_data_fixed(n,t,v) = Pdem.l(n,t)
 ;
 PG_M_fixed_conv(g,t,v) = PE_conv.l(g,t)
 ;
-AF_M_PV_fixed(t,sr,n,v) = AF_PV.l(t,sr,n)
+%Single_Wind_and_PV% AF_M_PV_fixed(t,sr,n,v) = AF_PV.l(t,sr,n)
 ;
-AF_M_Wind_fixed(t,wr,n,v) = AF_Wind.l(t,wr,n)
+%Single_Wind_and_PV% AF_M_Wind_fixed(t,wr,n,v) = AF_Wind.l(t,wr,n)
+;
+%Summed_Wind_PV% AF_M_Ren_fixed(t,rr,n,vv) = AF_Ren.l(t,rr,n)
 ;
 
 *execute_unload "check_ARO_toy_complete.gdx"
