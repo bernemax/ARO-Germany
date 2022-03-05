@@ -132,7 +132,7 @@ $stop
 
 Variables
 *********************************************Master*************************************************
-O_M                         Objective var of Master Problem
+O_M                         Objective var of Master Problem (total costs)
 PF_M(l,t,v)                 power flows derived from DC load flow equation
 Theta(n,t,v)                Angle of each node associated with DC power flow equations
 
