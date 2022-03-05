@@ -216,7 +216,7 @@ par=Gen_ren                     rng=Gen_res!I2:K483                     rDim=1 c
 par=Gen_Hydro                   rng=Gen_Hydro!A2:F180                   rDim=1 cdim=1
 par=priceup                     rng=prices!A1:I8761                     rDim=1 cdim=1
 par=availup_hydro               rng=Availability!A2:D8762               rDim=1 cdim=1
-par=availup_res                 rng=Av_country!A2:AK8762                rDim=1 cdim=1
+par=availup_res                 rng=Availability!E2:RS8762              rDim=1 cdim=1
 par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
 par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
 par=Grid_invest_new             rng=Grid_invest!A2:K50                  rDim=1 cdim=1
@@ -367,9 +367,9 @@ af_Wind_up(t,wr,n)$MapWr(wr,n)          =          availup_res(t,wr)
 ;
 delta_af_Wind(t,wr,n)$MapWr(wr,n)       =          availup_res(t,wr) * 0.95
 ;
-af_ren_up(t,rr,n)$MapRR(rr,n)            =         availup_res(t,rr)
+af_ren_up(t,rr,n)$MapRR(rr,n)            =         availup_res(t,n)
 ;
-delta_af_ren(t,rr,n)$MapRR(rr,n)         =         availup_res(t,rr)
+delta_af_ren(t,rr,n)$MapRR(rr,n)         =         availup_res(t,n) * 0.95
 ;
 *************************************Investments************************************
 

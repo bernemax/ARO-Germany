@@ -126,8 +126,8 @@ Gamma_test /10/
 $include Loading_Data.gms
 ;
 
-*execute_unload "check_input.gdx";
-*$stop
+execute_unload "check_input.gdx";
+$stop
 *######################################variables######################################
 
 Variables

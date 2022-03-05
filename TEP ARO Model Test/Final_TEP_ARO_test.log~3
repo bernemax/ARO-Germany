@@ -1,12 +1,11 @@
-
---- Job Final_TEP_ARO_test.gms Start 03/04/22 15:10:37 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+--- Job Final_TEP_ARO_test.gms Start 03/05/22 13:25:11 34.2.0 r6925a71 WEX-WEI x86 64bit/MS Windows
 --- Applying:
-    C:\GAMS\35\gmsprmNT.txt
+    C:\GAMS\34\gmsprmNT.txt
 --- GAMS Parameters defined
     Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms"
     PageSize 0
     ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225c\"
-    SysDir C:\GAMS\35\
+    SysDir C:\GAMS\34\
     LogOption 3
     ErrMsg 1
     ErrorLog 99
@@ -14,18 +13,42 @@
     LstTitleLeftAligned 1
 Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
           BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
-          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
-GAMS 35.1.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+          C:\Users\berne\Documents\GAMS\gamslice.txt
+GAMS 34.2.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
 --- Starting compilation
 --- Final_TEP_ARO_test.gms(126) 3 Mb
---- . Loading_Data.gms(190) 3 Mb
---- $echo File Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\TEP.txt
 --- . Loading_Data.gms(226) 3 Mb
 --- call gdxxrw Data.xlsx @TEP.txt
 
-GDXXRW           35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
+GDXXRW           34.2.0 r6925a71 Released Feb 05, 2021 WEI x86 64bit/MS Window
 Input file : Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.xlsx
 Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+Value expected in cell: Gen_RES!K92; found #Error
+Value expected in cell: Gen_RES!K193; found #Error
+Value expected in cell: Gen_RES!K194; found #Error
+Value expected in cell: Gen_RES!K239; found #Error
+Value expected in cell: Gen_RES!K246; found #Error
+Additional errors suppressed
+Total number of bad values for symbol Gen_ren = 12
+Value expected in cell: Availability!G2; found n2
+Value expected in cell: Availability!H2; found n3
+Value expected in cell: Availability!I2; found n4
+Value expected in cell: Availability!J2; found n5
+Value expected in cell: Availability!K2; found n6
+Additional errors suppressed
+Total number of bad values for symbol availup_res = 481
+**** There were at least 10 duplicate entries for symbol availup_res
+ 1: t1,0,313597745759409,RR1
+ 2: t1,0,313597745759409,RR1
+ 3: t1,0,313597745759409,RR1
+ 4: t1,0,313597745759409,RR1
+ 5: t1,0,313597745759409,RR1
+ 6: t1,0,313597745759409,RR1
+ 7: t1,0,313597745759409,RR1
+ 8: t1,0,313597745759409,RR1
+ 9: t1,0,313597745759409,RR1
+10: t1,0,313597745759409,RR1
+Remaining duplicate entries skipped (use trace>=4 to get more information)
 Value expected in cell: Grid_invest!B3; found l62
 Value expected in cell: Grid_invest!K3; found Freileitung
 Value expected in cell: Grid_invest!B4; found l100
@@ -33,97 +56,225 @@ Value expected in cell: Grid_invest!K4; found Freileitung
 Value expected in cell: Grid_invest!B5; found l216
 Additional errors suppressed
 Total number of bad values for symbol Grid_invest_new = 94
-Total time = 7422 Ms
+Output gdx file deleted: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+Total time = 48734 Ms
+The option "MaxDupeErrors = <integer>" can be used to allow for some duplicate records
 --- . Loading_Data.gms(227) 3 Mb
---- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
---- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
---- . Loading_Data.gms(336) 18 Mb 1 Error
+*** GDXIN failed Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+*** Msg: No such file or directory
+--- . Loading_Data.gms(227) 3 Mb 1 Error
+*** Error 510 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Unable to open gdx file for $GDXIN
+--- . Loading_Data.gms(228) 3 Mb 2 Errors
+*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    GDXIN  file not open - ignore rest of line
+--- . Loading_Data.gms(229) 3 Mb 3 Errors
+*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    GDXIN  file not open - ignore rest of line
+--- . Loading_Data.gms(230) 3 Mb 4 Errors
+*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    GDXIN  file not open - ignore rest of line
+--- . Loading_Data.gms(231) 3 Mb 5 Errors
+*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    GDXIN  file not open - ignore rest of line
+--- . Loading_Data.gms(232) 3 Mb 6 Errors
+*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    GDXIN  file not open - ignore rest of line
+--- . Loading_Data.gms(233) 3 Mb 7 Errors
+*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    GDXIN  file not open - ignore rest of line
+--- . Loading_Data.gms(234) 3 Mb 8 Errors
+*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    GDXIN  file not open - ignore rest of line
+--- . Loading_Data.gms(243) 3 Mb 9 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . Loading_Data.gms(245) 3 Mb 10 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . Loading_Data.gms(252) 3 Mb 12 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
 *** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Label is unknown
---- . Loading_Data.gms(399) 18 Mb
---- Final_TEP_ARO_test.gms(694) 18 Mb 2 Errors
-*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
-    Solve statement not checked because of previous errors
---- Final_TEP_ARO_test.gms(699) 18 Mb 3 Errors
-*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
-    Solve statement not checked because of previous errors
---- Final_TEP_ARO_test.gms(703) 18 Mb 4 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+--- . Loading_Data.gms(267) 3 Mb 13 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(706) 18 Mb 5 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+--- . Loading_Data.gms(276) 3 Mb 14 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(716) 18 Mb 6 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+--- . Loading_Data.gms(287) 3 Mb 16 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(718) 18 Mb 7 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(289) 3 Mb 18 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(719) 18 Mb 8 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(291) 3 Mb 19 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(296) 3 Mb 21 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(726) 18 Mb
---- . network_expansion_merge.gms(101) 18 Mb
---- Final_TEP_ARO_test.gms(732) 18 Mb 9 Errors
-*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
-    Solve statement not checked because of previous errors
---- Final_TEP_ARO_test.gms(735) 18 Mb 10 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(298) 3 Mb 22 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(300) 3 Mb 23 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(302) 3 Mb 24 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(304) 3 Mb 25 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(306) 3 Mb 26 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(308) 3 Mb 27 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(310) 3 Mb 28 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(315) 3 Mb 30 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(741) 18 Mb 11 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(319) 3 Mb 31 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(321) 3 Mb 32 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(323) 3 Mb 34 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(743) 18 Mb 12 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(330) 3 Mb 35 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(336) 3 Mb 37 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(747) 18 Mb 13 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(338) 3 Mb 38 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(346) 3 Mb 39 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(348) 3 Mb 40 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(350) 3 Mb 41 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(356) 3 Mb 43 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(755) 18 Mb 14 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(358) 3 Mb 44 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(360) 3 Mb 45 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(362) 3 Mb 47 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
     Symbol declared but no values have been assigned. Check for missing
        data definition, assignment, data loading or implicit assignment
        via a solve statement.
        A wild shot: You may have spurious commas in the explanatory
        text of a declaration. Check symbol reference list.
---- Final_TEP_ARO_test.gms(759) 18 Mb
---- . network_expansion_clean.gms(51) 18 Mb
---- Final_TEP_ARO_test.gms(765) 18 Mb 14 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . Loading_Data.gms(366) 3 Mb 48 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . Loading_Data.gms(370) 3 Mb 49 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . Loading_Data.gms(376) 3 Mb 50 Errors
+*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Label is unknown
+--- . Loading_Data.gms(388) 3 Mb 51 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- . Loading_Data.gms(399) 3 Mb
+--- Final_TEP_ARO_test.gms(130) 3 Mb 51 Errors
 *** Status: Compilation error(s)
---- Job Final_TEP_ARO_test.gms Stop 03/04/22 15:10:45 elapsed 0:00:07.763
+--- Job Final_TEP_ARO_test.gms Stop 03/05/22 13:26:03 elapsed 0:00:52.019
