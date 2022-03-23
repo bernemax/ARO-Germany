@@ -1,17 +1,17 @@
 52
-2 19563 0 0 382  0.00000000000000E+0000 5  0.00000000000000E+0000 0 1
-612828 0 0 0 450981 64949 73207 474672 0 0 0 0
-469927 0 0 0 0 0 0 0
-1557506 0
-469826 101 0 0 0 0 0 401473 0 68353
+2 19563 0 0 382  1.00000000000000E+0000 5  0.00000000000000E+0000 0 1
+451299 0 0 0 294985 81673 276 369350 0 0 0 0
+409633 0 0 0 0 0 0 0
+1395017 0
+371305 38328 0 0 0 0 0 326976 0 44329
 0 0 0 0 0 0 0
-0 202 0
+1 2343 0
 0 0 20
  0.00000000000000E+0000  0.00000000000000E+0000 0
 0  0.00000000000000E+0000 0  0.00000000000000E+0000
  1.00000000000000E+0010 2147483647 0
 2011 0
- 0.00000000000000E+0000 0 0 0  1.00000000000000E+0000 0 1 0 0  1.00000000000000E-0005 0
+ 0.00000000000000E+0000 0 1 0  1.00000000000000E+0000 0 1 0 0  1.00000000000000E-0005 0
 1 100
 0 0 0 0 0
  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000
@@ -33,7 +33,7 @@ Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\
 Small MUD - 5 User License                     S211124|0002AN-WIN0
 BTU Cottbus-Senftenberg, FG Energiewirtschaft                    0
 1449369101CPPT                                                   0
-0 5 5 0
+0 1 1 0
 225j\gmsprmNT.dat
 15 71 19
 LP          19 0
@@ -271,7 +271,7 @@ Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\
 0 0  1.00000000000000E+0000 0 0
 0 0 0
 0 0 0 1 0
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Master.dll
+Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Subproblem.dll
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225j\sbbinfo.dat
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225j\gamscntr.dat
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\
@@ -280,4 +280,4 @@ dat
 
 
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
- 1.55750600000000E+0006  0.00000000000000E+0000
+ 1.39501700000000E+0006  0.00000000000000E+0000

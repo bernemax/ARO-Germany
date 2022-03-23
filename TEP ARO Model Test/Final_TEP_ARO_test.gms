@@ -658,7 +658,7 @@ SUB_US_PG_RR(rr,ren,n,t)$Map_RR(rr,ren,n)..                          AF_Ren(t,rr
 ;
 SUB_UB_PG_RR..                                                       sum((rr,t),  z_PG_Ren(rr,t))  =l= Gamma_PG_REN
 ;
-SUB_RR_time_coupling(rr,t)$(ord(t) lt card(t))..                                         sum(tt$(ord(tt) <= ord (t) and ord(tt) >= (ord(t) - dark_time)), Start_dunkel(rr,tt)) =l=  z_PG_Ren(rr,t) 
+SUB_RR_time_coupling(rr,t)..                                         sum(tt$(ord(tt) <= ord (t) and ord(tt) >= (ord(t) - dark_time)), Start_dunkel(rr,tt)) =l=  z_PG_Ren(rr,t) 
 ;
 SUB_RR_Dunkel_start(rr,t)$(ord(t) gt 1)..                            Start_dunkel(rr,t)   =g=  z_PG_Ren(rr,t) - z_PG_Ren(rr,t-1)
 ;
