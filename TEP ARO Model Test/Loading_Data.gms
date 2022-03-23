@@ -2,7 +2,7 @@ Scalars
 *max invest budget
 IB           /2000000000/
 *big M
-M            /10000/
+M            /20000/
 *reliability of powerlines (simplification of n-1 criteria)
 reliability  /1/
 *curtailment costs
@@ -31,10 +31,13 @@ Gamma_PG_PV         /0/
 Gamma_PG_Wind       /0/
 
 Gamma_PG_REN        /0/
+
+Dark_time           /10/
 ;
 
 Parameter
 Node_Demand                     upload table
+LS_costs_up                     upload table
 Ger_Demand                      upload table
 Grid_tech                       upload table
 Gen_conv                        upload table
@@ -52,13 +55,59 @@ Grid_invest_upgrade             upload table
 
 total_load(t)                   electrical demand in germany in hour t
 load(n,t)                       electrical demand in each node in hour t
-delta_load(n,t)                 max increase of demand in each node in hour t
-load_share(n)                   electrical demand share per node
+Load_unshed(n,t)
+Load_BM(n,t)
+Load_CP(n,t)
+Load_NMM(n,t)
+Load_FT(n,t)
+Load_TL(n,t)
+Load_PPP(n,t)
+Load_WP(n,t)
+Load_TE(n,t)
+Load_MC(n,t)
+Load_C(n,t)
+Load_OI(n,t)
+Load_X(n,t)
+Load_states(n,t)
+
+
+load_Ind(n,t)
+delta_load_DE(n,t)              max increase of demand in each node in DE in hour t
+delta_load_states(n,t) 
+
+*load_share(n,d)                 electrical demand share per node
+load_share_BM(n)
+Load_share_CP(n)
+Load_share_NMM(n)
+Load_share_FT(n)
+Load_share_TL(n)
+Load_share_PPP(n)
+Load_share_WP(n)
+Load_share_TE(n)
+Load_share_MC(n)
+Load_share_C(n)
+Load_share_OI(n)
+Load_share_X(n)
+Load_share_Service(n)
+Load_share_House(n)
+
 Neighbor_Demand(t,n)            electrical demand in neighboring countries of germany in hour t
-LS_costs(n)                     loadshedding costs per node
 
-Demand_data_fixed(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
+LS_costs_BM(n)
+LS_costs_CP(n)
+LS_costs_NMM(n)
+LS_costs_FT(n)
+LS_costs_TL(n)
+LS_costs_PPP(n)
+LS_costs_WP(n)
+LS_costs_TE(n)
+LS_costs_MC(n)
+LS_costs_C(n)
+LS_costs_OI(n)
+LS_costs_X(n)
 
+Demand_data_fixed_unshed(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
+Demand_data_fixed_states(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
 *************************************lines
 
 B(l)                            susceptance of existing lines in german Grid
@@ -205,10 +254,10 @@ set=WR_wind                     rng=Mapping!AR3:AS483                   rdim=2 c
 set=RR_ren                      rng=Mapping!BE3:BF483                   rdim=2 cDim=0
 set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
 
-
-par=Node_Demand                 rng=Node_Demand!A1:C506                 rDim=1 cdim=1
+par=Node_Demand                 rng=Node_Demand!A1:P507                 rDim=1 cdim=1
+par=LS_costs_up                 rng=Node_demand!V2:AJ3                  rDim=0 cdim=1
 par=Neighbor_Demand             rng=Neighboring_countries!A2:L8762      rDim=1 cdim=1
-par=Ger_Demand                  rng=Node_Demand!E1:F8761                rDim=1 cdim=1
+par=Ger_Demand                  rng=Node_Demand!R1:S8761                rDim=1 cdim=1
 par=Grid_tech                   rng=Grid_tech!A1:H843                   rDim=1 cdim=1
 par=Gen_conv                    rng=Gen_conv!B2:J567                    rDim=1 cdim=1
 par=Gen_res                     rng=Gen_res!A2:F1123                    rDim=1 cdim=1
@@ -226,8 +275,8 @@ $onUNDF
 $call   gdxxrw Data.xlsx @TEP.txt
 $GDXin  Data.gdx
 $load   Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr, Map_WR_wind, Map_SR_sun, SR_sun, WR_wind, MapRen, MapRR, Map_RR, RR_ren 
-$load   Border_exist_DE
-$load   Node_Demand,Neighbor_Demand, Ger_demand, Grid_tech
+$load   Border_exist_DE	
+$load   Node_Demand, LS_costs_up, Neighbor_Demand, Ger_demand, Grid_tech
 $load   Gen_conv, Gen_res, Gen_Hydro, priceup, Gen_ren
 $load   availup_hydro, availup_res
 $load   phy_flow_to_DE, Phy_flow_states_exo
@@ -238,7 +287,7 @@ $offUNDF
 *res availiability corrisponding to german 60 zones
 *par=availup_res                 rng=Availability!E2:DU8762              rDim=1 cdim=1 
 ;
-*####################################subset definitions#############################
+*####################################subset definitions & initialization #############################
 
 Map_Grid(l,n)$(Map_send_L(l,n)) = yes
 ;
@@ -246,9 +295,9 @@ Map_Grid(l,n)$(Map_res_L(l,n)) = yes
 ;
 Relevant_Nodes(n)$NoDeSciGrid(n)  = no
 ;
-De(n)$NoDeSciGrid(n)  = no
-
+DE_nodes(n)$NoDeSciGrid(n)  = no
 ;
+
 gas(g)      =    Gen_conv(g,'tech')  = 1
 ;
 oil(g)      =    Gen_conv(g,'tech')  = 2
@@ -284,11 +333,61 @@ biomass(res)=    Gen_res(res,'tech') = 3
 
 *****************************************demand*************************************
 
-total_load(t)       =          Ger_demand(t,'total_load')
+total_load(t)           =          Ger_demand(t,'total_load')
 ;
-LS_costs(n)         =          Node_Demand(n,'LS_costs')
+
+LS_costs_BM(n)          =          LS_costs_up('BM')
 ;
-load_share(n)       =          Node_Demand(n,'share')
+LS_costs_CP(n)          =          LS_costs_up('CP')
+;
+LS_costs_NMM(n)         =          LS_costs_up('NMM')
+;
+LS_costs_FT(n)          =          LS_costs_up('FT')
+;
+LS_costs_TL(n)          =          LS_costs_up('TL')
+;
+LS_costs_PPP(n)         =          LS_costs_up('PPP')
+;
+LS_costs_WP(n)          =          LS_costs_up('WP')
+;
+LS_costs_TE(n)          =          LS_costs_up('TE')
+;
+LS_costs_MC(n)          =          LS_costs_up('MC')
+;
+LS_costs_C(n)           =          LS_costs_up('C')
+;
+LS_costs_OI(n)          =          LS_costs_up('OI')
+;
+LS_costs_X(n)           =          LS_costs_up('X')
+;
+
+load_share_BM(n)        =          Node_Demand(n,'BM')
+;
+Load_share_CP(n)        =          Node_Demand(n,'CP')
+;
+Load_share_NMM(n)       =          Node_Demand(n,'NMM')
+;
+Load_share_FT(n)        =          Node_Demand(n,'FT')
+;
+Load_share_TL(n)        =          Node_Demand(n,'TL')
+;
+Load_share_PPP(n)       =          Node_Demand(n,'PPP')
+;
+Load_share_WP(n)        =          Node_Demand(n,'WP')
+;
+Load_share_TE(n)        =          Node_Demand(n,'TE')
+;
+Load_share_MC(n)        =          Node_Demand(n,'MC')
+;
+Load_share_C(n)         =          Node_Demand(n,'C')
+;
+Load_share_OI(n)        =          Node_Demand(n,'OI')
+;       
+Load_share_X(n)         =          Node_Demand(n,'X')
+;
+Load_share_Service(n)   =          Node_Demand(n,'Service')
+;
+Load_share_House(n)     =          Node_Demand(n,'House')
 ;
 
 *****************************************prices*************************************
@@ -324,7 +423,8 @@ L_cap_prosp(l)      =          Grid_invest_new(l,'new_cap')
 ;
 B_prosp(l)          =          Grid_invest_new(l,'Susceptance')
 ;
-
+H(l,n)              =          B(l)* incidence(l,n)
+;
 *************************************generators*************************************
 
 Cap_conv(g)         =          Gen_conv(g,'Gen_cap')
@@ -359,17 +459,17 @@ af_hydro(psp,t)                         =          availup_hydro(t,'psp')
 ;
 af_hydro(reservoir,t)                   =          availup_hydro(t,'reservoir')
 ;
-af_PV_up(t,sr,n)$MapSR(sr,n)            =          availup_res(t,sr)
+*af_PV_up(t,sr,n)$MapSR(sr,n)            =          availup_res(t,sr)
+*;
+*delta_af_PV(t,sr,n)$MapSR(sr,n)         =          availup_res(t,sr) * 0.95
+*;
+*af_Wind_up(t,wr,n)$MapWr(wr,n)          =          availup_res(t,wr)
+*;
+*delta_af_Wind(t,wr,n)$MapWr(wr,n)       =          availup_res(t,wr) * 0.95
+*;
+af_ren_up(t,rr,n)$MapRR(rr,n)           =          availup_res(t,n)
 ;
-delta_af_PV(t,sr,n)$MapSR(sr,n)         =          availup_res(t,sr) * 0.95
-;
-af_Wind_up(t,wr,n)$MapWr(wr,n)          =          availup_res(t,wr)
-;
-delta_af_Wind(t,wr,n)$MapWr(wr,n)       =          availup_res(t,wr) * 0.95
-;
-af_ren_up(t,rr,n)$MapRR(rr,n)            =         availup_res(t,n)
-;
-delta_af_ren(t,rr,n)$MapRR(rr,n)         =         availup_res(t,n) * 0.95
+delta_af_ren(t,rr,n)$MapRR(rr,n)        =          availup_res(t,n) * 0.95
 ;
 *************************************Investments************************************
 
@@ -379,17 +479,43 @@ I_costs_new(l)      =  (Grid_invest_new(l,'Inv_costs_new')/(8760/card(t)))
 *;
 *************************************calculating************************************
 
-H(l,n)                              =            B(l)* incidence(l,n)
+Load_unshed(n,t)$(DE_nodes(n))           =            (Load_share_Service(n) + Load_share_House(n)) *total_load(t)
 ;
-load(n,t)$(De(n))                   =            (load_share(n)*total_load(t) ) / 1
+Load_BM(n,t)$(DE_nodes(n))               =             load_share_BM(n) *total_load(t)
 ;
-delta_load(n,t)$(De(n))             =            load_share(n)*total_load(t) * 0.1
+Load_CP(n,t)$(DE_nodes(n))               =             Load_share_CP(n) *total_load(t)
+;
+Load_NMM(n,t)$(DE_nodes(n))              =             Load_share_NMM(n) *total_load(t)
+;
+Load_FT(n,t)$(DE_nodes(n))               =             Load_share_FT(n) *total_load(t)
+;
+Load_TL(n,t)$(DE_nodes(n))               =             Load_share_TL(n) *total_load(t)
+;
+Load_PPP(n,t)$(DE_nodes(n))              =             Load_share_PPP(n) *total_load(t)
+;
+Load_WP(n,t)$(DE_nodes(n))               =             Load_share_WP(n) *total_load(t)
+;
+Load_TE(n,t)$(DE_nodes(n))               =             Load_share_TE(n) *total_load(t)
+;
+Load_MC(n,t)$(DE_nodes(n))               =             Load_share_MC(n) *total_load(t)
+;
+Load_C(n,t)$(DE_nodes(n))                =             Load_share_C(n) *total_load(t)
+;
+Load_OI(n,t)$(DE_nodes(n))               =             Load_share_OI(n) *total_load(t)
+;
+Load_X(n,t)$(DE_nodes(n))                =             Load_share_X(n) *total_load(t)
+;
+load_Ind(n,t)$(DE_nodes(n))              =             Load_BM(n,t) + Load_CP(n,t) + Load_NMM(n,t) + Load_FT(n,t) + Load_TL(n,t) + Load_PPP(n,t)
+                                                       + Load_WP(n,t) + Load_TE(n,t) + Load_MC(n,t) + Load_C(n,t) + Load_OI(n,t) + Load_X(n,t)
+;
+
+delta_load_DE(n,t)$(DE_nodes(n))         =            ((Load_share_Service(n) + Load_share_House(n))*total_load(t)) * 0.1
 ; 
-load(n,t)$(border_states(n))        =            (Neighbor_Demand(t,n)) 
+Load_states(n,t)$(border_states(n))      =            Load_share_X(n)*Neighbor_Demand(t,n)
 ;
-delta_load(n,t)$(border_states(n))  =            Neighbor_Demand(t,n) * 0.1
+delta_load_states(n,t)$(border_states(n))=            (Load_share_X(n)*Neighbor_Demand(t,n)) * 0.1
 ;
-delta_Cap_conv(g)                   =            Cap_conv(g) * 0.9
+delta_Cap_conv(g)                        =            Cap_conv(g) * 0.9
 ;
 
 

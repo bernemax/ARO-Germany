@@ -15,10 +15,10 @@ set=WR_wind                     rng=Mapping!AR3:AS483                   rdim=2 c
 set=RR_ren                      rng=Mapping!BE3:BF483                   rdim=2 cDim=0
 set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
 
-
-par=Node_Demand                 rng=Node_Demand!A1:C506                 rDim=1 cdim=1
+par=Node_Demand                 rng=Node_Demand!A1:P507                 rDim=1 cdim=1
+par=LS_costs_up                 rng=Node_demand!V2:AJ3                  rDim=0 cdim=1
 par=Neighbor_Demand             rng=Neighboring_countries!A2:L8762      rDim=1 cdim=1
-par=Ger_Demand                  rng=Node_Demand!E1:F8761                rDim=1 cdim=1
+par=Ger_Demand                  rng=Node_Demand!R1:S8761                rDim=1 cdim=1
 par=Grid_tech                   rng=Grid_tech!A1:H843                   rDim=1 cdim=1
 par=Gen_conv                    rng=Gen_conv!B2:J567                    rDim=1 cdim=1
 par=Gen_res                     rng=Gen_res!A2:F1123                    rDim=1 cdim=1

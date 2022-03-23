@@ -1,26 +1,31 @@
---- Job Final_TEP_ARO_test.gms Start 03/05/22 13:25:11 34.2.0 r6925a71 WEX-WEI x86 64bit/MS Windows
+
+--- Job Final_TEP_ARO_test.gms Start 03/23/22 15:39:03 38.2.1 96226ea8 WEX-WEI x86 64bit/MS Windows
 --- Applying:
-    C:\GAMS\34\gmsprmNT.txt
+    C:\GAMS\38\gmsprmNT.txt
 --- GAMS Parameters defined
     Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms"
     PageSize 0
-    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225c\"
-    SysDir C:\GAMS\34\
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225h\"
+    SysDir C:\GAMS\38\
     LogOption 3
     ErrMsg 1
     ErrorLog 99
     IDE 1
     LstTitleLeftAligned 1
-Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
+Licensee: Small MUD - 5 User License                     S211124|0002AN-WIN
           BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
-          C:\Users\berne\Documents\GAMS\gamslice.txt
-GAMS 34.2.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
+          License Admin: Felix Muesgens, Fg-energiewirtschaft@b-tu.de      
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 38.2.1   Copyright (C) 1987-2022 GAMS Development. All rights reserved
 --- Starting compilation
---- Final_TEP_ARO_test.gms(126) 3 Mb
---- . Loading_Data.gms(226) 3 Mb
+--- Final_TEP_ARO_test.gms(147) 4 Mb
+--- . Loading_Data.gms(239) 4 Mb
+--- $echo File Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\TEP.txt
+--- . Loading_Data.gms(275) 4 Mb
 --- call gdxxrw Data.xlsx @TEP.txt
 
-GDXXRW           34.2.0 r6925a71 Released Feb 05, 2021 WEI x86 64bit/MS Window
+GDXXRW           38.2.1 96226ea8 Feb 19, 2022          VS8 x86 32bit/MS Window
 Input file : Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.xlsx
 Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
 Value expected in cell: Gen_RES!K92; found #Error
@@ -30,25 +35,6 @@ Value expected in cell: Gen_RES!K239; found #Error
 Value expected in cell: Gen_RES!K246; found #Error
 Additional errors suppressed
 Total number of bad values for symbol Gen_ren = 12
-Value expected in cell: Availability!G2; found n2
-Value expected in cell: Availability!H2; found n3
-Value expected in cell: Availability!I2; found n4
-Value expected in cell: Availability!J2; found n5
-Value expected in cell: Availability!K2; found n6
-Additional errors suppressed
-Total number of bad values for symbol availup_res = 481
-**** There were at least 10 duplicate entries for symbol availup_res
- 1: t1,0,313597745759409,RR1
- 2: t1,0,313597745759409,RR1
- 3: t1,0,313597745759409,RR1
- 4: t1,0,313597745759409,RR1
- 5: t1,0,313597745759409,RR1
- 6: t1,0,313597745759409,RR1
- 7: t1,0,313597745759409,RR1
- 8: t1,0,313597745759409,RR1
- 9: t1,0,313597745759409,RR1
-10: t1,0,313597745759409,RR1
-Remaining duplicate entries skipped (use trace>=4 to get more information)
 Value expected in cell: Grid_invest!B3; found l62
 Value expected in cell: Grid_invest!K3; found Freileitung
 Value expected in cell: Grid_invest!B4; found l100
@@ -56,225 +42,593 @@ Value expected in cell: Grid_invest!K4; found Freileitung
 Value expected in cell: Grid_invest!B5; found l216
 Additional errors suppressed
 Total number of bad values for symbol Grid_invest_new = 94
-Output gdx file deleted: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
-Total time = 48734 Ms
-The option "MaxDupeErrors = <integer>" can be used to allow for some duplicate records
---- . Loading_Data.gms(227) 3 Mb
-*** GDXIN failed Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
-*** Msg: No such file or directory
---- . Loading_Data.gms(227) 3 Mb 1 Error
-*** Error 510 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Unable to open gdx file for $GDXIN
---- . Loading_Data.gms(228) 3 Mb 2 Errors
-*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    GDXIN  file not open - ignore rest of line
---- . Loading_Data.gms(229) 3 Mb 3 Errors
-*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    GDXIN  file not open - ignore rest of line
---- . Loading_Data.gms(230) 3 Mb 4 Errors
-*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    GDXIN  file not open - ignore rest of line
---- . Loading_Data.gms(231) 3 Mb 5 Errors
-*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    GDXIN  file not open - ignore rest of line
---- . Loading_Data.gms(232) 3 Mb 6 Errors
-*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    GDXIN  file not open - ignore rest of line
---- . Loading_Data.gms(233) 3 Mb 7 Errors
-*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    GDXIN  file not open - ignore rest of line
---- . Loading_Data.gms(234) 3 Mb 8 Errors
-*** Error 502 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    GDXIN  file not open - ignore rest of line
---- . Loading_Data.gms(243) 3 Mb 9 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(245) 3 Mb 10 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(252) 3 Mb 12 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(267) 3 Mb 13 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(276) 3 Mb 14 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(287) 3 Mb 16 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(289) 3 Mb 18 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(291) 3 Mb 19 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(296) 3 Mb 21 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(298) 3 Mb 22 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(300) 3 Mb 23 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(302) 3 Mb 24 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(304) 3 Mb 25 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(306) 3 Mb 26 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(308) 3 Mb 27 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(310) 3 Mb 28 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(315) 3 Mb 30 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(319) 3 Mb 31 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(321) 3 Mb 32 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(323) 3 Mb 34 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(330) 3 Mb 35 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(336) 3 Mb 37 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(338) 3 Mb 38 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(346) 3 Mb 39 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(348) 3 Mb 40 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(350) 3 Mb 41 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(356) 3 Mb 43 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(358) 3 Mb 44 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(360) 3 Mb 45 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(362) 3 Mb 47 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(366) 3 Mb 48 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(370) 3 Mb 49 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(376) 3 Mb 50 Errors
-*** Error 116 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Label is unknown
---- . Loading_Data.gms(388) 3 Mb 51 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Loading_Data.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- . Loading_Data.gms(399) 3 Mb
---- Final_TEP_ARO_test.gms(130) 3 Mb 51 Errors
-*** Status: Compilation error(s)
---- Job Final_TEP_ARO_test.gms Stop 03/05/22 13:26:03 elapsed 0:00:52.019
+Total time = 19375 Ms
+--- . Loading_Data.gms(276) 4 Mb
+--- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+--- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Data.gdx
+--- . Loading_Data.gms(525) 128 Mb
+--- Final_TEP_ARO_test.gms(971) 128 Mb
+--- . network_expansion_merge.gms(101) 128 Mb
+--- Final_TEP_ARO_test.gms(1006) 128 Mb
+--- . network_expansion_clean.gms(51) 128 Mb
+--- Final_TEP_ARO_test.gms(1012) 128 Mb
+--- Starting execution: elapsed 0:00:20.966
+--- Final_TEP_ARO_test.gms(1432) 166 Mb
+--- Generating MIP model Master_VO
+--- Final_TEP_ARO_test.gms(1464) 166 Mb
+--- LOOPS v = v1
+---   10 rows  49 columns  480 non-zeroes
+---   47 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:21.209
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- GMO memory 0.50 Mb (peak 0.50 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 0.00 Mb (peak 0.01 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Generic callback                                 0x50
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 10 rows and 28 columns.
+MIP Presolve added 8 rows and 8 columns.
+Reduced MIP has 8 rows, 30 columns, and 30 nonzeros.
+Reduced MIP has 21 binaries, 9 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.13 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 7 rows and 24 columns.
+Reduced MIP has 1 rows, 6 columns, and 6 nonzeros.
+Reduced MIP has 5 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 1 rows, 6 columns, and 6 nonzeros.
+Reduced MIP has 5 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.03 sec. (6.88 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.03 sec. (6.88 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 0.03sec (det. 6.88 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Tried aggregator 1 time.
+LP Presolve eliminated 10 rows and 50 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 0.05 ticks)
+
+
+Proven optimal solution
+MIP Solution:            0.000000    (0 iterations, 0 nodes)
+Final Solve:             0.000000    (0 iterations)
+
+Best possible:           0.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model Master_VO
+--- Executing after solve: elapsed 0:00:21.436
+--- Final_TEP_ARO_test.gms(1432) 166 Mb
+--- Generating MIP model Subproblem
+--- Final_TEP_ARO_test.gms(1038) 263 Mb  15 secs
+--- Final_TEP_ARO_test.gms(1603) 642 Mb  7 secs
+--- LOOPS v = v1
+---   1,879,091 rows  1,702,601 columns  5,796,849 non-zeroes
+---   159,700 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:48.365
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 100.93 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 674.72 Mb (peak 687.71 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 53.98 Mb (peak 244.40 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Generic callback                                 0x50
+Found incumbent of value 0.000000 after 0.06 sec. (77.22 ticks)
+Tried aggregator 3 times.
+MIP Presolve eliminated 1050414 rows and 834513 columns.
+MIP Presolve modified 91100 coefficients.
+Aggregator did 77600 substitutions.
+Reduced MIP has 742476 rows, 780887 columns, and 1842298 nonzeros.
+Reduced MIP has 1200 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 4.09 sec. (4410.56 ticks)
+Probing time = 0.05 sec. (20.40 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+MIP Presolve eliminated 5078 rows and 3452 columns.
+Reduced MIP has 737398 rows, 775605 columns, and 1827306 nonzeros.
+Reduced MIP has 1200 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 3.98 sec. (6380.36 ticks)
+Probing time = 0.03 sec. (20.30 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     =  523949582508.070251
+Iteration:  1853   Dual objective     =  522122394503.956970
+Iteration:  3551   Dual objective     =  519939471972.519348
+Iteration:  5247   Dual objective     =  519164877857.265381
+Iteration:  7158   Dual objective     =  518132377838.903198
+Iteration:  9111   Dual objective     =  517093583365.364929
+Iteration: 10942   Dual objective     =  515041794151.053101
+Iteration: 12826   Dual objective     =  514115241119.269531
+Iteration: 14695   Dual objective     =  512065064596.085876
+Iteration: 16548   Dual objective     =  510965242627.105896
+Iteration: 18511   Dual objective     =  482704954634.903748
+Iteration: 20599   Dual objective     =  482068081609.737427
+Iteration: 22723   Dual objective     =  481279689687.263550
+Iteration: 24997   Dual objective     =  476996811134.490784
+Iteration: 27007   Dual objective     =  475868475451.616089
+Iteration: 29177   Dual objective     =  474657615081.240601
+Iteration: 31103   Dual objective     =  472823172881.434570
+Iteration: 33835   Dual objective     =  465078166107.001831
+Iteration: 35701   Dual objective     =  463574988682.473572
+Iteration: 37728   Dual objective     =  461855614398.122681
+Iteration: 39793   Dual objective     =  459512767878.990479
+Iteration: 41783   Dual objective     =  458256118439.932922
+Iteration: 45668   Dual objective     =  451613737459.556702
+Iteration: 48715   Dual objective     =  442089817631.549316
+Iteration: 50916   Dual objective     =  438588335674.594788
+Iteration: 53188   Dual objective     =  437656526450.642273
+Iteration: 55435   Dual objective     =  437474148377.010986
+Iteration: 57567   Dual objective     =  284154062026.173401
+Iteration: 59426   Dual objective     =  271655783251.471863
+Iteration: 61381   Dual objective     =  270880982263.473450
+Iteration: 63331   Dual objective     =  269711937132.858032
+Iteration: 65339   Dual objective     =  225051901798.417816
+Iteration: 67357   Dual objective     =  188433513257.992310
+Iteration: 69233   Dual objective     =  183716522215.524872
+Iteration: 71175   Dual objective     =  175073434201.811432
+Iteration: 73161   Dual objective     =  150952529691.552856
+Iteration: 75025   Dual objective     =  128271341163.522324
+Iteration: 76897   Dual objective     =  124172548862.705612
+Iteration: 78877   Dual objective     =  107524682804.531662
+Iteration: 80850   Dual objective     =  104409463085.249512
+Iteration: 82824   Dual objective     =  101268380187.019791
+Iteration: 84743   Dual objective     =   99545414527.838287
+Iteration: 86616   Dual objective     =   98716652790.034790
+Iteration: 88463   Dual objective     =   97780473279.744156
+Iteration: 90388   Dual objective     =   97071927324.569611
+Iteration: 92283   Dual objective     =   96038254316.491287
+Iteration: 94221   Dual objective     =   95393169752.421707
+Iteration: 96290   Dual objective     =   95233418209.014282
+Iteration: 98226   Dual objective     =   94802172677.824921
+Iteration: 100182   Dual objective     =   94607467183.800278
+Iteration: 102100   Dual objective     =   94190247611.403046
+Iteration: 104092   Dual objective     =   93919322792.109772
+Iteration: 106124   Dual objective     =   93671229393.016357
+Iteration: 108163   Dual objective     =   93393806514.091293
+Iteration: 110262   Dual objective     =   93207922110.994583
+Iteration: 112388   Dual objective     =   92878237978.587418
+Iteration: 114576   Dual objective     =   92521725867.505081
+Iteration: 116553   Dual objective     =   92198846500.900177
+Iteration: 118734   Dual objective     =   91917526344.257080
+Iteration: 120683   Dual objective     =   91417125910.607819
+Iteration: 122722   Dual objective     =   90732779787.867203
+Elapsed time = 6.53 sec. (10062.55 ticks, 124887 iterations)
+Iteration: 124887   Dual objective     =   90464166570.925156
+Iteration: 127126   Dual objective     =   90170648843.312454
+Iteration: 129336   Dual objective     =   89944627334.948883
+Iteration: 131493   Dual objective     =   89759908537.023895
+Iteration: 133364   Dual objective     =   89397547006.205978
+Iteration: 135341   Dual objective     =   89194845692.380310
+Iteration: 137378   Dual objective     =   88946487834.889618
+Iteration: 139392   Dual objective     =   88774588297.323288
+Iteration: 141595   Dual objective     =   88577904547.887177
+Iteration: 143732   Dual objective     =   88366977152.693344
+Iteration: 145716   Dual objective     =   88048575827.495300
+Iteration: 147613   Dual objective     =   87791480172.864197
+Iteration: 149560   Dual objective     =   87557977096.197083
+Iteration: 151483   Dual objective     =   87415204689.652374
+Iteration: 153421   Dual objective     =   87188570437.363144
+Iteration: 155457   Dual objective     =   87123211416.079193
+Iteration: 157581   Dual objective     =   87089137401.525879
+Iteration: 159625   Dual objective     =   87021160195.987961
+Iteration: 161493   Dual objective     =   86968555270.963303
+Iteration: 163414   Dual objective     =   86912673192.313873
+Iteration: 165355   Dual objective     =   86867768388.665466
+Iteration: 167366   Dual objective     =   86820259955.104858
+Iteration: 169150   Dual objective     =   86770775638.656342
+Iteration: 171066   Dual objective     =   86714967969.449326
+Iteration: 172954   Dual objective     =   86672658284.564133
+Iteration: 174994   Dual objective     =   86256235702.034622
+Iteration: 177117   Dual objective     =   86201397632.909927
+Iteration: 179303   Dual objective     =   86119868804.407623
+Iteration: 181385   Dual objective     =   86061348368.638107
+Iteration: 183467   Dual objective     =   85934637492.655304
+Iteration: 185276   Dual objective     =   85819054631.088135
+Iteration: 187263   Dual objective     =   85684241608.593643
+Iteration: 189342   Dual objective     =   85622299889.835663
+Iteration: 191374   Dual objective     =   85579268790.148087
+Iteration: 193385   Dual objective     =   85530379446.906693
+Iteration: 195411   Dual objective     =   85417562854.318588
+Iteration: 197295   Dual objective     =   85352472352.870270
+Iteration: 199277   Dual objective     =   85276208367.596024
+Iteration: 201180   Dual objective     =   85216065499.193817
+Iteration: 203086   Dual objective     =   85067035241.419205
+Iteration: 205146   Dual objective     =   85023016193.554153
+Iteration: 207300   Dual objective     =   84928905660.029312
+Iteration: 209394   Dual objective     =   84849468533.836914
+Iteration: 211237   Dual objective     =   84706565943.713791
+Iteration: 213145   Dual objective     =   84630942991.452652
+Iteration: 215232   Dual objective     =   84580167530.904633
+Iteration: 217204   Dual objective     =   84520069926.611084
+Iteration: 219323   Dual objective     =   84472182013.244751
+Iteration: 221310   Dual objective     =   84404518610.634933
+Iteration: 223136   Dual objective     =   84356673771.185638
+Iteration: 225074   Dual objective     =   84293826938.334137
+Iteration: 226995   Dual objective     =   84230673170.980713
+Iteration: 229291   Dual objective     =   83734312475.052185
+Iteration: 231386   Dual objective     =   83492539756.107056
+Iteration: 233582   Dual objective     =   83267576208.494370
+Iteration: 235792   Dual objective     =   83112829894.132248
+Iteration: 237825   Dual objective     =   82857439450.976105
+Iteration: 239784   Dual objective     =   82513564925.911285
+Iteration: 241596   Dual objective     =   82299154589.996765
+Iteration: 243552   Dual objective     =   82107190968.985672
+Iteration: 245663   Dual objective     =   81910660202.456100
+Elapsed time = 12.83 sec. (20180.78 ticks, 247536 iterations)
+Iteration: 247536   Dual objective     =   81797285941.401840
+Iteration: 249575   Dual objective     =   81698750223.277969
+Iteration: 251600   Dual objective     =   81426950499.406967
+Iteration: 253492   Dual objective     =   81300740462.449478
+Iteration: 255423   Dual objective     =   81154978108.740601
+Iteration: 257431   Dual objective     =   80998734341.809891
+Iteration: 259376   Dual objective     =   80759003939.906342
+Iteration: 261554   Dual objective     =   80209874807.191071
+Iteration: 263706   Dual objective     =   80062053543.077835
+Iteration: 265624   Dual objective     =   80023768828.703949
+Iteration: 267474   Dual objective     =   79988307627.891022
+Iteration: 269473   Dual objective     =   79957555653.266144
+Iteration: 271295   Dual objective     =   79913074762.724457
+Iteration: 273563   Dual objective     =   79270360563.019821
+Iteration: 276468   Dual objective     =   78041123643.649872
+Iteration: 278964   Dual objective     =   76681504363.164551
+Iteration: 282420   Dual objective     =   59617588195.332428
+Iteration: 285443   Dual objective     =   53100475013.374947
+Iteration: 288751   Dual objective     =   47759095402.132782
+Iteration: 291795   Dual objective     =   46542333425.489510
+Iteration: 294696   Dual objective     =   45734955478.417244
+Iteration: 297203   Dual objective     =   44773180253.333206
+Iteration: 300267   Dual objective     =   44261101532.671921
+Iteration: 302499   Dual objective     =   43414016253.033928
+Iteration: 305359   Dual objective     =   43056735684.263046
+Iteration: 307335   Dual objective     =   42921196740.430740
+Iteration: 309377   Dual objective     =   42894463237.203400
+Iteration: 311349   Dual objective     =   42864511782.906929
+Iteration: 313382   Dual objective     =   42836222571.923531
+Iteration: 315286   Dual objective     =   42800685468.237793
+Iteration: 317084   Dual objective     =   42754483613.788025
+Iteration: 319153   Dual objective     =   42694691864.288116
+Iteration: 321127   Dual objective     =   42652630286.398605
+Iteration: 323189   Dual objective     =   42626227495.016541
+Iteration: 325212   Dual objective     =   42604922951.628494
+Iteration: 327185   Dual objective     =   42566516749.151955
+Iteration: 329130   Dual objective     =   42546223038.363197
+Iteration: 331018   Dual objective     =   42446974074.526794
+Iteration: 333047   Dual objective     =   41703988322.126106
+Iteration: 335111   Dual objective     =   41539536633.210655
+Iteration: 337112   Dual objective     =   41349538335.499443
+Iteration: 338935   Dual objective     =   40999283628.760468
+Iteration: 340875   Dual objective     =   40578276295.921448
+Iteration: 342720   Dual objective     =   40188221155.255074
+Iteration: 344593   Dual objective     =   39904782940.444740
+Iteration: 346586   Dual objective     =   39684159897.090767
+Iteration: 348342   Dual objective     =   38894461968.765770
+Iteration: 350339   Dual objective     =   38348802827.408211
+Iteration: 352135   Dual objective     =   37928417846.570747
+Iteration: 354462   Dual objective     =   37543234549.846649
+Iteration: 356656   Dual objective     =   36819537715.661179
+Iteration: 359234   Dual objective     =   36431763667.263565
+Iteration: 362024   Dual objective     =   35853401779.804153
+Elapsed time = 19.70 sec. (30180.80 ticks, 364258 iterations)
+Iteration: 364511   Dual objective     =   35030655854.881805
+Iteration: 367002   Dual objective     =   34461793141.389748
+Iteration: 369511   Dual objective     =   33973165667.009068
+Iteration: 371811   Dual objective     =   33162688620.074051
+Iteration: 374383   Dual objective     =   32177515626.881481
+Iteration: 376905   Dual objective     =   31560557905.318649
+Iteration: 379340   Dual objective     =   31012814973.922432
+Iteration: 381226   Dual objective     =   30904547325.244408
+Iteration: 383179   Dual objective     =   30840784422.055786
+Iteration: 384962   Dual objective     =   30709847120.161613
+Iteration: 386812   Dual objective     =   30630300183.404068
+Iteration: 388608   Dual objective     =   30573726755.936787
+Iteration: 390435   Dual objective     =   30369102315.196728
+Iteration: 392187   Dual objective     =   30276280069.529392
+Iteration: 394161   Dual objective     =   29925160136.288078
+Iteration: 396660   Dual objective     =   29199324311.951286
+Iteration: 399011   Dual objective     =   28695753552.723759
+Iteration: 401367   Dual objective     =   27900422260.890663
+Iteration: 403688   Dual objective     =   27433626792.203163
+Iteration: 405932   Dual objective     =   26862702720.431137
+Iteration: 408114   Dual objective     =   26528732208.323452
+Iteration: 410425   Dual objective     =   26178651084.819469
+Iteration: 412837   Dual objective     =   25722528130.299580
+Iteration: 415313   Dual objective     =   25220034867.291641
+Iteration: 417117   Dual objective     =   24977190570.180313
+Iteration: 419252   Dual objective     =   24755041822.271400
+Iteration: 421266   Dual objective     =   24362907660.475899
+Iteration: 423255   Dual objective     =   23758239611.787010
+Iteration: 425175   Dual objective     =   23347381283.962276
+Iteration: 427108   Dual objective     =   23010918767.694130
+Iteration: 429091   Dual objective     =   22692160615.878971
+Iteration: 431035   Dual objective     =   22400581116.283749
+Iteration: 432683   Dual objective     =   22211585574.015980
+Iteration: 434952   Dual objective     =   21882728640.193184
+Iteration: 437337   Dual objective     =   21534939491.204548
+Iteration: 439839   Dual objective     =   21196088753.574890
+Iteration: 442215   Dual objective     =   20815626982.272594
+Iteration: 444447   Dual objective     =   20557953370.391815
+Iteration: 446721   Dual objective     =   20285254659.730793
+Iteration: 449299   Dual objective     =   19972071026.311825
+Iteration: 451757   Dual objective     =   19687865467.797012
+Elapsed time = 28.56 sec. (40227.42 ticks, 454104 iterations)
+Iteration: 454104   Dual objective     =   19378429857.498722
+Iteration: 455931   Dual objective     =   18896141738.418175
+Iteration: 457741   Dual objective     =   18448269675.552040
+Iteration: 459604   Dual objective     =   17987640270.921295
+Iteration: 461448   Dual objective     =   17582412787.257610
+Iteration: 463193   Dual objective     =   17216351218.478062
+Iteration: 464988   Dual objective     =   16863759105.109138
+Iteration: 466830   Dual objective     =   16527888033.763702
+Iteration: 468608   Dual objective     =   16183908751.217438
+Iteration: 470350   Dual objective     =   15875738626.722584
+Iteration: 472161   Dual objective     =   15619217242.620375
+Iteration: 473891   Dual objective     =   15341340304.228254
+Iteration: 475557   Dual objective     =   15065415600.927406
+Iteration: 477259   Dual objective     =   14841627739.535276
+Iteration: 479015   Dual objective     =   14613853459.969238
+Iteration: 480712   Dual objective     =   14397055917.154903
+Iteration: 482346   Dual objective     =   14162288230.307592
+Iteration: 483994   Dual objective     =   13959100467.272017
+Iteration: 485679   Dual objective     =   13767994483.726871
+Iteration: 487270   Dual objective     =   13613832128.223135
+Iteration: 489085   Dual objective     =   13563917852.707672
+Elapsed time = 46.50 sec. (50227.52 ticks, 489254 iterations)
+Iteration: 490820   Dual objective     =   13532703340.816803
+Iteration: 492488   Dual objective     =   13476586829.693096
+Iteration: 494184   Dual objective     =   13310592970.164669
+Iteration: 495820   Dual objective     =   13165622936.050463
+Markowitz threshold set to 0.1
+Iteration: 497502   Dual objective     =   13018775348.916147
+Iteration: 500320   Dual objective     =   12821535246.180246
+Iteration: 504423   Dual objective     =   12744034372.311281
+Iteration: 509233   Dual objective     =   12711766359.003733
+Iteration: 513650   Dual objective     =   12677764011.815441
+Iteration: 517347   Dual objective     =   12649625928.298519
+Iteration: 520677   Dual objective     =   12610995088.435541
+Iteration: 523957   Dual objective     =   12567100301.290710
+Iteration: 526445   Dual objective     =   12490501022.975483
+Iteration: 528835   Dual objective     =   12426882545.876917
+Iteration: 530996   Dual objective     =   12320751973.687420
+Iteration: 533090   Dual objective     =   12235737485.809711
+Iteration: 535418   Dual objective     =   12144370105.897306
+Iteration: 537644   Dual objective     =   12061896853.496614
+Elapsed time = 69.81 sec. (60227.53 ticks, 539043 iterations)
+Iteration: 539664   Dual objective     =   12007554906.513433
+Iteration: 541888   Dual objective     =   11945127521.951500
+Iteration: 544146   Dual objective     =   11898676612.505188
+Iteration: 546254   Dual objective     =   11843088537.002676
+Iteration: 548415   Dual objective     =   11799132631.460209
+Iteration: 550550   Dual objective     =   11751962878.284227
+Iteration: 552776   Dual objective     =   11715608633.060255
+Iteration: 554944   Dual objective     =   11678047901.875334
+Iteration: 557483   Dual objective     =   11565586636.704226
+Iteration: 559804   Dual objective     =   11475733664.671034
+Iteration: 562248   Dual objective     =   11409894114.587673
+Iteration: 564436   Dual objective     =   11361922721.537462
+Iteration: 566542   Dual objective     =   11319636889.355263
+Iteration: 568584   Dual objective     =   11288754484.024517
+Elapsed time = 91.84 sec. (70252.90 ticks, 570697 iterations)
+Iteration: 570697   Dual objective     =   11203101337.336479
+Iteration: 572921   Dual objective     =   11153778188.693003
+Iteration: 574997   Dual objective     =   11115853926.585800
+Iteration: 577110   Dual objective     =   11086185653.393497
+Iteration: 579157   Dual objective     =   11048983928.075832
+Iteration: 581243   Dual objective     =   11016111951.780596
+Iteration: 583285   Dual objective     =   10991093997.063694
+Iteration: 585406   Dual objective     =   10967724839.347462
+Iteration: 587503   Dual objective     =   10943269464.972954
+Iteration: 589568   Dual objective     =   10919388654.212172
+Iteration: 591599   Dual objective     =   10900535021.285719
+Iteration: 593691   Dual objective     =   10883379812.727926
+Iteration: 595841   Dual objective     =   10866481252.824121
+Iteration: 597863   Dual objective     =   10846524879.929558
+Elapsed time = 115.94 sec. (80254.57 ticks, 599863 iterations)
+Iteration: 599863   Dual objective     =   10822233088.458496
+Iteration: 601925   Dual objective     =   10796719559.236740
+Iteration: 603863   Dual objective     =   10774491690.167610
+Iteration: 605836   Dual objective     =   10757034566.331659
+Iteration: 607733   Dual objective     =   10740133985.478924
+Iteration: 609733   Dual objective     =   10725420779.520866
+Iteration: 611769   Dual objective     =   10713665460.793564
+Iteration: 613670   Dual objective     =   10701799217.442287
+Iteration: 615638   Dual objective     =   10689241308.040400
+Iteration: 617601   Dual objective     =   10669017638.618517
+Iteration: 619674   Dual objective     =   10655615469.568773
+Iteration: 621633   Dual objective     =   10646372876.636148
+Iteration: 623619   Dual objective     =   10635880510.393475
+Iteration: 625641   Dual objective     =   10626520377.908529
+Iteration: 627591   Dual objective     =   10618952212.279955
+Elapsed time = 143.08 sec. (90254.58 ticks, 627960 iterations)
+Iteration: 629480   Dual objective     =   10607144104.358683
+Iteration: 631431   Dual objective     =   10599457630.852791
+Iteration: 633433   Dual objective     =   10590976614.167753
+Iteration: 635356   Dual objective     =   10583988084.305492
+Iteration: 637260   Dual objective     =   10578797621.271469
+Iteration: 639197   Dual objective     =   10574261281.549450
+Iteration: 641150   Dual objective     =   10569316310.671772
+Iteration: 643064   Dual objective     =   10561896371.251520
+Iteration: 644983   Dual objective     =   10555261620.695045
+Iteration: 646823   Dual objective     =   10550933970.449106
+Iteration: 648702   Dual objective     =   10546391442.252573
+Iteration: 650241   Dual objective     =   10523671438.332567
+Iteration: 651656   Dual objective     =   10477704492.920959
+Elapsed time = 171.69 sec. (100254.99 ticks, 653816 iterations)
+Iteration: 653939   Dual objective     =   10408286972.425600
+Iteration: 655515   Dual objective     =   10327290383.567835
+Iteration: 657023   Dual objective     =   10250256859.452856
+Iteration: 658417   Dual objective     =   10167864843.269804
+Iteration: 659963   Dual objective     =   10089549852.912624
+Iteration: 661954   Dual objective     =    9997751858.056669
+Iteration: 663571   Dual objective     =    9933705040.566141
+Markowitz threshold set to 0.2
+Iteration: 665304   Dual objective     =    9884547819.505276
+Elapsed time = 210.24 sec. (110255.22 ticks, 666515 iterations)
+Iteration: 667050   Dual objective     =    9850977302.578964
+Iteration: 668655   Dual objective     =    9823515777.760420
+Iteration: 670426   Dual objective     =    9800850464.452765
+Iteration: 671987   Dual objective     =    9784079772.109320
+Iteration: 673534   Dual objective     =    9772648042.861216
+Iteration: 673589   Dual objective     =    9771458466.277464
+Iteration: 673652   Dual objective     =    9770961726.691887
+Iteration: 675043   Dual objective     =    9763034854.722157
+Elapsed time = 247.30 sec. (120255.65 ticks, 675976 iterations)
+Iteration: 676586   Dual objective     =    9755269191.783751
+Iteration: 678081   Dual objective     =    9746704149.739046
+Iteration: 679391   Dual objective     =    9733496702.574448
+Iteration: 680816   Dual objective     =    9726020715.212358
+Elapsed time = 285.67 sec. (130256.04 ticks, 682236 iterations)
+Iteration: 682392   Dual objective     =    9717877812.811802
+Iteration: 682987   Dual objective     =    9714678113.391663
+Iteration: 684117   Dual objective     =    9708128483.256977
+Iteration: 684711   Dual objective     =    9702761839.565830
+Iteration: 686041   Dual objective     =    9693944905.841377
+Elapsed time = 321.03 sec. (140258.08 ticks, 686962 iterations)
+Iteration: 687527   Dual objective     =    9686085680.599546
+Iteration: 688808   Dual objective     =    9679607588.852291
+Iteration: 690189   Dual objective     =    9670917718.769819
+Elapsed time = 356.27 sec. (150307.21 ticks, 691472 iterations)
+Iteration: 691472   Dual objective     =    9663725930.363050
+Iteration: 692906   Dual objective     =    9654254674.124430
+Iteration: 694006   Dual objective     =    9651353887.855812
+Iteration: 695168   Dual objective     =    9648941057.977375
+Elapsed time = 387.34 sec. (160308.85 ticks, 695465 iterations)
+Iteration: 696183   Dual objective     =    9645696215.787676
+Iteration: 697691   Dual objective     =    9637462338.741747
+Iteration: 698920   Dual objective     =    9632586739.107237
+Iteration: 699377   Dual objective     =    9629347460.000204
+Iteration: 700685   Dual objective     =    9625092585.867437
+Elapsed time = 418.45 sec. (170309.08 ticks, 701083 iterations)
+Iteration: 701754   Dual objective     =    9621824384.533583
+Iteration: 702858   Dual objective     =    9619845828.237284
+Elapsed time = 448.05 sec. (180315.99 ticks, 703733 iterations)
+Iteration: 703828   Dual objective     =    9617830392.372408
+Iteration: 704797   Dual objective     =    9616034922.651291
+Elapsed time = 478.30 sec. (190320.35 ticks, 705464 iterations)
+Iteration: 705726   Dual objective     =    9612675411.031261
+Iteration: 705749   Dual objective     =    9612409866.081932
+Iteration: 706705   Dual objective     =    9609274982.427570
+Elapsed time = 509.20 sec. (200322.66 ticks, 707385 iterations)
+Iteration: 707700   Dual objective     =    9606513620.883034
+Iteration: 707835   Dual objective     =    9604706643.579306
+Iteration: 708777   Dual objective     =    9603111756.549225
+Iteration: 710101   Dual objective     =    9596276424.436583
+Elapsed time = 538.70 sec. (210323.01 ticks, 710993 iterations)
+Iteration: 711626   Dual objective     =    9588737830.867933
+Iteration: 712125   Dual objective     =    9585843112.045193
+Iteration: 713614   Dual objective     =    9580689203.597372
+Iteration: 714894   Dual objective     =    9576499137.317987
+Iteration: 716053   Dual objective     =    9573777407.623459
+Iteration: 717194   Dual objective     =    9571622595.188061
+Elapsed time = 568.28 sec. (220327.92 ticks, 717533 iterations)
+Iteration: 718172   Dual objective     =    9569588470.081856
+Iteration: 719222   Dual objective     =    9567370391.729330
+Elapsed time = 597.19 sec. (230328.15 ticks, 719847 iterations)
+Iteration: 720228   Dual objective     =    9566034003.606625
+Iteration: 721279   Dual objective     =    9564676375.923594
+Elapsed time = 623.05 sec. (240337.83 ticks, 721839 iterations)
+Iteration: 722329   Dual objective     =    9563078750.342182
+Iteration: 723423   Dual objective     =    9560570267.425102
+Elapsed time = 649.38 sec. (250346.42 ticks, 724024 iterations)
+Iteration: 724396   Dual objective     =    9559719321.424891
+Iteration: 725346   Dual objective     =    9557970455.792471
+Iteration: 726930   Dual objective     =    9552634258.975151
+Elapsed time = 676.70 sec. (260349.91 ticks, 727714 iterations)
+Iteration: 727978   Dual objective     =    9546106690.835230
+Iteration: 729127   Dual objective     =    9545193245.531790
+Elapsed time = 704.52 sec. (270412.91 ticks, 730510 iterations)
+Iteration: 730510   Dual objective     =    9542558019.484217
+Iteration: 732454   Dual objective     =    9522437883.157763
+Iteration: 733702   Dual objective     =    9521602005.989792
+Iteration: 734818   Dual objective     =    9520537794.830923
+Elapsed time = 733.53 sec. (280413.07 ticks, 735835 iterations)
+Iteration: 735970   Dual objective     =    9519874967.100346
+Iteration: 736954   Dual objective     =    9519702549.897518
+Elapsed time = 757.61 sec. (290414.84 ticks, 737596 iterations)
+Iteration: 737956   Dual objective     =    9519535113.451796
+Elapsed time = 778.06 sec. (300422.58 ticks, 738833 iterations)
+Iteration: 738846   Dual objective     =    9519424117.631233
+Root relaxation solution time = 782.55 sec. (302862.65 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                       382343.4335   5.23951e+11              --- 
+Found incumbent of value 382343.433451 after 791.97 sec. (314857.44 ticks)
+      0     0   9.51931e+09   358   382343.4335   9.51931e+09   739392     --- 
+      0     0   9.47474e+09   103   382343.4335    Cuts: 9725   752868     --- 
+      0     0   9.42238e+09    92   382343.4335    Cuts: 9766   768256     --- 
+      0     0   9.35382e+09    91   382343.4335    Cuts: 9807   782226     --- 
+      0     0   9.28720e+09    91   382343.4335    Cuts: 9786   797599     --- 
+      0     0   9.24239e+09    89   382343.4335    Cuts: 9737   812251     --- 
+      0     0   9.21440e+09    85   382343.4335    Cuts: 9797   824469     --- 
+      0     0   9.19258e+09    85   382343.4335    Cuts: 9836   837161     --- 
+      0     0   9.18010e+09    83   382343.4335    Cuts: 9862   853241     --- 
+      0     0   9.17326e+09    84   382343.4335    Cuts: 4890   859672     --- 
+      0     0   9.16876e+09    82   382343.4335    Cuts: 2491   863392     --- 
+      0     0   9.16513e+09    84   382343.4335    Cuts: 1534   866333     --- 
+      0     0   9.16281e+09    84   382343.4335    Cuts: 1430   868165     --- 
+      0     0   9.16183e+09    83   382343.4335     Cuts: 742   869404     --- 
+      0     0   9.16130e+09    80   382343.4335     Cuts: 472   870305     --- 
+Heuristic still looking.
+Detecting symmetries...
+      0     2   9.16130e+09    80   382343.4335   9.16127e+09   870305     --- 
+Elapsed time = 1677.20 sec. (818269.34 ticks, tree = 0.01 MB)
+      1     3   9.14803e+09    75   382343.4335   9.16127e+09   875822     --- 
+      2     4   9.14719e+09    87   382343.4335   9.14800e+09   881224     --- 
+      3     5   9.13936e+09    72   382343.4335   9.14748e+09   883305     --- 

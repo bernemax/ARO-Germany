@@ -1,0 +1,26 @@
+set=Map_send_L                  rng=Mapping!A3:B1682                    rdim=2 cDim=0
+set=Map_res_L                   rng=Mapping!D3:E1682                    rdim=2 cDim=0
+set=MapG                        rng=Mapping!G3:H561                     rdim=2 cDim=0
+set=MapS                        rng=Mapping!J3:K177                     rdim=2 cDim=0
+set=MapRes                      rng=Mapping!S3:T1027                    rdim=2 cDim=0
+set=MapWr                       rng=Mapping!M3:N482                     rdim=2 cDim=0
+set=MapSr                       rng=Mapping!P3:Q482                     rdim=2 cDim=0
+set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
+set=Border_exist_total          rng=Mapping!W3:W65                      rdim=1 cDim=0
+set=Border_prosp_DE             rng=Mapping!X3:X47                      rdim=1 cDim=0
+set=Border_prosp_total          rng=Mapping!Y3:Y65                      rdim=1 cDim=0
+
+
+par=Node_Demand                 rng=Node_Demand!A1:C506                 rDim=1 cdim=1
+par=Neighbor_Demand             rng=Neighboring_countries!A2:K8762      rDim=1 cdim=1
+par=Ger_Demand                  rng=Node_Demand!E1:F8761                rDim=1 cdim=1
+par=Grid_tech                   rng=Grid_tech!A1:H841                   rDim=1 cdim=1
+par=Gen_conv                    rng=Gen_conv!B2:J561                    rDim=1 cdim=1
+par=Gen_res                     rng=Gen_res!A2:E1120                    rDim=1 cdim=1
+par=Gen_Hydro                   rng=Gen_Hydro!A2:F177                   rDim=1 cdim=1
+par=priceup                     rng=prices!A1:I8761                     rDim=1 cdim=1
+par=availup_hydro               rng=Availability!A2:D8762               rDim=1 cdim=1
+par=availup_res                 rng=Availability!E2:DU8762              rDim=1 cdim=1
+par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
+par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
+par=Grid_invest                 rng=Grid_invest!A2:G842                 rDim=1 cdim=1

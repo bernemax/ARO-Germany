@@ -180,6 +180,10 @@ Gamma_PG_conv       /0/
 Gamma_PG_PV         /0/
 
 Gamma_PG_Wind       /0/
+
+dark_time           /5/
+
+hope_time           /5/
 ;
 
 **************************************parameters**************************************
@@ -561,6 +565,8 @@ O_M                         Objective var of Master Problem
 PF_M(l,t,v)                 power flows derived from DC load flow equation
 Theta(n,t,v)                Angle of each node associated with DC power flow equations
 
+End_dark(res,t)
+
 *********************************************Subproblem*********************************************
 
 O_Sub                       Objective var of dual Subproblem
@@ -577,6 +583,8 @@ PG_M_Hydro(s,t,v)           power generation from hydro reservoir and psp and ro
 PG_M_PV(res,t,v)            power generation level of renewable volatil PV generators
 PG_M_Wind(res,t,v)          power generation level of renewable volatil wind generators
 PLS_M(n,t,v)                load shedding
+
+Start_dark(res,t)
 
 *********************************************Subproblem*********************************************
 
@@ -675,6 +683,10 @@ SUB_UB_PG_sun
 
 SUB_US_PG_wind
 SUB_UB_PG_wind
+Time1
+Time2
+Time3
+Time4
 
 SUB_lin1
 SUB_lin2
@@ -866,6 +878,14 @@ SUB_US_PG_wind(wind,wr,n,t)$(MapWR(n,wr) and MapRes(wind,n))..      AF_wind(t,wr
 ;
 SUB_UB_PG_wind(t)..                                                 sum(wind, z_PG_Wind(wind,t))   =l= Gamma_PG_Wind 
 ;
+Time1(wind,wr,n,t)$(MapWR(n,wr)and MapRes(wind,n))..                Start_dark(wind,t) =e= z_PG_Wind(wind,t) - z_PG_Wind(wind,t-1)
+;
+Time2(wind,wr,n,t)$(MapWR(n,wr)and MapRes(wind,n))..                End_dark(wind,t)   =e= z_PG_Wind(wind,t) - z_PG_Wind(wind,t-1)
+;
+Time3(wind,wr,n,t)$(MapWR(n,wr)and MapRes(wind,n))..                sum(tt$(ord(tt) <= ord (t) and ord(tt) >= (ord(t) - dark_time)), Start_dark(wind,tt)) =l=  z_PG_Wind(wind,t) 
+;
+Time4(wind,wr,n,t)$(MapWR(n,wr)and MapRes(wind,n))..                sum(tt$(ord(tt) >= ord (t) and ord(tt) <= (ord(t) + hope_time)), End_dark(wind,tt)) =l=  z_PG_Wind(wind,t) - z_PG_Wind(wind,t-1)
+;
 *$offtext
 *****************************************************************linearization
 
@@ -984,6 +1004,10 @@ SUB_UB_PG_sun
 
 SUB_US_PG_wind
 SUB_UB_PG_wind
+Time1
+Time2
+Time3
+Time4
 
 
 SUB_lin1
@@ -1010,11 +1034,11 @@ SUB_lin20
 ;
 option optcr = 0.1
 ;
-Gamma_Load = 20
+Gamma_Load = 0
 ;
 Gamma_PG_conv = 0
 ;
-Gamma_PG_PV = 20
+Gamma_PG_PV = 0
 ;
 Gamma_PG_Wind = 20
 ;

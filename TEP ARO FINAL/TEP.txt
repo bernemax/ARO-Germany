@@ -3,12 +3,16 @@ set=Map_res_L                   rng=Mapping!D3:E1000                    rdim=2 c
 set=MapG                        rng=Mapping!G3:H567                     rdim=2 cDim=0
 set=MapS                        rng=Mapping!J3:K180                     rdim=2 cDim=0
 set=MapRes                      rng=Mapping!S3:T1027                    rdim=2 cDim=0
+set=MapRen                      rng=Mapping!BB3:Bc483                   rdim=2 cDim=0
 set=MapWr                       rng=Mapping!AA3:AB483                   rdim=2 cDim=0
 set=MapSr                       rng=Mapping!AD3:AE483                   rdim=2 cDim=0
+set=MapRR                       rng=Mapping!AU3:AV483                   rdim=2 cDim=0
+set=Map_RR                      rng=Mapping!AX3:BA483                   rdim=3 cDim=0
 set=Map_WR_wind                 rng=Mapping!AG3:AI483                   rdim=3 cDim=0
 set=Map_SR_sun                  rng=Mapping!AK3:AM483                   rdim=3 cDim=0
 set=SR_sun                      rng=Mapping!AO3:AP483                   rdim=2 cDim=0
 set=WR_wind                     rng=Mapping!AR3:AS483                   rdim=2 cDim=0
+set=RR_ren                      rng=Mapping!BE3:BF483                   rdim=2 cDim=0
 set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
 
 
@@ -17,11 +21,12 @@ par=Neighbor_Demand             rng=Neighboring_countries!A2:L8762      rDim=1 c
 par=Ger_Demand                  rng=Node_Demand!E1:F8761                rDim=1 cdim=1
 par=Grid_tech                   rng=Grid_tech!A1:H843                   rDim=1 cdim=1
 par=Gen_conv                    rng=Gen_conv!B2:J567                    rDim=1 cdim=1
-par=Gen_res                     rng=Gen_res!A2:E1123                    rDim=1 cdim=1
+par=Gen_res                     rng=Gen_res!A2:F1123                    rDim=1 cdim=1
+par=Gen_ren                     rng=Gen_res!I2:K483                     rDim=1 cdim=1
 par=Gen_Hydro                   rng=Gen_Hydro!A2:F180                   rDim=1 cdim=1
 par=priceup                     rng=prices!A1:I8761                     rDim=1 cdim=1
 par=availup_hydro               rng=Availability!A2:D8762               rDim=1 cdim=1
-par=availup_res                 rng=Av_country!A2:Z8762                 rDim=1 cdim=1
+par=availup_res                 rng=Availability!E2:RS8762              rDim=1 cdim=1
 par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
 par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
 par=Grid_invest_new             rng=Grid_invest!A2:K50                  rDim=1 cdim=1
