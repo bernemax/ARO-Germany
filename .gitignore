@@ -12,3 +12,4 @@
 *.gpr
 TEP ARO Model Test/225b/gamsmatr.dat
 TEP ARO Model Test/225b/gamsmatr.dat
+*.dat
