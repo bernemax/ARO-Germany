@@ -1,28 +1,31 @@
---- Job Final_TEP_ARO.gms Start 03/08/22 13:49:55 35.1.0 r82a9585 WEX-WEI x86 64bit/MS Windows
+
+--- Job Final_TEP_ARO.gms Start 03/31/22 18:36:14 38.2.1 96226ea8 WEX-WEI x86 64bit/MS Windows
 --- Applying:
-    C:\GAMS\35\gmsprmNT.txt
+    C:\GAMS\38\gmsprmNT.txt
 --- GAMS Parameters defined
     Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms"
     PageSize 0
     ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\225a\"
-    SysDir C:\GAMS\35\
+    SysDir C:\GAMS\38\
     LogOption 3
     ErrMsg 1
     ErrorLog 99
     IDE 1
     LstTitleLeftAligned 1
-Licensee: Small MUD - 5 User License                     S201118/0001AN-WIN
+Licensee: Small MUD - 5 User License                     S211124|0002AN-WIN
           BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
           C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
-GAMS 35.1.0   Copyright (C) 1987-2021 GAMS Development. All rights reserved
+          License Admin: Felix Muesgens, Fg-energiewirtschaft@b-tu.de      
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 38.2.1   Copyright (C) 1987-2022 GAMS Development. All rights reserved
 --- Starting compilation
---- Final_TEP_ARO.gms(123) 3 Mb
---- . Loading_Data.gms(190) 3 Mb
+--- Final_TEP_ARO.gms(147) 4 Mb
+--- . Loading_Data.gms(270) 4 Mb
 --- $echo File Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\TEP.txt
---- . Loading_Data.gms(226) 3 Mb
+--- . Loading_Data.gms(306) 4 Mb
 --- call gdxxrw Data.xlsx @TEP.txt
 
-GDXXRW           35.1.0 r82a9585 Released Apr 29, 2021 WEI x86 64bit/MS Window
+GDXXRW           38.2.1 96226ea8 Feb 19, 2022          VS8 x86 32bit/MS Window
 Input file : Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.xlsx
 Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
 Value expected in cell: Gen_RES!K92; found #Error
@@ -39,104 +42,346 @@ Value expected in cell: Grid_invest!K4; found Freileitung
 Value expected in cell: Grid_invest!B5; found l216
 Additional errors suppressed
 Total number of bad values for symbol Grid_invest_new = 94
-Total time = 17922 Ms
---- . Loading_Data.gms(227) 3 Mb
+Total time = 19703 Ms
+--- . Loading_Data.gms(307) 4 Mb
 --- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
 --- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
---- . Loading_Data.gms(399) 127 Mb
---- Final_TEP_ARO.gms(458) 127 Mb 1 Error
-*** Error 140 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Unknown symbol
---- Final_TEP_ARO.gms(691) 127 Mb 2 Errors
-*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Solve statement not checked because of previous errors
---- Final_TEP_ARO.gms(696) 127 Mb 3 Errors
-*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Solve statement not checked because of previous errors
---- Final_TEP_ARO.gms(700) 127 Mb 4 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(703) 127 Mb 5 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(713) 127 Mb 6 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(715) 127 Mb 7 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(716) 127 Mb 8 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(723) 127 Mb
---- . network_expansion_merge.gms(101) 127 Mb
---- Final_TEP_ARO.gms(729) 127 Mb 9 Errors
-*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Solve statement not checked because of previous errors
---- Final_TEP_ARO.gms(732) 127 Mb 10 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(738) 127 Mb 11 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(740) 127 Mb 12 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(744) 127 Mb 13 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(748) 127 Mb 14 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(750) 127 Mb 15 Errors
-*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms
-    Symbol declared but no values have been assigned. Check for missing
-       data definition, assignment, data loading or implicit assignment
-       via a solve statement.
-       A wild shot: You may have spurious commas in the explanatory
-       text of a declaration. Check symbol reference list.
---- Final_TEP_ARO.gms(756) 127 Mb
---- . network_expansion_clean.gms(51) 127 Mb
---- Final_TEP_ARO.gms(762) 127 Mb 15 Errors
-*** Status: Compilation error(s)
---- Job Final_TEP_ARO.gms Stop 03/08/22 13:50:15 elapsed 0:00:19.731
+--- . Loading_Data.gms(556) 128 Mb
+--- Final_TEP_ARO.gms(994) 128 Mb
+--- . network_expansion_merge.gms(101) 128 Mb
+--- Final_TEP_ARO.gms(1030) 128 Mb
+--- . network_expansion_clean.gms(51) 128 Mb
+--- Final_TEP_ARO.gms(1106) 128 Mb
+--- Starting execution: elapsed 0:00:21.495
+--- Final_TEP_ARO.gms(1486) 238 Mb
+--- Generating MIP model Master_VO
+--- Final_TEP_ARO.gms(1518) 238 Mb
+--- LOOPS v = v1
+---   10 rows  49 columns  480 non-zeroes
+---   47 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:22.007
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- GMO memory 0.50 Mb (peak 0.50 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 0.00 Mb (peak 0.01 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Generic callback                                 0x50
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 10 rows and 28 columns.
+MIP Presolve added 8 rows and 8 columns.
+Reduced MIP has 8 rows, 30 columns, and 30 nonzeros.
+Reduced MIP has 21 binaries, 9 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.13 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 7 rows and 24 columns.
+Reduced MIP has 1 rows, 6 columns, and 6 nonzeros.
+Reduced MIP has 5 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 1 rows, 6 columns, and 6 nonzeros.
+Reduced MIP has 5 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.00 sec. (6.88 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.00 sec. (6.88 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 0.00sec (det. 6.88 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Tried aggregator 1 time.
+LP Presolve eliminated 10 rows and 50 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 0.05 ticks)
+
+
+Proven optimal solution
+MIP Solution:            0.000000    (0 iterations, 0 nodes)
+Final Solve:             0.000000    (0 iterations)
+
+Best possible:           0.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model Master_VO
+--- Executing after solve: elapsed 0:00:22.242
+--- Final_TEP_ARO.gms(1486) 238 Mb
+--- Generating MIP model Subproblem
+--- Final_TEP_ARO.gms(1079) 543 Mb  50 secs
+--- Final_TEP_ARO.gms(1657) 1663 Mb  28 secs
+--- LOOPS v = v1
+---   5,630,139 rows  5,104,201 columns  17,359,723 non-zeroes
+---   479,100 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:01:50.104
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 309.80 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 2021.44 Mb (peak 2060.38 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 161.79 Mb (peak 739.61 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Generic callback                                 0x50
+Found incumbent of value 0.000000 after 0.22 sec. (231.30 ticks)
+Aggregator has done 231932 substitutions...
+Tried aggregator 3 times.
+MIP Presolve eliminated 3154791 rows and 2504649 columns.
+MIP Presolve modified 271046 coefficients.
+Aggregator did 231932 substitutions.
+Reduced MIP has 2218049 rows, 2337864 columns, and 5490284 nonzeros.
+Reduced MIP has 3576 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 12.67 sec. (13300.77 ticks)
+Probing time = 0.14 sec. (57.56 ticks)
+Tried aggregator 1 time.
+Detecting symmetries...
+Elapsed time for symmetry detection = 5.89 sec. (10065.45 ticks)
+Elapsed time for symmetry detection = 11.63 sec. (20076.54 ticks)
+Elapsed time for symmetry detection = 17.55 sec. (30087.82 ticks)
+Elapsed time for symmetry detection = 23.39 sec. (40099.11 ticks)
+Found 6.607095e+1978 symmetric permutations.
+MIP Presolve eliminated 13741 rows and 9042 columns.
+Reduced MIP has 2204308 rows, 2323700 columns, and 5448420 nonzeros.
+Reduced MIP has 3576 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 31.81 sec. (48636.73 ticks)
+Probing time = 0.13 sec. (57.28 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Dual objective     = 1607816725672.473633
+Iteration:  3713   Dual objective     = 1605608279555.295410
+Iteration:  7062   Dual objective     = 1604105052166.585693
+Iteration: 10292   Dual objective     = 1601690493367.833008
+Iteration: 13398   Dual objective     = 1598691757406.724854
+Iteration: 16380   Dual objective     = 1596454037751.471436
+Iteration: 19444   Dual objective     = 1594813768107.360840
+Iteration: 22451   Dual objective     = 1592696125361.954834
+Iteration: 25874   Dual objective     = 1589980524903.033691
+Iteration: 29125   Dual objective     = 1588205966392.257080
+Iteration: 32096   Dual objective     = 1584744575598.812744
+Iteration: 35517   Dual objective     = 1580683482238.477295
+Iteration: 38945   Dual objective     = 1579062596988.062012
+Iteration: 42555   Dual objective     = 1576713389205.121094
+Iteration: 45817   Dual objective     = 1575354854178.757568
+Iteration: 48923   Dual objective     = 1572279383596.936768
+Iteration: 53182   Dual objective     = 1543450655019.361572
+Iteration: 58856   Dual objective     = 1499537781975.138184
+Iteration: 64251   Dual objective     = 1498179474063.612549
+Iteration: 69619   Dual objective     = 1495520287937.470459
+Elapsed time = 5.75 sec. (10023.58 ticks, 74691 iterations)
+Iteration: 74691   Dual objective     = 1492615965501.701416
+Iteration: 81021   Dual objective     = 1478296693501.626465
+Iteration: 88102   Dual objective     = 1459375892140.674561
+Iteration: 95323   Dual objective     = 1455550226054.157471
+Iteration: 102550   Dual objective     = 1451745304143.636719
+Iteration: 109783   Dual objective     = 1442275629876.211914
+Iteration: 117022   Dual objective     = 1426544787050.559814
+Iteration: 124267   Dual objective     = 1401972063681.490723
+Iteration: 130239   Dual objective     = 1387317959576.168701
+Iteration: 133532   Dual objective     =  930197427550.216919
+Iteration: 136820   Dual objective     =  928301316955.428223
+Iteration: 140155   Dual objective     =  926243256942.279663
+Iteration: 143481   Dual objective     =  876522563794.853149
+Iteration: 146798   Dual objective     =  823975371746.281616
+Iteration: 150162   Dual objective     =  819029929700.647705
+Iteration: 153375   Dual objective     =  810861796986.864868
+Iteration: 156857   Dual objective     =  805133628766.407715
+Elapsed time = 10.52 sec. (20036.29 ticks, 160629 iterations)
+Iteration: 160629   Dual objective     =  799808162348.490723
+Iteration: 163938   Dual objective     =  798353640938.164795
+Iteration: 167682   Dual objective     =  796672629906.991455
+Iteration: 171546   Dual objective     =  796436806590.814453
+Iteration: 175625   Dual objective     =  796067381599.081177
+Iteration: 179428   Dual objective     =  795594638024.266724
+Iteration: 183438   Dual objective     =  795120406426.678955
+Iteration: 187196   Dual objective     =  794495054220.845093
+Iteration: 190704   Dual objective     =  794104161467.854858
+Iteration: 194254   Dual objective     =  793818708005.277466
+Iteration: 197792   Dual objective     =  793371412738.137329
+Iteration: 201483   Dual objective     =  793138862906.561279
+Iteration: 205129   Dual objective     =  792989458129.431519
+Iteration: 208653   Dual objective     =  792686569085.252686
+Iteration: 212768   Dual objective     =  752206443546.708984
+Iteration: 215986   Dual objective     =  751078829509.105225
+Iteration: 219328   Dual objective     =  749975061909.096558
+Iteration: 222961   Dual objective     =  747369645939.525269
+Iteration: 226441   Dual objective     =  627122015459.051880
+Iteration: 229969   Dual objective     =  482358949905.238403
+Iteration: 233340   Dual objective     =  478699273086.017883
+Elapsed time = 16.91 sec. (30114.96 ticks, 236812 iterations)
+Iteration: 236812   Dual objective     =  476090582664.670471
+Iteration: 240189   Dual objective     =  473877795572.189636
+Iteration: 243722   Dual objective     =  466068015400.292053
+Iteration: 247287   Dual objective     =  375249392882.442993
+Iteration: 250634   Dual objective     =  331638863811.183960
+Iteration: 253986   Dual objective     =  323276868948.717773
+Iteration: 257456   Dual objective     =  308647773030.278137
+Iteration: 260942   Dual objective     =  247350361638.397034
+Iteration: 264304   Dual objective     =  241337433391.951019
+Iteration: 267737   Dual objective     =  235322778821.109192
+Iteration: 271133   Dual objective     =  230232768397.184601
+Iteration: 274475   Dual objective     =  227036289061.073761
+Iteration: 277755   Dual objective     =  224345137602.405945
+Iteration: 281128   Dual objective     =  222961448702.143921
+Iteration: 284459   Dual objective     =  221203121678.335907
+Iteration: 287755   Dual objective     =  220113882568.980408
+Iteration: 291128   Dual objective     =  218722177489.097137
+Iteration: 294400   Dual objective     =  217040831125.267059
+Iteration: 298391   Dual objective     =  214006635468.827057
+Iteration: 301807   Dual objective     =  213240798559.515778
+Iteration: 305476   Dual objective     =  212397945224.125061
+Elapsed time = 24.25 sec. (40441.45 ticks, 309207 iterations)
+Iteration: 309207   Dual objective     =  211902660602.511719
+Iteration: 313064   Dual objective     =  211381524089.833679
+Iteration: 316481   Dual objective     =  210788279810.080750
+Iteration: 320377   Dual objective     =  210273976610.902924
+Iteration: 323735   Dual objective     =  209151107427.379791
+Iteration: 326978   Dual objective     =  208491912780.267395
+Iteration: 330257   Dual objective     =  207972211191.047455
+Iteration: 333715   Dual objective     =  207389742812.265991
+Iteration: 337309   Dual objective     =  206489224425.829163
+Iteration: 341068   Dual objective     =  206030372324.901245
+Iteration: 344375   Dual objective     =  205551256607.204773
+Iteration: 348193   Dual objective     =  205134059903.770599
+Iteration: 351907   Dual objective     =  204461178048.596527
+Iteration: 355403   Dual objective     =  203505572954.941772
+Iteration: 359083   Dual objective     =  201984613508.685272
+Iteration: 363070   Dual objective     =  200926669121.726318
+Iteration: 366859   Dual objective     =  200652442655.263367
+Iteration: 370847   Dual objective     =  199850795930.321655
+Iteration: 374534   Dual objective     =  199665398173.370972
+Iteration: 378494   Dual objective     =  199155037376.555969
+Iteration: 381988   Dual objective     =  198821862688.816895
+Elapsed time = 31.05 sec. (50775.66 ticks, 385832 iterations)
+Iteration: 385832   Dual objective     =  198472182398.802826
+Iteration: 389220   Dual objective     =  197710370460.994019
+Iteration: 392426   Dual objective     =  197271251728.115784
+Iteration: 395621   Dual objective     =  196906518621.286957
+Iteration: 399078   Dual objective     =  196499351148.543304
+Iteration: 402931   Dual objective     =  196042626299.123383
+Iteration: 406854   Dual objective     =  195639619040.413635
+Iteration: 410384   Dual objective     =  195322030927.277740
+Iteration: 413755   Dual objective     =  194940193708.314575
+Iteration: 417810   Dual objective     =  194647604812.299988
+Iteration: 421729   Dual objective     =  194193784328.148773
+Iteration: 425456   Dual objective     =  193878592538.267609
+Iteration: 429066   Dual objective     =  193071819461.975708
+Iteration: 432509   Dual objective     =  192330869266.213806
+Iteration: 436074   Dual objective     =  192136734828.961945
+Iteration: 439459   Dual objective     =  191857536383.364624
+Iteration: 443042   Dual objective     =  191151848131.278839
+Iteration: 446689   Dual objective     =  190912378241.425629
+Iteration: 450049   Dual objective     =  190607208795.293182
+Iteration: 453611   Dual objective     =  190189877542.840240
+Iteration: 457395   Dual objective     =  189796903256.757935
+Elapsed time = 37.02 sec. (61027.13 ticks, 461176 iterations)
+Iteration: 461176   Dual objective     =  189706773972.663330
+Iteration: 464892   Dual objective     =  189615825082.592621
+Iteration: 468526   Dual objective     =  189520685376.263031
+Iteration: 471964   Dual objective     =  189364642746.186066
+Iteration: 475398   Dual objective     =  189299055489.379852
+Iteration: 478649   Dual objective     =  189187549666.697083
+Iteration: 481803   Dual objective     =  189107543158.287231
+Iteration: 485247   Dual objective     =  188990097738.502472
+Iteration: 488741   Dual objective     =  188891234514.697235
+Iteration: 492146   Dual objective     =  188836595695.758972
+Iteration: 495501   Dual objective     =  188736698095.250275
+Iteration: 499380   Dual objective     =  188646912093.819885
+Iteration: 502750   Dual objective     =  188574141948.766785
+Iteration: 506209   Dual objective     =  188466387692.515289
+Iteration: 509632   Dual objective     =  188357390011.543732
+Iteration: 513164   Dual objective     =  188277687064.874481
+Iteration: 516480   Dual objective     =  188175681763.148773
+Iteration: 519994   Dual objective     =  188127426021.229492
+Iteration: 524077   Dual objective     =  186278773838.061493
+Iteration: 527983   Dual objective     =  186187250232.525208
+Root relaxation solution time = 42.58 sec. (70379.84 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                            0.0000   1.60782e+12              --- 
+Found incumbent of value 0.000000 after 91.86 sec. (136455.55 ticks)
+      0     0   1.00000e+37     0        0.0000   1.60782e+12   527983     --- 
+
+Root node processing (before b&c):
+  Real time             =   91.97 sec. (136517.96 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =   91.97 sec. (136517.96 ticks)
+
+--- MIP status (113): aborted.
+--- Cplex Time: 91.97sec (det. 136532.56 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Presolve time = 0.69 sec. (973.74 ticks)
+
+--- Fixed MIP status (13): user aborted.
+--- Cplex Time: 0.69sec (det. 973.74 ticks)
+
+--- Rerunning with presolve turned off and solving with LPMETHOD=1.
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Preprocessing_Presolve                  0
+CPXPARAM_LPMethod                                1
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0
+Primal superbasis not built.

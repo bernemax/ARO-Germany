@@ -1,56 +1,56 @@
-50
-2 12222 0 0 351  0.00000000000000E+0000 5  0.00000000000000E+0000 0 1
-264732 0 0 0 202199 54125 61007 149600 0 0 0 0
-145663 0 0 0 0 0 0 0
-540682 0
-145562 101 0 0 0 0 0 88601 0 56961
+52
+2 19930 0 0 382  0.00000000000000E+0000 5  0.00000000000000E+0000 0 1
+4558815 0 0 0 2301211 1025401 1 3533413 0 0 0 0
+3430381 0 0 0 0 0 0 0
+13877761 0
+3103501 326880 0 0 0 0 0 2544900 0 558601
 0 0 0 0 0 0 0
-0 170 0
+1 101282 0
 0 0 20
  0.00000000000000E+0000  0.00000000000000E+0000 0
 0  0.00000000000000E+0000 0  0.00000000000000E+0000
  1.00000000000000E+0010 2147483647 0
 2011 0
- 0.00000000000000E+0000 0 0 0  1.00000000000000E+0000 0 1 0 0  1.00000000000000E-0005
+ 0.00000000000000E+0000 0 0 0  1.00000000000000E+0000 0 1 0 0  1.00000000000000E-0005 0
 1 100
 0 0 0 0 0
  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\gamsmatr.dat
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\gamsinst.dat
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\cplex.opt
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\gamsstat.dat
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\gamssolu.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\gamsmatr.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\gamsinst.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\cplex.opt
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\gamsstat.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\gamssolu.dat
 
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\gamsdict.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\gamsdict.dat
 3
-16:27:40
-03/03/22
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\
-C:\GAMS\35\
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\
+11:06:52
+04/26/22
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\
+C:\GAMS\38\
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\
 32767 2147483647
-0 0 470 44622 44182 72169
-Small MUD - 5 User License                     S201118/0001AN-WIN0
+0 0 153 44676 44553 80343
+Small MUD - 5 User License                     S211124|0002AN-WIN0
 BTU Cottbus-Senftenberg, FG Energiewirtschaft                    0
-1448114801CPPT                                                   0
-0 5 5 0
+1449369101CPPT                                                   0
+0 1 1 0
 225b\gmsprmNT.dat
-15 71 18
-LP          18 0
-MIP         18 0
-RMIP        18 0
+15 71 19
+LP          19 0
+MIP         19 0
+RMIP        19 0
 NLP         11 0
 MCP         59 0
-MPEC        52 0
-RMPEC       52 0
+MPEC        51 0
+RMPEC       51 0
 CNS         11 0
 DNLP        11 0
 RMINLP      11 0
-MINLP       26 0
+MINLP       27 0
 QCP         11 0
 MIQCP       63 0
 RMIQCP      11 0
-EMP         34 0
+EMP         35 0
 ALPHAECP    11 5 1 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0
 gmsecpnt.cmd
 gmsecpnx.exe
@@ -102,6 +102,9 @@ gmsgennx.exe
 CONVERTOLD  103011 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
 gmscv_nt.cmd
 gmscv_nx.exe
+COPT        1011 5 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+gmsgennt.cmd
+gmsgennx.exe
 CPLEX       2011 5 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 0
 gmsgennt.cmd
 gmsgennx.exe
@@ -153,7 +156,7 @@ gmsja_nt.cmd
 gmsja_nx.exe
 KESTREL     103010 5 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 gmske_nt.cmd
-KNITRO      101011 0 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 0
+KNITRO      103011 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 0
 gmsgennt.cmd
 gmsgennx.exe
 LGO         1 5 1 1 0 1 1 0 0 0 0 1 1 0 1 0 1 0
@@ -167,12 +170,6 @@ gmsgennt.cmd
 gmsgennx.exe
 LINDOGLOBAL 1 5 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0
 gmsgennt.cmd
-gmsgennx.exe
-LOCALSOLVER 11 5 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 0
-gmsgennt.cmd
-gmsgennx.exe
-LOCALSOLVER70 11 5 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 0
-gmsgennt.cmd optlocalsolver.def
 gmsgennx.exe
 LOGMIP      101011 5 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 gmsja_nt.cmd optjams.def
@@ -204,6 +201,9 @@ gmsmn_nx.exe
 NLPEC       103001 0 1 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0
 gmscvnnt.cmd
 gmscvnnx.exe
+OCTERACT    1001 0 1 0 0 0 1 0 0 0 0 1 1 1 1 1 1 0
+gmsoctnt.cmd
+octeract\gmsoctnx.exe
 ODHCPLEX    2011 5 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0
 gmsgennt.cmd
 gmsgennx.exe
@@ -261,22 +261,23 @@ gmsxa_nx.exe
 XPRESS      11 5 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0
 gmsgennt.cmd
 gmsgennx.exe
-08209573D0D0D0                                                   0
+25614255D0D0D0                                                   0
 DC5591       g 2                               A Invoice         0
 License Admin: Felix Muesgens, Fg-energiewirtschaft@b-tu.de      0
 1 C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
-1 C:\GAMS\35\gmscmpnt.txt
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.dat
+1 C:\GAMS\38\gmscmpnt.txt
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\Final_TEP_ARO_Office_desktop.dat
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0  1.00000000000000E+0000 0 0
 0 0 0
 0 0 0 1 0
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Master.dll
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\sbbinfo.dat
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225b\gamscntr.dat
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\Subproblem.dll
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\sbbinfo.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\gamscntr.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\
 dat
  1.00000000000000E+0299
 
-
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\225b\gamsextf.dat
+C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\Final_TEP_ARO_Office_desktop.gms
+ 1.38777610000000E+0007  0.00000000000000E+0000

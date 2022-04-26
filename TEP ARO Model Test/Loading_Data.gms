@@ -1,6 +1,6 @@
 Scalars
 *max invest budget
-IB           /2000000000/
+IB           /200000000000000/
 *big M
 M            /20000/
 *reliability of powerlines (simplification of n-1 criteria)
@@ -14,7 +14,7 @@ MVABase      /500/
 
 ************************ARO
 
-Toleranz            / 0.001 /
+Toleranz            / 100 /
 
 LB                  / -1e10 /
 
@@ -30,9 +30,13 @@ Gamma_PG_PV         /0/
 
 Gamma_PG_Wind       /0/
 
-Gamma_PG_REN        /0/
+Gamma_Ren_total     /60/
 
-Dark_time           /10/
+Dark_time           /15/
+
+delta_DF            /0.8/
+
+scale_PSP_cap      /100/
 ;
 
 Parameter
@@ -70,7 +74,7 @@ Load_OI(n,t)
 Load_X(n,t)
 Load_states(n,t)
 
-
+delta_load(n,t)
 load_Ind(n,t)
 delta_load_DE(n,t)              max increase of demand in each node in DE in hour t
 delta_load_states(n,t) 
@@ -93,6 +97,8 @@ Load_share_House(n)
 
 Neighbor_Demand(t,n)            electrical demand in neighboring countries of germany in hour t
 
+LS_costs(n)
+
 LS_costs_BM(n)
 LS_costs_CP(n)
 LS_costs_NMM(n)
@@ -105,6 +111,8 @@ LS_costs_MC(n)
 LS_costs_C(n)
 LS_costs_OI(n)
 LS_costs_X(n)
+
+Demand_data_fixed(n,t,v) 
 
 Demand_data_fixed_unshed(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
 Demand_data_fixed_states(n,t,v)        fixed realisation of demand in subproblem and tranferred to master
@@ -158,6 +166,18 @@ delta_af_Wind(t,wr,n)
 af_ren_up(t,rr,n)               upper capacity factor of wind and solar pv energy
 delta_af_ren(t,rr,n)
 
+Ratio_N(t,DF,rr,n)
+Ratio_DF(t,DF,rr,n)
+Budget_N(DF,rr,n)             budget of renewable availability during a specific time horizion previous to Dunkelflaute even
+Budget_Delta(DF,rr,n)
+Budget_DF(DF,rr,n)            budget of renewable availability during a specific time horizion previous to Dunkelflaute event
+random(t,n)
+
+
+***************************************Uncerttainty budget
+
+Gamma_PG_ren(rr)
+
 **************************************historical physical flow
 
 phy_flow_to_DE(t,n)             physical cross border flow for each country specific node in direct realtion with germany
@@ -169,6 +189,30 @@ report_main(*,*)
 report_decomp(v,*,*)
 inv_iter_hist(l,v)
 inv_cost_master
+
+Report_dunkel_time_Z(rr)
+Report_dunkel_hours_Z(DF,rr)
+Report_lines_built(l)
+Report_total_cost
+Report_line_constr_cost
+
+Report_LS_CP(n,t,vv)
+Report_LS_NMM(n,t,vv)
+Report_LS_FT(n,t,vv)
+Report_LS_TL(n,t,vv)
+Report_LS_PPP(n,t,vv)
+Report_LS_WP(n,t,vv)
+Report_LS_TE(n,t,vv)
+Report_LS_MC(n,t,vv)
+Report_LS_C(n,t,vv)
+Report_LS_OI(n,t,vv)
+Report_LS_X(n,t,vv)
+Report_LS_node(n,t,vv)
+Report_LS_per_hour(t,vv)
+Report_LS_total(vv)
+
+Report_PG(*,*,*,*)
+Report_lineflow(l,t,vv)
 
 
 $ontext
@@ -237,6 +281,7 @@ $offtext
 ;
 
 $onecho > TEP.txt
+set=MAP_DF                      rng=Mapping!CX3:CY8762                  rdim=2 cDim=0
 set=Map_send_L                  rng=Mapping!A3:B1000                    rdim=2 cDim=0
 set=Map_res_L                   rng=Mapping!D3:E1000                    rdim=2 cDim=0
 set=MapG                        rng=Mapping!G3:H567                     rdim=2 cDim=0
@@ -268,13 +313,13 @@ par=availup_hydro               rng=Availability!A2:D8762               rDim=1 c
 par=availup_res                 rng=Availability!E2:RS8762              rDim=1 cdim=1
 par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
 par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
-par=Grid_invest_new             rng=Grid_invest!A2:K50                  rDim=1 cdim=1
+par=Grid_invest_new             rng=Grid_invest!A2:K49                  rDim=1 cdim=1
 $offecho
 
 $onUNDF
 $call   gdxxrw Data.xlsx @TEP.txt
 $GDXin  Data.gdx
-$load   Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr, Map_WR_wind, Map_SR_sun, SR_sun, WR_wind, MapRen, MapRR, Map_RR, RR_ren 
+$load   Map_DF, Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr, Map_WR_wind, Map_SR_sun, SR_sun, WR_wind, MapRen, MapRR, Map_RR, RR_ren 
 $load   Border_exist_DE	
 $load   Node_Demand, LS_costs_up, Neighbor_Demand, Ger_demand, Grid_tech
 $load   Gen_conv, Gen_res, Gen_Hydro, priceup, Gen_ren
@@ -296,6 +341,10 @@ Map_Grid(l,n)$(Map_res_L(l,n)) = yes
 Relevant_Nodes(n)$NoDeSciGrid(n)  = no
 ;
 DE_nodes(n)$NoDeSciGrid(n)  = no
+;
+Map_real_RR(n)$Relevant_Nodes(n) = yes
+;
+Map_real_RR(n)$Map_no_RR(n) = no
 ;
 
 gas(g)      =    Gen_conv(g,'tech')  = 1
@@ -334,6 +383,9 @@ biomass(res)=    Gen_res(res,'tech') = 3
 *****************************************demand*************************************
 
 total_load(t)           =          Ger_demand(t,'total_load')
+;
+
+LS_costs(n)             =          5000
 ;
 
 LS_costs_BM(n)          =          LS_costs_up('BM')
@@ -467,10 +519,11 @@ af_hydro(reservoir,t)                   =          availup_hydro(t,'reservoir')
 *;
 *delta_af_Wind(t,wr,n)$MapWr(wr,n)       =          availup_res(t,wr) * 0.95
 *;
-af_ren_up(t,rr,n)$MapRR(rr,n)           =          availup_res(t,n)
+af_ren_up(t,rr,n)$MapRR(rr,n)              =          availup_res(t,n)
 ;
-delta_af_ren(t,rr,n)$MapRR(rr,n)        =          availup_res(t,n) * 0.95
+delta_af_ren(t,rr,n)$MapRR(rr,n)           =      (af_ren_up(t,rr,n) - 0.2)$(af_ren_up(t,rr,n) gt 0.2)
 ;
+
 *************************************Investments************************************
 
 I_costs_new(l)      =  (Grid_invest_new(l,'Inv_costs_new')/(8760/card(t))) 
@@ -508,7 +561,6 @@ Load_X(n,t)$(DE_nodes(n))                =             Load_share_X(n) *total_lo
 load_Ind(n,t)$(DE_nodes(n))              =             Load_BM(n,t) + Load_CP(n,t) + Load_NMM(n,t) + Load_FT(n,t) + Load_TL(n,t) + Load_PPP(n,t)
                                                        + Load_WP(n,t) + Load_TE(n,t) + Load_MC(n,t) + Load_C(n,t) + Load_OI(n,t) + Load_X(n,t)
 ;
-
 delta_load_DE(n,t)$(DE_nodes(n))         =            ((Load_share_Service(n) + Load_share_House(n))*total_load(t)) * 0.1
 ; 
 Load_states(n,t)$(border_states(n))      =            Load_share_X(n)*Neighbor_Demand(t,n)
@@ -519,7 +571,36 @@ delta_Cap_conv(g)                        =            Cap_conv(g) * 0.9
 ;
 
 
-var_costs(g,t)                      =            ((FC_conv(g,t)+ co2_costs(t) * co2_content(g)) / Eff_conv(g))
+*********************for general LS
+delta_load(n,t)                          =            ((Load_share_Service(n) + Load_share_House(n))*total_load(t)) * 0.1
 ;
-su_costs(g,t)                       =            depri_costs(g) + su_fact(g) * fuel_start(g) * FC_conv(g,t) + co2_content(g) * co2_costs(t)
+load(n,t)                                =            load_share_Service(n) + Load_share_House(n) + load_Ind(n,t)
 ;
+load(n,t)$(border_states(n))             =            (Neighbor_Demand(t,n)) 
+;
+*********************
+
+
+var_costs(g,t)                           =            ((FC_conv(g,t)+ co2_costs(t) * co2_content(g)) / Eff_conv(g))
+;
+su_costs(g,t)                            =            depri_costs(g) + su_fact(g) * fuel_start(g) * FC_conv(g,t) + co2_content(g) * co2_costs(t)
+;
+
+
+*************************for ren buget approach
+random(t,n) = random_uni(-1,1)/10
+;
+Budget_N(DF,rr,n)                        = sum((t)$MAP_DF(t,DF), af_ren_up(t,rr,n))
+;              
+Budget_Delta(DF,rr,n)                    = sum((t)$MAP_DF(t,DF), delta_af_ren(t,rr,n))
+;
+Budget_DF(DF,rr,n)                       = Budget_N(DF,rr,n) - Budget_Delta(DF,rr,n)
+;
+Ratio_N(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(DF,rr,n) gt 0))     = af_ren_up(t,rr,n)/(Budget_N(DF,rr,n))
+;
+
+Ratio_DF(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (af_ren_up(t,rr,n) = 0 ))    = 0
+;
+Ratio_DF(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(DF,rr,n) gt 0) and (Budget_DF(DF,rr,n) gt 0 ))    = 0.1 + random(t,n)
+;
+

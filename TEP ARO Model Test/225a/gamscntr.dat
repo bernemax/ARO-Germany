@@ -1,17 +1,17 @@
-50
-2 12222 0 0 351  0.00000000000000E+0000 5  0.00000000000000E+0000 0 1
-10 0 0 0 5 5 5 0 0 0 0 0
-49 0 0 0 0 0 0 0
-480 0
-2 47 0 0 0 0 0 1 0 1
+52
+2 19563 0 0 382  0.00000000000000E+0000 5  0.00000000000000E+0000 0 1
+1838460 0 0 0 1352933 194837 219607 1424016 0 0 0 0
+1409575 0 0 0 0 0 0 0
+4671554 0
+1409474 101 0 0 0 0 0 1204417 0 205057
 0 0 0 0 0 0 0
-0 10 0
+0 586 0
 0 0 20
  0.00000000000000E+0000  0.00000000000000E+0000 0
 0  0.00000000000000E+0000 0  0.00000000000000E+0000
  1.00000000000000E+0010 2147483647 0
 2011 0
- 0.00000000000000E+0000 0 0 0  1.00000000000000E+0000 0 1 0 0  1.00000000000000E-0005
+ 0.00000000000000E+0000 0 0 0  1.00000000000000E+0000 0 1 0 0  1.00000000000000E-0005 0
 1 100
 0 0 0 0 0
  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000  0.00000000000000E+0000
@@ -23,34 +23,34 @@ Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\
 
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225a\gamsdict.dat
 3
-12:22:47
-03/03/22
+10:10:04
+03/24/22
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\
-C:\GAMS\35\
+C:\GAMS\38\
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225a\
 32767 2147483647
-0 0 470 44622 44182 72169
-Small MUD - 5 User License                     S201118/0001AN-WIN0
+0 0 120 44643 44553 79973
+Small MUD - 5 User License                     S211124|0002AN-WIN0
 BTU Cottbus-Senftenberg, FG Energiewirtschaft                    0
-1448114801CPPT                                                   0
+1449369101CPPT                                                   0
 0 5 5 0
 225a\gmsprmNT.dat
-15 71 18
-LP          18 0
-MIP         18 0
-RMIP        18 0
+15 71 19
+LP          19 0
+MIP         19 0
+RMIP        19 0
 NLP         11 0
 MCP         59 0
-MPEC        52 0
-RMPEC       52 0
+MPEC        51 0
+RMPEC       51 0
 CNS         11 0
 DNLP        11 0
 RMINLP      11 0
-MINLP       26 0
+MINLP       27 0
 QCP         11 0
 MIQCP       63 0
 RMIQCP      11 0
-EMP         34 0
+EMP         35 0
 ALPHAECP    11 5 1 0 0 0 0 0 0 0 0 0 0 1 0 1 0 0
 gmsecpnt.cmd
 gmsecpnx.exe
@@ -102,6 +102,9 @@ gmsgennx.exe
 CONVERTOLD  103011 5 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1 0
 gmscv_nt.cmd
 gmscv_nx.exe
+COPT        1011 5 1 1 1 1 0 0 0 0 0 0 0 0 0 0 0 0
+gmsgennt.cmd
+gmsgennx.exe
 CPLEX       2011 5 1 1 1 1 0 0 0 0 0 0 0 0 1 1 1 0
 gmsgennt.cmd
 gmsgennx.exe
@@ -153,7 +156,7 @@ gmsja_nt.cmd
 gmsja_nx.exe
 KESTREL     103010 5 0 1 1 1 1 1 1 1 1 1 1 1 1 1 1 1
 gmske_nt.cmd
-KNITRO      101011 0 1 1 0 1 1 0 1 1 1 1 1 1 1 1 1 0
+KNITRO      103011 0 1 1 0 1 1 1 1 1 1 1 1 1 1 1 1 0
 gmsgennt.cmd
 gmsgennx.exe
 LGO         1 5 1 1 0 1 1 0 0 0 0 1 1 0 1 0 1 0
@@ -167,12 +170,6 @@ gmsgennt.cmd
 gmsgennx.exe
 LINDOGLOBAL 1 5 1 1 1 1 1 0 0 0 0 1 1 1 1 1 1 0
 gmsgennt.cmd
-gmsgennx.exe
-LOCALSOLVER 11 5 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 0
-gmsgennt.cmd
-gmsgennx.exe
-LOCALSOLVER70 11 5 1 0 1 0 1 0 0 0 1 1 1 1 1 1 1 0
-gmsgennt.cmd optlocalsolver.def
 gmsgennx.exe
 LOGMIP      101011 5 1 0 0 0 0 0 0 0 0 0 0 0 0 0 0 1
 gmsja_nt.cmd optjams.def
@@ -204,6 +201,9 @@ gmsmn_nx.exe
 NLPEC       103001 0 1 0 0 0 0 1 1 1 0 0 0 0 0 0 0 0
 gmscvnnt.cmd
 gmscvnnx.exe
+OCTERACT    1001 0 1 0 0 0 1 0 0 0 0 1 1 1 1 1 1 0
+gmsoctnt.cmd
+octeract\gmsoctnx.exe
 ODHCPLEX    2011 5 1 0 1 0 0 0 0 0 0 0 0 0 0 1 0 0
 gmsgennt.cmd
 gmsgennx.exe
@@ -261,17 +261,17 @@ gmsxa_nx.exe
 XPRESS      11 5 1 1 1 1 1 0 0 0 1 1 1 1 1 1 1 0
 gmsgennt.cmd
 gmsgennx.exe
-08209573D0D0D0                                                   0
+25614255D0D0D0                                                   0
 DC5591       g 2                               A Invoice         0
 License Admin: Felix Muesgens, Fg-energiewirtschaft@b-tu.de      0
 1 C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
-1 C:\GAMS\35\gmscmpnt.txt
+1 C:\GAMS\38\gmscmpnt.txt
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.dat
 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0
 0 0  1.00000000000000E+0000 0 0
 0 0 0
 0 0 0 1 0
-Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Master_VO.dll
+Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Master.dll
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225a\sbbinfo.dat
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\225a\gamscntr.dat
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\
@@ -280,3 +280,4 @@ dat
 
 
 Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms
+ 4.67155400000000E+0006  0.00000000000000E+0000

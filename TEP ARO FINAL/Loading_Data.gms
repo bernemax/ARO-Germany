@@ -12,6 +12,8 @@ store_cpf    /7/
 *base value for per unit calculation
 MVABase      /500/
 
+scale_PSP_cap /10/
+
 ************************ARO
 
 Toleranz            / 0.001 /
@@ -30,7 +32,9 @@ Gamma_PG_PV         /0/
 
 Gamma_PG_Wind       /0/
 
-Gamma_PG_REN        /0/
+Gamma_Ren_total     /0/
+
+Dark_time           /24/
 ;
 
 Parameter
@@ -156,6 +160,10 @@ delta_af_Wind(t,wr,n)
 af_ren_up(t,rr,n)               upper capacity factor of wind and solar pv energy
 delta_af_ren(t,rr,n)
 
+***************************************Uncerttainty budget
+
+Gamma_PG_ren(rr)                Uncertainty budget for each rr (country or state) region
+
 **************************************historical physical flow
 
 phy_flow_to_DE(t,n)             physical cross border flow for each country specific node in direct realtion with germany
@@ -168,6 +176,31 @@ report_decomp(v,*,*)
 inv_iter_hist(l,v)
 inv_cost_master
 
+Report_dunkel_time_Z(rr)
+Report_dunkel_hours_Z(rr,t)
+Report_lines_built(l)
+Report_total_cost
+Report_line_constr_cost
+
+Report_LS_CP(n,t,vv)
+Report_LS_NMM(n,t,vv)
+Report_LS_FT(n,t,vv)
+Report_LS_TL(n,t,vv)
+Report_LS_PPP(n,t,vv)
+Report_LS_WP(n,t,vv)
+Report_LS_TE(n,t,vv)
+Report_LS_MC(n,t,vv)
+Report_LS_C(n,t,vv)
+Report_LS_OI(n,t,vv)
+Report_LS_X(n,t,vv)
+Report_LS_node(n,t,vv)
+Report_LS_per_hour(t,vv)
+Report_LS_total(vv)
+
+Report_PG(*,*,*,*)
+Report_lineflow(l,t,vv)
+
+
 
 $ontext
 Time_restrict_up
@@ -177,7 +210,7 @@ Time_restrict_lo
 report_mapped_flow(l,t)                directed flow report
 report_mapped_flow_DE(t)               saldo flow report regarding total Ex and imports of germany
 report_mapped_ExIm_flow(l,t)           directed flow report from and to DE neigboring countries
-report_mapped_ExIm_sum_flow(n)  	   directed summarized flow report from and to DE neigboring countries
+report_mapped_ExIm_sum_flow(n)         directed summarized flow report from and to DE neigboring countries
 
 report_resulting_load_De(t)
 report_price(n,t)
@@ -273,7 +306,7 @@ $onUNDF
 $call   gdxxrw Data.xlsx @TEP.txt
 $GDXin  Data.gdx
 $load   Map_send_L, Map_res_L, MapG, MapS, MapRes, MapSr, MapWr, Map_WR_wind, Map_SR_sun, SR_sun, WR_wind, MapRen, MapRR, Map_RR, RR_ren 
-$load   Border_exist_DE	
+$load   Border_exist_DE 
 $load   Node_Demand, LS_costs_up, Neighbor_Demand, Ger_demand, Grid_tech
 $load   Gen_conv, Gen_res, Gen_Hydro, priceup, Gen_ren
 $load   availup_hydro, availup_res
@@ -467,7 +500,7 @@ af_hydro(reservoir,t)                   =          availup_hydro(t,'reservoir')
 *;
 af_ren_up(t,rr,n)$MapRR(rr,n)           =          availup_res(t,n)
 ;
-delta_af_ren(t,rr,n)$MapRR(rr,n)        =          availup_res(t,n) * 0.95
+delta_af_ren(t,rr,n)$MapRR(rr,n)        =          availup_res(t,n) * 0.90
 ;
 *************************************Investments************************************
 
@@ -517,7 +550,7 @@ delta_Cap_conv(g)                        =            Cap_conv(g) * 0.9
 ;
 
 
-var_costs(g,t)                      =            ((FC_conv(g,t)+ co2_costs(t) * co2_content(g)) / Eff_conv(g))
+var_costs(g,t)                           =            ((FC_conv(g,t)+ co2_costs(t) * co2_content(g)) / Eff_conv(g))
 ;
-su_costs(g,t)                       =            depri_costs(g) + su_fact(g) * fuel_start(g) * FC_conv(g,t) + co2_content(g) * co2_costs(t)
+su_costs(g,t)                            =            depri_costs(g) + su_fact(g) * fuel_start(g) * FC_conv(g,t) + co2_content(g) * co2_costs(t)
 ;

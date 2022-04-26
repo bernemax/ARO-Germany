@@ -1,7 +1,7 @@
-Input="Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO Model Test\Final_TEP_ARO_test.gms"
+Input="C:\Users\Max Bernecker\Desktop\TEP ARO Model Test\Final_TEP_ARO_Office_desktop.gms"
 PageSize=0
 ScrDir=225b
-SysDir=C:\GAMS\35
+SysDir=C:\GAMS\38
 ScriptNext=225b\gamsnext.cmd
 LogOption=3
 ErrMsg=1

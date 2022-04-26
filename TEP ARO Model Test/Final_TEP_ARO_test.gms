@@ -5,7 +5,6 @@ option profiletol = 0.01;
 
 $setGlobal Single_Wind_and_PV         "*"          if "*" no individual Wind and PV generation is considered, if "" Wind and PV are considered individually
 $setGlobal Summed_Wind_PV             ""          if "*" no cummulative Wind and PV generation is considered, if "" combined Wind and PV is considered
-;
 
 Sets
 
@@ -189,7 +188,10 @@ PLS_M_X(n,t,v)              load shedding missing assignment -> standart industr
 PLS_M_ServHous(n,t,v)
 PLS_M_States(n,t,v)
 
-Start_dunkel(rr,tt)
+End_of_Enlightenment(rr,t)
+Start_dunkel_10(rr,t)
+Start_dunkel_20(rr,t)
+Start_dunkel_30(rr,t)
 
 *********************************************Subproblem*********************************************
 
@@ -235,7 +237,9 @@ aux_phi_PG_wind(res,t)      aux continuous var to linearize phiPG_wind(wind.t) *
 aux_phi_LS_DE(n,t)          aux continuous var to linearize phiLS(n.t) * Pdem(n.t) in SUB Objective
 aux_phi_LS_states(n,t)
 
-aux_phi_PG_Ren(ren,t)
+aux_phi_PG_Ren_10(ren,t)
+aux_phi_PG_Ren_20(ren,t)
+aux_phi_PG_Ren_30(ren,t)
 ;
 
 Binary Variables
@@ -252,7 +256,9 @@ z_PG_Wind(wr,t)             decision variable to construct polyhedral UC-set and
 z_dem_De(n,t)               decision variable to construct polyhedral UC-set and decides weather Demand is at a lower or upper bound
 z_dem_states(n,t)
 
-z_PG_Ren(rr,t)              decision variable to construct polyhedral UC-set and decides weather combined pv and wind generation potential is Max or not
+z_PG_Ren_10(rr,t)           decision variable to construct polyhedral UC-set and decides weather combined pv and wind generation potential is Max or not
+z_PG_Ren_20(rr,t)
+z_PG_Ren_30(rr,t)
 
 ;
 
@@ -344,9 +350,18 @@ SUB_UB_PG_wind
 SUB_wind_time_coupling
 
 SUB_US_PG_RR
-SUB_UB_PG_RR
+SUB_UB_Total
+SUB_UB_PG_RR_10
+SUB_UB_PG_RR_20
+SUB_UB_PG_RR_30
 SUB_RR_time_coupling
-SUB_RR_Dunkel_start
+SUB_RR_timing_z
+*SUB_RR_Enlightenment_end
+SUB_RR_Dunkel_start_10
+SUB_RR_Dunkel_start_20
+SUB_RR_Dunkel_start_30
+SUB_RR_Free_Start
+SUB_RR_Free_END
 
 
 SUB_lin1
@@ -381,6 +396,14 @@ SUB_lin29
 SUB_lin30
 SUB_lin31
 SUB_lin32
+SUB_lin33
+SUB_lin34
+SUB_lin35
+SUB_lin36
+SUB_lin37
+SUB_lin38
+SUB_lin39
+SUB_lin40
 ;
 *#####################################################################################Master####################################################################################
 
@@ -530,7 +553,9 @@ SUB_Dual_Objective..                                                O_Sub =e= su
 
 %Summed_Wind_PV%                                                    + sum((rr,ren,n,t)$Map_RR(rr,ren,n),
 %Summed_Wind_PV%                                                    - phiPG_Ren(ren,t) * ( Cap_ren(ren) * af_ren_up(t,rr,n))
-%Summed_Wind_PV%                                                    + aux_phi_PG_Ren(ren,t) * ( Cap_ren(ren) * delta_af_ren(t,rr,n)))
+%Summed_Wind_PV%                                                    + aux_phi_PG_Ren_10(ren,t) * ( Cap_ren(ren) * delta_af_ren_10(t,rr,n))
+                                                                    + aux_phi_PG_Ren_20(ren,t) * ( Cap_ren(ren) * delta_af_ren_20(t,rr,n))
+                                                                    + aux_phi_PG_Ren_30(ren,t) * ( Cap_ren(ren) * delta_af_ren_30(t,rr,n)))
 
                                                                     + sum((n,t), - phiLS_BM(n,t) * Load_BM(n,t)
                                                                     + (- phiLS_CP(n,t) * Load_CP(n,t))
@@ -627,9 +652,9 @@ SUB_Lin_Dual_n_ref(n,t)..                                           - sum(l$(Map
 
 *****************************************************************Uncertainty Sets/ and polyhedral uncertainty budgets (level 2 problem)***************************
 
-SUB_US_LOAD_DE(n,t)$(DE_nodes(n))..                                  Pdem_De(n,t)   =e= Load_unshed(n,t) + delta_load_DE(n,t) * z_dem_De(n,t)
+SUB_US_LOAD_DE(n,t)$(DE_nodes(n))..                                 Pdem_De(n,t)   =e= Load_unshed(n,t) + delta_load_DE(n,t) * z_dem_De(n,t)
 ;
-SUB_US_LOAD_States(n,t)$(border_states(n))..                         Pdem_States(n,t) =e= Load_states(n,t) + delta_load_states(n,t) * z_dem_states(n,t)
+SUB_US_LOAD_States(n,t)$(border_states(n))..                        Pdem_States(n,t) =e= Load_states(n,t) + delta_load_states(n,t) * z_dem_states(n,t)
 ;
 SUB_UB_LOAD(t)..                                                    sum((n), z_dem_De(n,t) + z_dem_states(n,t))  =l= Gamma_load
 ;
@@ -650,17 +675,36 @@ SUB_US_PG_wind(wr,wind,n,t)$Map_WR_wind(wr,wind,n)..                AF_wind(t,wr
 ;
 SUB_UB_PG_wind(t)..                                                 sum(wr, z_PG_Wind(wr,t))   =l= Gamma_PG_Wind
 ;
-SUB_wind_time_coupling(wr,t)$(ord(t) gt 1)..                         z_PG_Wind(wr,t) =e= z_PG_Wind(wr,t-1)
+SUB_wind_time_coupling(wr,t)$(ord(t) gt 1)..                        z_PG_Wind(wr,t) =e= z_PG_Wind(wr,t-1)
 ;
 
 
-SUB_US_PG_RR(rr,ren,n,t)$Map_RR(rr,ren,n)..                          AF_Ren(t,rr,n) =e= af_ren_up(t,rr,n) - delta_af_ren(t,rr,n) * z_PG_Ren(rr,t)
+SUB_US_PG_RR(rr,ren,n,t)$Map_RR(rr,ren,n)..                          AF_Ren(t,rr,n) =e= af_ren_up(t,rr,n) - delta_af_ren_10(t,rr,n) * z_PG_Ren_10(rr,t) - delta_af_ren_20(t,rr,n) * z_PG_Ren_20(rr,t) - delta_af_ren_30(t,rr,n) * z_PG_Ren_30(rr,t)
 ;
-SUB_UB_PG_RR..                                                       sum((rr,t),  z_PG_Ren(rr,t))  =l= Gamma_PG_REN
+SUB_UB_Total..                                                       Gamma_Ren_total - sum((rr,t),  z_PG_Ren_10(rr,t) +  z_PG_Ren_20(rr,t) +  z_PG_Ren_30(rr,t)) =g= 0
 ;
-SUB_RR_time_coupling(rr,t)..                                         sum(tt$(ord(tt) <= ord (t) and ord(tt) >= (ord(t) - dark_time)), Start_dunkel(rr,tt)) =l=  z_PG_Ren(rr,t) 
+SUB_UB_PG_RR_10(rr)..                                                sum((t),  z_PG_Ren_10(rr,t))  =l= Gamma_PG_ren_10(rr)
 ;
-SUB_RR_Dunkel_start(rr,t)$(ord(t) gt 1)..                            Start_dunkel(rr,t)   =g=  z_PG_Ren(rr,t) - z_PG_Ren(rr,t-1)
+SUB_UB_PG_RR_20(rr)..                                                sum((t),  z_PG_Ren_20(rr,t))  =l= Gamma_PG_ren_20(rr)
+;
+SUB_UB_PG_RR_30(rr)..                                                sum((t),  z_PG_Ren_30(rr,t))  =l= Gamma_PG_ren_30(rr)
+;
+SUB_RR_timing_z(rr,t)..                                              z_PG_Ren_10(rr,t) + z_PG_Ren_20(rr,t) + z_PG_Ren_30(rr,t) =l= 1
+;
+SUB_RR_time_coupling(rr,t)..                                         sum(tt$(ord(tt) <= ord (t) and ord(tt) >= (ord(t) - dark_time)), Start_dunkel_10(rr,tt) + Start_dunkel_20(rr,t) + Start_dunkel_30(rr,t)) =l=  z_PG_Ren_10(rr,t) + z_PG_Ren_20(rr,t) + z_PG_Ren_30(rr,t)
+;
+*SUB_RR_Enlightenment_end(rr,t)..                                     End_of_Enlightenment(rr,t) =g= z_PG_Ren_10(rr,t-1) + z_PG_Ren_10(rr,t)
+*;
+SUB_RR_Dunkel_start_10(rr,t)..                                       Start_dunkel_10(rr,t)   =g=  z_PG_Ren_10(rr,t) - z_PG_Ren_10(rr,t-1)
+*+ z_PG_Ren_20(rr,t) - z_PG_Ren_20(rr,t-1) + z_PG_Ren_30(rr,t) - z_PG_Ren_30(rr,t-1)
+;
+SUB_RR_Dunkel_start_20(rr,t)..                                       Start_dunkel_20(rr,t)   =g=  z_PG_Ren_20(rr,t) - z_PG_Ren_20(rr,t-1)
+;
+SUB_RR_Dunkel_start_30(rr,t)..                                       Start_dunkel_30(rr,t)   =g=  z_PG_Ren_30(rr,t) - z_PG_Ren_30(rr,t-1)
+;
+SUB_RR_Free_Start(rr,t)$(ord(t) eq 1)..                              z_PG_Ren_10(rr,t) + z_PG_Ren_20(rr,t) + z_PG_Ren_30(rr,t) =e= 0
+;
+SUB_RR_Free_END(rr,t)$(ord(t) eq card(t))..                          z_PG_Ren_10(rr,t) + z_PG_Ren_20(rr,t) + z_PG_Ren_30(rr,t) =e= 0
 ;
 *****************************************************************linearization*********************************************************************************
 
@@ -694,52 +738,67 @@ SUB_lin12(g,t)..                                                     - M *  ( 1 
 *$ontext
 SUB_lin13(sr,sun,t)$SR_sun(sr,sun)..                                aux_phi_PG_PV(sun,t)                             =l= M *   z_PG_PV(sr,t)
 ;
-SUB_lin14(sr,sun,t)$SR_sun(sr,sun)..                               phiPG_PV(sun,t) - aux_phi_PG_PV(sun,t)           =l= M *  ( 1 - z_PG_PV(sr,t))
+SUB_lin14(sr,sun,t)$SR_sun(sr,sun)..                                phiPG_PV(sun,t) - aux_phi_PG_PV(sun,t)           =l= M *  ( 1 - z_PG_PV(sr,t))
 ;
-SUB_lin15(sr,sun,t)$SR_sun(sr,sun)..                               - M *   z_PG_PV(sr,t)                            =l= aux_phi_PG_PV(sun,t)
+SUB_lin15(sr,sun,t)$SR_sun(sr,sun)..                                - M *   z_PG_PV(sr,t)                            =l= aux_phi_PG_PV(sun,t)
 ;
-SUB_lin16(sr,sun,t)$SR_sun(sr,sun)..                               - M *  ( 1 - z_PG_PV(sr,t))                      =l= phiPG_PV(sun,t) - aux_phi_PG_PV(sun,t)
+SUB_lin16(sr,sun,t)$SR_sun(sr,sun)..                                - M *  ( 1 - z_PG_PV(sr,t))                      =l= phiPG_PV(sun,t) - aux_phi_PG_PV(sun,t)
 ;
 *$ontext
-SUB_lin17(wr,wind,t)$WR_wind(wr,wind)..                           aux_phi_PG_wind(wind,t)                           =l= M *   z_PG_Wind(wr,t)
+SUB_lin17(wr,wind,t)$WR_wind(wr,wind)..                             aux_phi_PG_wind(wind,t)                           =l= M *   z_PG_Wind(wr,t)
 ;
-SUB_lin18(wr,wind,t)$WR_wind(wr,wind)..                           phiPG_Wind(wind,t) - aux_phi_PG_wind(wind,t)      =l= M *  ( 1 - z_PG_Wind(wr,t))
+SUB_lin18(wr,wind,t)$WR_wind(wr,wind)..                             phiPG_Wind(wind,t) - aux_phi_PG_wind(wind,t)      =l= M *  ( 1 - z_PG_Wind(wr,t))
 ;
-SUB_lin19(wr,wind,t)$WR_wind(wr,wind)..                           - M *   z_PG_Wind(wr,t)                           =l= aux_phi_PG_wind(wind,t)
+SUB_lin19(wr,wind,t)$WR_wind(wr,wind)..                             - M *   z_PG_Wind(wr,t)                           =l= aux_phi_PG_wind(wind,t)
 ;
-SUB_lin20(wr,wind,t)$WR_wind(wr,wind)..                           - M *  ( 1 - z_PG_Wind(wr,t))                     =l= phiPG_Wind(wind,t) - aux_phi_PG_wind(wind,t)
+SUB_lin20(wr,wind,t)$WR_wind(wr,wind)..                             - M *  ( 1 - z_PG_Wind(wr,t))                     =l= phiPG_Wind(wind,t) - aux_phi_PG_wind(wind,t)
 ;
 *$offtext
 
-SUB_lin21(rr,ren,t)$RR_Ren(rr,ren)..                              aux_phi_PG_Ren(ren,t)                             =l= M *  z_PG_Ren(rr,t)
+SUB_lin21(n,t)$(DE_nodes(n))..                                    aux_phi_LS_DE(n,t)                               =l= M * z_dem_De(n,t)
 ;
-SUB_lin22(rr,ren,t)$RR_Ren(rr,ren)..                              phiPG_Ren(ren,t) -  aux_phi_PG_Ren(ren,t)         =l= M *  (1 - z_PG_Ren(rr,t))
+SUB_lin22(n,t)$(DE_nodes(n))..                                    phiLS_ServHous(n,t) - aux_phi_LS_DE(n,t)               =l= M * ( 1 - z_dem_De(n,t))
 ;
-SUB_lin23(rr,ren,t)$RR_Ren(rr,ren)..                              - M * z_PG_Ren(rr,t)                              =l= aux_phi_PG_Ren(ren,t)
+SUB_lin23(n,t)$(DE_nodes(n))..                                    - M * z_dem_De(n,t)                              =l= aux_phi_LS_DE(n,t)
 ;
-SUB_lin24(rr,ren,t)$RR_Ren(rr,ren)..                              - M * (1 - z_PG_Ren(rr,t) )                       =l= phiPG_Ren(ren,t) -  aux_phi_PG_Ren(ren,t)
-;
-
-
-SUB_lin25(n,t)$(DE_nodes(n))..                                    aux_phi_LS_DE(n,t)                               =l= M * z_dem_De(n,t)
-;
-SUB_lin26(n,t)$(DE_nodes(n))..                                    phiLS_ServHous(n,t) - aux_phi_LS_DE(n,t)               =l= M * ( 1 - z_dem_De(n,t))
-;
-SUB_lin27(n,t)$(DE_nodes(n))..                                    - M * z_dem_De(n,t)                              =l= aux_phi_LS_DE(n,t)
-;
-SUB_lin28(n,t)$(DE_nodes(n))..                                    - M * ( 1 - z_dem_De(n,t))                      =l= phiLS_ServHous(n,t) - aux_phi_LS_DE(n,t)
+SUB_lin24(n,t)$(DE_nodes(n))..                                    - M * ( 1 - z_dem_De(n,t))                      =l= phiLS_ServHous(n,t) - aux_phi_LS_DE(n,t)
 ;
 
-SUB_lin29(n,t)$(border_states(n))..                               aux_phi_LS_states(n,t)                           =l= M * z_dem_states(n,t)
+SUB_lin25(n,t)$(border_states(n))..                               aux_phi_LS_states(n,t)                           =l= M * z_dem_states(n,t)
 ;
-SUB_lin30(n,t)$(border_states(n))..                               phiLS_states(n,t) - aux_phi_LS_states(n,t)       =l= M * ( 1 - z_dem_states(n,t))
+SUB_lin26(n,t)$(border_states(n))..                               phiLS_states(n,t) - aux_phi_LS_states(n,t)       =l= M * ( 1 - z_dem_states(n,t))
 ;
-SUB_lin31(n,t)$(border_states(n))..                               - M * z_dem_states(n,t)                          =l= aux_phi_LS_states(n,t)
+SUB_lin27(n,t)$(border_states(n))..                               - M * z_dem_states(n,t)                          =l= aux_phi_LS_states(n,t)
 ;
-SUB_lin32(n,t)$(border_states(n))..                               - M * ( 1 - z_dem_states(n,t))                  =l= phiLS_states(n,t) - aux_phi_LS_states(n,t)
+SUB_lin28(n,t)$(border_states(n))..                               - M * ( 1 - z_dem_states(n,t))                  =l= phiLS_states(n,t) - aux_phi_LS_states(n,t)
 ;
 
+SUB_lin29(rr,ren,t)$RR_Ren(rr,ren)..                                aux_phi_PG_Ren_10(ren,t)                             =l= M *  z_PG_Ren_10(rr,t)
+;
+SUB_lin30(rr,ren,t)$RR_Ren(rr,ren)..                                phiPG_Ren(ren,t) -  aux_phi_PG_Ren_10(ren,t)         =l= M *  (1 - z_PG_Ren_10(rr,t))
+;
+SUB_lin31(rr,ren,t)$RR_Ren(rr,ren)..                                - M * z_PG_Ren_10(rr,t)                              =l= aux_phi_PG_Ren_10(ren,t)
+;
+SUB_lin32(rr,ren,t)$RR_Ren(rr,ren)..                                - M * (1 - z_PG_Ren_10(rr,t) )                       =l= phiPG_Ren(ren,t) -  aux_phi_PG_Ren_10(ren,t)
+;
 
+SUB_lin33(rr,ren,t)$RR_Ren(rr,ren)..                                aux_phi_PG_Ren_20(ren,t)                             =l= M *  z_PG_Ren_20(rr,t)
+;
+SUB_lin34(rr,ren,t)$RR_Ren(rr,ren)..                                phiPG_Ren(ren,t) -  aux_phi_PG_Ren_20(ren,t)         =l= M *  (1 - z_PG_Ren_20(rr,t))
+;
+SUB_lin35(rr,ren,t)$RR_Ren(rr,ren)..                                - M * z_PG_Ren_20(rr,t)                              =l= aux_phi_PG_Ren_20(ren,t)
+;
+SUB_lin36(rr,ren,t)$RR_Ren(rr,ren)..                                - M * (1 - z_PG_Ren_20(rr,t) )                       =l= phiPG_Ren(ren,t) -  aux_phi_PG_Ren_20(ren,t)
+;
+
+SUB_lin37(rr,ren,t)$RR_Ren(rr,ren)..                                aux_phi_PG_Ren_30(ren,t)                             =l= M *  z_PG_Ren_30(rr,t)
+;
+SUB_lin38(rr,ren,t)$RR_Ren(rr,ren)..                                phiPG_Ren(ren,t) -  aux_phi_PG_Ren_30(ren,t)         =l= M *  (1 - z_PG_Ren_30(rr,t))
+;
+SUB_lin39(rr,ren,t)$RR_Ren(rr,ren)..                                - M * z_PG_Ren_30(rr,t)                              =l= aux_phi_PG_Ren_30(ren,t)
+;
+SUB_lin40(rr,ren,t)$RR_Ren(rr,ren)..                                - M * (1 - z_PG_Ren_30(rr,t) )                       =l= phiPG_Ren(ren,t) -  aux_phi_PG_Ren_30(ren,t)
+;
 
 
 ********************************************Model definition**********************************************
@@ -845,9 +904,18 @@ SUB_UB_PG_conv
 %Single_Wind_and_PV%SUB_wind_time_coupling
 
 %Summed_Wind_PV%SUB_US_PG_RR
-%Summed_Wind_PV%SUB_UB_PG_RR
+%Summed_Wind_PV%SUB_UB_Total
+%Summed_Wind_PV%SUB_UB_PG_RR_10
+%Summed_Wind_PV%SUB_UB_PG_RR_20
+%Summed_Wind_PV%SUB_UB_PG_RR_30
+%Summed_Wind_PV%SUB_RR_timing_z
 %Summed_Wind_PV%SUB_RR_time_coupling
-%Summed_Wind_PV%SUB_RR_Dunkel_start
+%Summed_Wind_PV%SUB_RR_Dunkel_start_10
+%Summed_Wind_PV%SUB_RR_Dunkel_start_20
+%Summed_Wind_PV%SUB_RR_Dunkel_start_30
+%Summed_Wind_PV%SUB_RR_Free_Start
+%Summed_Wind_PV%SUB_RR_Free_END
+
 
 
 SUB_lin1
@@ -882,6 +950,14 @@ SUB_lin29
 SUB_lin30
 SUB_lin31
 SUB_lin32
+SUB_lin33
+SUB_lin34
+SUB_lin35
+SUB_lin36
+SUB_lin37
+SUB_lin38
+SUB_lin39
+SUB_lin40
 /
 ;
 option optcr = 0.0
@@ -894,7 +970,13 @@ Gamma_PG_PV = 0
 ;
 Gamma_PG_Wind = 0
 ;
-Gamma_PG_REN = 60
+Gamma_Ren_total = 60
+;
+Gamma_PG_ren_10(rr) = 5
+;
+Gamma_PG_ren_20(rr) = 20
+;
+Gamma_PG_ren_30(rr) = 0
 ;
 *inv_iter_hist(l,v)  = 0;
 LB                  = -1e10
