@@ -1,3 +1,3 @@
-# SARO Dunkelflaute
- Stochastic adaptive robust optimization:  extreme short term weather effects, transmission expansion planning
-test line
+# ARO Dunkelflaute
+Adaptive Robust Optimization:  Extreme short term weather effects, transmission expansion planning
+Case-Study: Germany
