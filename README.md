@@ -4,7 +4,7 @@ Case-Study: Germany
 
 # Modeled system
 - DC OPF - High voltage grid
-![]()
+![](https://github.com/bernemax/ARO-Dunkelflaute/blob/main/Pictures%20and%20Results/ARO_DF_Grid.png)
 
 # Results
 
