@@ -1,6 +1,12 @@
 # ARO Dunkelflaute
-Adaptive Robust Optimization:  Extreme short term weather effects, transmission expansion planning
-Case-Study: Germany
+- Adaptive Robust Optimization
+- Extreme short term weather effects
+- transmission expansion planning
+- 
+## Case-Study: Germany and border countries
+- focus renewable supply in drough situations
+- Simulated event: Anticyclonic gloom aka "Dunkelflaute"
+- endogenious determination of worst case time and regional dimension
 
 # Modeled system
 - DC OPF - High voltage grid
