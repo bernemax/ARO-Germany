@@ -1,3 +1,4 @@
+set=MAP_DF                      rng=Mapping!CX3:CY8762                  rdim=2 cDim=0
 set=Map_send_L                  rng=Mapping!A3:B1000                    rdim=2 cDim=0
 set=Map_res_L                   rng=Mapping!D3:E1000                    rdim=2 cDim=0
 set=MapG                        rng=Mapping!G3:H567                     rdim=2 cDim=0
@@ -29,4 +30,4 @@ par=availup_hydro               rng=Availability!A2:D8762               rDim=1 c
 par=availup_res                 rng=Availability!E2:RS8762              rDim=1 cdim=1
 par=phy_flow_to_DE              rng=Cross_border_flow!A2:J8763          rDim=1 cdim=1
 par=phy_flow_states_exo         rng=Cross_border_flow!L2:T8763          rDim=1 cdim=1
-par=Grid_invest_new             rng=Grid_invest!A2:K50                  rDim=1 cdim=1
+par=Grid_invest_new             rng=Grid_invest!A2:K49                  rDim=1 cdim=1
