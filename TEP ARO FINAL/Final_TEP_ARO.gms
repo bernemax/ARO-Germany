@@ -505,7 +505,7 @@ Gamma_PG_PV = 0
 ;
 Gamma_PG_Wind = 0
 ;
-Gamma_Ren_total = 20
+Gamma_Ren_total = 60
 ;
 Gamma_PG_ren(rr) = 7
 ;
