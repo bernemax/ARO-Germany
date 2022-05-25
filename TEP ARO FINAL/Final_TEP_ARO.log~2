@@ -1,5 +1,5 @@
 
---- Job Final_TEP_ARO.gms Start 05/17/22 13:23:37 38.2.1 96226ea8 WEX-WEI x86 64bit/MS Windows
+--- Job Final_TEP_ARO.gms Start 05/17/22 13:30:50 38.2.1 96226ea8 WEX-WEI x86 64bit/MS Windows
 --- Applying:
     C:\GAMS\38\gmsprmNT.txt
 --- GAMS Parameters defined
@@ -42,7 +42,7 @@ Value expected in cell: Grid_invest!K4; found Freileitung
 Value expected in cell: Grid_invest!B5; found l216
 Additional errors suppressed
 Total number of bad values for symbol Grid_invest_new = 94
-Total time = 18438 Ms
+Total time = 18563 Ms
 --- . Loading_Data.gms(321) 4 Mb
 --- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
 --- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
@@ -52,14 +52,14 @@ Total time = 18438 Ms
 --- Final_TEP_ARO.gms(598) 128 Mb
 --- . network_expansion_clean.gms(51) 128 Mb
 --- Final_TEP_ARO.gms(654) 128 Mb
---- Starting execution: elapsed 0:00:19.914
+--- Starting execution: elapsed 0:00:20.064
 --- Final_TEP_ARO.gms(1126) 134 Mb
 --- Generating MIP model Master_VO
 --- Final_TEP_ARO.gms(1144) 134 Mb
 --- LOOPS v = v1
 ---   10 rows  49 columns  480 non-zeroes
 ---   47 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:20.097
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:20.167
 
 IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
 
@@ -136,14 +136,14 @@ Absolute gap:            0.000000
 Relative gap:            0.000000
 
 --- Reading solution for model Master_VO
---- Executing after solve: elapsed 0:00:20.201
+--- Executing after solve: elapsed 0:00:20.294
 --- Final_TEP_ARO.gms(1126) 134 Mb
 --- Generating MIP model Subproblem
 --- Final_TEP_ARO.gms(1283) 154 Mb
 --- LOOPS v = v1
 ---   70,394 rows  77,381 columns  213,987 non-zeroes
 ---   4,380 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:21.324
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:21.538
 
 IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
 
@@ -173,7 +173,7 @@ Reduced MIP has 19855 rows, 30630 columns, and 65793 nonzeros.
 Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
 Presolve time = 0.14 sec. (153.16 ticks)
 Probing fixed 0 vars, tightened 41 bounds.
-Probing time = 0.02 sec. (0.46 ticks)
+Probing time = 0.00 sec. (0.46 ticks)
 Tried aggregator 2 times.
 Detecting symmetries...
 MIP Presolve eliminated 735 rows and 495 columns.
@@ -238,7 +238,7 @@ Removing perturbation.
 
 Iteration log . . .
 Iteration:     1   Dual objective     =      12916026.526955
-Root relaxation solution time = 0.97 sec. (891.77 ticks)
+Root relaxation solution time = 0.99 sec. (891.77 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
@@ -246,8 +246,8 @@ Root relaxation solution time = 0.97 sec. (891.77 ticks)
 *     0+    0                        18209.0645   1.67281e+10              --- 
 Found incumbent of value 18209.064518 after 1.22 sec. (1140.46 ticks)
 *     0     0      integral     0   1.29160e+07   1.29160e+07    15211    0.00%
-Elapsed time = 1.23 sec. (1151.17 ticks, tree = 0.00 MB)
-Found incumbent of value 1.2916027e+07 after 1.23 sec. (1151.17 ticks)
+Elapsed time = 1.22 sec. (1151.17 ticks, tree = 0.00 MB)
+Found incumbent of value 1.2916027e+07 after 1.22 sec. (1151.17 ticks)
 
 Root node processing (before b&c):
   Real time             =    1.23 sec. (1152.60 ticks)
@@ -272,7 +272,7 @@ Tried aggregator 1 time.
 LP Presolve eliminated 42970 rows and 39041 columns.
 Aggregator did 7662 substitutions.
 Reduced LP has 19761 rows, 30678 columns, and 72724 nonzeros.
-Presolve time = 0.08 sec. (74.89 ticks)
+Presolve time = 0.11 sec. (74.89 ticks)
 Initializing dual steep norms . . .
 
 Iteration log . . .
@@ -321,7 +321,7 @@ Iteration: 14655   Dual objective     =      12959314.103625
 Iteration: 14933   Dual objective     =      12918932.368482
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 1.00sec (det. 1005.39 ticks)
+--- Cplex Time: 1.06sec (det. 1005.39 ticks)
 
 
 Proven optimal solution
@@ -334,7 +334,7 @@ Relative gap:            0.000000
 
 --- Reading solution for model Subproblem
 --- Final_TEP_ARO.gms(1283) 154 Mb  5 secs
---- Executing after solve: elapsed 0:00:26.283
+--- Executing after solve: elapsed 0:00:26.623
 --- Final_TEP_ARO.gms(1126) 154 Mb
 --- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\check_Loop_Run.gdx
 --- Generating MIP model Master
@@ -342,7 +342,7 @@ Relative gap:            0.000000
 --- LOOPS v = v2
 ---   104,112 rows  63,463 columns  233,202 non-zeroes
 ---   101 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:00:28.313
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:28.953
 
 IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
 
@@ -489,7 +489,7 @@ Iteration: 28769   Dual objective     =      10916233.244760
 Iteration: 28932   Dual objective     =      10952006.886809
 Iteration: 29111   Dual objective     =      10981490.368555
 Iteration: 29283   Dual objective     =      10989481.211897
-Elapsed time = 6.30 sec. (10000.68 ticks, 29401 iterations)
+Elapsed time = 6.58 sec. (10000.68 ticks, 29401 iterations)
 Iteration: 29459   Dual objective     =      11026966.408829
 Iteration: 29632   Dual objective     =      11034118.681905
 Iteration: 29818   Dual objective     =      11058686.190257
@@ -503,14 +503,14 @@ Iteration: 31167   Dual objective     =      11126123.022005
 Iteration: 31329   Dual objective     =      11127572.783240
 Iteration: 31530   Dual objective     =      11128723.217951
 Removing perturbation.
-Root relaxation solution time = 8.34 sec. (13322.52 ticks)
+Root relaxation solution time = 8.59 sec. (13322.52 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
       0     0   1.11290e+07    24                 1.11290e+07    31730         
 *     0+    0                       1.14951e+07   1.11290e+07             3.18%
-Found incumbent of value 1.1495085e+07 after 10.45 sec. (16915.61 ticks)
+Found incumbent of value 1.1495085e+07 after 10.55 sec. (16915.61 ticks)
       0     0   1.11672e+07    27   1.14951e+07     Cuts: 795    34838    2.85%
       0     0   1.11721e+07    28   1.14951e+07     Cuts: 436    36532    2.81%
       0     0   1.11737e+07    29   1.14951e+07     Cuts: 307    37380    2.80%
@@ -518,13 +518,13 @@ Found incumbent of value 1.1495085e+07 after 10.45 sec. (16915.61 ticks)
       0     0   1.11759e+07    29   1.14951e+07     Cuts: 177    41730    2.78%
       0     0   1.11759e+07    29   1.14951e+07     Cuts: 171    46782    2.78%
 *     0+    0                       1.14683e+07   1.11759e+07             2.55%
-Found incumbent of value 1.1468330e+07 after 54.77 sec. (93505.86 ticks)
+Found incumbent of value 1.1468330e+07 after 57.22 sec. (93505.86 ticks)
 *     0+    0                       1.14610e+07   1.11759e+07             2.49%
-Found incumbent of value 1.1461031e+07 after 66.17 sec. (113503.33 ticks)
+Found incumbent of value 1.1461031e+07 after 68.86 sec. (113503.33 ticks)
 *     0+    0                       1.14501e+07   1.11759e+07             2.39%
-Found incumbent of value 1.1450052e+07 after 77.78 sec. (133899.46 ticks)
+Found incumbent of value 1.1450052e+07 after 80.77 sec. (133899.46 ticks)
       0     2   1.11759e+07    29   1.14501e+07   1.11774e+07    46782    2.38%
-Elapsed time = 82.80 sec. (142756.18 ticks, tree = 0.01 MB)
+Elapsed time = 85.84 sec. (142756.18 ticks, tree = 0.01 MB)
       1     3   1.12005e+07    27   1.14501e+07   1.11792e+07    52885    2.37%
       2     4   1.12088e+07    25   1.14501e+07   1.12005e+07    56064    2.18%
       3     5   1.12233e+07    26   1.14501e+07   1.12005e+07    56240    2.18%
@@ -535,7 +535,7 @@ Elapsed time = 82.80 sec. (142756.18 ticks, tree = 0.01 MB)
       8    10   1.12516e+07    25   1.14501e+07   1.12005e+07    69079    2.18%
       9    11   1.12484e+07    24   1.14501e+07   1.12005e+07    70832    2.18%
      10    12   1.12607e+07    23   1.14501e+07   1.12005e+07    71296    2.18%
-Elapsed time = 113.02 sec. (195557.76 ticks, tree = 0.90 MB)
+Elapsed time = 117.86 sec. (195557.76 ticks, tree = 0.90 MB)
      11    13   1.12812e+07    24   1.14501e+07   1.12005e+07    72572    2.18%
      12    14   1.12897e+07    24   1.14501e+07   1.12005e+07    74769    2.18%
      13    15   1.13126e+07    24   1.14501e+07   1.12005e+07    77596    2.18%
@@ -546,7 +546,7 @@ Elapsed time = 113.02 sec. (195557.76 ticks, tree = 0.90 MB)
      18    18        cutoff         1.14501e+07   1.12005e+07    92096    2.18%
      19    19   1.13478e+07    21   1.14501e+07   1.12005e+07    95677    2.18%
      20    20   1.13481e+07    20   1.14501e+07   1.12005e+07    96300    2.18%
-Elapsed time = 141.97 sec. (246950.89 ticks, tree = 1.64 MB)
+Elapsed time = 147.14 sec. (246950.89 ticks, tree = 1.64 MB)
      21    21   1.13487e+07    19   1.14501e+07   1.12005e+07    99101    2.18%
      22    22   1.13581e+07    17   1.14501e+07   1.12005e+07   101647    2.18%
      23    23   1.13634e+07    16   1.14501e+07   1.12005e+07   104034    2.18%
@@ -557,9 +557,9 @@ Elapsed time = 141.97 sec. (246950.89 ticks, tree = 1.64 MB)
      28    28   1.14071e+07    12   1.14501e+07   1.12005e+07   120371    2.18%
      29    29   1.14024e+07    11   1.14501e+07   1.12005e+07   122729    2.18%
 *    30+   28                       1.14473e+07   1.12005e+07             2.16%
-Found incumbent of value 1.1447323e+07 after 169.28 sec. (295875.26 ticks)
+Found incumbent of value 1.1447323e+07 after 176.72 sec. (295875.26 ticks)
      30    30   1.14030e+07    10   1.14473e+07   1.12005e+07   125719    2.16%
-Elapsed time = 169.28 sec. (295875.35 ticks, tree = 2.40 MB)
+Elapsed time = 176.72 sec. (295875.35 ticks, tree = 2.40 MB)
      32    30   1.14088e+07     9   1.14473e+07   1.12005e+07   128845    2.16%
      33    31   1.14230e+07     9   1.14473e+07   1.12005e+07   129792    2.16%
      35    31   1.14382e+07     8   1.14473e+07   1.12005e+07   131864    2.16%
@@ -567,13 +567,13 @@ Elapsed time = 169.28 sec. (295875.35 ticks, tree = 2.40 MB)
      38    32   1.14431e+07     6   1.14473e+07   1.12005e+07   138112    2.16%
      39    33   1.14458e+07     5   1.14473e+07   1.12005e+07   139884    2.16%
 *    40+   32                       1.14468e+07   1.12005e+07             2.15%
-Found incumbent of value 1.1446820e+07 after 183.98 sec. (322752.32 ticks)
+Found incumbent of value 1.1446820e+07 after 192.50 sec. (322752.32 ticks)
      40    33   1.14460e+07     4   1.14468e+07   1.12005e+07   141843    2.15%
      45    34   1.12215e+07    26   1.14468e+07   1.12006e+07   161154    2.15%
                                                   MIRcuts: 25                  
      46    35   1.12336e+07    26   1.14468e+07   1.12006e+07   164650    2.15%
      47    36   1.12461e+07    26   1.14468e+07   1.12006e+07   190022    2.15%
-Elapsed time = 222.47 sec. (388473.73 ticks, tree = 2.47 MB)
+Elapsed time = 232.53 sec. (388473.73 ticks, tree = 2.47 MB)
      48    37   1.12627e+07    27   1.14468e+07   1.12006e+07   194021    2.15%
      49    38   1.12532e+07    25   1.14468e+07   1.12006e+07   196330    2.15%
      50    39   1.12549e+07    24   1.14468e+07   1.12006e+07   199712    2.15%
@@ -584,7 +584,7 @@ Elapsed time = 222.47 sec. (388473.73 ticks, tree = 2.47 MB)
      55    44   1.13340e+07    20   1.14468e+07   1.12006e+07   215802    2.15%
      56    45   1.13492e+07    19   1.14468e+07   1.12006e+07   218323    2.15%
      57    46   1.13705e+07    20   1.14468e+07   1.12006e+07   221933    2.15%
-Elapsed time = 252.77 sec. (439067.98 ticks, tree = 2.96 MB)
+Elapsed time = 268.30 sec. (439067.98 ticks, tree = 2.96 MB)
      58    47   1.13664e+07    19   1.14468e+07   1.12006e+07   224942    2.15%
      59    48   1.13759e+07    18   1.14468e+07   1.12006e+07   226439    2.15%
      60    49   1.13888e+07    16   1.14468e+07   1.12006e+07   230192    2.15%
@@ -595,7 +595,7 @@ Elapsed time = 252.77 sec. (439067.98 ticks, tree = 2.96 MB)
      66    55   1.14096e+07    14   1.14468e+07   1.12006e+07   239881    2.15%
      67    56   1.14188e+07    14   1.14468e+07   1.12006e+07   242609    2.15%
      68    57   1.14290e+07    15   1.14468e+07   1.12006e+07   244884    2.15%
-Elapsed time = 293.78 sec. (494700.19 ticks, tree = 3.61 MB)
+Elapsed time = 310.94 sec. (494700.19 ticks, tree = 3.61 MB)
      69    58   1.14213e+07    13   1.14468e+07   1.12006e+07   249222    2.15%
      70    59   1.14313e+07    12   1.14468e+07   1.12006e+07   250431    2.15%
      71    60   1.14383e+07    11   1.14468e+07   1.12006e+07   252929    2.15%
@@ -610,14 +610,14 @@ Mixed integer rounding cuts applied:  290
 Gomory fractional cuts applied:  1
 
 Root node processing (before b&c):
-  Real time             =   82.80 sec. (142753.28 ticks)
+  Real time             =   85.84 sec. (142753.28 ticks)
 Sequential b&c:
-  Real time             =  246.94 sec. (400300.68 ticks)
+  Real time             =  261.22 sec. (400300.68 ticks)
                           ------------
-Total (root+branch&cut) =  329.73 sec. (543053.96 ticks)
+Total (root+branch&cut) =  347.06 sec. (543053.96 ticks)
 
 --- MIP status (102): integer optimal, tolerance.
---- Cplex Time: 329.73sec (det. 543054.14 ticks)
+--- Cplex Time: 347.08sec (det. 543054.14 ticks)
 
 --- Fixing integer variables and solving final LP...
 
@@ -632,7 +632,7 @@ Tried aggregator 1 time.
 LP Presolve eliminated 79400 rows and 16045 columns.
 Aggregator did 12900 substitutions.
 Reduced LP has 11812 rows, 34519 columns, and 91420 nonzeros.
-Presolve time = 0.11 sec. (104.86 ticks)
+Presolve time = 0.09 sec. (104.86 ticks)
 
 Iteration log . . .
 Iteration:     1   Dual objective     =         59823.470207
@@ -706,7 +706,7 @@ Removing perturbation.
 Markowitz threshold set to 0.1
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 1.75sec (det. 3456.29 ticks)
+--- Cplex Time: 1.77sec (det. 3456.29 ticks)
 
 
 Solution satisfies tolerances
@@ -718,15 +718,15 @@ Absolute gap:       223556.381113
 Relative gap:            0.019530
 
 --- Reading solution for model Master
---- Final_TEP_ARO.gms(1149) 169 Mb  332 secs
---- Executing after solve: elapsed 0:06:02.012
+--- Final_TEP_ARO.gms(1149) 169 Mb  349 secs
+--- Executing after solve: elapsed 0:06:20.160
 --- Final_TEP_ARO.gms(1126) 169 Mb
 --- Generating MIP model Subproblem
 --- Final_TEP_ARO.gms(1283) 180 Mb
 --- LOOPS v = v2
 ---   70,534 rows  77,801 columns  215,247 non-zeroes
 ---   4,380 discrete-columns
---- Executing CPLEX (Solvelink=2): elapsed 0:06:03.369
+--- Executing CPLEX (Solvelink=2): elapsed 0:06:21.552
 
 IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
 
@@ -747,14 +747,14 @@ CPXPARAM_MIP_Pool_Capacity                       0
 CPXPARAM_MIP_Tolerances_AbsMIPGap                0
 CPXPARAM_MIP_Tolerances_MIPGap                   0.02
 Generic callback                                 0x50
-Found incumbent of value 0.000000 after 0.00 sec. (3.62 ticks)
+Found incumbent of value 0.000000 after 0.02 sec. (3.62 ticks)
 Tried aggregator 4 times.
 MIP Presolve eliminated 43975 rows and 39325 columns.
 MIP Presolve modified 720 coefficients.
 Aggregator did 6640 substitutions.
 Reduced MIP has 19908 rows, 30673 columns, and 65499 nonzeros.
 Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.13 sec. (153.70 ticks)
+Presolve time = 0.11 sec. (153.70 ticks)
 Probing fixed 0 vars, tightened 41 bounds.
 Probing time = 0.00 sec. (0.46 ticks)
 Tried aggregator 2 times.
@@ -763,7 +763,7 @@ MIP Presolve eliminated 711 rows and 445 columns.
 Aggregator did 119 substitutions.
 Reduced MIP has 19078 rows, 29591 columns, and 63444 nonzeros.
 Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
-Presolve time = 0.06 sec. (65.70 ticks)
+Presolve time = 0.05 sec. (65.70 ticks)
 Probing time = 0.00 sec. (0.44 ticks)
 MIP emphasis: balance optimality and feasibility.
 MIP search method: dynamic search.
@@ -817,26 +817,26 @@ Removing perturbation.
 
 Iteration log . . .
 Iteration:     1   Dual objective     =      11386996.425962
-Root relaxation solution time = 0.75 sec. (785.19 ticks)
+Root relaxation solution time = 0.78 sec. (785.19 ticks)
 
         Nodes                                         Cuts/
    Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
 
 *     0+    0                        18209.0645   1.67281e+10              --- 
-Found incumbent of value 18209.064518 after 0.97 sec. (1033.20 ticks)
+Found incumbent of value 18209.064518 after 1.00 sec. (1033.20 ticks)
 *     0     0      integral     0   1.13870e+07   1.13870e+07    14607    0.00%
-Elapsed time = 0.98 sec. (1044.10 ticks, tree = 0.00 MB)
-Found incumbent of value 1.1386996e+07 after 0.98 sec. (1044.10 ticks)
+Elapsed time = 1.00 sec. (1044.10 ticks, tree = 0.00 MB)
+Found incumbent of value 1.1386996e+07 after 1.00 sec. (1044.10 ticks)
 
 Root node processing (before b&c):
-  Real time             =    0.98 sec. (1045.54 ticks)
+  Real time             =    1.00 sec. (1045.54 ticks)
 Sequential b&c:
   Real time             =    0.00 sec. (0.00 ticks)
                           ------------
-Total (root+branch&cut) =    0.98 sec. (1045.54 ticks)
+Total (root+branch&cut) =    1.00 sec. (1045.54 ticks)
 
 --- MIP status (101): integer optimal solution.
---- Cplex Time: 0.98sec (det. 1045.76 ticks)
+--- Cplex Time: 1.00sec (det. 1045.76 ticks)
 
 --- Fixing integer variables and solving final LP...
 
@@ -851,7 +851,7 @@ Tried aggregator 1 time.
 LP Presolve eliminated 42960 rows and 39321 columns.
 Aggregator did 7755 substitutions.
 Reduced LP has 19818 rows, 30725 columns, and 72401 nonzeros.
-Presolve time = 0.06 sec. (74.91 ticks)
+Presolve time = 0.08 sec. (74.91 ticks)
 Initializing dual steep norms . . .
 
 Iteration log . . .
@@ -899,7 +899,7 @@ Iteration: 13948   Dual objective     =      11461147.847105
 Iteration: 14217   Dual objective     =      11394741.133335
 
 --- Fixed MIP status (1): optimal.
---- Cplex Time: 0.91sec (det. 947.59 ticks)
+--- Cplex Time: 0.89sec (det. 947.59 ticks)
 
 
 Proven optimal solution
@@ -912,7 +912,7 @@ Relative gap:            0.000000
 
 --- Reading solution for model Subproblem
 --- Final_TEP_ARO.gms(1283) 180 Mb  4 secs
---- Executing after solve: elapsed 0:06:07.319
+--- Executing after solve: elapsed 0:06:25.452
 --- Final_TEP_ARO.gms(1126) 180 Mb
 --- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\check_Loop_Run.gdx
 --- Final_TEP_ARO.gms(1361) 180 Mb
@@ -923,16 +923,17 @@ Relative gap:            0.000000
 --- Final_TEP_ARO.gms(1406) 180 Mb
 GDX2XLS          38.2.1 96226ea8 Feb 19, 2022          VS8 x86 32bit/MS Window
 Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Results_ARO.xlsx
+(Created backup file)
 --- Profile Summary (46 records processed)
-   348.687   0.179GB      1126 Loop       
-   331.875   0.169GB      1149 Solve Alg  Master
-     2.593   0.154GB      1283 Solve Alg  Subproblem
-     2.360   0.154GB      1283 Solve Read Subproblem
-     2.250   0.179GB      1283 Solve Alg  Subproblem
-     2.172   0.179GB      1406 Execute    
-     1.828   0.169GB      1149 Solve Read Master
-     1.687   0.179GB      1283 Solve Read Subproblem
-     1.204   0.179GB      1361 Unload     
-     0.625   0.179GB      1283 Solve Fini Subproblem (215247)
+   367.171   0.179GB      1126 Loop       
+   349.250   0.169GB      1149 Solve Alg  Master
+     2.578   0.154GB      1283 Solve Alg  Subproblem
+     2.500   0.154GB      1283 Solve Read Subproblem
+     2.282   0.179GB      1283 Solve Alg  Subproblem
+     2.031   0.179GB      1406 Execute    
+     1.969   0.169GB      1149 Solve Read Master
+     1.609   0.179GB      1283 Solve Read Subproblem
+     1.313   0.179GB      1361 Unload     
+     0.656   0.179GB      1283 Solve Fini Subproblem (215247)
 *** Status: Normal completion
---- Job Final_TEP_ARO.gms Stop 05/17/22 13:29:49 elapsed 0:06:12.201
+--- Job Final_TEP_ARO.gms Stop 05/17/22 13:37:21 elapsed 0:06:30.802

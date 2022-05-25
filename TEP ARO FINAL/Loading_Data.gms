@@ -2,7 +2,7 @@ Scalars
 *max invest budget
 IB           /200000000000000/
 *big M
-M            /20000/
+M            /10000/
 *reliability of powerlines (simplification of n-1 criteria)
 reliability  /1/
 *curtailment costs
@@ -14,7 +14,7 @@ MVABase      /500/
 
 ************************ARO
 
-Toleranz            / 100 /
+Toleranz            / 1 /
 
 LB                  / -1e10 /
 
@@ -128,6 +128,8 @@ circuits(l)                     number of parallel lines in grid
 I_costs_upg(l)                  investment cost for an upgrade from 220 kv line to 380 kv line
 I_costs_new(l)                  investment cost for a new line or connection (e.g. PCI)
 
+Prosp_cap(l)
+
 **************************************generation 
 
 PG_M_fixed_conv(g,t,v)           fixed realisation of supply in subproblem and tranferred to master
@@ -173,6 +175,7 @@ Budget_Delta(DF,rr,n)
 Budget_DF(DF,rr,n)            budget of renewable availability during a specific time horizion previous to Dunkelflaute event
 random(t,n)
 
+compare_av_ren(t,rr,n)
 
 ***************************************Uncerttainty budget
 
@@ -297,13 +300,13 @@ set=Map_SR_sun                  rng=Mapping!AK3:AM483                   rdim=3 c
 set=SR_sun                      rng=Mapping!AO3:AP483                   rdim=2 cDim=0
 set=WR_wind                     rng=Mapping!AR3:AS483                   rdim=2 cDim=0
 set=RR_ren                      rng=Mapping!BE3:BF483                   rdim=2 cDim=0
-set=Border_exist_DE             rng=Mapping!V3:V47                      rdim=1 cDim=0
+set=Border_exist_DE             rng=Mapping!V3:V49                      rdim=1 cDim=0
 
 par=Node_Demand                 rng=Node_Demand!A1:P507                 rDim=1 cdim=1
 par=LS_costs_up                 rng=Node_demand!V2:AJ3                  rDim=0 cdim=1
 par=Neighbor_Demand             rng=Neighboring_countries!A2:L8762      rDim=1 cdim=1
 par=Ger_Demand                  rng=Node_Demand!R1:S8761                rDim=1 cdim=1
-par=Grid_tech                   rng=Grid_tech!A1:H843                   rDim=1 cdim=1
+par=Grid_tech                   rng=Grid_tech!A1:H853                   rDim=1 cdim=1
 par=Gen_conv                    rng=Gen_conv!B2:J567                    rDim=1 cdim=1
 par=Gen_res                     rng=Gen_res!A2:F1123                    rDim=1 cdim=1
 par=Gen_ren                     rng=Gen_res!I2:K483                     rDim=1 cdim=1
@@ -523,10 +526,13 @@ af_ren_up(t,rr,n)$MapRR(rr,n)              =          availup_res(t,n)
 ;
 delta_af_ren(t,rr,n)$MapRR(rr,n)           =      (af_ren_up(t,rr,n) - 0.2)$(af_ren_up(t,rr,n) gt 0.2)
 ;
+*delta_af_ren(t,rr,n)$MapRR(rr,n)           =      (af_ren_up(t,rr,n) - 0.2)$(af_ren_up(t,rr,n) gt 0.2)
+*;
+
 
 *************************************Investments************************************
 
-I_costs_new(l)      =  ((Grid_invest_new(l,'Inv_costs_new')/(8760/card(t))) * 0.07)/(1-(1+0.07)**(-40)) 
+I_costs_new(l)      =  ((Grid_invest_new(l,'Inv_costs_new')/(8760/card(t))) * 0.07)/(1-(1+0.07)**(-40))	
 ;
 *I_costs_upg(l)      =  (Grid_invest_upgrade(l,'Inv_costs_upgrade')/(8760/card(t))) 
 *;
@@ -601,6 +607,6 @@ Ratio_N(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(DF,rr,n) gt 0))  
 
 Ratio_DF(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (af_ren_up(t,rr,n) = 0 ))    = 0
 ;
-Ratio_DF(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(DF,rr,n) gt 0) and (Budget_DF(DF,rr,n) gt 0 ))    = 0.1 + random(t,n)
+Ratio_DF(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(DF,rr,n) gt 0) and (Budget_Delta(DF,rr,n) gt 0 ))    = delta_af_ren(t,rr,n) / Budget_Delta(DF,rr,n)
 ;
 
