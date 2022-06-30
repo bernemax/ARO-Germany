@@ -1,0 +1,938 @@
+
+--- Job Final_TEP_ARO.gms Start 05/17/22 13:23:37 38.2.1 96226ea8 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\38\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Final_TEP_ARO.gms"
+    PageSize 0
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\225b\"
+    SysDir C:\GAMS\38\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S211124|0002AN-WIN
+          BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
+          License Admin: Felix Muesgens, Fg-energiewirtschaft@b-tu.de      
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 38.2.1   Copyright (C) 1987-2022 GAMS Development. All rights reserved
+--- Starting compilation
+--- Final_TEP_ARO.gms(145) 4 Mb
+--- . Loading_Data.gms(283) 4 Mb
+--- $echo File Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\TEP.txt
+--- . Loading_Data.gms(320) 4 Mb
+--- call gdxxrw Data.xlsx @TEP.txt
+
+GDXXRW           38.2.1 96226ea8 Feb 19, 2022          VS8 x86 32bit/MS Window
+Input file : Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.xlsx
+Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
+Value expected in cell: Gen_RES!K92; found #Error
+Value expected in cell: Gen_RES!K193; found #Error
+Value expected in cell: Gen_RES!K194; found #Error
+Value expected in cell: Gen_RES!K239; found #Error
+Value expected in cell: Gen_RES!K246; found #Error
+Additional errors suppressed
+Total number of bad values for symbol Gen_ren = 11
+Value expected in cell: Grid_invest!B3; found l62
+Value expected in cell: Grid_invest!K3; found Freileitung
+Value expected in cell: Grid_invest!B4; found l100
+Value expected in cell: Grid_invest!K4; found Freileitung
+Value expected in cell: Grid_invest!B5; found l216
+Additional errors suppressed
+Total number of bad values for symbol Grid_invest_new = 94
+Total time = 18438 Ms
+--- . Loading_Data.gms(321) 4 Mb
+--- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
+--- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Data.gdx
+--- . Loading_Data.gms(606) 128 Mb
+--- Final_TEP_ARO.gms(570) 128 Mb
+--- . network_expansion_merge.gms(101) 128 Mb
+--- Final_TEP_ARO.gms(598) 128 Mb
+--- . network_expansion_clean.gms(51) 128 Mb
+--- Final_TEP_ARO.gms(654) 128 Mb
+--- Starting execution: elapsed 0:00:19.914
+--- Final_TEP_ARO.gms(1126) 134 Mb
+--- Generating MIP model Master_VO
+--- Final_TEP_ARO.gms(1144) 134 Mb
+--- LOOPS v = v1
+---   10 rows  49 columns  480 non-zeroes
+---   47 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:20.097
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- GMO memory 0.50 Mb (peak 0.50 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 0.00 Mb (peak 0.01 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Generic callback                                 0x50
+Found incumbent of value 0.000000 after 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 10 rows and 28 columns.
+MIP Presolve added 8 rows and 8 columns.
+Reduced MIP has 8 rows, 30 columns, and 30 nonzeros.
+Reduced MIP has 21 binaries, 9 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.13 ticks)
+Probing time = 0.00 sec. (0.01 ticks)
+Tried aggregator 1 time.
+MIP Presolve eliminated 7 rows and 24 columns.
+Reduced MIP has 1 rows, 6 columns, and 6 nonzeros.
+Reduced MIP has 5 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.01 ticks)
+Probing time = 0.00 sec. (0.00 ticks)
+Tried aggregator 1 time.
+Reduced MIP has 1 rows, 6 columns, and 6 nonzeros.
+Reduced MIP has 5 binaries, 1 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.00 sec. (0.00 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.02 sec. (6.88 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.02 sec. (6.88 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 0.02sec (det. 6.88 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Simplex_Display                         2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Tried aggregator 1 time.
+LP Presolve eliminated 10 rows and 50 columns.
+All rows and columns eliminated.
+Presolve time = 0.00 sec. (0.04 ticks)
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 0.00sec (det. 0.05 ticks)
+
+
+Proven optimal solution
+MIP Solution:            0.000000    (0 iterations, 0 nodes)
+Final Solve:             0.000000    (0 iterations)
+
+Best possible:           0.000000
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model Master_VO
+--- Executing after solve: elapsed 0:00:20.201
+--- Final_TEP_ARO.gms(1126) 134 Mb
+--- Generating MIP model Subproblem
+--- Final_TEP_ARO.gms(1283) 154 Mb
+--- LOOPS v = v1
+---   70,394 rows  77,381 columns  213,987 non-zeroes
+---   4,380 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:21.324
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 4.16 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 26.94 Mb (peak 27.53 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 2.28 Mb (peak 10.04 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Generic callback                                 0x50
+Found incumbent of value 0.000000 after 0.00 sec. (3.60 ticks)
+Tried aggregator 4 times.
+MIP Presolve eliminated 43988 rows and 39045 columns.
+MIP Presolve modified 790 coefficients.
+Aggregator did 6540 substitutions.
+Reduced MIP has 19855 rows, 30630 columns, and 65793 nonzeros.
+Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.14 sec. (153.16 ticks)
+Probing fixed 0 vars, tightened 41 bounds.
+Probing time = 0.02 sec. (0.46 ticks)
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 735 rows and 495 columns.
+Aggregator did 119 substitutions.
+Reduced MIP has 19001 rows, 29484 columns, and 63510 nonzeros.
+Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.06 sec. (66.99 ticks)
+Probing time = 0.00 sec. (0.44 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =        127576.490686
+Perturbation started.
+Iteration:   202   Scaled dual infeas =             1.583477
+Iteration:   612   Scaled dual infeas =             1.028375
+Iteration:  1012   Scaled dual infeas =             0.182355
+Iteration:  1046   Dual objective     =   18361779337.028942
+Iteration:  1489   Dual objective     =   16077472688.860889
+Iteration:  2005   Dual objective     =   15827975275.180065
+Iteration:  2500   Dual objective     =   14009904438.845282
+Iteration:  2994   Dual objective     =   13685836276.271599
+Iteration:  3505   Dual objective     =   13455939735.432446
+Iteration:  4016   Dual objective     =   13168493378.675880
+Iteration:  4518   Dual objective     =   11988358454.308241
+Iteration:  5245   Dual objective     =   10441605574.144300
+Iteration:  6147   Dual objective     =    2304693364.440454
+Iteration:  6720   Dual objective     =     814191892.162222
+Iteration:  7478   Dual objective     =     244210142.378487
+Iteration:  8115   Dual objective     =      91056581.003817
+Iteration:  8613   Dual objective     =      50530706.623761
+Iteration:  9016   Dual objective     =      34778327.379978
+Iteration:  9375   Dual objective     =      22600570.038717
+Iteration:  9654   Dual objective     =      22245125.635191
+Iteration:  9921   Dual objective     =      21806180.949908
+Iteration: 10144   Dual objective     =      21306813.209514
+Iteration: 10368   Dual objective     =      20918514.295418
+Iteration: 10574   Dual objective     =      20551972.760655
+Iteration: 10830   Dual objective     =      19851581.035955
+Iteration: 11017   Dual objective     =      19246534.376728
+Iteration: 11258   Dual objective     =      18657376.566740
+Iteration: 11444   Dual objective     =      18209694.162148
+Iteration: 11652   Dual objective     =      17630592.394327
+Iteration: 11882   Dual objective     =      15714496.025830
+Iteration: 12094   Dual objective     =      15207721.969326
+Iteration: 12317   Dual objective     =      14822281.882399
+Iteration: 12535   Dual objective     =      14477909.659412
+Markowitz threshold set to 0.1
+Iteration: 12767   Dual objective     =      14115822.387235
+Iteration: 13024   Dual objective     =      13856106.989526
+Iteration: 13263   Dual objective     =      13688542.709354
+Iteration: 13502   Dual objective     =      13477171.731764
+Iteration: 13723   Dual objective     =      13339408.597125
+Iteration: 13973   Dual objective     =      13244251.327549
+Iteration: 14206   Dual objective     =      13127224.414762
+Iteration: 14458   Dual objective     =      13000547.380641
+Iteration: 14724   Dual objective     =      12949162.029601
+Iteration: 14994   Dual objective     =      12919115.226659
+Removing perturbation.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =      12916026.526955
+Root relaxation solution time = 0.97 sec. (891.77 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        18209.0645   1.67281e+10              --- 
+Found incumbent of value 18209.064518 after 1.22 sec. (1140.46 ticks)
+*     0     0      integral     0   1.29160e+07   1.29160e+07    15211    0.00%
+Elapsed time = 1.23 sec. (1151.17 ticks, tree = 0.00 MB)
+Found incumbent of value 1.2916027e+07 after 1.23 sec. (1151.17 ticks)
+
+Root node processing (before b&c):
+  Real time             =    1.23 sec. (1152.60 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    1.23 sec. (1152.60 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 1.23sec (det. 1152.82 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Tried aggregator 1 time.
+LP Presolve eliminated 42970 rows and 39041 columns.
+Aggregator did 7662 substitutions.
+Reduced LP has 19761 rows, 30678 columns, and 72724 nonzeros.
+Presolve time = 0.08 sec. (74.89 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =          4122.136867
+Iteration:   420   Scaled dual infeas =           183.511393
+Iteration:   823   Scaled dual infeas =            68.092522
+Iteration:  1243   Scaled dual infeas =             8.237426
+Iteration:  1470   Dual objective     =   16202195815.773220
+Iteration:  1831   Dual objective     =   15285731141.824648
+Iteration:  2234   Dual objective     =   14927036023.906132
+Iteration:  2651   Dual objective     =   14650231959.610205
+Iteration:  3114   Dual objective     =   12311907214.985170
+Iteration:  3674   Dual objective     =   10758448648.215014
+Iteration:  4434   Dual objective     =    9938471285.214190
+Iteration:  5334   Dual objective     =    3701645007.610001
+Iteration:  5827   Dual objective     =    3068742484.936845
+Iteration:  6665   Dual objective     =     664815939.103379
+Iteration:  7164   Dual objective     =     287233251.859472
+Iteration:  7778   Dual objective     =     115918246.692875
+Iteration:  8398   Dual objective     =      46842405.041573
+Iteration:  8806   Dual objective     =      30647265.788150
+Iteration:  9408   Dual objective     =      20395655.521825
+Iteration:  9630   Dual objective     =      20116345.689024
+Iteration:  9872   Dual objective     =      19786242.148159
+Iteration: 10136   Dual objective     =      19331720.347397
+Iteration: 10352   Dual objective     =      19039624.447554
+Iteration: 10576   Dual objective     =      18707973.587718
+Iteration: 10796   Dual objective     =      18320008.737357
+Iteration: 11000   Dual objective     =      18052046.549864
+Iteration: 11247   Dual objective     =      17564946.151460
+Iteration: 11462   Dual objective     =      16687806.832372
+Iteration: 11686   Dual objective     =      16232428.189827
+Iteration: 11904   Dual objective     =      15695336.541851
+Iteration: 12113   Dual objective     =      15271815.500189
+Iteration: 12345   Dual objective     =      14755948.286777
+Iteration: 12569   Dual objective     =      14456775.572709
+Iteration: 12800   Dual objective     =      14211262.803785
+Iteration: 13028   Dual objective     =      14024606.076512
+Iteration: 13253   Dual objective     =      13885772.566794
+Iteration: 13484   Dual objective     =      13702832.076546
+Iteration: 13698   Dual objective     =      13466413.788687
+Iteration: 13930   Dual objective     =      13317813.695032
+Iteration: 14166   Dual objective     =      13144597.813688
+Iteration: 14408   Dual objective     =      13045643.747830
+Iteration: 14655   Dual objective     =      12959314.103625
+Iteration: 14933   Dual objective     =      12918932.368482
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 1.00sec (det. 1005.39 ticks)
+
+
+Proven optimal solution
+MIP Solution:     12916026.526955    (15211 iterations, 0 nodes)
+Final Solve:      12916026.526955    (15120 iterations)
+
+Best possible:    12916026.526955
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model Subproblem
+--- Final_TEP_ARO.gms(1283) 154 Mb  5 secs
+--- Executing after solve: elapsed 0:00:26.283
+--- Final_TEP_ARO.gms(1126) 154 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\check_Loop_Run.gdx
+--- Generating MIP model Master
+--- Final_TEP_ARO.gms(1149) 169 Mb
+--- LOOPS v = v2
+---   104,112 rows  63,463 columns  233,202 non-zeroes
+---   101 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:00:28.313
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 4.99 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 30.02 Mb (peak 30.51 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 2.40 Mb (peak 11.44 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 0
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Generic callback                                 0x50
+Tried aggregator 4 times.
+MIP Presolve eliminated 76240 rows and 15404 columns.
+MIP Presolve modified 5702 coefficients.
+Aggregator did 10716 substitutions.
+Reduced MIP has 17156 rows, 37344 columns, and 106554 nonzeros.
+Reduced MIP has 47 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.22 sec. (257.80 ticks)
+Probing fixed 0 vars, tightened 80 bounds.
+Probing time = 0.00 sec. (1.81 ticks)
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 360 rows and 360 columns.
+MIP Presolve modified 40 coefficients.
+Aggregator did 6 substitutions.
+Reduced MIP has 16790 rows, 36978 columns, and 104430 nonzeros.
+Reduced MIP has 47 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.08 sec. (97.62 ticks)
+Probing fixed 0 vars, tightened 60 bounds.
+Probing time = 0.00 sec. (1.55 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =             0.000000
+Perturbation started.
+Iteration:   101   Dual objective     =             0.000000
+Iteration:   662   Dual objective     =             1.034135
+Iteration:  1244   Dual objective     =       6654300.768262
+Iteration:  1839   Dual objective     =       6672921.315172
+Iteration:  2437   Dual objective     =       6971301.966975
+Iteration:  2992   Dual objective     =       7219523.702379
+Iteration:  3562   Dual objective     =       7550823.066328
+Iteration:  4147   Dual objective     =       7632547.045442
+Iteration:  4659   Dual objective     =       7795528.510920
+Iteration:  5184   Dual objective     =       7822629.819258
+Iteration:  5752   Dual objective     =       7844298.710411
+Iteration:  6274   Dual objective     =       7844298.855754
+Iteration:  6755   Dual objective     =       7856622.113201
+Iteration:  7255   Dual objective     =       7988416.456143
+Iteration:  7744   Dual objective     =       8467672.560099
+Iteration:  8229   Dual objective     =       8944700.570570
+Iteration:  8661   Dual objective     =       9195373.966079
+Iteration:  9095   Dual objective     =       9196994.621284
+Iteration:  9519   Dual objective     =       9196994.729507
+Iteration:  9914   Dual objective     =       9210454.669435
+Iteration: 10271   Dual objective     =       9234102.227968
+Iteration: 10628   Dual objective     =       9234102.267868
+Iteration: 10957   Dual objective     =       9238009.413077
+Iteration: 11332   Dual objective     =       9239899.132203
+Iteration: 11692   Dual objective     =       9243990.887276
+Iteration: 12087   Dual objective     =       9243990.915077
+Iteration: 12362   Dual objective     =       9261819.493518
+Iteration: 12758   Dual objective     =       9262059.116992
+Iteration: 13066   Dual objective     =       9262241.856610
+Iteration: 13478   Dual objective     =       9262241.880646
+Iteration: 13951   Dual objective     =       9264539.785264
+Iteration: 14366   Dual objective     =       9264539.831970
+Iteration: 14865   Dual objective     =       9264539.893471
+Iteration: 15171   Dual objective     =       9264765.516002
+Iteration: 15435   Dual objective     =       9282747.234697
+Iteration: 15786   Dual objective     =       9283184.975103
+Iteration: 16167   Dual objective     =       9285339.224812
+Iteration: 16560   Dual objective     =       9293568.532664
+Iteration: 16972   Dual objective     =       9293568.607970
+Iteration: 17319   Dual objective     =       9293856.628485
+Iteration: 17684   Dual objective     =       9319592.676341
+Iteration: 18003   Dual objective     =       9321228.324616
+Iteration: 18284   Dual objective     =       9337159.510926
+Iteration: 18613   Dual objective     =       9339414.175639
+Iteration: 18907   Dual objective     =       9343930.180814
+Iteration: 19260   Dual objective     =       9361236.283952
+Iteration: 19542   Dual objective     =       9366257.019749
+Iteration: 19789   Dual objective     =       9384496.126085
+Iteration: 20078   Dual objective     =       9418664.277007
+Iteration: 20313   Dual objective     =       9432933.675564
+Iteration: 20565   Dual objective     =       9452648.189927
+Iteration: 20773   Dual objective     =       9464176.702210
+Iteration: 20996   Dual objective     =       9478263.722328
+Iteration: 21218   Dual objective     =       9494699.578894
+Iteration: 21454   Dual objective     =       9519731.070720
+Iteration: 21700   Dual objective     =       9583547.030645
+Iteration: 21979   Dual objective     =       9603634.336986
+Iteration: 22221   Dual objective     =       9623734.162590
+Iteration: 22408   Dual objective     =       9650700.535600
+Iteration: 22670   Dual objective     =       9682585.928486
+Iteration: 22872   Dual objective     =       9754361.877047
+Iteration: 23089   Dual objective     =       9800454.369509
+Iteration: 23303   Dual objective     =       9861834.417169
+Iteration: 23404   Dual objective     =       9919293.337342
+Iteration: 23624   Dual objective     =       9948258.702064
+Iteration: 23791   Dual objective     =      10024371.225281
+Iteration: 23997   Dual objective     =      10038112.549642
+Iteration: 24189   Dual objective     =      10059044.472611
+Markowitz threshold set to 0.1
+Iteration: 24398   Dual objective     =      10072352.850930
+Iteration: 24556   Dual objective     =      10090912.308716
+Iteration: 24712   Dual objective     =      10113162.484640
+Iteration: 24802   Dual objective     =      10118317.680996
+Iteration: 24966   Dual objective     =      10132861.957785
+Iteration: 25156   Dual objective     =      10170720.796516
+Iteration: 25358   Dual objective     =      10260693.638669
+Iteration: 25565   Dual objective     =      10325879.971893
+Iteration: 25750   Dual objective     =      10346446.274377
+Iteration: 25900   Dual objective     =      10370177.011729
+Iteration: 26080   Dual objective     =      10391857.339379
+Iteration: 26302   Dual objective     =      10408520.897296
+Iteration: 26450   Dual objective     =      10444951.508215
+Iteration: 26618   Dual objective     =      10490500.524601
+Iteration: 26697   Dual objective     =      10497251.778311
+Iteration: 26858   Dual objective     =      10541496.149846
+Iteration: 27012   Dual objective     =      10578640.165499
+Iteration: 27155   Dual objective     =      10636151.989078
+Iteration: 27314   Dual objective     =      10697800.376022
+Iteration: 27489   Dual objective     =      10718582.237133
+Iteration: 27658   Dual objective     =      10730914.432152
+Iteration: 27815   Dual objective     =      10748957.674739
+Iteration: 27946   Dual objective     =      10785107.639275
+Iteration: 28110   Dual objective     =      10823862.856553
+Iteration: 28293   Dual objective     =      10857737.250274
+Iteration: 28465   Dual objective     =      10886727.306596
+Iteration: 28646   Dual objective     =      10910026.707467
+Iteration: 28769   Dual objective     =      10916233.244760
+Iteration: 28932   Dual objective     =      10952006.886809
+Iteration: 29111   Dual objective     =      10981490.368555
+Iteration: 29283   Dual objective     =      10989481.211897
+Elapsed time = 6.30 sec. (10000.68 ticks, 29401 iterations)
+Iteration: 29459   Dual objective     =      11026966.408829
+Iteration: 29632   Dual objective     =      11034118.681905
+Iteration: 29818   Dual objective     =      11058686.190257
+Iteration: 29999   Dual objective     =      11079804.237963
+Iteration: 30230   Dual objective     =      11095830.928132
+Iteration: 30402   Dual objective     =      11106765.097311
+Iteration: 30590   Dual objective     =      11112479.196887
+Iteration: 30780   Dual objective     =      11119477.863876
+Iteration: 30963   Dual objective     =      11122705.212073
+Iteration: 31167   Dual objective     =      11126123.022005
+Iteration: 31329   Dual objective     =      11127572.783240
+Iteration: 31530   Dual objective     =      11128723.217951
+Removing perturbation.
+Root relaxation solution time = 8.34 sec. (13322.52 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+      0     0   1.11290e+07    24                 1.11290e+07    31730         
+*     0+    0                       1.14951e+07   1.11290e+07             3.18%
+Found incumbent of value 1.1495085e+07 after 10.45 sec. (16915.61 ticks)
+      0     0   1.11672e+07    27   1.14951e+07     Cuts: 795    34838    2.85%
+      0     0   1.11721e+07    28   1.14951e+07     Cuts: 436    36532    2.81%
+      0     0   1.11737e+07    29   1.14951e+07     Cuts: 307    37380    2.80%
+      0     0   1.11756e+07    29   1.14951e+07     Cuts: 124    39855    2.78%
+      0     0   1.11759e+07    29   1.14951e+07     Cuts: 177    41730    2.78%
+      0     0   1.11759e+07    29   1.14951e+07     Cuts: 171    46782    2.78%
+*     0+    0                       1.14683e+07   1.11759e+07             2.55%
+Found incumbent of value 1.1468330e+07 after 54.77 sec. (93505.86 ticks)
+*     0+    0                       1.14610e+07   1.11759e+07             2.49%
+Found incumbent of value 1.1461031e+07 after 66.17 sec. (113503.33 ticks)
+*     0+    0                       1.14501e+07   1.11759e+07             2.39%
+Found incumbent of value 1.1450052e+07 after 77.78 sec. (133899.46 ticks)
+      0     2   1.11759e+07    29   1.14501e+07   1.11774e+07    46782    2.38%
+Elapsed time = 82.80 sec. (142756.18 ticks, tree = 0.01 MB)
+      1     3   1.12005e+07    27   1.14501e+07   1.11792e+07    52885    2.37%
+      2     4   1.12088e+07    25   1.14501e+07   1.12005e+07    56064    2.18%
+      3     5   1.12233e+07    26   1.14501e+07   1.12005e+07    56240    2.18%
+      4     6   1.12262e+07    24   1.14501e+07   1.12005e+07    59778    2.18%
+      5     7   1.12396e+07    25   1.14501e+07   1.12005e+07    60321    2.18%
+      6     8   1.12402e+07    25   1.14501e+07   1.12005e+07    63933    2.18%
+      7     9   1.12420e+07    24   1.14501e+07   1.12005e+07    64889    2.18%
+      8    10   1.12516e+07    25   1.14501e+07   1.12005e+07    69079    2.18%
+      9    11   1.12484e+07    24   1.14501e+07   1.12005e+07    70832    2.18%
+     10    12   1.12607e+07    23   1.14501e+07   1.12005e+07    71296    2.18%
+Elapsed time = 113.02 sec. (195557.76 ticks, tree = 0.90 MB)
+     11    13   1.12812e+07    24   1.14501e+07   1.12005e+07    72572    2.18%
+     12    14   1.12897e+07    24   1.14501e+07   1.12005e+07    74769    2.18%
+     13    15   1.13126e+07    24   1.14501e+07   1.12005e+07    77596    2.18%
+     14    16   1.12974e+07    24   1.14501e+07   1.12005e+07    81145    2.18%
+     15    17   1.13002e+07    23   1.14501e+07   1.12005e+07    82346    2.18%
+     16    18   1.13052e+07    22   1.14501e+07   1.12005e+07    84925    2.18%
+     17    19   1.13263e+07    22   1.14501e+07   1.12005e+07    89017    2.18%
+     18    18        cutoff         1.14501e+07   1.12005e+07    92096    2.18%
+     19    19   1.13478e+07    21   1.14501e+07   1.12005e+07    95677    2.18%
+     20    20   1.13481e+07    20   1.14501e+07   1.12005e+07    96300    2.18%
+Elapsed time = 141.97 sec. (246950.89 ticks, tree = 1.64 MB)
+     21    21   1.13487e+07    19   1.14501e+07   1.12005e+07    99101    2.18%
+     22    22   1.13581e+07    17   1.14501e+07   1.12005e+07   101647    2.18%
+     23    23   1.13634e+07    16   1.14501e+07   1.12005e+07   104034    2.18%
+     24    24   1.13669e+07    15   1.14501e+07   1.12005e+07   107686    2.18%
+     25    25   1.13771e+07    14   1.14501e+07   1.12005e+07   110430    2.18%
+     26    26   1.13827e+07    13   1.14501e+07   1.12005e+07   111330    2.18%
+     27    27   1.13987e+07    12   1.14501e+07   1.12005e+07   115268    2.18%
+     28    28   1.14071e+07    12   1.14501e+07   1.12005e+07   120371    2.18%
+     29    29   1.14024e+07    11   1.14501e+07   1.12005e+07   122729    2.18%
+*    30+   28                       1.14473e+07   1.12005e+07             2.16%
+Found incumbent of value 1.1447323e+07 after 169.28 sec. (295875.26 ticks)
+     30    30   1.14030e+07    10   1.14473e+07   1.12005e+07   125719    2.16%
+Elapsed time = 169.28 sec. (295875.35 ticks, tree = 2.40 MB)
+     32    30   1.14088e+07     9   1.14473e+07   1.12005e+07   128845    2.16%
+     33    31   1.14230e+07     9   1.14473e+07   1.12005e+07   129792    2.16%
+     35    31   1.14382e+07     8   1.14473e+07   1.12005e+07   131864    2.16%
+     37    31   1.14390e+07     7   1.14473e+07   1.12005e+07   134667    2.16%
+     38    32   1.14431e+07     6   1.14473e+07   1.12005e+07   138112    2.16%
+     39    33   1.14458e+07     5   1.14473e+07   1.12005e+07   139884    2.16%
+*    40+   32                       1.14468e+07   1.12005e+07             2.15%
+Found incumbent of value 1.1446820e+07 after 183.98 sec. (322752.32 ticks)
+     40    33   1.14460e+07     4   1.14468e+07   1.12005e+07   141843    2.15%
+     45    34   1.12215e+07    26   1.14468e+07   1.12006e+07   161154    2.15%
+                                                  MIRcuts: 25                  
+     46    35   1.12336e+07    26   1.14468e+07   1.12006e+07   164650    2.15%
+     47    36   1.12461e+07    26   1.14468e+07   1.12006e+07   190022    2.15%
+Elapsed time = 222.47 sec. (388473.73 ticks, tree = 2.47 MB)
+     48    37   1.12627e+07    27   1.14468e+07   1.12006e+07   194021    2.15%
+     49    38   1.12532e+07    25   1.14468e+07   1.12006e+07   196330    2.15%
+     50    39   1.12549e+07    24   1.14468e+07   1.12006e+07   199712    2.15%
+     51    40   1.12700e+07    23   1.14468e+07   1.12006e+07   202259    2.15%
+     52    41   1.12948e+07    21   1.14468e+07   1.12006e+07   205184    2.15%
+     53    42   1.13023e+07    20   1.14468e+07   1.12006e+07   209846    2.15%
+     54    43   1.13288e+07    21   1.14468e+07   1.12006e+07   213614    2.15%
+     55    44   1.13340e+07    20   1.14468e+07   1.12006e+07   215802    2.15%
+     56    45   1.13492e+07    19   1.14468e+07   1.12006e+07   218323    2.15%
+     57    46   1.13705e+07    20   1.14468e+07   1.12006e+07   221933    2.15%
+Elapsed time = 252.77 sec. (439067.98 ticks, tree = 2.96 MB)
+     58    47   1.13664e+07    19   1.14468e+07   1.12006e+07   224942    2.15%
+     59    48   1.13759e+07    18   1.14468e+07   1.12006e+07   226439    2.15%
+     60    49   1.13888e+07    16   1.14468e+07   1.12006e+07   230192    2.15%
+     62    51   1.13925e+07    16   1.14468e+07   1.12006e+07   230333    2.15%
+     63    52   1.13945e+07    15   1.14468e+07   1.12006e+07   232899    2.15%
+     64    53   1.13968e+07    16   1.14468e+07   1.12006e+07   234365    2.15%
+     65    54   1.14006e+07    15   1.14468e+07   1.12006e+07   237703    2.15%
+     66    55   1.14096e+07    14   1.14468e+07   1.12006e+07   239881    2.15%
+     67    56   1.14188e+07    14   1.14468e+07   1.12006e+07   242609    2.15%
+     68    57   1.14290e+07    15   1.14468e+07   1.12006e+07   244884    2.15%
+Elapsed time = 293.78 sec. (494700.19 ticks, tree = 3.61 MB)
+     69    58   1.14213e+07    13   1.14468e+07   1.12006e+07   249222    2.15%
+     70    59   1.14313e+07    12   1.14468e+07   1.12006e+07   250431    2.15%
+     71    60   1.14383e+07    11   1.14468e+07   1.12006e+07   252929    2.15%
+     72    61   1.14397e+07    10   1.14468e+07   1.12006e+07   255025    2.15%
+     74    63   1.14405e+07     8   1.14468e+07   1.12006e+07   256942    2.15%
+     76    63   1.14459e+07     8   1.14468e+07   1.12006e+07   262819    2.15%
+     80    63   1.13446e+07    26   1.14468e+07   1.12233e+07   270068    1.95%
+                                                  MIRcuts: 11                  
+
+Flow cuts applied:  13
+Mixed integer rounding cuts applied:  290
+Gomory fractional cuts applied:  1
+
+Root node processing (before b&c):
+  Real time             =   82.80 sec. (142753.28 ticks)
+Sequential b&c:
+  Real time             =  246.94 sec. (400300.68 ticks)
+                          ------------
+Total (root+branch&cut) =  329.73 sec. (543053.96 ticks)
+
+--- MIP status (102): integer optimal, tolerance.
+--- Cplex Time: 329.73sec (det. 543054.14 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Tried aggregator 1 time.
+LP Presolve eliminated 79400 rows and 16045 columns.
+Aggregator did 12900 substitutions.
+Reduced LP has 11812 rows, 34519 columns, and 91420 nonzeros.
+Presolve time = 0.11 sec. (104.86 ticks)
+
+Iteration log . . .
+Iteration:     1   Dual objective     =         59823.470207
+Perturbation started.
+Iteration:   101   Dual objective     =         59823.470207
+Iteration:   545   Dual objective     =         59824.358266
+Iteration:  1011   Dual objective     =         59824.942160
+Iteration:  1533   Dual objective     =         59825.424531
+Iteration:  2036   Dual objective     =         59825.865643
+Iteration:  2521   Dual objective     =         59826.182462
+Iteration:  2998   Dual objective     =         59826.644240
+Iteration:  3469   Dual objective     =         59826.850903
+Iteration:  3957   Dual objective     =         59827.043017
+Iteration:  4401   Dual objective     =         59827.359858
+Iteration:  4892   Dual objective     =         59827.498071
+Iteration:  5410   Dual objective     =         59827.638246
+Iteration:  5885   Dual objective     =         59827.740477
+Iteration:  6367   Dual objective     =         59827.836358
+Iteration:  6834   Dual objective     =       7951993.712933
+Iteration:  7294   Dual objective     =       8063280.583385
+Iteration:  7757   Dual objective     =       8097952.928325
+Iteration:  8205   Dual objective     =       8138859.489945
+Iteration:  8639   Dual objective     =       8178939.298399
+Iteration:  9073   Dual objective     =       8293192.546111
+Iteration:  9410   Dual objective     =       8621347.854332
+Iteration:  9727   Dual objective     =       8956032.094892
+Iteration:  9999   Dual objective     =       9167170.331565
+Iteration: 10286   Dual objective     =       9531221.975895
+Iteration: 10581   Dual objective     =       9653783.825960
+Iteration: 10935   Dual objective     =       9755518.959573
+Iteration: 11158   Dual objective     =       9962594.263662
+Iteration: 11418   Dual objective     =      10000870.300980
+Iteration: 11602   Dual objective     =      10035956.356136
+Iteration: 11946   Dual objective     =      10095826.077636
+Iteration: 12200   Dual objective     =      10098409.619355
+Iteration: 12425   Dual objective     =      10109829.018119
+Iteration: 12686   Dual objective     =      10131075.934563
+Iteration: 12982   Dual objective     =      10152443.204432
+Iteration: 13272   Dual objective     =      10153479.058470
+Iteration: 13511   Dual objective     =      10153540.208441
+Iteration: 13733   Dual objective     =      10153540.222291
+Iteration: 13972   Dual objective     =      10153540.248031
+Iteration: 14272   Dual objective     =      10153540.304100
+Iteration: 14572   Dual objective     =      10153540.386022
+Iteration: 14876   Dual objective     =      10153893.112492
+Iteration: 15217   Dual objective     =      10157129.850798
+Iteration: 15515   Dual objective     =      10161112.756747
+Iteration: 15810   Dual objective     =      10179776.064889
+Iteration: 16089   Dual objective     =      10201549.152080
+Iteration: 16368   Dual objective     =      10248570.341110
+Iteration: 16694   Dual objective     =      10275916.101673
+Iteration: 16970   Dual objective     =      10289314.141015
+Iteration: 17223   Dual objective     =      10310746.871260
+Iteration: 17463   Dual objective     =      10342328.172024
+Iteration: 17742   Dual objective     =      10392774.308651
+Iteration: 18002   Dual objective     =      10496753.505233
+Iteration: 18215   Dual objective     =      10523893.145606
+Iteration: 18467   Dual objective     =      10609099.158995
+Iteration: 18726   Dual objective     =      10703248.715100
+Iteration: 18953   Dual objective     =      10794386.573755
+Iteration: 19176   Dual objective     =      10918703.792159
+Iteration: 19380   Dual objective     =      10951124.305075
+Iteration: 19605   Dual objective     =      11049890.206013
+Iteration: 19818   Dual objective     =      11186337.790586
+Iteration: 20016   Dual objective     =      11215698.536653
+Iteration: 20212   Dual objective     =      11225271.370180
+Iteration: 20399   Dual objective     =      11291636.706560
+Iteration: 20594   Dual objective     =      11354400.163647
+Iteration: 20805   Dual objective     =      11444533.215457
+Removing perturbation.
+Markowitz threshold set to 0.1
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 1.75sec (det. 3456.29 ticks)
+
+
+Solution satisfies tolerances
+MIP Solution:     11446819.896169    (270068 iterations, 81 nodes)
+Final Solve:      11446819.896169    (20857 iterations)
+
+Best possible:    11223263.515057
+Absolute gap:       223556.381113
+Relative gap:            0.019530
+
+--- Reading solution for model Master
+--- Final_TEP_ARO.gms(1149) 169 Mb  332 secs
+--- Executing after solve: elapsed 0:06:02.012
+--- Final_TEP_ARO.gms(1126) 169 Mb
+--- Generating MIP model Subproblem
+--- Final_TEP_ARO.gms(1283) 180 Mb
+--- LOOPS v = v2
+---   70,534 rows  77,801 columns  215,247 non-zeroes
+---   4,380 discrete-columns
+--- Executing CPLEX (Solvelink=2): elapsed 0:06:03.369
+
+IBM ILOG CPLEX   38.2.1 96226ea8 Feb 19, 2022          WEI x86 64bit/MS Window
+
+--- GAMS/Cplex Link licensed for continuous and discrete problems.
+--- GMO setup time: 0.00s
+--- Space for names approximately 4.17 Mb
+--- Use option 'names no' to turn use of names off
+--- GMO memory 27.00 Mb (peak 27.60 Mb)
+--- Dictionary memory 0.00 Mb
+--- Cplex 20.1.0.1 link memory 2.29 Mb (peak 10.09 Mb)
+--- Starting Cplex
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Generic callback                                 0x50
+Found incumbent of value 0.000000 after 0.00 sec. (3.62 ticks)
+Tried aggregator 4 times.
+MIP Presolve eliminated 43975 rows and 39325 columns.
+MIP Presolve modified 720 coefficients.
+Aggregator did 6640 substitutions.
+Reduced MIP has 19908 rows, 30673 columns, and 65499 nonzeros.
+Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.13 sec. (153.70 ticks)
+Probing fixed 0 vars, tightened 41 bounds.
+Probing time = 0.00 sec. (0.46 ticks)
+Tried aggregator 2 times.
+Detecting symmetries...
+MIP Presolve eliminated 711 rows and 445 columns.
+Aggregator did 119 substitutions.
+Reduced MIP has 19078 rows, 29591 columns, and 63444 nonzeros.
+Reduced MIP has 6 binaries, 0 generals, 0 SOSs, and 0 indicators.
+Presolve time = 0.06 sec. (65.70 ticks)
+Probing time = 0.00 sec. (0.44 ticks)
+MIP emphasis: balance optimality and feasibility.
+MIP search method: dynamic search.
+Parallel mode: none, using 1 thread.
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =        118838.979582
+Perturbation started.
+Iteration:   202   Scaled dual infeas =             1.601975
+Iteration:   641   Scaled dual infeas =             1.046873
+Iteration:  1028   Dual objective     =   18305556044.480511
+Iteration:  1439   Dual objective     =   16404485135.164709
+Iteration:  1936   Dual objective     =   16126835921.601675
+Iteration:  2430   Dual objective     =   14353777985.495125
+Iteration:  2930   Dual objective     =   14024575958.378830
+Iteration:  3417   Dual objective     =   13762000960.613445
+Iteration:  3922   Dual objective     =   13454746291.255405
+Iteration:  4435   Dual objective     =   13141148063.113529
+Iteration:  5000   Dual objective     =   11993257240.561125
+Iteration:  5930   Dual objective     =    4198143486.003932
+Iteration:  6441   Dual objective     =    2054913606.923980
+Iteration:  7179   Dual objective     =     687333642.159279
+Iteration:  7974   Dual objective     =     102446867.373086
+Iteration:  8513   Dual objective     =      58493600.886579
+Iteration:  8952   Dual objective     =      36546823.442159
+Iteration:  9383   Dual objective     =      22318133.298751
+Iteration:  9660   Dual objective     =      21971776.099907
+Iteration:  9880   Dual objective     =      21677817.725292
+Iteration: 10204   Dual objective     =      21090671.455321
+Iteration: 10420   Dual objective     =      20710128.475363
+Iteration: 10676   Dual objective     =      20261788.146263
+Iteration: 10883   Dual objective     =      19646059.279597
+Iteration: 11075   Dual objective     =      19257315.951627
+Iteration: 11298   Dual objective     =      18930306.745404
+Iteration: 11495   Dual objective     =      18476043.620805
+Iteration: 11710   Dual objective     =      17923535.630423
+Iteration: 11884   Dual objective     =      17412068.008300
+Iteration: 12097   Dual objective     =      15849339.252837
+Iteration: 12334   Dual objective     =      15092529.916425
+Iteration: 12557   Dual objective     =      14474697.515843
+Iteration: 12796   Dual objective     =      13846391.444386
+Iteration: 12989   Dual objective     =      13371268.845124
+Iteration: 13216   Dual objective     =      12960638.290826
+Iteration: 13439   Dual objective     =      12596989.903757
+Iteration: 13639   Dual objective     =      12131069.020922
+Iteration: 13881   Dual objective     =      11856223.494768
+Iteration: 14120   Dual objective     =      11528166.281251
+Iteration: 14379   Dual objective     =      11406161.693214
+Removing perturbation.
+
+Iteration log . . .
+Iteration:     1   Dual objective     =      11386996.425962
+Root relaxation solution time = 0.75 sec. (785.19 ticks)
+
+        Nodes                                         Cuts/
+   Node  Left     Objective  IInf  Best Integer    Best Bound    ItCnt     Gap
+
+*     0+    0                        18209.0645   1.67281e+10              --- 
+Found incumbent of value 18209.064518 after 0.97 sec. (1033.20 ticks)
+*     0     0      integral     0   1.13870e+07   1.13870e+07    14607    0.00%
+Elapsed time = 0.98 sec. (1044.10 ticks, tree = 0.00 MB)
+Found incumbent of value 1.1386996e+07 after 0.98 sec. (1044.10 ticks)
+
+Root node processing (before b&c):
+  Real time             =    0.98 sec. (1045.54 ticks)
+Sequential b&c:
+  Real time             =    0.00 sec. (0.00 ticks)
+                          ------------
+Total (root+branch&cut) =    0.98 sec. (1045.54 ticks)
+
+--- MIP status (101): integer optimal solution.
+--- Cplex Time: 0.98sec (det. 1045.76 ticks)
+
+--- Fixing integer variables and solving final LP...
+
+Version identifier: 20.1.0.1 | 2021-04-07 | 3a818710c
+CPXPARAM_Advance                                 2
+CPXPARAM_Threads                                 1
+CPXPARAM_MIP_Display                             4
+CPXPARAM_MIP_Pool_Capacity                       0
+CPXPARAM_MIP_Tolerances_AbsMIPGap                0
+CPXPARAM_MIP_Tolerances_MIPGap                   0.02
+Tried aggregator 1 time.
+LP Presolve eliminated 42960 rows and 39321 columns.
+Aggregator did 7755 substitutions.
+Reduced LP has 19818 rows, 30725 columns, and 72401 nonzeros.
+Presolve time = 0.06 sec. (74.91 ticks)
+Initializing dual steep norms . . .
+
+Iteration log . . .
+Iteration:     1   Scaled dual infeas =          3824.120709
+Iteration:   411   Scaled dual infeas =           145.480596
+Iteration:   811   Scaled dual infeas =            69.152648
+Iteration:  1248   Scaled dual infeas =             7.970502
+Iteration:  1521   Dual objective     =   16203127107.489866
+Iteration:  1892   Dual objective     =   15822040668.372150
+Iteration:  2298   Dual objective     =   15470138370.944586
+Iteration:  2707   Dual objective     =   15193272971.160128
+Iteration:  3154   Dual objective     =   13330517735.848125
+Iteration:  3674   Dual objective     =   11733345074.478653
+Iteration:  4457   Dual objective     =   10460772116.151005
+Iteration:  5357   Dual objective     =    4909113747.190801
+Iteration:  5875   Dual objective     =    2973918474.867193
+Iteration:  6676   Dual objective     =     564089474.460485
+Iteration:  7180   Dual objective     =     272145944.356780
+Iteration:  7772   Dual objective     =     110012206.702173
+Iteration:  8348   Dual objective     =      43653461.920825
+Iteration:  8739   Dual objective     =      27422517.547231
+Iteration:  8999   Dual objective     =      24119525.433284
+Iteration:  9264   Dual objective     =      22013879.611404
+Iteration:  9473   Dual objective     =      21717486.574636
+Iteration:  9673   Dual objective     =      21383500.689135
+Iteration:  9910   Dual objective     =      20958406.347617
+Iteration: 10175   Dual objective     =      20449487.534476
+Iteration: 10325   Dual objective     =      20058068.149570
+Iteration: 10505   Dual objective     =      19763804.118688
+Iteration: 10732   Dual objective     =      19255255.817054
+Iteration: 10964   Dual objective     =      17562983.978258
+Iteration: 11210   Dual objective     =      17152216.377757
+Iteration: 11438   Dual objective     =      16588696.153334
+Iteration: 11677   Dual objective     =      16000819.888683
+Iteration: 11884   Dual objective     =      15524710.567973
+Iteration: 12090   Dual objective     =      15003008.048869
+Iteration: 12288   Dual objective     =      14247284.539951
+Iteration: 12514   Dual objective     =      13689898.543671
+Iteration: 12741   Dual objective     =      13165106.714671
+Iteration: 12990   Dual objective     =      12830760.457888
+Iteration: 13230   Dual objective     =      12416592.001470
+Iteration: 13436   Dual objective     =      12050616.105832
+Iteration: 13687   Dual objective     =      11756644.355027
+Iteration: 13948   Dual objective     =      11461147.847105
+Iteration: 14217   Dual objective     =      11394741.133335
+
+--- Fixed MIP status (1): optimal.
+--- Cplex Time: 0.91sec (det. 947.59 ticks)
+
+
+Proven optimal solution
+MIP Solution:     11386996.425962    (14607 iterations, 0 nodes)
+Final Solve:      11386996.425962    (14368 iterations)
+
+Best possible:    11386996.425962
+Absolute gap:            0.000000
+Relative gap:            0.000000
+
+--- Reading solution for model Subproblem
+--- Final_TEP_ARO.gms(1283) 180 Mb  4 secs
+--- Executing after solve: elapsed 0:06:07.319
+--- Final_TEP_ARO.gms(1126) 180 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\check_Loop_Run.gdx
+--- Final_TEP_ARO.gms(1361) 180 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\check_TEP_ARO.gdx
+--- Final_TEP_ARO.gms(1397) 180 Mb
+--- GDX File (execute_unload) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Results_ARO.gdx
+--- Final_TEP_ARO.gms(1404) 180 Mb
+--- Final_TEP_ARO.gms(1406) 180 Mb
+GDX2XLS          38.2.1 96226ea8 Feb 19, 2022          VS8 x86 32bit/MS Window
+Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\SARO-Dunkelflaute\TEP ARO FINAL\Results_ARO.xlsx
+--- Profile Summary (46 records processed)
+   348.687   0.179GB      1126 Loop       
+   331.875   0.169GB      1149 Solve Alg  Master
+     2.593   0.154GB      1283 Solve Alg  Subproblem
+     2.360   0.154GB      1283 Solve Read Subproblem
+     2.250   0.179GB      1283 Solve Alg  Subproblem
+     2.172   0.179GB      1406 Execute    
+     1.828   0.169GB      1149 Solve Read Master
+     1.687   0.179GB      1283 Solve Read Subproblem
+     1.204   0.179GB      1361 Unload     
+     0.625   0.179GB      1283 Solve Fini Subproblem (215247)
+*** Status: Normal completion
+--- Job Final_TEP_ARO.gms Stop 05/17/22 13:29:49 elapsed 0:06:12.201
