@@ -45,7 +45,3 @@ ex_l('l1043') = no;
 ex_l('l1044') = no;
 ex_l('l1045') = no;
 ex_l('l1046') = no;
-ex_l('l1047') = no;
-ex_l('l1048') = no;
-ex_l('l1049') = no;
-ex_l('l1050') = no;

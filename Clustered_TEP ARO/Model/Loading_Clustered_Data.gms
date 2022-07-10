@@ -1,8 +1,8 @@
 Scalars
 *max invest budget
-IB           /2000000000000000/
+IB /inf/
 *big M
-M            /50000/
+M            /15000/
 *reliability of powerlines (simplification of n-1 criteria)
 reliability  /1/
 *curtailment costs
@@ -14,7 +14,7 @@ MVABase      /500/
 
 ************************ARO
 
-Toleranz            / 1 /
+Toleranz            / 1000 /
 
 LB                  / -1e10 /
 
@@ -134,7 +134,7 @@ Prosp_cap(l)
 PG_M_fixed_conv(g,t,v)           fixed realisation of supply in subproblem and tranferred to master
 *AF_M_PV_fixed(t,sr,n,v)          fixed PV availability factor in subproblem and tranferred to master
 *AF_M_Wind_fixed(t,wr,n,v)        fixed Wind availability factor in subproblem and tranferred to master
-AF_M_Ren_fixed(t,rr,n,v)         fixed combined wind and solar pv availability 
+AF_M_Ren_fixed(n,rr,t,v)         fixed combined wind and solar pv availability 
 
 **************************************tech & costs
 Fc_conv(g,t)                    fuel costs conventional powerplants
@@ -162,17 +162,17 @@ af_hydro(s,t)                   availability of hydro potential
 *delta_af_PV(t,sr,n) 
 *af_wind_up(t,wr,n)              upper capacity factor of wind energy
 *delta_af_Wind(t,wr,n)
-af_ren_up(t,rr,n)               upper capacity factor of wind and solar pv energy
-delta_af_ren(t,rr,n)
+af_ren_up(n,rr,t)               upper capacity factor of wind and solar pv energy
+delta_af_ren(n,rr,t)
 
-Ratio_N(t,DF,rr,n)
-Ratio_DF(t,DF,rr,n)
-Budget_N(DF,rr,n)             budget of renewable availability during a specific time horizion previous to Dunkelflaute even
-Budget_Delta(DF,rr,n)
-Budget_DF(DF,rr,n)            budget of renewable availability during a specific time horizion previous to Dunkelflaute event
-random(t,n)
+Ratio_N(n,rr,t,DF)
+Ratio_DF(n,rr,t,DF)
+Budget_N(n,rr,DF)             budget of renewable availability during a specific time horizion previous to Dunkelflaute even
+Budget_Delta(n,rr,DF)
+Budget_DF(n,rr,DF)            budget of renewable availability during a specific time horizion previous to Dunkelflaute event
+*random(t,n)
 
-compare_av_ren(t,rr,n)
+compare_av_ren(n,rr,t)
 
 ***************************************Uncerttainty budget
 
@@ -180,8 +180,8 @@ Gamma_PG_ren(rr)
 
 **************************************historical physical flow
 
-phy_flow_to_DE(t,n)             physical cross border flow for each country specific node in direct realtion with germany
-phy_flow_states_exo(t,n)        physical cross border flow for each country specific node in no realtion with germany
+phy_flow_to_DE(n,t)             physical cross border flow for each country specific node in direct realtion with germany
+phy_flow_states_exo(n,t)        physical cross border flow for each country specific node in no realtion with germany
 
 *********************************************report parameters********************************************************
 
@@ -191,7 +191,7 @@ inv_iter_hist(l,v)
 inv_cost_master(v)
 
 Report_dunkel_time_Z(rr)
-Report_dunkel_hours_Z(DF,rr)
+Report_dunkel_hours_Z(rr,DF)
 Report_lines_built(l)
 Report_total_cost
 Report_line_constr_cost(v)
@@ -284,8 +284,8 @@ $onecho > TEP.txt
 set=MAP_DF                      rng=Mapping!Z2:AA8762                   rdim=2 cDim=0
 set=Map_send_L                  rng=Mapping!A2:B302                     rdim=2 cDim=0
 set=Map_res_L                   rng=Mapping!D2:E302                     rdim=2 cDim=0
-set=MapG                        rng=Mapping!T2:U630                     rdim=2 cDim=0
-set=MapS                        rng=Mapping!W2:X180                     rdim=2 cDim=0
+set=MapG                        rng=Mapping!T2:U223                     rdim=2 cDim=0
+set=MapS                        rng=Mapping!W2:X76                      rdim=2 cDim=0
 set=MapRen                      rng=Mapping!N2:O120                     rdim=2 cDim=0
 set=MapRR                       rng=Mapping!K2:L120                     rdim=2 cDim=0
 set=MAP_RR_Ren                  rng=Mapping!G2:I120                     rdim=3 cDim=0
@@ -296,9 +296,9 @@ par=Node_Demand                 rng=Demand!A1:B120                      rDim=1 c
 par=Neighbor_Demand             rng=Demand!H2:S8762                     rDim=1 cdim=1
 par=Ger_Demand                  rng=Demand!D1:E8761                     rDim=1 cdim=1
 par=Grid_tech                   rng=Grid_tech!A1:D240                   rDim=1 cdim=1
-par=Gen_conv                    rng=Gen_conv!A1:I623                    rDim=1 cdim=1
+par=Gen_conv                    rng=Gen_conv!O1:V223                    rDim=1 cdim=1
 par=Gen_ren                     rng=Gen_ren!A1:D120                     rDim=1 cdim=1
-par=Gen_Hydro                   rng=Gen_Hydro!A1:E180                   rDim=1 cdim=1
+par=Gen_Hydro                   rng=Gen_Hydro!S1:W75                    rDim=1 cdim=1
 par=priceup                     rng=Ressource_prices!A1:I8761           rDim=1 cdim=1
 par=availup_hydro               rng=Availability!A2:D8762               rDim=1 cdim=1
 par=availup_ren                 rng=Availability!T2:EA8762              rDim=1 cdim=1
@@ -365,7 +365,8 @@ load(n,t)$border_states(n) =       Neighbor_Demand(t,n)
 ;
 LS_costs(n)             =          5000
 ;
-
+*Test(n,t)               =          Neighbor_Demand(t,n) 
+*;
 $ontext
 LS_costs_BM(n)          =          LS_costs_up('BM')
 ;
@@ -498,11 +499,11 @@ af_hydro(reservoir,t)                   =          availup_hydro(t,'reservoir')
 *;
 *delta_af_Wind(t,wr,n)$MapWr(wr,n)       =          availup_res(t,wr) * 0.95
 *;
-af_ren_up(t,rr,n)$MapRR(rr,n)              =          availup_ren(t,n)
+af_ren_up(n,rr,t)$MapRR(rr,n)              =          availup_ren(t,n)
 ;
-delta_af_ren(t,rr,n)$MapRR(rr,n)           =      (af_ren_up(t,rr,n) - 0.2)$(af_ren_up(t,rr,n) gt 0.2)
+delta_af_ren(n,rr,t)$MapRR(rr,n)           =      (af_ren_up(n,rr,t) - 0.2)$(af_ren_up(n,rr,t) gt 0.2)
 ;
-*delta_af_ren(t,rr,n)$MapRR(rr,n)           =      (af_ren_up(t,rr,n) - 0.2)$(af_ren_up(t,rr,n) gt 0.2)
+*delta_af_ren(n,rr,t)$MapRR(rr,n)           =      (af_ren_up(n,rr,t) - 0.2)$(af_ren_up(n,rr,t) gt 0.2)
 *;
 
 
@@ -573,19 +574,19 @@ su_costs(g,t)                            =            depri_costs(g) + su_fact(g
 
 
 *************************for ren buget approach
-random(t,n) = random_uni(-1,1)/10
-;
-Budget_N(DF,rr,n)                        = sum((t)$MAP_DF(t,DF), af_ren_up(t,rr,n))
+*random(t,n) = random_uni(-1,1)/10
+*;
+Budget_N(n,rr,DF)                        = sum((t)$MAP_DF(t,DF), af_ren_up(n,rr,t))
 ;              
-Budget_Delta(DF,rr,n)                    = sum((t)$MAP_DF(t,DF), delta_af_ren(t,rr,n))
+Budget_Delta(n,rr,DF)                    = sum((t)$MAP_DF(t,DF), delta_af_ren(n,rr,t))
 ;
-Budget_DF(DF,rr,n)                       = Budget_N(DF,rr,n) - Budget_Delta(DF,rr,n)
+Budget_DF(n,rr,DF)                       = Budget_N(n,rr,DF) - Budget_Delta(n,rr,DF)
 ;
-Ratio_N(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(DF,rr,n) gt 0))     = af_ren_up(t,rr,n)/(Budget_N(DF,rr,n))
+Ratio_N(n,rr,t,DF)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(n,rr,DF) gt 0))     = af_ren_up(n,rr,t)/(Budget_N(n,rr,DF))
 ;
 
-Ratio_DF(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (af_ren_up(t,rr,n) = 0 ))    = 0
+Ratio_DF(n,rr,t,DF)$(MAP_DF(t,DF) and MapRR(rr,n) and (af_ren_up(n,rr,t) = 0 ))    = 0
 ;
-Ratio_DF(t,DF,rr,n)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(DF,rr,n) gt 0) and (Budget_Delta(DF,rr,n) gt 0 ))    = delta_af_ren(t,rr,n) / Budget_Delta(DF,rr,n)
+Ratio_DF(n,rr,t,DF)$(MAP_DF(t,DF) and MapRR(rr,n) and (Budget_N(n,rr,DF) gt 0) and (Budget_Delta(n,rr,DF) gt 0 ))    = delta_af_ren(n,rr,t) / Budget_Delta(n,rr,DF)
 ;
 
