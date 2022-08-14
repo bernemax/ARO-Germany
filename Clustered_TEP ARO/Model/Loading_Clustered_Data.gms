@@ -2,7 +2,7 @@ Scalars
 *max invest budget
 IB /inf/
 *big M
-M            /15000/
+M            /10000/
 *reliability of powerlines (simplification of n-1 criteria)
 reliability  /1/
 *curtailment costs
@@ -14,7 +14,7 @@ MVABase      /500/
 
 ************************ARO
 
-Toleranz            / 1000 /
+Toleranz            / 100 /
 
 LB                  / -1e10 /
 
@@ -282,8 +282,8 @@ $offtext
 
 $onecho > TEP.txt
 set=MAP_DF                      rng=Mapping!Z2:AA8762                   rdim=2 cDim=0
-set=Map_send_L                  rng=Mapping!A2:B302                     rdim=2 cDim=0
-set=Map_res_L                   rng=Mapping!D2:E302                     rdim=2 cDim=0
+set=Map_send_L                  rng=Mapping!A2:B300                     rdim=2 cDim=0
+set=Map_res_L                   rng=Mapping!D2:E300                     rdim=2 cDim=0
 set=MapG                        rng=Mapping!T2:U223                     rdim=2 cDim=0
 set=MapS                        rng=Mapping!W2:X76                      rdim=2 cDim=0
 set=MapRen                      rng=Mapping!N2:O120                     rdim=2 cDim=0
@@ -295,14 +295,14 @@ set=Border_exist_DE             rng=Mapping!V3:V49                      rdim=1 c
 par=Node_Demand                 rng=Demand!A1:B120                      rDim=1 cdim=1
 par=Neighbor_Demand             rng=Demand!H2:S8762                     rDim=1 cdim=1
 par=Ger_Demand                  rng=Demand!D1:E8761                     rDim=1 cdim=1
-par=Grid_tech                   rng=Grid_tech!A1:D240                   rDim=1 cdim=1
+par=Grid_tech                   rng=Grid_tech!A1:D245                   rDim=1 cdim=1
 par=Gen_conv                    rng=Gen_conv!O1:V223                    rDim=1 cdim=1
 par=Gen_ren                     rng=Gen_ren!A1:D120                     rDim=1 cdim=1
 par=Gen_Hydro                   rng=Gen_Hydro!S1:W75                    rDim=1 cdim=1
 par=priceup                     rng=Ressource_prices!A1:I8761           rDim=1 cdim=1
 par=availup_hydro               rng=Availability!A2:D8762               rDim=1 cdim=1
 par=availup_ren                 rng=Availability!T2:EA8762              rDim=1 cdim=1
-par=Grid_invest_new             rng=Grid_invest!A1:K49                  rDim=1 cdim=1
+par=Grid_invest_new             rng=Grid_invest!B1:E25                  rDim=1 cdim=1
 $offecho
 
 $onUNDF

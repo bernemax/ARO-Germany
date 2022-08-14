@@ -1,9 +1,10 @@
 
-* Overall UB = 100
+* Overall UB = 30
 * Regional UB = 10
 * INV = continious
 * INV intrest rate 7%
 * Life time investments 40 years
+* DF to 20% capacity
 
 
 $funclibin stolib stodclib
@@ -19,9 +20,9 @@ option profiletol = 0.01;
 
 Sets
 
-t/t1*t748/
+t/t1*t100/
 n /n1*n111/
-l /l1*l254,l1000*l1046/
+l /l1*l242,l1000*l1021/
 g /g1*g221/
 s /s1*s74/
 Ren/ren1*ren111/
@@ -32,23 +33,6 @@ DF/Df1*DF365/
 *WP1*WP495,TE8*TE493,MC1*MC495,C1*C495,OI1*OI495,X1*X510,Service1*Service495,
 *House1*House495/
 
-
-*sun and wind set
-*Res/res1*res1021/
-*set, that represents the sum of sun and wind
-
-*sr/sr1*sr12/
-*wr/wr1*wr12/
-
-*CSR/CSR1*CSR12/
-*CWR/CWR1*CWR12/
-
-*Sun_shine(t) /t1*t5/
-*t32*t40, t56*t64, t80*t88, t104*t114/
-
-
-
-*H(t,it)
 ****************************nodes***************************************************
 ref(n)
 /n1/
@@ -75,8 +59,8 @@ Relevant_Nodes(n)
 /n1*n111/
 
 ****************************lines***************************************************
-ex_l(l)/l1*l254/
-pros_l(l)/l1000*l1046/
+ex_l(l)/l1*l242/
+pros_l(l)/l1000*l1021/
 
 Border_exist_DE(l)
 Border_exist_total(l)
@@ -479,7 +463,7 @@ SUB_lin36
 ;
 Subproblem.scaleopt = 1
 ;
-option threads = - 2
+option threads =  2
 ;
 option optcr = 0
 ;
@@ -491,7 +475,7 @@ Gamma_PG_PV = 0
 ;
 Gamma_PG_Wind = 0
 ;
-Gamma_Ren_total = 100
+Gamma_Ren_total = 30
 ;
 Gamma_PG_ren(rr) = 10
 ;
