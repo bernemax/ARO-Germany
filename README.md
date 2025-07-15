@@ -1,31 +1,34 @@
-# Modeling of Extreme Weather Events—Towards Resilient Transmission Expansion Planning
-### Maximilian Bernecker, Iegor Riepin, Felix Müsgens
-We endogenously compute worst-case weather events in a transmission system expansion planning problem using the robust optimization approach.
-Mathematically, we formulate a three-level mixed-integer optimization problem, which we convert to a bi-level problem viathe strong duality concept.
-We solve the problem using a constraint-and-column generation algorithm. We use cardinality constrained uncertainty sets to model the effects of extreme
-weather realizations on supply from renewable generators.
-### Keywords: 
-Adaptive Robust Optimization, Transmission Expansion Planning, Economic modeling
+# Effects of climate induced uncertainties on the future European electricity system
 
-## Case-Study: Germany and border countries
-- Investigation of the impact of weather-related periods of low wind and solar availability - low renewable energy supply capability. 
-- Simulated event: Anticyclonic gloom aka "Dunkelflaute"
-- Endogenious determination of worst case realization on a time and regional dimension
+* The composition of the future EU elecricity energy system will change significantly in the next decades.
+* The stochastic nature of weather based energy sources will play a major role in a future renewable energy supply. 
+* Goal of this work is to point a view on reliability and cost efficiency of Energy systems with a high share of renewable penetration taking climate and weather conditions into account 
+* We want to tackle the following questions: What makes a system robust - Which technology mix, Which uncertainties to consider? What are the extra cost of a robust system? What is a appropriate level of uncertainty which we need to take into account?  
 
-## Modeled system - 109 nodes & 242 lines
-- SCIGRID system clustered to 100 node-Germany, added by single nodal neighboring country representation 
-- DC OPF - High voltage grid
-- blue lines are expandable corridors
 
-![](https://github.com/bernemax/ARO-Dunkelflaute/blob/main/Pictures%20and%20Results/Clustered%20Germany%20v2.png)
+## Actual Modelling framework
+- Adaptive Robust Optimization
 
-# Results
-- Endogenious defined realization of worst-case Dunkelflaute in each country
-- Results from runs with different uncertainty Budget A=20, B=50, C=80
-- Each unit of uncertainty budget represents one predefined day of "Dunkelflaute" in the respective country
-- Color coded map of affected countries
-- Maximum number of "Dunkelflaute"-days per country: 10
-![](https://github.com/bernemax/ARO-Dunkelflaute/blob/main/Pictures%20and%20Results/Results%20cluster.png)
+## Future Modelling framework
+- Generation and transmission expansion
+- DC optimal power flow
 
-## Investments in respective cross-border transmission corridors [MM] per Scenario
-![](https://github.com/bernemax/ARO-Dunkelflaute/blob/main/Pictures%20and%20Results/Results%20corridors.png)
+## Reliability frameworks:
+- Loss of load hours (LOLH)
+- Expected energy not served (EENS)
+- Loss of load probability (LOLP)
+
+## Consideration: 
+- A system of 22 EU countries is examined
+- Renewable elecricity resources like PV, wind-onshore, wind-offshore, hydro 
+- Storages like battery, psp, reservoire, hydrogen
+- High voltage electricity grid
+- Future synthetic country based demand profiles
+- Wind and PV generation capacity profiles (historically 40 Years)
+- Hydro generation potentials country wise
+
+
+
+## Map of the Benchmark System  
+![](https://github.com/bernemax/ARO_EU/blob/main/Pictures%20and%20Maps/Benchmark%20System.png)
+

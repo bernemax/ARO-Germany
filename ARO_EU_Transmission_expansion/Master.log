@@ -1,0 +1,13 @@
+--- Job Master Start 01/03/23 10:20:42 38.2.1 96226ea8 WEX-WEI x86 64bit/MS Windows
+*** Unable to open input file (RC=2) Master
+*** SysMsg: No such file or directory
+--- Applying:
+    C:\GAMS\38\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input Master
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU\225f\"
+    SysDir C:\GAMS\38\
+    LogOption 2
+    GDX "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU\Results_Clustered_ARO.gdx"
+*** Status: Terminated due to parameter errors
+--- Job Master Stop 01/03/23 10:20:42 elapsed 0:00:00.016

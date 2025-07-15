@@ -1,0 +1,17 @@
+- line investments - impedance scaling?
+
+- investments in generation capacity (renewable - which ? wind-off, wind-on, pc, Hydro, Biomass, Hydrogen, Storage?)
+
+- limit of possible max. renewable capacity extension per node (available area)
+
+- green field for 2050 or dynamic investments for time steps - 2025, 2030, 2035, 2040, 2045, 2050 ? 
+
+- depreciation of conventional capacity and removal?
+
+- hydro availability for each node (or country?)
+
+- definition of the uncertainty budget 
+
+- Which uncertainty to include - Wind, PV, Hydro, demand/ load, a combination of wind and PV capacity factor?
+
+- definition of capacity facot max. deviation - monthly, based on real weather months of the last 30+ years - Finkelstein Schäfer Statistik

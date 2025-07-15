@@ -1,0 +1,188 @@
+--- Job ARO_EU_Core_GenEx.gms Start 02/21/23 14:45:51 41.4.0 caab8bc0 WEX-WEI x86 64bit/MS Windows
+--- Applying:
+    C:\GAMS\41\gmsprmNT.txt
+--- GAMS Parameters defined
+    Input "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms"
+    PageSize 0
+    ScrDir "Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\225a\"
+    SysDir C:\GAMS\41\
+    LogOption 3
+    ErrMsg 1
+    ErrorLog 99
+    IDE 1
+    LstTitleLeftAligned 1
+Licensee: Small MUD - 5 User License                     S221110|0002AN-WIN
+          BTU Cottbus-Senftenberg, FG Energiewirtschaft              DC5591
+          C:\Users\Max Bernecker\Documents\GAMS\gamslice.txt
+          License Admin: Felix Muesgens, Fg-energiewirtschaft@b-tu.de      
+Processor information: 1 socket(s), 8 core(s), and 16 thread(s) available
+GAMS 41.4.0   Copyright (C) 1987-2022 GAMS Development. All rights reserved
+--- Starting compilation
+--- ARO_EU_Core_GenEx.gms(32) 3 Mb 1 Error
+*** Error 120 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Unknown identifier entered as set
+--- ARO_EU_Core_GenEx.gms(92) 3 Mb
+--- . Loading_ARO_GenEx.gms(151) 3 Mb
+--- $echo File Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\TEP.txt
+--- . Loading_ARO_GenEx.gms(186) 3 Mb
+--- call gdxxrw Data_Input.xlsx @TEP.txt
+
+GDXXRW           41.4.0 caab8bc0 Dec 14, 2022          WEI x86 64bit/MS Window
+Input file : Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\Data_Input.xlsx
+Output file: Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\Data_Input.gdx
+Value expected in cell: Demand!P7436; found #Error
+Value expected in cell: Demand!Q7436; found #Error
+Value expected in cell: Demand!R7436; found #Error
+Value expected in cell: Demand!S7436; found #Error
+Value expected in cell: Demand!P7451; found #Error
+
+Total number of bad values for symbol load = 8
+Value expected in cell: Grid_Tech!B2; found AC
+Value expected in cell: Grid_Tech!E2; found AT0
+Value expected in cell: Grid_Tech!F2; found CH0
+Value expected in cell: Grid_Tech!I2; found Al/St 240/40 4-bundle 380.0
+Value expected in cell: Grid_Tech!B3; found AC
+Additional errors suppressed
+Total number of bad values for symbol Grid_tech = 730
+Value expected in cell: Conventional!C2; found CCGT
+Value expected in cell: Conventional!C3; found coal
+Value expected in cell: Conventional!C4; found CCGT
+Value expected in cell: Conventional!C5; found OCGT
+Value expected in cell: Conventional!C6; found biomass
+Additional errors suppressed
+Total number of bad values for symbol Gen_conv = 172
+Value expected in cell: Renewable!C2; found onwind
+Value expected in cell: Renewable!C3; found solar
+Value expected in cell: Renewable!C4; found offwind
+Value expected in cell: Renewable!C5; found onwind
+Value expected in cell: Renewable!C6; found solar
+Additional errors suppressed
+Total number of bad values for symbol Gen_ren = 126
+Value expected in cell: Storage!B2; found AT0
+Value expected in cell: Storage!B3; found BE0
+Value expected in cell: Storage!B4; found CH0
+Value expected in cell: Storage!B5; found CZ0
+Value expected in cell: Storage!B6; found DE0
+Additional errors suppressed
+Total number of bad values for symbol battery_up = 50
+Value expected in cell: Hydro!C2; found ror
+Value expected in cell: Hydro!C3; found PSP
+Value expected in cell: Hydro!C4; found reservoire
+Value expected in cell: Hydro!C5; found ror
+Value expected in cell: Hydro!C6; found PSP
+Additional errors suppressed
+Total number of bad values for symbol Gen_Hydro = 97
+Total time = 9578 Ms
+--- . Loading_ARO_GenEx.gms(187) 3 Mb
+--- GDXin=Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\Data_Input.gdx
+--- GDX File ($gdxIn) Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\Data_Input.gdx
+--- . Loading_ARO_GenEx.gms(351) 65 Mb
+--- ARO_EU_Core_GenEx.gms(741) 65 Mb 2 Errors
+*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Solve statement not checked because of previous errors
+--- ARO_EU_Core_GenEx.gms(746) 65 Mb 3 Errors
+*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Solve statement not checked because of previous errors
+--- ARO_EU_Core_GenEx.gms(750) 65 Mb 4 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(756) 65 Mb 5 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(767) 65 Mb 6 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(769) 65 Mb 7 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(770) 65 Mb 8 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(800) 65 Mb 9 Errors
+*** Error 257 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Solve statement not checked because of previous errors
+--- ARO_EU_Core_GenEx.gms(807) 65 Mb 10 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(813) 65 Mb 11 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(814) 65 Mb 12 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(828) 65 Mb 13 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(830) 65 Mb 14 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(855) 65 Mb 16 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(876) 65 Mb 17 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(884) 65 Mb 18 Errors
+*** Error 141 in Z:\MitarbeiterOrdner\Bernecker\GitHub Desktop Project Foulder\Project_ARO_EU\ARO_EU_Generation_expansion\ARO_EU_Core_GenEx.gms
+    Symbol declared but no values have been assigned. Check for missing
+       data definition, assignment, data loading or implicit assignment
+       via a solve statement.
+       A wild shot: You may have spurious commas in the explanatory
+       text of a declaration. Check symbol reference list.
+--- ARO_EU_Core_GenEx.gms(901) 65 Mb 18 Errors
+*** Status: Compilation error(s)
+--- Job ARO_EU_Core_GenEx.gms Stop 02/21/23 14:46:01 elapsed 0:00:10.203

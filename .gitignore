@@ -1,15 +1,7 @@
-**/.lst
-**/.lxi
-**/.log
-**/.~gm
-**/.gdx
-*.log
-*.lst
-*.lxi
-*.tmp
-*.~gm
-*.gdx
-*.gpr
-TEP ARO Model Test/225b/gamsmatr.dat
-TEP ARO Model Test/225b/gamsmatr.dat
-*.dat
+
+NTC_node_model/check_Toy_1.gdx
+NTC_node_model/Toy_1.lst
+NTC_node_model/~$Output_toy_1.xlsx
+Model Hybrid Stoch Rob/check_Toy_1.gdx
+ARO_EU_Generation_expansion/ARO_EU_Core_GenEx.lst
+ARO_EU_Generation_expansion/ARO_EU_Core_GenEx.gms

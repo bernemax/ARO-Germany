@@ -1,0 +1,90 @@
+B 3 C o m p i l a t i o n
+B 1236 Include File Summary
+B 1251 E x e c u t i o n
+B 1262 Equation Listing    SOLVE Master_VO Using MIP From line 1092
+D 1265 MP_Objective
+B 1278 Column Listing      SOLVE Master_VO Using MIP From line 1092
+E 1281 O_M
+E 1292 ETA
+E 1303 Cap_conv_M
+E 1331 Cap_ren_M
+E 1359 Cap_battery_M
+E 1387 Cap_inverter_M
+B 1416 Range Statistics    SOLVE Master_VO Using MIP From line 1092
+B 1427 Model Statistics    SOLVE Master_VO Using MIP From line 1092
+B 1447 Solution Report     SOLVE Master_VO Using MIP From line 1092
+F 1478 MP_Objective
+G 1490 O_M
+G 1491 ETA
+G 1496 Cap_conv_M
+G 1673 Cap_ren_M
+G 1804 Cap_battery_M
+G 1859 Cap_inverter_M
+B 1921 Equation Listing    SOLVE Subproblem Using MIP From line 1151
+D 1924 SUB_Dual_Objective
+D 4986 SUB_Dual_PG_PV
+D 4998 SUB_Dual_PG_Wind
+D 5010 SUB_Dual_PG_conv
+D 5022 SUB_Dual_PG_ror
+D 5034 SUB_Dual_PG_reservoir
+D 5046 SUB_Dual_PG_psp
+D 5058 SUB_Dual_C_psp
+D 5070 SUB_Dual_lvl_psp
+D 5082 SUB_Dual_lvl_psp_end
+D 5093 SUB_Dual_PG_battery
+D 5105 SUB_Dual_C_battery
+D 5117 SUB_Dual_lvl_battery
+D 5129 SUB_Dual_lvl_battery_end
+D 5141 SUB_Dual_PF
+D 5153 SUB_Lin_Dual
+D 5165 SUB_Lin_Dual_n_ref
+D 5177 SUB_Dual_LS
+D 5189 SUB_US_LOAD
+D 5201 SUB_US_PG_PV
+D 5213 SUB_UB_PV_Total
+D 5218 SUB_UB_PG_PV_RR
+D 5229 SUB_US_PG_Wind
+D 5241 SUB_UB_Wind_Total
+D 5246 SUB_UB_PG_Wind_RR
+D 5257 SUB_lin37
+D 5269 SUB_lin38
+D 5281 SUB_lin39
+D 5293 SUB_lin40
+D 5305 SUB_lin41
+D 5317 SUB_lin42
+D 5329 SUB_lin43
+D 5341 SUB_lin44
+B 5354 Column Listing      SOLVE Subproblem Using MIP From line 1151
+E 5357 O_Sub
+E 5364 lam
+E 5429 phi
+E 5445 phi_SL_psp
+E 5465 phi_SL_battery
+E 5484 teta_ref
+E 5500 Pdem
+E 5516 AF_PV
+E 5532 AF_Wind
+E 5548 phiPG_conv
+E 5564 phiPG_ror
+E 5580 phiPG_reservoir
+E 5596 phi_cap_psp
+E 5615 phi_cap_psp_l
+E 5631 phi_PG_psp
+E 5647 phi_C_psp
+E 5663 phi_cap_battery
+E 5679 phi_cap_battery_l
+E 5695 phi_PG_battery
+E 5711 phi_C_battery
+E 5727 phiPG_PV
+E 5746 aux_phi_PV
+E 5771 phiPG_wind
+E 5790 aux_phi_wind
+E 5815 phiLS
+E 5834 omega_UB
+E 5853 omega_LB
+E 5872 z_PG_PV
+E 23171 z_PG_Wind
+B 40471 Range Statistics    SOLVE Subproblem Using MIP From line 1151
+B 40482 Model Statistics    SOLVE Subproblem Using MIP From line 1151
+B 40502 Solution Report     SOLVE Subproblem Using MIP From line 1151
+B 40612 E x e c u t i o n

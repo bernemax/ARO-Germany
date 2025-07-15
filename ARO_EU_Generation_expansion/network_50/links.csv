@@ -1,0 +1,239 @@
+name;bus0;bus1;carrier;geometry;length;p_nom;tags;under_construction;underground;p_min_pu;underwater_fraction;capital_cost;efficiency;p_nom_extendable;p_nom_min;build_year
+5640;ES4 0;ES1 1;DC;LINESTRING(2.48932993486183 39.561252379133,1.13159199999999 39.610978,0 39.710356,-0.234388957535875 39.7314420592468);361.7312966;400;"""MW""=>""None"", ""TSO""=>""None"", ""oid""=>""32590"", ""ext1""=>""None"", ""EIC_2""=>""None"", ""EIC_3""=>""None"", ""EIC_4""=>""None"", ""text_""=>""Rómulo"", ""symbol""=>""DC-Line"", ""country""=>""ES"", ""t9_code""=>""0"", ""visible""=>""1"", ""EIC_code""=>""None"", ""tie_line""=>""0"", ""oneCircuit""=>""0"", ""CreatedDate""=>""None"", ""DeletedDate""=>""None"", ""ModifiedDate""=>""None"", ""Internalcomments""=>""None"", ""visible_on_printed""=>""1""";0;0;-1;0.608194904;2496.500748;1;True;400;0
+13589;IT1 1;IT3 0;DC;LINESTRING(9.17009350125146 41.2967653544603,9.38095099999999 41.331451,9.858856 41.352072,10.70755 41.479776,11.25 41.448903,12.100067 41.432431,12.380219 41.426253,12.418671 41.401536,12.704315 41.347948,12.805939 41.368564,12.9016442293009 41.3921592955445);561.380325;1000;;0;0;-1;0.905726169;3092.459132;1;True;1000;0
+14825;FR1 3;ES1 1;DC;LINESTRING(2.98259070757654 42.2776059846425,2.90313700000001 42.397094,2.867432 42.467032,2.77404800000001 42.655172);701.9317278;2000;;0;0;-1;0;3762.540518;1;True;2000;0
+14801;DE1 2;BE1 0;DC;LINESTRING(6.43068069229957 50.8136946409214,6.020508 50.766865,5.925751 50.755572,5.73118285928413 50.7304278585398);234.1193032;1000;;0;0;-1;0;2128.120139;1;True;0;0
+14814;GB0 0;NL1 0;DC;LINESTRING(4.04528166772434 51.9611233898246,2.41561900000001 51.702353,0.794192405058928 51.4189824547604);503.8813593;1000;;0;0;-1;0.451865411;2990.432384;1;True;1000;0
+14826;GB0 0;FR1 2;DC;LINESTRING(1.75051314494826 50.9186901861196,1.43508900000001 50.970535,1.02353536683349 51.0370060560335);396.5984776;2000;;0;0;-1;0.125805109;2678.214086;1;True;2000;0
+14820;LT6 0;SE2 1;DC;LINESTRING(21.2350493599337 55.6649551399923,21.220093 55.641174,21.122589 55.631872,20.210724 55.776573,19.114838 55.949969,18.491364 55.974567,16.875 56.109576,16.875 56.109576,16.292725 56.158553,15.545654 56.647167);822.3601277;700;;0;0;-1;0.412937823;4063.718672;1;True;700;0
+14805;DK2 0;DK1 0;DC;LINESTRING(11.2853515176222 55.5308076825323,11.25 55.515415,11.185455 55.488191,11.134644 55.483523,10.735016 55.405629,10.5537191820378 55.3715610145456);205.4030413;600;;0;1;-1;0.13496314;2018.031683;1;True;600;0
+14824;DK2 0;DE1 6;DC;LINESTRING(11.9669051857726 55.421747727341,12.087708 54.770593,12.13028 54.564896,12.236023 54.258807,12.267609 54.102086);399.4745024;600;;0;0;-1;0.177397661;2680.877972;1;True;600;0
+14823;PL1 0;SE2 1;DC;LINESTRING(16.861267 54.533833,16.274872 55.092515,16.022186 55.289283,15.37674 55.776573,14.8455441317166 56.1736465974452);1127.136273;600;;0;0;-1;0.190618056;5172.449112;1;True;600;0
+14803;NL1 0;DK1 0;DC;LINESTRING(6.75668661933496 53.437616158174,6.838989 53.664171,6.96258499999999 53.785238,7.34298700000001 53.882488,7.80029300000001 54.517096,8.20678699999999 55.297102,8.86005375885099 55.4336013425692);604.7379091;700;;0;0;-1;0.426199311;3332.218566;1;True;0;0
+14821;NL1 0;NO2 0;DC;LINESTRING(6.83036734046461 53.4374933986115,6.253967 53.645452,6.33636499999999 55.776573,6.34597800000001 56.029855,6.34597800000001 56.030622,6.43661500000001 58.130121,6.90176957000565 58.2653404287817);1221.1697;700;;0;0;-1;0.446703327;5384.556037;1;True;700;0
+14848;DE1 5;NO2 0;DC;LINESTRING(6.81690675921544 58.6338502746805,6.63024900000001 58.249559,6.78268399999999 57.579197,7.17544599999999 56.532986,7.17407200000001 56.5345,7.46521000000001 55.776573,7.46521000000001 55.776573,7.64099100000001 55.312736,8.458099 54.316523,9.394684 53.934262);1115.531376;0;;1;0;-1;0.420809947;5042.267893;1;True;0;0
+5581;GB0 2;GB5 0;DC;LINESTRING(-4.94702447012386 55.0727948492206,-5.137482 55.042188,-5.62500000000001 54.890036,-5.631866 54.887667,-5.7332134509551 54.813550429852);273.373117;2501;"""MW""=>""None"", ""TSO""=>""None"", ""oid""=>""32527"", ""ext1""=>""None"", ""EIC_2""=>""None"", ""EIC_3""=>""None"", ""EIC_4""=>""None"", ""text_""=>"" "", ""symbol""=>""DC-Line"", ""country""=>""UK"", ""t9_code""=>""222.1.2"", ""visible""=>""1"", ""EIC_code""=>""None"", ""tie_line""=>""1"", ""oneCircuit""=>""0"", ""CreatedDate""=>""None"", ""DeletedDate""=>""None"", ""ModifiedDate""=>""None"", ""Internalcomments""=>""None"", ""visible_on_printed""=>""1""";0;0;-1;0.182692351;2247.678017;1;True;2501;0
+5580;GB0 2;GB5 0;DC;LINESTRING(-4.94689333475508 55.0726735779237,-5.045471 55.009914,-5.59616099999999 54.840245,-5.62500000000001 54.834709,-5.73306677066227 54.8134313531551);273.373117;250;"""MW""=>""None"", ""TSO""=>""None"", ""oid""=>""32526"", ""ext1""=>""None"", ""EIC_2""=>""None"", ""EIC_3""=>""None"", ""EIC_4""=>""None"", ""text_""=>"" "", ""symbol""=>""DC-Line"", ""country""=>""UK"", ""t9_code""=>""222.1.1"", ""visible""=>""1"", ""EIC_code""=>""None"", ""tie_line""=>""1"", ""oneCircuit""=>""0"", ""CreatedDate""=>""None"", ""DeletedDate""=>""None"", ""ModifiedDate""=>""None"", ""Internalcomments""=>""None"", ""visible_on_printed""=>""1""";0;0;-1;0.140193439;2251.768783;1;True;250;0
+14819;SE2 1;DK1 0;DC;LINESTRING(10.2163282994747 57.1311139024238,10.567474 57.20771,10.737762 57.192832,10.972595 57.230016,11.25 57.33171,11.532898 57.436081,11.867981 57.556366,12.0227165657676 57.561507168045);638.2282213;250;;0;0;-1;0.130822311;3510.577547;1;True;250;0
+14809;SE2 1;DK1 0;DC;LINESTRING(10.2163571716117 57.1310010356663,10.366974 57.123569,10.578461 57.16678,10.740509 57.15263,11.001434 57.197296,11.174469 57.255281,11.25 57.282754,11.56723 57.399104,12.0227887239052 57.5613889668514);638.2282213;300;;0;0;-1;0.161126826;3503.767434;1;True;300;0
+14807;FI2 0;EE6 0;DC;LINESTRING(24.597015 59.388479,24.514618 59.41015,24.44046 59.58928,24.505005 59.752936,24.503632 59.751553,24.6559859237295 60.1665725262589);541.8514685;600;;0;0;-1;0.132944054;3177.895724;1;True;600;0
+14816;FI2 0;EE6 0;DC;LINESTRING(26.4769584465578 59.4850679251882,26.423492 59.613602,26.048584 59.92956,25.632477 60.272515,25.743713 60.360243,25.6409589827655 60.4394217635504);541.8514685;650;;0;0;-1;0.178517537;3169.200846;1;True;650;0
+14818;SE2 1;FI2 0;DC;LINESTRING(21.3559064590049 61.0800030227353,21.303864 61.005076,20.946808 60.801394,18.153534 60.501202,18.007965 60.483615,17.171631 60.503906,17.0593630437863 60.5503864910584);802.4403766;800;;0;0;-1;0.247025486;4043.897569;1;True;800;0
+14817;SE2 1;FI2 0;DC;LINESTRING(21.3557421230034 61.0800501553429,20.902863 60.846249,18.224945 60.556604,18.0193872312079 60.533018071939);802.4403766;500;;0;0;-1;0.245554784;4044.313105;1;True;500;0
+T0;ES1 0;FR1 6;DC;LINESTRING (-2.867 43.367, -0.408943 45.074191);646.8268101;0;"""name""=>""Biscay Gulf"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/16"", ""status""=>""in permitting""";1;0;-1;0.362891249;3487.369027;1;True;0;0
+T2;FR1 4;GB0 0;DC;LINESTRING (-0.172042 49.083593, -1.277269 50.839338);543.7145042;0;"""name""=>""IFA2"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/25"", ""status""=>""under construction""";1;0;-1;0.347612972;3143.220408;1;True;0;0
+T6;GB0 0;BE1 0;DC;LINESTRING (1.324854 51.295891, 3.23043 51.24902);429.4772028;0;"""name""=>""Thames Estuary Cluster (NEMO-Link)"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/74"", ""status""=>""under construction""";1;0;-1;0.262264827;2770.992243;1;True;0;0
+T10;DE1 1;DE1 3;DC;LINESTRING (11.629014 52.252137, 12.091596 48.080837);331.7659676;0;"""name""=>""HVDC SuedOstLink"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/130"", ""status""=>""in permitting""";1;0;-1;0;2469.273323;1;True;0;0
+T12;GB0 4;FR1 4;DC;LINESTRING (-3.533899 50.718412, -1.469216 49.509594);545.5453995;0;"""name""=>""France-Alderney-Britain"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/153"", ""status""=>""in permitting""";1;0;-1;0.218750787;3174.145981;1;True;0;0
+T13;GB0 3;DK1 0;DC;LINESTRING (-0.203587 52.93979, 9.178363 55.509166);907.5127891;0;"""name""=>""Viking DKW-GB"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/167"", ""status""=>""in permitting""";1;0;-1;0.788811509;4228.733699;1;True;0;0
+T15;IT1 2;CH1 0;DC;LINESTRING (9.439781 45.668539, 9.76569 46.432156);237.0838898;0;"""name""=>""Greenconnector"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/174"", ""status""=>""in permitting""";1;0;-1;0;2138.477668;1;True;0;0
+T16;SE2 1;DE1 6;DC;LINESTRING (13.6022222222222 55.8330555555556, 12.189538 53.803155);946.2674048;0;"""name""=>""Hansa PowerBridge I"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/176"", ""status""=>""in permitting""";1;0;-1;0.138292378;4570.11178;1;True;0;0
+T17;NO2 0;GB0 2;DC;LINESTRING (7.16027 60.500527, -1.784066 57.508123);1121.886912;0;"""name""=>""NorthConnect"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/190"", ""status""=>""in permitting""";1;0;-1;0.470266614;5043.994448;1;True;0;0
+T18;DE1 5;DE1 0;DC;LINESTRING (9.373979 53.922479, 9.117193 49.145157);407.8962698;0;"""name""=>""HVDC SuedLink"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/235"", ""status""=>""in permitting""";1;0;-1;0.018055723;2732.660486;1;True;0;0
+T19;GB0 0;FR1 2;DC;LINESTRING (-1.020512 50.908244, 0.991736 49.656631);396.5984776;0;"""name""=>""AQUIND Interconnector"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/247"", ""status""=>""in permitting""";1;0;-1;0.451658556;2632.710633;1;True;0;0
+T20;DE1 2;DE1 0;DC;LINESTRING (6.619451 51.272935, 8.458036 49.235253);228.5978382;0;"""name""=>""HVDC Ultranet"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/254"", ""status""=>""in permitting""";1;0;-1;0;2108.829512;1;True;0;0
+T21;GB0 0;FR1 2;DC;LINESTRING (0.596111111111111 51.41972, 2.376776 51.034368);396.5984776;0;"""name""=>""Gridlink"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/285"", ""status""=>""in permitting""";1;0;-1;0.261654285;2659.243574;1;True;0;0
+T22;GB0 0;DE1 5;DC;LINESTRING (0.716666666666667 51.44, 8.046524 53.562763);831.6964113;0;"""name""=>""NeuConnect"", ""ref""=>""https://tyndp.entsoe.eu/tyndp2018/projects/projects/309"", ""status""=>""in permitting""";1;0;-1;0.490810766;4072.175261;1;True;0;0
+6342;PL1 0;LT6 0;DC;;593.5982754;2000;;0;0;-1;0;3384.050352;1;True;2000;0
+5586+4;IT3 0;IT1 0;DC;;768.578448;300;;0;0;-1;0.148630093;3955.165388;1;True;300;0
+14822+1;NO2 0;DK1 0;DC;;706.2333382;940;;0;0;-1;0.196293489;3728.757445;1;True;940;0
+AT1 0 H2 Electrolysis;AT1 0;AT1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+BE1 0 H2 Electrolysis;BE1 0;BE1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+CH1 0 H2 Electrolysis;CH1 0;CH1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+CZ1 0 H2 Electrolysis;CZ1 0;CZ1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DE1 0 H2 Electrolysis;DE1 0;DE1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DE1 1 H2 Electrolysis;DE1 1;DE1 1 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DE1 2 H2 Electrolysis;DE1 2;DE1 2 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DE1 3 H2 Electrolysis;DE1 3;DE1 3 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DE1 4 H2 Electrolysis;DE1 4;DE1 4 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DE1 5 H2 Electrolysis;DE1 5;DE1 5 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DE1 6 H2 Electrolysis;DE1 6;DE1 6 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DK1 0 H2 Electrolysis;DK1 0;DK1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+DK2 0 H2 Electrolysis;DK2 0;DK2 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+EE6 0 H2 Electrolysis;EE6 0;EE6 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+ES1 0 H2 Electrolysis;ES1 0;ES1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+ES1 1 H2 Electrolysis;ES1 1;ES1 1 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+ES1 2 H2 Electrolysis;ES1 2;ES1 2 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+ES4 0 H2 Electrolysis;ES4 0;ES4 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FI2 0 H2 Electrolysis;FI2 0;FI2 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FR1 0 H2 Electrolysis;FR1 0;FR1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FR1 1 H2 Electrolysis;FR1 1;FR1 1 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FR1 2 H2 Electrolysis;FR1 2;FR1 2 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FR1 3 H2 Electrolysis;FR1 3;FR1 3 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FR1 4 H2 Electrolysis;FR1 4;FR1 4 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FR1 5 H2 Electrolysis;FR1 5;FR1 5 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+FR1 6 H2 Electrolysis;FR1 6;FR1 6 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+GB0 0 H2 Electrolysis;GB0 0;GB0 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+GB0 1 H2 Electrolysis;GB0 1;GB0 1 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+GB0 2 H2 Electrolysis;GB0 2;GB0 2 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+GB0 3 H2 Electrolysis;GB0 3;GB0 3 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+GB0 4 H2 Electrolysis;GB0 4;GB0 4 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+GB5 0 H2 Electrolysis;GB5 0;GB5 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+HU1 0 H2 Electrolysis;HU1 0;HU1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+IE5 0 H2 Electrolysis;IE5 0;IE5 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+IT1 0 H2 Electrolysis;IT1 0;IT1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+IT1 1 H2 Electrolysis;IT1 1;IT1 1 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+IT1 2 H2 Electrolysis;IT1 2;IT1 2 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+IT1 3 H2 Electrolysis;IT1 3;IT1 3 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+IT3 0 H2 Electrolysis;IT3 0;IT3 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+LT6 0 H2 Electrolysis;LT6 0;LT6 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+LU1 0 H2 Electrolysis;LU1 0;LU1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+LV6 0 H2 Electrolysis;LV6 0;LV6 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+NL1 0 H2 Electrolysis;NL1 0;NL1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+NO2 0 H2 Electrolysis;NO2 0;NO2 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+PL1 0 H2 Electrolysis;PL1 0;PL1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+PT1 0 H2 Electrolysis;PT1 0;PT1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+SE2 0 H2 Electrolysis;SE2 0;SE2 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+SE2 1 H2 Electrolysis;SE2 1;SE2 1 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+SI1 0 H2 Electrolysis;SI1 0;SI1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+SK1 0 H2 Electrolysis;SK1 0;SK1 0 H2;H2 electrolysis;;0;0;;;;0;;3844.329668;0.68;True;0;0
+AT1 0 H2 Fuel Cell;AT1 0 H2;AT1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+BE1 0 H2 Fuel Cell;BE1 0 H2;BE1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+CH1 0 H2 Fuel Cell;CH1 0 H2;CH1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+CZ1 0 H2 Fuel Cell;CZ1 0 H2;CZ1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DE1 0 H2 Fuel Cell;DE1 0 H2;DE1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DE1 1 H2 Fuel Cell;DE1 1 H2;DE1 1;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DE1 2 H2 Fuel Cell;DE1 2 H2;DE1 2;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DE1 3 H2 Fuel Cell;DE1 3 H2;DE1 3;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DE1 4 H2 Fuel Cell;DE1 4 H2;DE1 4;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DE1 5 H2 Fuel Cell;DE1 5 H2;DE1 5;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DE1 6 H2 Fuel Cell;DE1 6 H2;DE1 6;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DK1 0 H2 Fuel Cell;DK1 0 H2;DK1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+DK2 0 H2 Fuel Cell;DK2 0 H2;DK2 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+EE6 0 H2 Fuel Cell;EE6 0 H2;EE6 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+ES1 0 H2 Fuel Cell;ES1 0 H2;ES1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+ES1 1 H2 Fuel Cell;ES1 1 H2;ES1 1;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+ES1 2 H2 Fuel Cell;ES1 2 H2;ES1 2;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+ES4 0 H2 Fuel Cell;ES4 0 H2;ES4 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FI2 0 H2 Fuel Cell;FI2 0 H2;FI2 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FR1 0 H2 Fuel Cell;FR1 0 H2;FR1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FR1 1 H2 Fuel Cell;FR1 1 H2;FR1 1;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FR1 2 H2 Fuel Cell;FR1 2 H2;FR1 2;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FR1 3 H2 Fuel Cell;FR1 3 H2;FR1 3;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FR1 4 H2 Fuel Cell;FR1 4 H2;FR1 4;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FR1 5 H2 Fuel Cell;FR1 5 H2;FR1 5;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+FR1 6 H2 Fuel Cell;FR1 6 H2;FR1 6;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+GB0 0 H2 Fuel Cell;GB0 0 H2;GB0 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+GB0 1 H2 Fuel Cell;GB0 1 H2;GB0 1;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+GB0 2 H2 Fuel Cell;GB0 2 H2;GB0 2;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+GB0 3 H2 Fuel Cell;GB0 3 H2;GB0 3;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+GB0 4 H2 Fuel Cell;GB0 4 H2;GB0 4;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+GB5 0 H2 Fuel Cell;GB5 0 H2;GB5 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+HU1 0 H2 Fuel Cell;HU1 0 H2;HU1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+IE5 0 H2 Fuel Cell;IE5 0 H2;IE5 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+IT1 0 H2 Fuel Cell;IT1 0 H2;IT1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+IT1 1 H2 Fuel Cell;IT1 1 H2;IT1 1;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+IT1 2 H2 Fuel Cell;IT1 2 H2;IT1 2;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+IT1 3 H2 Fuel Cell;IT1 3 H2;IT1 3;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+IT3 0 H2 Fuel Cell;IT3 0 H2;IT3 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+LT6 0 H2 Fuel Cell;LT6 0 H2;LT6 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+LU1 0 H2 Fuel Cell;LU1 0 H2;LU1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+LV6 0 H2 Fuel Cell;LV6 0 H2;LV6 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+NL1 0 H2 Fuel Cell;NL1 0 H2;NL1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+NO2 0 H2 Fuel Cell;NO2 0 H2;NO2 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+PL1 0 H2 Fuel Cell;PL1 0 H2;PL1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+PT1 0 H2 Fuel Cell;PT1 0 H2;PT1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+SE2 0 H2 Fuel Cell;SE2 0 H2;SE2 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+SE2 1 H2 Fuel Cell;SE2 1 H2;SE2 1;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+SI1 0 H2 Fuel Cell;SI1 0 H2;SI1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+SK1 0 H2 Fuel Cell;SK1 0 H2;SK1 0;H2 fuel cell;;0;0;;;;0;;8986.401155;0.5;True;0;0
+AT1 0 battery charger;AT1 0;AT1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+BE1 0 battery charger;BE1 0;BE1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+CH1 0 battery charger;CH1 0;CH1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+CZ1 0 battery charger;CZ1 0;CZ1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DE1 0 battery charger;DE1 0;DE1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DE1 1 battery charger;DE1 1;DE1 1 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DE1 2 battery charger;DE1 2;DE1 2 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DE1 3 battery charger;DE1 3;DE1 3 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DE1 4 battery charger;DE1 4;DE1 4 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DE1 5 battery charger;DE1 5;DE1 5 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DE1 6 battery charger;DE1 6;DE1 6 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DK1 0 battery charger;DK1 0;DK1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+DK2 0 battery charger;DK2 0;DK2 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+EE6 0 battery charger;EE6 0;EE6 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+ES1 0 battery charger;ES1 0;ES1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+ES1 1 battery charger;ES1 1;ES1 1 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+ES1 2 battery charger;ES1 2;ES1 2 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+ES4 0 battery charger;ES4 0;ES4 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FI2 0 battery charger;FI2 0;FI2 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FR1 0 battery charger;FR1 0;FR1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FR1 1 battery charger;FR1 1;FR1 1 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FR1 2 battery charger;FR1 2;FR1 2 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FR1 3 battery charger;FR1 3;FR1 3 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FR1 4 battery charger;FR1 4;FR1 4 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FR1 5 battery charger;FR1 5;FR1 5 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+FR1 6 battery charger;FR1 6;FR1 6 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+GB0 0 battery charger;GB0 0;GB0 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+GB0 1 battery charger;GB0 1;GB0 1 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+GB0 2 battery charger;GB0 2;GB0 2 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+GB0 3 battery charger;GB0 3;GB0 3 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+GB0 4 battery charger;GB0 4;GB0 4 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+GB5 0 battery charger;GB5 0;GB5 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+HU1 0 battery charger;HU1 0;HU1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+IE5 0 battery charger;IE5 0;IE5 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+IT1 0 battery charger;IT1 0;IT1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+IT1 1 battery charger;IT1 1;IT1 1 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+IT1 2 battery charger;IT1 2;IT1 2 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+IT1 3 battery charger;IT1 3;IT1 3 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+IT3 0 battery charger;IT3 0;IT3 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+LT6 0 battery charger;LT6 0;LT6 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+LU1 0 battery charger;LU1 0;LU1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+LV6 0 battery charger;LV6 0;LV6 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+NL1 0 battery charger;NL1 0;NL1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+NO2 0 battery charger;NO2 0;NO2 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+PL1 0 battery charger;PL1 0;PL1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+PT1 0 battery charger;PT1 0;PT1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+SE2 0 battery charger;SE2 0;SE2 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+SE2 1 battery charger;SE2 1;SE2 1 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+SI1 0 battery charger;SI1 0;SI1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+SK1 0 battery charger;SK1 0;SK1 0 battery;battery charger;;0;0;;;;0;;1980.976475;0.979795897;True;0;0
+AT1 0 battery discharger;AT1 0 battery;AT1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+BE1 0 battery discharger;BE1 0 battery;BE1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+CH1 0 battery discharger;CH1 0 battery;CH1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+CZ1 0 battery discharger;CZ1 0 battery;CZ1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DE1 0 battery discharger;DE1 0 battery;DE1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DE1 1 battery discharger;DE1 1 battery;DE1 1;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DE1 2 battery discharger;DE1 2 battery;DE1 2;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DE1 3 battery discharger;DE1 3 battery;DE1 3;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DE1 4 battery discharger;DE1 4 battery;DE1 4;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DE1 5 battery discharger;DE1 5 battery;DE1 5;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DE1 6 battery discharger;DE1 6 battery;DE1 6;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DK1 0 battery discharger;DK1 0 battery;DK1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+DK2 0 battery discharger;DK2 0 battery;DK2 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+EE6 0 battery discharger;EE6 0 battery;EE6 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+ES1 0 battery discharger;ES1 0 battery;ES1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+ES1 1 battery discharger;ES1 1 battery;ES1 1;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+ES1 2 battery discharger;ES1 2 battery;ES1 2;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+ES4 0 battery discharger;ES4 0 battery;ES4 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FI2 0 battery discharger;FI2 0 battery;FI2 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FR1 0 battery discharger;FR1 0 battery;FR1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FR1 1 battery discharger;FR1 1 battery;FR1 1;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FR1 2 battery discharger;FR1 2 battery;FR1 2;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FR1 3 battery discharger;FR1 3 battery;FR1 3;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FR1 4 battery discharger;FR1 4 battery;FR1 4;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FR1 5 battery discharger;FR1 5 battery;FR1 5;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+FR1 6 battery discharger;FR1 6 battery;FR1 6;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+GB0 0 battery discharger;GB0 0 battery;GB0 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+GB0 1 battery discharger;GB0 1 battery;GB0 1;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+GB0 2 battery discharger;GB0 2 battery;GB0 2;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+GB0 3 battery discharger;GB0 3 battery;GB0 3;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+GB0 4 battery discharger;GB0 4 battery;GB0 4;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+GB5 0 battery discharger;GB5 0 battery;GB5 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+HU1 0 battery discharger;HU1 0 battery;HU1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+IE5 0 battery discharger;IE5 0 battery;IE5 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+IT1 0 battery discharger;IT1 0 battery;IT1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+IT1 1 battery discharger;IT1 1 battery;IT1 1;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+IT1 2 battery discharger;IT1 2 battery;IT1 2;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+IT1 3 battery discharger;IT1 3 battery;IT1 3;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+IT3 0 battery discharger;IT3 0 battery;IT3 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+LT6 0 battery discharger;LT6 0 battery;LT6 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+LU1 0 battery discharger;LU1 0 battery;LU1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+LV6 0 battery discharger;LV6 0 battery;LV6 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+NL1 0 battery discharger;NL1 0 battery;NL1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+NO2 0 battery discharger;NO2 0 battery;NO2 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+PL1 0 battery discharger;PL1 0 battery;PL1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+PT1 0 battery discharger;PT1 0 battery;PT1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+SE2 0 battery discharger;SE2 0 battery;SE2 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+SE2 1 battery discharger;SE2 1 battery;SE2 1;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+SI1 0 battery discharger;SI1 0 battery;SI1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
+SK1 0 battery discharger;SK1 0 battery;SK1 0;battery discharger;;0;0;;;;0;;0;0.979795897;True;0;0
